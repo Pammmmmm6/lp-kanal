@@ -3,22 +3,21 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kanal — Le marketing WhatsApp qui vend pour vous</title>
-  <meta name="description" content="Kanal transforme WhatsApp en canal de vente : campagnes, automatisations, segments et inbox IA, avec le chiffre d'affaires attribué à chaque message." />
-  <link rel="icon" href="assets/kanal-mark.svg" type="image/svg+xml" />
+  <title>Nova — Des agents IA qui font le travail</title>
+  <meta name="description" content="Nova : des agents IA à qui confier de vraies tâches, qui travaillent en parallèle et reviennent avec un travail fini." />
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <script>
-    var t = null; try { t = localStorage.getItem('kanal-theme'); } catch (e) {}
-    if (!t && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) t = 'dark';
+    var t = null; try { t = localStorage.getItem('nova-theme'); } catch (e) {}
     if (t) document.documentElement.setAttribute('data-theme', t);
   </script>
 </head>
 <body>
 
-  <!-- Mascotte réutilisable -->
+  <!-- Mascotte (forme réutilisable) -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
       <path id="bubble" d="M100 14C52 14 13 50 13 95c0 23 10 44 27 59L28 190l42-18c9.4 3 19.6 4.6 30 4.6 48 0 87-36 87-81S148 14 100 14z" />
@@ -28,57 +27,63 @@
   <!-- ============ NAV ============ -->
   <header class="nav" id="nav">
     <div class="nav__inner">
-      <a href="#" class="logo" aria-label="Kanal — accueil">
+      <a href="#" class="logo" aria-label="Nova — accueil">
         <svg viewBox="0 0 200 200" class="logo__mark" aria-hidden="true"><use href="#bubble" /></svg>
-        <span>kanal</span>
+        <span>nova</span>
       </a>
       <nav class="nav__links" aria-label="Navigation principale">
         <div class="nav__item has-menu">
-          <button class="nav__link" aria-expanded="false">Produit <svg class="chev" viewBox="0 0 12 12"><path d="M3 4.5 6 7.5 9 4.5" /></svg></button>
+          <button class="nav__link" aria-expanded="false">Produits <svg class="chev" viewBox="0 0 12 12"><path d="M3 4.5 6 7.5 9 4.5" /></svg></button>
           <div class="menu">
-            <a href="#features"><strong>Campagnes</strong><span>Envois massifs, ciblés, mesurés</span></a>
-            <a href="#features"><strong>Automatisations</strong><span>Flows déclenchés en temps réel</span></a>
-            <a href="#features"><strong>Inbox IA</strong><span>Un agent qui répond et convertit</span></a>
-            <a href="#features"><strong>Segments</strong><span>Audiences dynamiques</span></a>
+            <a href="#features"><strong>Agents</strong><span>Des coéquipiers IA autonomes</span></a>
+            <a href="#features"><strong>Routines</strong><span>Des tâches qui tournent seules</span></a>
+            <a href="#features"><strong>Mémoire</strong><span>Le contexte de votre équipe</span></a>
           </div>
         </div>
         <div class="nav__item has-menu">
           <button class="nav__link" aria-expanded="false">Solutions <svg class="chev" viewBox="0 0 12 12"><path d="M3 4.5 6 7.5 9 4.5" /></svg></button>
           <div class="menu">
-            <a href="#flows"><strong>E-commerce</strong><span>Shopify, WooCommerce, PrestaShop</span></a>
-            <a href="#flows"><strong>Marques DTC</strong><span>Rétention et réachat</span></a>
-            <a href="#flows"><strong>Agences</strong><span>Multi-comptes, reporting client</span></a>
+            <a href="#roles"><strong>Ventes</strong><span>Prospection et relances</span></a>
+            <a href="#roles"><strong>Opérations</strong><span>Reporting et finance</span></a>
+            <a href="#roles"><strong>Produit</strong><span>Veille et retours clients</span></a>
           </div>
         </div>
         <div class="nav__item has-menu">
-          <button class="nav__link" aria-expanded="false">Ressources <svg class="chev" viewBox="0 0 12 12"><path d="M3 4.5 6 7.5 9 4.5" /></svg></button>
+          <button class="nav__link" aria-expanded="false">Développeurs <svg class="chev" viewBox="0 0 12 12"><path d="M3 4.5 6 7.5 9 4.5" /></svg></button>
           <div class="menu">
-            <a href="#guides"><strong>Guides</strong><span>Playbooks WhatsApp</span></a>
-            <a href="#faq"><strong>FAQ</strong><span>Questions fréquentes</span></a>
-            <a href="#integrations"><strong>Intégrations</strong><span>Connectez votre stack</span></a>
+            <a href="#"><strong>API</strong><span>Créez des agents par le code</span></a>
+            <a href="#"><strong>Documentation</strong><span>Guides et références</span></a>
+          </div>
+        </div>
+        <div class="nav__item has-menu">
+          <button class="nav__link" aria-expanded="false">Entreprise <svg class="chev" viewBox="0 0 12 12"><path d="M3 4.5 6 7.5 9 4.5" /></svg></button>
+          <div class="menu">
+            <a href="#"><strong>À propos</strong><span>Notre mission</span></a>
+            <a href="#"><strong>Carrières</strong><span>Rejoignez l'équipe</span></a>
           </div>
         </div>
         <a class="nav__link" href="#pricing">Tarifs</a>
-        <a class="nav__link" href="#guides">Blog</a>
+        <a class="nav__link" href="#guides">Actualités</a>
       </nav>
       <div class="nav__cta">
-        <a href="#cta" class="btn btn--soft btn--sm hide-sm">Parler à l'équipe</a>
+        <a href="#cta" class="btn btn--soft btn--sm hide-sm">Contacter l'équipe</a>
         <div class="split">
-          <a href="#cta" class="btn btn--dark btn--sm">Essai gratuit</a>
-          <button class="btn btn--dark btn--sm split__more" aria-label="Plus d'options" aria-expanded="false">
+          <a href="#download" class="btn btn--dark btn--sm">Télécharger</a>
+          <button class="btn btn--dark btn--sm split__more" aria-label="Autres plateformes" aria-expanded="false">
             <svg class="chev" viewBox="0 0 12 12"><path d="M3 4.5 6 7.5 9 4.5" /></svg>
           </button>
           <div class="menu menu--right">
-            <a href="#integrations"><strong>App Shopify</strong><span>Installer en 2 minutes</span></a>
-            <a href="#cta"><strong>Démo personnalisée</strong><span>30 min avec un expert</span></a>
+            <a href="#download"><strong>macOS</strong><span>Puces Apple</span></a>
+            <a href="#download"><strong>iOS</strong><span>iPhone et iPad</span></a>
+            <a href="#download"><strong>Autres plateformes</strong><span>Windows, Android, web</span></a>
           </div>
         </div>
         <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
       </div>
     </div>
     <div class="mobile-menu">
-      <a href="#features">Produit</a><a href="#flows">Solutions</a><a href="#guides">Ressources</a><a href="#pricing">Tarifs</a><a href="#faq">FAQ</a>
-      <a href="#cta" class="btn btn--dark">Essai gratuit</a>
+      <a href="#features">Produits</a><a href="#roles">Solutions</a><a href="#pricing">Tarifs</a><a href="#guides">Actualités</a><a href="#faq">FAQ</a>
+      <a href="#download" class="btn btn--dark">Télécharger</a>
     </div>
   </header>
 
@@ -86,29 +91,27 @@
     <!-- ============ HERO ============ -->
     <section class="hero">
       <a href="#guides" class="pill reveal" style="--d:0">
-        <strong>Nouveau : l'agent IA Kanal</strong><span class="pill__sep">·</span><span>Lire l'annonce</span>
+        <strong>Nouveau : Nova 1.0</strong><span class="pill__sep">·</span><span>Lire l'annonce</span>
         <span class="pill__arrow"><svg viewBox="0 0 12 12"><path d="M4 8 8 4M5 4h3v3" /></svg></span>
       </a>
       <h1 class="hero__title reveal" style="--d:1">
-        Vendez sur
+        Déléguez à
         <span class="inline-mascot mascot" data-mascot aria-hidden="true">
           <svg viewBox="0 0 200 200">
             <use href="#bubble" class="m-body" />
-            <g class="m-eyes">
-              <g class="m-eye"><ellipse cx="74" cy="92" rx="17" ry="22" fill="#fff" /><circle class="m-pupil" cx="78" cy="96" r="9" /></g>
-              <g class="m-eye"><ellipse cx="126" cy="92" rx="17" ry="22" fill="#fff" /><circle class="m-pupil" cx="130" cy="96" r="9" /></g>
-            </g>
+            <g class="m-eye"><ellipse cx="74" cy="92" rx="17" ry="22" class="m-white" /><circle class="m-pupil" cx="78" cy="96" r="9" /></g>
+            <g class="m-eye"><ellipse cx="126" cy="92" rx="17" ry="22" class="m-white" /><circle class="m-pupil" cx="130" cy="96" r="9" /></g>
           </svg>
         </span>
-        WhatsApp
+        Nova
       </h1>
-      <p class="hero__sub reveal" style="--d:2">Campagnes, automatisations et un agent IA qui répond à vos clients à toute heure. Chaque message est relié au chiffre d'affaires qu'il génère.</p>
+      <p class="hero__sub reveal" style="--d:2">Nova orchestre des agents IA spécialisés qui exécutent vos processus de bout en bout : recherche, saisie, analyse, rédaction. Vous gardez le dernier mot.</p>
       <div class="hero__ctas reveal" style="--d:3">
-        <a href="#cta" class="btn btn--dark btn--lg">
-          <svg viewBox="0 0 200 200" class="btn__icon"><use href="#bubble" /></svg>
-          Démarrer gratuitement
+        <a href="#download" class="btn btn--dark btn--lg">
+          <svg viewBox="0 0 16 16" class="btn__icon"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10" /></svg>
+          Télécharger pour macOS
         </a>
-        <a href="#cta" class="btn btn--soft btn--lg">Réserver une démo</a>
+        <a href="#cta" class="btn btn--soft btn--lg">Contacter l'équipe</a>
       </div>
 
       <!-- Mockup application -->
@@ -116,23 +119,23 @@
         <aside class="app__side">
           <div class="app__chrome">
             <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-            <button class="app__plus" aria-label="Nouvelle conversation">+</button>
+            <button class="app__plus" aria-label="Nouvel agent">+</button>
           </div>
-          <label class="app__search"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5" /><path d="m10.5 10.5 3 3" /></svg><input type="text" placeholder="Rechercher" aria-label="Rechercher" /></label>
+          <label class="app__search"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5" /><path d="m10.5 10.5 3 3" /></svg><input type="text" placeholder="Rechercher" aria-label="Rechercher un agent" /></label>
           <ul class="app__list" id="threads"></ul>
-          <div class="app__user"><span class="avatar avatar--xs">LB</span> Léa Bernard · Maison Sable</div>
+          <div class="app__user"><span class="avatar avatar--xs">CM</span> Camille Martin</div>
         </aside>
         <section class="app__main">
           <header class="app__head">
-            <span class="mini-bubble" id="threadDot"></span>
-            <span id="threadTitle">Relance panier</span>
-            <span class="app__status" id="threadStatus"><i></i>Actif</span>
+            <span class="thread__av thread__av--sm" id="threadAv"></span>
+            <span id="threadTitle">Nouvel agent</span>
+            <span class="app__status" id="threadStatus"><i></i><span>En cours</span></span>
             <svg class="app__icon" viewBox="0 0 16 16"><rect x="2" y="3" width="12" height="8" rx="1.5" /><path d="M6 13.5h4" /></svg>
           </header>
           <div class="app__chat" id="chat" aria-live="polite"></div>
           <footer class="app__composer">
             <span class="app__add">+</span>
-            <span class="app__input" id="composer">Écrire un message…</span>
+            <span class="app__input" id="composer">Écrire à l'agent…</span>
             <span class="app__mic"><svg viewBox="0 0 16 16"><rect x="6" y="2" width="4" height="8" rx="2" /><path d="M4 8a4 4 0 0 0 8 0M8 12v2" /></svg></span>
           </footer>
         </section>
@@ -143,16 +146,14 @@
     <section class="section">
       <div class="intro reveal reveal--up">
         <div class="intro__text">
-          <h2>Parlez à vos clients là où ils répondent</h2>
-          <p>98 % des messages WhatsApp sont ouverts. Kanal envoie le bon message au bon moment, répond aux questions en quelques secondes et vous rend la main quand une vente demande une touche humaine.</p>
+          <h2>Un fil de discussion, pas un tableau de bord</h2>
+          <p>Lancez une mission en une phrase. Chaque agent affiche son plan, ses étapes et ses sources : vous savez toujours où il en est, et pourquoi.</p>
         </div>
         <div class="intro__mascot mascot" data-mascot aria-hidden="true">
           <svg viewBox="0 0 200 200">
             <use href="#bubble" class="m-body" />
-            <g class="m-eyes">
-              <g class="m-eye"><ellipse cx="74" cy="92" rx="17" ry="22" fill="#fff" /><circle class="m-pupil" cx="78" cy="96" r="9" /></g>
-              <g class="m-eye"><ellipse cx="126" cy="92" rx="17" ry="22" fill="#fff" /><circle class="m-pupil" cx="130" cy="96" r="9" /></g>
-            </g>
+            <g class="m-eye"><ellipse cx="74" cy="92" rx="17" ry="22" class="m-white" /><circle class="m-pupil" cx="78" cy="96" r="9" /></g>
+            <g class="m-eye"><ellipse cx="126" cy="92" rx="17" ry="22" class="m-white" /><circle class="m-pupil" cx="130" cy="96" r="9" /></g>
           </svg>
         </div>
       </div>
@@ -161,113 +162,95 @@
     <!-- ============ FEATURES ============ -->
     <section class="section" id="features">
       <div class="section__head reveal">
-        <h2>Tout votre marketing WhatsApp, au même endroit</h2>
-        <p>Lancez une campagne, branchez une automatisation, laissez l'agent IA gérer l'inbox. Tout tourne en parallèle, 24 h/24, et chaque euro est attribué au message qui l'a déclenché.</p>
+        <h2>Une équipe qui s'agrandit en un clic</h2>
+        <p>Ajoutez un agent dès qu'un nouveau chantier apparaît. Chacun a sa spécialité, son historique et ses propres accès.</p>
       </div>
       <div class="grid">
-        <!-- Campagnes -->
+        <!-- Outils -->
         <article class="card reveal reveal--up" data-inview>
-          <h3>Des campagnes qui se mesurent en euros</h3>
-          <p>Ciblez un segment, choisissez un template validé par Meta, envoyez. Suivez lectures, clics et ventes en direct.</p>
-          <div class="card__visual card__visual--gradient g1">
-            <div class="campaign">
-              <div class="campaign__top"><strong>Soldes d'été · VIP</strong><span class="badge badge--live"><i></i>En cours</span></div>
-              <div class="campaign__stats">
-                <div><span>Envoyés</span><b data-count="12480">0</b></div>
-                <div><span>Lus</span><b data-count="94" data-suffix=" %">0</b></div>
-                <div><span>Revenu</span><b data-count="18240" data-suffix=" €">0</b></div>
+          <h3>Des accès maîtrisés à vos applications</h3>
+          <p>Donnez à chaque agent uniquement les accès dont il a besoin. Il se connecte, agit et consigne chacune de ses actions.</p>
+          <div class="task">
+            <div class="task__top"><strong>Ordinateur</strong><span class="badge badge--amber"><i></i>En cours</span></div>
+            <p class="task__line">Exporter les factures de septembre et les classer par client</p>
+            <div class="card__visual card__visual--gradient g1">
+              <div class="window">
+                <div class="window__bar"><span></span><span></span><span></span><b></b></div>
+                <div class="window__body">
+                  <div class="window__side"><i></i><i></i><i></i><i></i><i></i></div>
+                  <div class="window__rows">
+                    <div class="row"><i class="w60"></i><em class="check"></em></div>
+                    <div class="row"><i class="w45"></i><em class="check"></em></div>
+                    <div class="row"><i class="w70"></i><em class="check"></em></div>
+                    <div class="row"><i class="w50"></i><em class="check"></em></div>
+                    <div class="row"><i class="w65"></i><em class="check"></em></div>
+                  </div>
+                </div>
+                <span class="cursor" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 2l10 6-4.5 1L6.5 14z" /></svg></span>
               </div>
-              <div class="bars"><i style="--h:32%"></i><i style="--h:48%"></i><i style="--h:40%"></i><i style="--h:66%"></i><i style="--h:58%"></i><i style="--h:80%"></i><i style="--h:72%"></i><i style="--h:92%"></i><i style="--h:86%"></i><i style="--h:100%"></i></div>
             </div>
           </div>
         </article>
 
-        <!-- Automatisations -->
+        <!-- Routine -->
         <article class="card reveal reveal--up" style="--d:1" data-inview>
-          <h3>Des automatisations qui ne dorment jamais</h3>
-          <p>Panier abandonné, bienvenue, réassort : dessinez le flow une fois, Kanal le déclenche à chaque événement.</p>
+          <h3>Des routines planifiées</h3>
+          <p>Programmez une mission chaque lundi à 8 h : l'agent collecte les chiffres, met à jour le graphique et vous l'envoie.</p>
           <div class="card__visual card__visual--gradient g2">
-            <div class="flow">
-              <svg class="flow__lines" viewBox="0 0 320 200" preserveAspectRatio="none" aria-hidden="true">
-                <path id="fp1" d="M160 38 V 72" /><path id="fp2" d="M160 100 V 128" />
-                <path id="fp3" d="M160 128 C 160 150, 80 140, 80 162" /><path id="fp4" d="M160 128 C 160 150, 240 140, 240 162" />
-                <circle r="3.5" class="flow__dot"><animateMotion dur="3.2s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#fp1" /></animateMotion></circle>
-                <circle r="3.5" class="flow__dot"><animateMotion dur="3.2s" begin="0.8s" repeatCount="indefinite"><mpath href="#fp2" /></animateMotion></circle>
-                <circle r="3.5" class="flow__dot"><animateMotion dur="3.2s" begin="1.6s" repeatCount="indefinite"><mpath href="#fp4" /></animateMotion></circle>
-              </svg>
-              <div class="node node--trigger" style="--x:50%;--y:12%"><i>⚡</i>Panier abandonné</div>
-              <div class="node" style="--x:50%;--y:43%"><i>⏱</i>Attendre 1 h</div>
-              <div class="node node--cond" style="--x:50%;--y:64%">Commande passée ?</div>
-              <div class="node node--ok" style="--x:25%;--y:88%">Fin</div>
-              <div class="node node--msg" style="--x:75%;--y:88%"><i>✉</i>Code -10 %</div>
+            <div class="rec"><span class="rec__dot"></span>Routine · tous les lundis à 8:00<span class="rec__x">×</span></div>
+            <div class="window window--chart">
+              <div class="window__bar"><span></span><span></span><span></span></div>
+              <div class="kpis"><div><i class="w50"></i><b></b></div><div><i class="w40"></i><b></b></div><div><i class="w60"></i><b></b></div></div>
+              <div class="bars"><i style="--h:32%"></i><i style="--h:18%"></i><i style="--h:45%"></i><i style="--h:30%"></i><i style="--h:56%"></i><i style="--h:40%"></i><i style="--h:74%"></i><i style="--h:52%"></i><i style="--h:62%"></i><i style="--h:88%"></i></div>
             </div>
           </div>
         </article>
 
-        <!-- Inbox IA / mémoire -->
+        <!-- Mémoire -->
         <article class="card reveal reveal--up" data-inview>
-          <h3>Un agent IA qui apprend vos clients</h3>
-          <p>Il répond aux questions taille, livraison et stock, retient les préférences et enrichit chaque fiche contact.</p>
+          <h3>Des notes que vous pouvez relire</h3>
+          <p>Ce que l'agent retient reste visible et modifiable. Corrigez une note, il ajuste son comportement dès la tâche suivante.</p>
           <div class="card__visual memory">
-            <div class="msg msg--in">Je fais du 38 mais j'étais entre deux tailles sur la dernière robe, laquelle prendre ?</div>
-            <div class="msg msg--in">Et c'est toujours livré en 48 h à Lyon ?</div>
-            <div class="memory__note"><span>Variable mise à jour pour</span> <span class="tag"><span class="mini-bubble"></span>Camille R. · taille : 38/40</span></div>
+            <div class="msg msg--in">La remise de 12 % ne s'applique qu'au-delà de 500 unités : je l'ai retirée du devis n° 318.</div>
+            <div class="msg msg--in">À retenir : tout contrat supérieur à 20 k€ passe par le service juridique avant signature.</div>
+            <div class="memory__note"><span>Note ajoutée à</span> <span class="tag tag--purple"><span class="dot-av" style="--c:#6c6ccb"></span>Ventes B2B</span></div>
           </div>
         </article>
 
-        <!-- Segments -->
+        <!-- Connexion -->
         <article class="card reveal reveal--up" style="--d:1" data-inview>
-          <h3>Des segments qui se mettent à jour seuls</h3>
-          <p>Acheteurs récents, paniers élevés, clients inactifs : vos audiences se recalculent à chaque commande.</p>
-          <div class="card__visual segment">
-            <div class="segment__chip">
-              <span class="spinner"></span>
-              <span class="segment__label">Calcul de l'audience</span>
-              <span class="segment__count" data-count="3214">0</span>
-              <span class="stack"><i style="--c:#a78bfa"></i><i style="--c:#f472b6"></i><i style="--c:#fb923c"></i></span>
-            </div>
-            <div class="segment__rules">
-              <span>A acheté ≥ 2 fois</span><span>et</span><span>Dernière commande &gt; 60 j</span><span>et</span><span>Opt-in WhatsApp</span>
+          <h3>Des passages de relais clairs</h3>
+          <p>Quand une demande dépasse sa spécialité, l'agent la confie à un autre et vous indique qui a pris la suite.</p>
+          <div class="card__visual relay">
+            <div class="relay__chip">
+              <span class="dot-av" style="--c:#0093a3"></span>
+              <span class="relay__label">Transmis à Analyse<span class="ellipsis"><i>.</i><i>.</i><i>.</i></span></span>
+              <span class="stack"><i style="--c:#5a3fa0"></i><i style="--c:#dd2229"></i><i style="--c:#e8833a"></i></span>
             </div>
           </div>
         </article>
       </div>
     </section>
 
-    <!-- ============ FLOWS / ROLES ============ -->
-    <section class="section section--narrow" id="flows">
-      <div class="flows">
-        <div class="flows__left reveal">
-          <h2>Un flow pour chaque moment</h2>
-          <div class="chips" role="tablist" aria-label="Exemples de flows" id="chips"></div>
-          <p class="flows__desc" id="flowDesc" aria-live="polite"></p>
-          <a href="#guides" class="btn btn--soft">Voir tous les modèles</a>
-        </div>
-        <div class="phone reveal reveal--up" aria-hidden="true">
-          <div class="phone__notch"></div>
-          <div class="phone__head"><span class="mini-bubble"></span><div><strong>Maison Sable</strong><small>Compte professionnel</small></div></div>
-          <div class="phone__body" id="phoneBody"></div>
-        </div>
+    <!-- ============ RÔLES ============ -->
+    <section class="section section--narrow" id="roles">
+      <div class="roles reveal">
+        <h2>Commencez avec un modèle</h2>
+        <div class="chips" role="tablist" aria-label="Exemples d'agents" id="chips"></div>
+        <p class="roles__desc" id="roleDesc" aria-live="polite"></p>
+        <a href="#guides" class="btn btn--soft">Parcourir les modèles</a>
       </div>
     </section>
 
     <!-- ============ VIDEO ============ -->
     <section class="section">
-      <h2 class="center reveal">Les marques qui grandissent sur WhatsApp</h2>
-      <div class="marquee reveal" aria-hidden="true">
-        <div class="marquee__track">
-          <span>Maison Sable</span><span>Atelier Nord</span><span>Olive &amp; Co</span><span>Bleu Marine</span><span>Studio Pétale</span><span>Cire Douce</span><span>Granola Club</span><span>Les Mailles</span>
-          <span>Maison Sable</span><span>Atelier Nord</span><span>Olive &amp; Co</span><span>Bleu Marine</span><span>Studio Pétale</span><span>Cire Douce</span><span>Granola Club</span><span>Les Mailles</span>
-        </div>
-      </div>
+      <h2 class="center reveal video__title">Nova en 90 secondes</h2>
       <div class="video reveal reveal--up" id="video" data-src="assets/demo.mp4">
         <div class="video__poster">
           <div class="video__orb o1"></div><div class="video__orb o2"></div><div class="video__orb o3"></div>
-          <div class="video__float f1"><span class="mini-bubble"></span>Commande #4821 · 129 €</div>
-          <div class="video__float f2"><span class="mini-bubble"></span>Taux de lecture 96 %</div>
-          <div class="video__float f3"><span class="mini-bubble"></span>+312 opt-ins cette semaine</div>
+          <div class="video__grain"></div>
         </div>
-        <button class="video__play" aria-label="Lire la vidéo"><svg viewBox="0 0 16 16"><path d="M4 2.5v11l9-5.5z" /></svg>Lire</button>
+        <button class="video__play" aria-label="Lire la vidéo"><svg viewBox="0 0 16 16"><path d="M4 2.5v11l9-5.5z" /></svg>Lecture</button>
       </div>
     </section>
 
@@ -275,40 +258,32 @@
     <section class="section section--narrow" id="pricing">
       <div class="center reveal">
         <h2>Tarifs</h2>
-        <div class="billing" role="tablist" aria-label="Période de facturation">
-          <button role="tab" aria-selected="true" data-billing="monthly">Mensuel</button>
-          <button role="tab" aria-selected="false" data-billing="yearly">Annuel <em>-20 %</em></button>
-        </div>
+        <a href="#cta" class="btn btn--soft pricing__sales">Contacter l'équipe</a>
       </div>
       <div class="pricing" id="plans"></div>
       <div class="banner reveal">
         <svg viewBox="0 0 20 20" class="banner__icon"><path d="M16 10a6 6 0 1 1-1.8-4.3M16 3v3.5h-3.5" /></svg>
-        <p><strong>Vous êtes sur Shopify ?</strong> <span>Installez l'app Kanal, vos contacts et commandes sont synchronisés automatiquement.</span></p>
-        <a href="#integrations" class="btn btn--outline btn--sm">Installer l'app</a>
+        <p><strong>Plus de 50 personnes ?</strong> <span>Parlons d'un déploiement sur mesure.</span></p>
+        <a href="#cta" class="btn btn--outline btn--sm">Planifier un appel</a>
       </div>
     </section>
 
-    <!-- ============ INTEGRATIONS ============ -->
-    <section class="section section--narrow" id="integrations">
+    <!-- ============ DOWNLOAD ============ -->
+    <section class="section section--narrow" id="download">
       <div class="split-row">
         <div class="reveal">
-          <h2>Connectez Kanal à votre stack</h2>
-          <p class="muted">Vos données restent synchronisées, de la boutique à l'inbox.</p>
+          <h2>Sur ordinateur et mobile</h2>
+          <p class="muted">Installez l'application, connectez vos outils et lancez une première mission en quelques minutes.</p>
         </div>
         <div class="downloads reveal reveal--up">
           <a href="#" class="dl">
-            <span class="dl__icon">S</span>
-            <span><strong>Shopify</strong><small>Contacts, commandes, paniers</small></span>
-            <svg viewBox="0 0 16 16" class="dl__arrow"><path d="M8 3v8M4.5 7.5 8 11l3.5-3.5M3 13.5h10" /></svg>
-          </a>
-          <a href="#" class="dl">
-            <span class="dl__icon">K</span>
-            <span><strong>Klaviyo</strong><small>Segments et événements partagés</small></span>
+            <span class="dl__icon"><svg viewBox="0 0 16 16"><rect x="1.5" y="3" width="13" height="8.5" rx="1.5" /><path d="M5.5 14h5" /></svg></span>
+            <span><strong>macOS</strong><small>Puces Apple</small></span>
             <svg viewBox="0 0 16 16" class="dl__arrow"><path d="M8 3v8M4.5 7.5 8 11l3.5-3.5M3 13.5h10" /></svg>
           </a>
           <a href="#" class="dl dl--muted">
             <span class="dl__icon"><svg viewBox="0 0 16 16"><rect x="2" y="2" width="5" height="5" rx="1" /><rect x="9" y="2" width="5" height="5" rx="1" /><rect x="2" y="9" width="5" height="5" rx="1" /><rect x="9" y="9" width="5" height="5" rx="1" /></svg></span>
-            <span><strong>Toutes les intégrations</strong><small>API, webhooks, Zapier, Make</small></span>
+            <span><strong>Autres téléchargements</strong><small>Autres plateformes et appareils</small></span>
           </a>
         </div>
       </div>
@@ -316,9 +291,9 @@
 
     <!-- ============ GUIDES ============ -->
     <section class="section center" id="guides">
-      <h2 class="reveal">Les guides Kanal</h2>
-      <p class="lead reveal">Comment les équipes e-commerce, CRM et service client utilisent WhatsApp au quotidien.</p>
-      <a href="#" class="btn btn--soft btn--lg reveal">Lire les guides</a>
+      <h2 class="reveal">Ressources</h2>
+      <p class="lead reveal">Modèles de missions, bonnes pratiques et retours d'expérience pour tirer le meilleur de vos agents.</p>
+      <a href="#" class="btn btn--soft btn--lg reveal">Explorer les ressources</a>
     </section>
 
     <!-- ============ FAQ ============ -->
@@ -327,28 +302,28 @@
         <h2 class="reveal">FAQ</h2>
         <div class="faq reveal">
           <details open>
-            <summary>En quoi Kanal diffère d'un simple outil d'envoi ?<span class="faq__icon"></span></summary>
-            <div class="faq__body"><p>Kanal relie chaque message à une commande. Vous ne voyez pas seulement des taux d'ouverture, mais le chiffre d'affaires réellement généré par chaque campagne et chaque automatisation.</p></div>
+            <summary>Quelles applications Nova peut-il utiliser ?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Toute application accessible depuis un navigateur ou un ordinateur : CRM, tableurs, messagerie, outils internes. Les intégrations natives accélèrent les plus courantes.</p></div>
           </details>
           <details>
-            <summary>Faut-il un compte WhatsApp Business API ?<span class="faq__icon"></span></summary>
-            <div class="faq__body"><p>Oui, et Kanal s'en occupe : la connexion à l'API WhatsApp Business se fait pendant l'onboarding, en quelques minutes, avec votre numéro existant ou un nouveau.</p></div>
+            <summary>Puis-je relire une action avant son exécution ?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Oui. Pour chaque agent, choisissez les actions qui demandent votre accord : envoi d'un e-mail, paiement, suppression de données, etc.</p></div>
           </details>
           <details>
-            <summary>Combien coûte un message ?<span class="faq__icon"></span></summary>
-            <div class="faq__body"><p>Meta facture les conversations marketing selon le pays du destinataire. Kanal affiche une estimation du coût avant chaque envoi, sans marge cachée.</p></div>
+            <summary>Combien d'agents puis-je créer ?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Autant que nécessaire. Le nombre d'agents actifs en simultané dépend de votre offre.</p></div>
           </details>
           <details>
-            <summary>Mes templates doivent-ils être validés ?<span class="faq__icon"></span></summary>
-            <div class="faq__body"><p>Les messages envoyés en dehors d'une conversation ouverte passent par un template validé par Meta. Kanal vous aide à les rédiger et suit leur statut de validation.</p></div>
+            <summary>Que se passe-t-il si un agent se trompe ?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Chaque action est journalisée et la plupart peuvent être annulées. Signalez l'erreur dans le fil : l'agent corrige et ajoute une note pour ne pas la reproduire.</p></div>
           </details>
           <details>
-            <summary>Quand l'agent IA passe-t-il la main ?<span class="faq__icon"></span></summary>
-            <div class="faq__body"><p>Dès qu'une question sort de son périmètre ou qu'un client le demande. La conversation est assignée à votre équipe avec tout le contexte.</p></div>
+            <summary>Où sont hébergées mes données ?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Dans des centres de données européens, chiffrées en transit et au repos. Les accès donnés aux agents sont révocables à tout moment.</p></div>
           </details>
           <details>
-            <summary>Comment sont gérées mes données ?<span class="faq__icon"></span></summary>
-            <div class="faq__body"><p>Vos données sont hébergées dans l'Union européenne et traitées conformément au RGPD. Seuls les contacts ayant donné leur consentement reçoivent des messages marketing.</p></div>
+            <summary>Puis-je résilier quand je veux ?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Oui, les offres mensuelles sont sans engagement. Les offres annuelles sont facturées en une fois avec une remise.</p></div>
           </details>
         </div>
       </div>
@@ -356,19 +331,17 @@
 
     <!-- ============ CTA ============ -->
     <section class="cta" id="cta">
-      <h2 class="reveal">Envoyez votre premier message</h2>
-      <p class="reveal">Un canal de vente que vos clients ouvrent vraiment.</p>
+      <h2 class="reveal">Prêt à lancer votre première mission ?</h2>
+      <p class="reveal">Essai gratuit de 14 jours, sans carte bancaire.</p>
       <div class="hero__ctas reveal">
-        <a href="#" class="btn btn--dark btn--lg">Démarrer gratuitement</a>
-        <a href="#" class="btn btn--soft btn--lg">Parler à l'équipe</a>
+        <a href="#" class="btn btn--dark btn--lg">Essayer gratuitement</a>
+        <a href="#" class="btn btn--soft btn--lg">Contacter l'équipe</a>
       </div>
       <div class="peek mascot" data-mascot id="peek" aria-hidden="true">
-        <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMin meet">
+        <svg viewBox="0 0 200 200">
           <use href="#bubble" class="peek__body" />
-          <g class="m-eyes">
-            <g class="m-eye"><ellipse cx="74" cy="92" rx="11" ry="16" class="peek__eye" /><circle class="m-pupil peek__pupil" cx="76" cy="95" r="0" /></g>
-            <g class="m-eye"><ellipse cx="126" cy="92" rx="11" ry="16" class="peek__eye" /><circle class="m-pupil peek__pupil" cx="128" cy="95" r="0" /></g>
-          </g>
+          <g class="m-eye"><ellipse cx="74" cy="92" rx="11" ry="16" class="peek__eye" /><circle class="m-pupil peek__pupil" cx="76" cy="95" r="5" /></g>
+          <g class="m-eye"><ellipse cx="126" cy="92" rx="11" ry="16" class="peek__eye" /><circle class="m-pupil peek__pupil" cx="128" cy="95" r="5" /></g>
         </svg>
       </div>
     </section>
@@ -378,8 +351,8 @@
   <footer class="footer">
     <div class="footer__inner">
       <div class="footer__brand">
-        <a href="#" class="logo logo--sm"><svg viewBox="0 0 200 200" class="logo__mark"><use href="#bubble" /></svg><span>kanal</span></a>
-        <small>© 2026 Kanal</small>
+        <a href="#" class="logo logo--sm"><svg viewBox="0 0 200 200" class="logo__mark"><use href="#bubble" /></svg><span>nova</span></a>
+        <small>© 2026 Nova</small>
         <div class="footer__tools">
           <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
             <svg class="i-moon" viewBox="0 0 16 16"><path d="M13 9.5A5.5 5.5 0 0 1 6.5 3a5.5 5.5 0 1 0 6.5 6.5z" /></svg>
@@ -389,11 +362,11 @@
         </div>
       </div>
       <div class="footer__cols">
-        <div><h4>Produit</h4><a href="#">Campagnes</a><a href="#">Automatisations</a><a href="#">Inbox IA</a><a href="#">Segments</a><a href="#">Templates</a><a href="#">Statistiques</a></div>
-        <div><h4>Solutions</h4><a href="#">E-commerce</a><a href="#">Marques DTC</a><a href="#">Agences</a><a href="#">Service client</a></div>
-        <div><h4>Ressources</h4><a href="#">Guides</a><a href="#">Blog</a><a href="#">Modèles de flows</a><a href="#">Changelog</a><a href="#">Statut</a></div>
-        <div><h4>Entreprise</h4><a href="#">À propos</a><a href="#">Carrières</a><a href="#">Contact</a><a href="#">Partenaires</a></div>
-        <div><h4>Légal</h4><a href="#">CGU</a><a href="#">Confidentialité</a><a href="#">Cookies</a><a href="#">DPA</a></div>
+        <div><h4>Produits</h4><a href="#">Agents</a><a href="#">Routines</a><a href="#">Mémoire</a><a href="#">Mobile</a><a href="#">Bureau</a></div>
+        <div><h4>Solutions</h4><a href="#">Ventes</a><a href="#">Opérations</a><a href="#">Produit</a><a href="#">Support</a><a href="#">Cas d'usage</a></div>
+        <div><h4>Développeurs</h4><a href="#">API</a><a href="#">Documentation</a><a href="#">Changelog</a><a href="#">Statut</a></div>
+        <div><h4>Entreprise</h4><a href="#">À propos</a><a href="#">Carrières</a><a href="#">Actualités</a><a href="#">Contact</a><h4 class="footer__sub">Confiance</h4><a href="#">Sécurité</a><a href="#">Confidentialité</a></div>
+        <div><h4>Légal</h4><a href="#">Conditions</a><a href="#">Cookies</a><a href="#">DPA</a><h4 class="footer__sub">Réseaux</h4><a href="#">LinkedIn</a><a href="#">X</a></div>
       </div>
     </div>
   </footer>

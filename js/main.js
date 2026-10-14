@@ -69,8 +69,8 @@
       const card = en.target;
       card.classList.add('in-view');
       viewIO.unobserve(card);
-      const counters = $$('[data-count]', card);
-      Promise.all(counters.map((c) => countUp(c))).then(() => $('.segment', card)?.classList.add('is-done'));
+      $$('[data-count]', card).forEach((c) => countUp(c));
+      if ($('.window__rows', card)) runTask(card);
     });
   }, { threshold: 0.35 });
   $$('[data-inview]').forEach((el) => viewIO.observe(el));
@@ -105,8 +105,6 @@
 
   // Peek mascot rises as the CTA scrolls into view
   const peek = $('#peek');
-  const peekSize = () => { const s = peek.getBoundingClientRect().width / 200 * 7; $$('.peek__pupil', peek).forEach((p) => p.setAttribute('r', String(Math.max(4, 7 - s * .1)))); };
-  peekSize();
   const onPeek = () => {
     const r = peek.getBoundingClientRect();
     const p = Math.min(1, Math.max(0, (innerHeight - r.top) / (r.height + innerHeight * 0.25)));
@@ -115,52 +113,67 @@
   window.addEventListener('scroll', onPeek, { passive: true });
   onPeek();
 
-  /* ---------------- Hero app: threads + animated conversation ---------------- */
-  const COLORS = ['#12b76a', '#f59e0b', '#8b5cf6', '#3b82f6', '#ef6c4a', '#14b8a6', '#ec4899'];
-  const avatar = (c) => `<svg viewBox="0 0 200 200"><use href="#bubble" fill="${c}"/><ellipse cx="74" cy="92" rx="15" ry="20" fill="#fff"/><ellipse cx="126" cy="92" rx="15" ry="20" fill="#fff"/><circle cx="78" cy="97" r="8" fill="#0b0b0c"/><circle cx="130" cy="97" r="8" fill="#0b0b0c"/></svg>`;
+  /* ---------------- Carte « accès » : curseur qui coche les lignes ---------------- */
+  async function runTask(card) {
+    const win = $('.window', card), cursor = $('.cursor', card), rows = $$('.row', card);
+    if (reduced) { rows.forEach((r) => $('.check', r).classList.add('is-on')); return; }
+    for (;;) {
+      for (const row of rows) {
+        const w = win.getBoundingClientRect(), c = $('.check', row).getBoundingClientRect();
+        cursor.style.transform = `translate(${c.left - w.left + 8}px, ${c.top - w.top + 4}px)`;
+        await wait(800);
+        $('.check', row).classList.add('is-on');
+        row.classList.remove('is-active'); void row.offsetWidth; row.classList.add('is-active');
+        await wait(350);
+      }
+      await wait(2200);
+      rows.forEach((r) => $('.check', r).classList.remove('is-on'));
+      cursor.style.transform = 'translate(20px, 20px)';
+      await wait(900);
+    }
+  }
+
+  /* ---------------- Hero : agents + conversation animée ---------------- */
+  const C = { teal: '#0093a3', amber: '#e8a33a', purple: '#5a3fa0', blue: '#6c6ccb', red: '#dd2229', orange: '#e8833a', ink: '#252525' };
+  const avatar = (c) => `<svg viewBox="0 0 200 200"><use href="#bubble" fill="${c}"/><ellipse cx="74" cy="92" rx="15" ry="20" fill="#fff"/><ellipse cx="126" cy="92" rx="15" ry="20" fill="#fff"/><circle cx="78" cy="97" r="8" fill="#0a0a0a"/><circle cx="130" cy="97" r="8" fill="#0a0a0a"/></svg>`;
 
   const THREADS = [
     {
-      name: 'Relance panier', time: '09:41', prev: 'Commande #4821 attribuée · 129 €', color: COLORS[0], status: 'Actif',
+      name: 'Synthèse comité', time: '16:20', prev: 'Note partagée avec les participants', color: C.amber,
       script: [
-        { sys: '<b>Automatisation</b> · Panier abandonné déclenchée pour Marie D.' },
-        { out: 'Bonjour Marie 👋 Vous avez laissé la <b>Veste Lin Sable</b> dans votre panier. Elle est encore disponible en M.' },
-        { in: 'Ah oui ! Elle taille comment ?' },
-        { out: 'Plutôt ajusté, prenez votre taille habituelle. Voici -10 % valable 24 h : <code>SABLE10</code>', typing: 1400 },
-        { in: 'Parfait, je commande 🙌' },
-        { sys: '<b>Commande #4821</b> · 129 € attribuée à Relance panier' },
+        { user: 'Prépare la note de synthèse du comité de jeudi à partir des trois derniers comptes rendus.' },
+        { out: 'Je lis les comptes rendus des 12, 19 et 26 septembre, puis je regroupe les décisions par sujet.', typing: 1300 },
+        { out: 'Synthèse prête :<ul><li>4 décisions validées</li><li>2 points en attente d\'arbitrage</li><li>1 risque budgétaire à remonter</li></ul>', typing: 1600 },
+        { user: 'Parfait, ajoute un tableau des responsables.' },
+        { out: 'Ajouté. La note est dans le dossier « Comités » et partagée avec les participants.', typing: 1200, done: true },
       ],
     },
     {
-      name: 'Agent IA · Inbox', time: '09:12', prev: 'Répondu en 4 s · livraison Lyon', color: COLORS[3], status: 'En ligne',
+      name: 'Analyse ventes T3', time: '14:05', prev: 'Tableau mis à jour, 2 anomalies', color: C.teal,
       script: [
-        { sys: '<b>Nouveau message</b> · Thomas L.' },
-        { in: 'Bonjour, vous livrez en Belgique ?' },
-        { out: 'Bonjour Thomas ! Oui, en 3 à 4 jours ouvrés, et c\'est offert dès 80 € 🇧🇪', typing: 1200 },
-        { in: 'Top. Et le pull Côtes en bleu, il revient quand ?' },
-        { out: 'Retour prévu le 21. Je vous préviens ici dès qu\'il est en ligne ?', typing: 1300 },
-        { in: 'Oui merci !' },
-        { sys: 'Thomas L. ajouté au flow <b>Retour en stock</b>' },
+        { user: 'Compare les ventes du T3 à celles du T2, par région.' },
+        { out: 'Export récupéré depuis l\'outil de BI. Je croise avec les objectifs régionaux.', typing: 1300 },
+        { out: 'Hausse de 8 % au global. Deux anomalies : Grand Est à -14 %, et des commandes en double le 3 août. Je corrige le doublon ?', typing: 1600 },
+        { user: 'Oui, et mets le tableau à jour.' },
+        { out: 'C\'est fait. Le tableau est partagé avec la direction commerciale.', typing: 1100, done: true },
       ],
     },
     {
-      name: 'Campagne · Soldes VIP', time: 'Hier', prev: '12 480 envoyés · 94 % lus', color: COLORS[1], status: 'Envoyée',
+      name: 'Traduction catalogue', time: '13:12', prev: '212 fiches traduites en allemand', color: C.purple,
       script: [
-        { sys: '<b>Campagne</b> envoyée à 12 480 contacts · segment VIP' },
-        { out: '☀️ Les soldes commencent, et vous avez 24 h d\'avance. -30 % sur toute la collection lin.' },
-        { in: 'Je peux cumuler avec ma carte fidélité ?' },
-        { out: 'Oui, les points restent crédités sur chaque commande 💚', typing: 1100 },
-        { sys: '<b>18 240 €</b> de revenu attribué · ROI x34' },
+        { user: 'Traduis les fiches produits de la collection hiver en allemand.' },
+        { out: '212 fiches trouvées. J\'applique votre glossaire technique et le ton de la marque.', typing: 1400 },
+        { out: 'Traduction terminée. 6 termes sans équivalent direct sont signalés pour relecture.', typing: 1500, done: true },
       ],
     },
-    { name: 'Bienvenue', time: 'Hier', prev: '+312 opt-ins cette semaine', color: COLORS[2] },
-    { name: 'Retour en stock', time: 'Lun.', prev: '48 contacts en attente', color: COLORS[5] },
-    { name: 'Demande d\'avis', time: 'Lun.', prev: '4,8 ★ moyenne sur 210 avis', color: COLORS[4] },
-    { name: 'Anniversaire client', time: 'Dim.', prev: 'Code cadeau envoyé à 37 clients', color: COLORS[6] },
+    { name: 'Veille réglementaire', time: '11:47', prev: 'Nouveau décret repéré, résumé prêt', color: C.red },
+    { name: 'Onboarding', time: '10:30', prev: 'Comptes créés pour Inès et Malik', color: C.blue },
+    { name: 'Factures fournisseurs', time: 'Hier', prev: '18 factures rapprochées', color: C.orange },
+    { name: 'Préparation salon', time: 'Lun.', prev: 'Stand confirmé, visuels en cours', color: C.ink },
   ];
 
-  const list = $('#threads'), chat = $('#chat'), composer = $('#composer');
-  let current = 0, runId = 0;
+  const list = $('#threads'), chat = $('#chat'), composer = $('#composer'), status = $('#threadStatus');
+  let runId = 0;
 
   list.innerHTML = THREADS.map((t, i) => `
     <li class="thread${i === 0 ? ' is-active' : ''}" data-i="${i}" role="button" tabindex="0">
@@ -170,10 +183,8 @@
     </li>`).join('');
 
   const scriptFor = (i) => THREADS[i].script || [
-    { sys: `<b>${THREADS[i].name}</b> · flow actif` },
-    { out: 'Bienvenue chez Maison Sable 💚 Pour fêter ça, voici -10 % sur votre première commande : <code>HELLO10</code>' },
-    { in: 'Merci beaucoup !' },
-    { sys: THREADS[i].prev },
+    { user: `Où en es-tu ?` },
+    { out: `${THREADS[i].prev}. Je vous préviens dès que la prochaine étape demande votre validation.`, typing: 1200, done: true },
   ];
 
   const add = (html, cls) => {
@@ -187,51 +198,53 @@
 
   const typeIn = async (text, id) => {
     composer.classList.add('is-typing');
-    const plain = text.replace(/<[^>]+>/g, '');
-    for (let i = 1; i <= plain.length; i++) {
+    for (let i = 1; i <= text.length; i++) {
       if (id !== runId) return false;
-      composer.textContent = plain.slice(0, i);
-      await wait(22 + Math.random() * 30);
+      composer.textContent = text.slice(0, i);
+      await wait(18 + Math.random() * 26);
     }
     await wait(250);
-    composer.textContent = 'Écrire un message…';
+    composer.textContent = 'Écrire à l\'agent…';
     composer.classList.remove('is-typing');
     return true;
+  };
+
+  const setStatus = (done) => {
+    status.classList.toggle('is-done', done);
+    status.lastElementChild.textContent = done ? 'Terminé' : 'En cours';
   };
 
   const play = async (i) => {
     const id = ++runId;
     const t = THREADS[i];
     $('#threadTitle').textContent = t.name;
-    $('#threadDot').style.background = t.color;
-    $('#threadStatus').lastChild.textContent = t.status || 'Actif';
+    $('#threadAv').innerHTML = avatar(t.color);
+    setStatus(false);
     $$('.msg', chat).forEach((m) => m.classList.add('is-leaving'));
     await wait(350);
     if (id !== runId) return;
     chat.innerHTML = '';
     for (const step of scriptFor(i)) {
       if (id !== runId) return;
-      if (step.sys) { add(step.sys, 'msg--sys'); await wait(900); continue; }
-      if (step.in) {
-        if (!reduced) { if (!(await typeIn(step.in, id))) return; }
-        add(step.in, 'msg--in'); await wait(900); continue;
+      if (step.user) {
+        if (!reduced && !(await typeIn(step.user, id))) return;
+        add(step.user, 'msg--user'); await wait(700); continue;
       }
-      if (step.out) {
-        if (!reduced) {
-          const typing = add('<i></i><i></i><i></i>', 'msg--typing');
-          await wait(step.typing || 1000);
-          typing.remove();
-        }
-        if (id !== runId) return;
-        add(step.out + '<span class="msg__meta">Kanal · ✓✓</span>', 'msg--out'); await wait(1100);
+      if (!reduced) {
+        const typing = add('<i></i><i></i><i></i>', 'msg--typing');
+        await wait(step.typing || 1000);
+        typing.remove();
       }
+      if (id !== runId) return;
+      add(`<span class="msg__meta"><span class="dot-av" style="--c:${t.color}"></span>${t.name}</span>${step.out}`, 'msg--out');
+      if (step.done) setStatus(true);
+      await wait(1100);
     }
-    await wait(3200);
+    await wait(3400);
     if (id === runId) select((i + 1) % 3);
   };
 
   const select = (i) => {
-    current = i;
     $$('.thread', list).forEach((el) => el.classList.toggle('is-active', +el.dataset.i === i));
     play(i);
   };
@@ -248,49 +261,30 @@
   const appIO = new IntersectionObserver((en) => { if (en[0].isIntersecting) { appIO.disconnect(); setTimeout(() => select(0), 600); } }, { threshold: 0.3 });
   appIO.observe($('#app'));
 
-  /* ---------------- Flow chips + phone preview ---------------- */
-  const FLOWS = [
-    { name: 'Panier abandonné', title: 'Récupérez les ventes perdues.', desc: 'Relance 1 h après l\'abandon avec le produit, sa photo et un lien direct vers le panier, puis un code si rien ne bouge sous 24 h.',
-      msgs: [{ img: 'linear-gradient(135deg,#e8cfb0,#c69c72)', text: 'Votre <b>Veste Lin Sable</b> vous attend 👀 Il reste 3 pièces en M.', btn: 'Finaliser ma commande' }] },
-    { name: 'Bienvenue', title: 'Transformez un opt-in en première commande.', desc: 'Un message de bienvenue chaleureux, un code de première commande et une question pour mieux connaître le nouveau contact.',
-      msgs: [{ text: 'Bienvenue chez Maison Sable 💚 Voici -10 % sur votre première commande : <b>HELLO10</b>', btn: 'Découvrir la collection' }, { out: true, text: 'Merci ! 😍' }] },
-    { name: 'Retour en stock', title: 'Prévenez les clients qui attendent.', desc: 'Dès qu\'un produit revient, Kanal prévient chaque contact inscrit, dans l\'ordre d\'inscription, avant tout le monde.',
-      msgs: [{ img: 'linear-gradient(135deg,#9ab7d6,#3d5f8c)', text: 'Bonne nouvelle Thomas : le <b>Pull Côtes Bleu</b> est de retour en L.', btn: 'Je le prends' }] },
-    { name: 'Demande d\'avis', title: 'Collectez des avis sans effort.', desc: '7 jours après la livraison, une question simple. Les clients satisfaits sont redirigés vers votre page d\'avis.',
-      msgs: [{ text: 'Votre commande est bien arrivée ? Comment la trouvez-vous ? ⭐️', btn: 'Laisser un avis' }, { out: true, text: 'Parfaite, le lin est super doux' }] },
-    { name: 'Relance VIP', title: 'Choyez vos meilleurs clients.', desc: 'Accès anticipé aux collections et aux soldes pour le segment VIP, calculé automatiquement sur la valeur client.',
-      msgs: [{ img: 'linear-gradient(135deg,#f3c9a8,#e07a5f)', text: 'Accès VIP ✨ La collection été est en ligne pour vous, 24 h avant tout le monde.', btn: 'Voir en avant-première' }] },
-    { name: 'Anniversaire', title: 'Une attention qui fait vendre.', desc: 'Le jour J, un message personnalisé avec un cadeau. Simple, rentable et apprécié.',
-      msgs: [{ text: 'Joyeux anniversaire Camille 🎂 Un cadeau vous attend : -20 % toute la semaine avec <b>BDAY20</b>.', btn: 'Utiliser mon cadeau' }] },
-    { name: 'Cross-sell', title: 'Suggérez le bon produit ensuite.', desc: 'Après un achat, recommandez le complément logique au moment où le client est le plus réceptif.',
-      msgs: [{ img: 'linear-gradient(135deg,#d6e4c4,#8aa66b)', text: 'Votre veste se marie parfaitement avec le <b>Pantalon Lin Olive</b>.', btn: 'Compléter la tenue' }] },
+  /* ---------------- Rôles (chips) ---------------- */
+  const ROLES = [
+    { name: 'Appels d\'offres', color: '#0093a3', title: 'Des réponses prêtes avant l\'échéance.', desc: 'Analyse le cahier des charges, réunit les pièces administratives et rédige un mémoire technique à partir de vos réponses passées.' },
+    { name: 'Onboarding', color: '#6c6ccb', title: 'Une arrivée sans oubli.', desc: 'Crée les comptes, commande le matériel, planifie les rendez-vous de la première semaine et envoie le livret d\'accueil.' },
+    { name: 'Analyse de données', color: '#dd2229', title: 'Des questions, des graphiques.', desc: 'Interroge vos sources, nettoie les données et livre un graphique commenté en réponse à une question en français.' },
+    { name: 'Traduction', color: '#e8833a', title: 'Vos contenus dans toutes les langues.', desc: 'Traduit pages, fiches et documents en respectant votre glossaire, puis signale les passages à faire relire.' },
+    { name: 'Veille réglementaire', color: '#5a3fa0', title: 'Les textes qui vous concernent, résumés.', desc: 'Suit les publications officielles de votre secteur et vous résume chaque nouveauté avec son impact concret.' },
+    { name: 'Gestion des stocks', color: '#252525', title: 'Jamais en rupture.', desc: 'Surveille les niveaux, anticipe les besoins selon les ventes et prépare les bons de commande à valider.' },
+    { name: 'Préparation de réunions', color: '#e8a33a', title: 'Arrivez en réunion avec le dossier.', desc: 'Rassemble les documents utiles, propose un ordre du jour et prépare les questions ouvertes depuis la dernière séance.' },
   ];
-  const chips = $('#chips'), desc = $('#flowDesc'), phone = $('#phoneBody');
-  chips.innerHTML = FLOWS.map((f, i) => `<button class="chip" role="tab" aria-selected="${i === 0}" data-i="${i}"><span class="mini-bubble"></span>${f.name}</button>`).join('');
-  let flowTimer, flowIdx = 0;
-  const renderFlow = (i, user) => {
-    flowIdx = i;
+  const chips = $('#chips'), desc = $('#roleDesc');
+  chips.innerHTML = ROLES.map((r, i) => `<button class="chip" role="tab" aria-selected="${i === 0}" data-i="${i}"><span class="dot-av" style="--c:${r.color}"></span>${r.name}</button>`).join('');
+  let roleTimer, roleIdx = 0;
+  const renderRole = (i, user) => {
+    roleIdx = i;
     $$('.chip', chips).forEach((c) => c.setAttribute('aria-selected', String(+c.dataset.i === i)));
     desc.classList.add('is-swapping');
-    setTimeout(() => {
-      desc.innerHTML = `<strong>${FLOWS[i].title}</strong> ${FLOWS[i].desc}`;
-      desc.classList.remove('is-swapping');
-    }, 200);
-    phone.innerHTML = '';
-    FLOWS[i].msgs.forEach((m, k) => {
-      const el = document.createElement('div');
-      el.className = 'wa' + (m.out ? ' wa--out' : '');
-      el.style.animationDelay = `${k * 0.5 + 0.1}s`;
-      el.innerHTML = (m.img ? `<div class="wa__img" style="--img:${m.img}"></div>` : '') + m.text + `<time>10:${12 + k}${m.out ? ' ✓✓' : ''}</time>` + (m.btn ? `<span class="wa__btn">↗ ${m.btn}</span>` : '');
-      phone.appendChild(el);
-    });
-    clearInterval(flowTimer);
-    if (!user && !reduced) flowTimer = setInterval(() => renderFlow((flowIdx + 1) % FLOWS.length), 5000);
+    setTimeout(() => { desc.innerHTML = `<strong>${ROLES[i].title}</strong> ${ROLES[i].desc}`; desc.classList.remove('is-swapping'); }, 200);
+    clearInterval(roleTimer);
+    if (!user && !reduced) roleTimer = setInterval(() => renderRole((roleIdx + 1) % ROLES.length), 4500);
   };
-  chips.addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (c) renderFlow(+c.dataset.i, true); });
-  renderFlow(0);
-  // pause autoplay while hovering
-  $('#flows').addEventListener('mouseenter', () => clearInterval(flowTimer));
+  chips.addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (c) renderRole(+c.dataset.i, true); });
+  renderRole(0);
+  $('#roles').addEventListener('mouseenter', () => clearInterval(roleTimer));
 
   /* ---------------- Video lightbox ---------------- */
   const lb = $('#lightbox'), frame = $('#lightboxFrame'), video = $('#video');
@@ -308,22 +302,21 @@
 
   /* ---------------- Pricing ---------------- */
   const PLANS = [
-    { name: 'Starter', tiers: [['1k', 49], ['5k', 99], ['10k', 179]], unit: 'contacts', cta: 'Démarrer Starter', dark: true,
-      inc: 'Inclus :', items: ['Campagnes illimitées', 'Inbox partagée', '3 automatisations actives', 'Segments dynamiques', 'Attribution des ventes'] },
-    { name: 'Growth', tiers: [['10k', 249], ['25k', 449], ['50k', 749]], unit: 'contacts', cta: 'Démarrer Growth', dark: true, featured: true,
-      inc: 'Tout Starter, plus :', items: ['Agent IA dans l\'inbox', 'Automatisations illimitées', 'Tests A/B de templates', 'Intégration Klaviyo', 'Support prioritaire'] },
-    { name: 'Agences', tiers: [['5 comptes', 590], ['15 comptes', 1490]], unit: '', cta: 'Parler à l\'équipe', dark: false,
-      inc: 'Tout Growth, plus :', items: ['Multi-comptes clients', 'Reporting en marque blanche', 'Rôles et permissions', 'Account manager dédié'] },
+    { name: 'Essentiel', tiers: [['3 agents', 15], ['10 agents', 39]], cta: 'Choisir Essentiel', dark: true,
+      inc: 'Comprend :', items: ['Jusqu\'à 3 agents actifs', 'Historique de 30 jours', 'Intégrations standard', 'Application ordinateur et mobile', 'Support par e-mail'] },
+    { name: 'Pro', tiers: [['Standard', 49], ['Intensif', 129]], cta: 'Choisir Pro', dark: true,
+      inc: 'Tout Essentiel, plus :', items: ['Agents illimités', 'Exécution en parallèle', 'Routines et déclencheurs avancés', 'Historique illimité', 'Support prioritaire'] },
+    { name: 'Entreprise', tiers: [['Équipe', 35], ['Scale', 65]], unit: '/ utilisateur / mois', cta: 'Parler à l\'équipe', dark: false,
+      inc: 'Tout Pro, plus :', items: ['SSO et provisionnement SCIM', 'Journal d\'audit exportable', 'Données hébergées dans l\'UE', 'Accompagnement dédié'] },
   ];
   const plansEl = $('#plans');
-  let yearly = false;
   const tick = '<svg viewBox="0 0 14 14"><path d="M2.5 7.5 5.5 10.5 11.5 3.5"/></svg>';
   plansEl.innerHTML = PLANS.map((p, i) => `
     <article class="plan reveal reveal--up${p.featured ? ' plan--featured' : ''}" style="--d:${i}" data-i="${i}">
       <div class="plan__top"><span class="plan__name">${p.name}</span>
         <div class="seg" role="group" aria-label="Volume">${p.tiers.map((t, k) => `<button aria-pressed="${k === 0}" data-k="${k}">${t[0]}</button>`).join('')}</div>
       </div>
-      <div class="plan__price"><span class="plan__amount">0 €</span><span class="plan__unit">/ mois</span></div>
+      <div class="plan__price"><span class="plan__amount">0 €</span><span class="plan__unit">${p.unit || '/ mois'}</span></div>
       <div class="plan__bill"></div>
       <a href="#cta" class="btn ${p.dark ? 'btn--dark' : 'btn--soft'}">${p.cta}</a>
       <div class="plan__inc">${p.inc}</div>
@@ -333,12 +326,12 @@
   const renderPrice = (el, animate) => {
     const p = PLANS[+el.dataset.i];
     const k = +($('.seg [aria-pressed="true"]', el).dataset.k);
-    const [label, base] = p.tiers[k];
-    const price = yearly ? Math.round(base * 0.8) : base;
+    const base = p.tiers[k][1];
+    const price = base;
     const amt = $('.plan__amount', el);
     amt.textContent = `${fmt.format(price)} €`;
     if (animate) { amt.classList.remove('is-ticking'); void amt.offsetWidth; amt.classList.add('is-ticking'); }
-    $('.plan__bill', el).textContent = `${yearly ? 'Facturé annuellement' : 'Facturé mensuellement'} · ${label}${p.unit ? ' ' + p.unit : ''}`;
+    $('.plan__bill', el).textContent = 'Facturé mensuellement';
   };
   $$('.plan', plansEl).forEach((el) => {
     renderPrice(el);
@@ -348,12 +341,6 @@
       renderPrice(el, true);
     });
   });
-  $$('.billing button').forEach((b) => b.addEventListener('click', () => {
-    yearly = b.dataset.billing === 'yearly';
-    $$('.billing button').forEach((x) => x.setAttribute('aria-selected', String(x === b)));
-    $$('.plan', plansEl).forEach((el) => renderPrice(el, true));
-  }));
-
   /* ---------------- FAQ: smooth accordion, one open at a time ---------------- */
   const items = $$('.faq details');
   items.forEach((d) => {
@@ -386,6 +373,6 @@
       (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
     const next = isDark ? 'light' : 'dark';
     root.setAttribute('data-theme', next);
-    try { localStorage.setItem('kanal-theme', next); } catch (e) {}
+    try { localStorage.setItem('nova-theme', next); } catch (e) {}
   });
 })();
