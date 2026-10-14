@@ -134,57 +134,64 @@
   }
 
   /* ---------------- Hero : agents + conversation animée ---------------- */
-  const C = { teal: '#0093a3', amber: '#e8a33a', purple: '#5a3fa0', blue: '#6c6ccb', red: '#dd2229', orange: '#e8833a', ink: '#252525' };
+  const C = { teal: '#2bb5a4', amber: '#f0a23b', purple: '#7b5ce0', blue: '#3b82f6', red: '#ef5a3c', orange: '#e8833a', ink: '#252525' };
   const avatar = (c) => `<svg viewBox="0 0 200 200"><use href="#bubble" fill="${c}"/><ellipse cx="74" cy="92" rx="15" ry="20" fill="#fff"/><ellipse cx="126" cy="92" rx="15" ry="20" fill="#fff"/><circle cx="78" cy="97" r="8" fill="#0a0a0a"/><circle cx="130" cy="97" r="8" fill="#0a0a0a"/></svg>`;
+  const toolCard = (title, line) => `
+    <div class="tool__top"><strong>${title}</strong><span class="badge badge--amber"><svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="4.5" /><path d="M6 3.5V6l1.6 1" /></svg>En attente</span></div>
+    <p class="tool__line">${line}</p>
+    <div class="tool__shot g3"><div class="login"><div class="login__dots"><i></i><i></i><i></i></div><div class="login__bar"></div><div class="login__logo"></div><div class="login__code"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="login__btn">Valider</div></div></div>
+    <div class="tool__actions"><span class="pbtn pbtn--dark">Saisir le code</span><span class="pbtn pbtn--light">Plus tard</span></div>`;
 
   const THREADS = [
+    { name: 'Synthèse comité', time: 'Ven.', prev: 'Note envoyée aux 9 participants', color: C.teal },
     {
-      name: 'Synthèse comité', time: '16:20', prev: 'Note partagée avec les participants', color: C.amber,
+      name: 'Rapport mensuel', time: '10:12', prev: 'Validation en deux étapes demandée', color: C.amber,
       script: [
-        { user: 'Prépare la note de synthèse du comité de jeudi à partir des trois derniers comptes rendus.' },
-        { out: 'Je lis les comptes rendus des 12, 19 et 26 septembre, puis je regroupe les décisions par sujet.', typing: 1300 },
-        { out: 'Synthèse prête :<ul><li>4 décisions validées</li><li>2 points en attente d\'arbitrage</li><li>1 risque budgétaire à remonter</li></ul>', typing: 1600 },
-        { user: 'Parfait, ajoute un tableau des responsables.' },
-        { out: 'Ajouté. La note est dans le dossier « Comités » et partagée avec les participants.', typing: 1200, done: true },
+        { time: 'Aujourd\'hui, 10:12' },
+        { user: 'Prépare le rapport mensuel des ventes pour le comité de direction.\n\nPars des chiffres de septembre, compare-les au budget et mets en avant les trois régions qui décrochent.' },
+        { agent: 'Je pars du tableur de suivi. Il manque les chiffres de la région Ouest : je vais les chercher dans le CRM.', typing: 1300 },
+        { sys: 'Fichier « Budget 2026.xlsx » ouvert' },
+        { tool: ['Ordinateur', 'Le CRM demande un code de validation envoyé sur votre téléphone.'], typing: 900 },
       ],
     },
     {
-      name: 'Analyse ventes T3', time: '14:05', prev: 'Tableau mis à jour, 2 anomalies', color: C.teal,
+      name: 'Gestion des e-mails', time: '08:50', prev: 'Réponses envoyées aux 11 messages urgents', color: C.red,
       script: [
-        { user: 'Compare les ventes du T3 à celles du T2, par région.' },
-        { out: 'Export récupéré depuis l\'outil de BI. Je croise avec les objectifs régionaux.', typing: 1300 },
-        { out: 'Hausse de 8 % au global. Deux anomalies : Grand Est à -14 %, et des commandes en double le 3 août. Je corrige le doublon ?', typing: 1600 },
-        { user: 'Oui, et mets le tableau à jour.' },
-        { out: 'C\'est fait. Le tableau est partagé avec la direction commerciale.', typing: 1100, done: true },
+        { time: 'Aujourd\'hui, 08:50' },
+        { user: 'Trie ma boîte de réception et réponds aux messages urgents.' },
+        { agent: '142 messages traités : 96 archivés, 31 classés par projet, 11 réponses envoyées.', typing: 1400 },
+        { agent: 'Le devis de l\'imprimeur demande votre arbitrage : 2 options de papier, écart de 340 €.', typing: 1200 },
+        { sys: 'Routine enregistrée : tous les jours à 8:00' },
       ],
     },
     {
-      name: 'Traduction catalogue', time: '13:12', prev: '212 fiches traduites en allemand', color: C.purple,
+      name: 'Traduction catalogue', time: 'Lun.', prev: '212 fiches traduites en allemand', color: C.purple,
       script: [
+        { time: 'Lundi, 14:20' },
         { user: 'Traduis les fiches produits de la collection hiver en allemand.' },
-        { out: '212 fiches trouvées. J\'applique votre glossaire technique et le ton de la marque.', typing: 1400 },
-        { out: 'Traduction terminée. 6 termes sans équivalent direct sont signalés pour relecture.', typing: 1500, done: true },
+        { agent: '212 fiches trouvées. J\'applique votre glossaire technique et le ton de la marque.', typing: 1400 },
+        { agent: 'Traduction terminée. 6 termes sans équivalent direct sont signalés pour relecture.', typing: 1500 },
       ],
     },
-    { name: 'Veille réglementaire', time: '11:47', prev: 'Nouveau décret repéré, résumé prêt', color: C.red },
-    { name: 'Onboarding', time: '10:30', prev: 'Comptes créés pour Inès et Malik', color: C.blue },
-    { name: 'Factures fournisseurs', time: 'Hier', prev: '18 factures rapprochées', color: C.orange },
-    { name: 'Préparation salon', time: 'Lun.', prev: 'Stand confirmé, visuels en cours', color: C.ink },
+    { name: 'Veille réglementaire', time: '16:05', prev: 'Nouveau décret repéré, résumé prêt', color: C.blue },
+    { name: 'Factures fournisseurs', time: '15:20', prev: '18 factures rapprochées avec la banque', color: C.orange },
+    { name: 'Préparation salon', time: 'Mar.', prev: 'Stand confirmé, visuels en cours', color: C.ink },
   ];
 
-  const list = $('#threads'), chat = $('#chat'), composer = $('#composer'), status = $('#threadStatus');
+  const list = $('#threads'), chat = $('#chat'), composer = $('#composer');
   let runId = 0;
 
   list.innerHTML = THREADS.map((t, i) => `
-    <li class="thread${i === 0 ? ' is-active' : ''}" data-i="${i}" role="button" tabindex="0">
+    <li class="thread" data-i="${i}" role="button" tabindex="0">
       <span class="thread__av">${avatar(t.color)}</span>
       <span class="thread__name">${t.name}</span><span class="thread__time">${t.time}</span>
       <span class="thread__prev">${t.prev}</span>
     </li>`).join('');
 
   const scriptFor = (i) => THREADS[i].script || [
-    { user: `Où en es-tu ?` },
-    { out: `${THREADS[i].prev}. Je vous préviens dès que la prochaine étape demande votre validation.`, typing: 1200, done: true },
+    { time: THREADS[i].time },
+    { user: 'Où en es-tu ?' },
+    { agent: `${THREADS[i].prev}. Je vous préviens dès qu'une étape demande votre validation.`, typing: 1200 },
   ];
 
   const add = (html, cls) => {
@@ -192,56 +199,56 @@
     el.className = `msg ${cls}`;
     el.innerHTML = html;
     chat.appendChild(el);
-    while (chat.children.length > 7) chat.firstElementChild.remove();
+    while (chat.children.length > 8) chat.firstElementChild.remove();
     return el;
   };
+  const esc = (t) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
 
-  const typeIn = async (text, id) => {
+  const typeIn = async (text, id, placeholder) => {
+    const line = text.split('\n')[0];
     composer.classList.add('is-typing');
-    for (let i = 1; i <= text.length; i++) {
+    for (let i = 1; i <= line.length; i++) {
       if (id !== runId) return false;
-      composer.textContent = text.slice(0, i);
-      await wait(18 + Math.random() * 26);
+      composer.textContent = line.slice(0, i);
+      await wait(14 + Math.random() * 22);
     }
     await wait(250);
-    composer.textContent = 'Écrire à l\'agent…';
+    composer.textContent = placeholder;
     composer.classList.remove('is-typing');
     return true;
-  };
-
-  const setStatus = (done) => {
-    status.classList.toggle('is-done', done);
-    status.lastElementChild.textContent = done ? 'Terminé' : 'En cours';
   };
 
   const play = async (i) => {
     const id = ++runId;
     const t = THREADS[i];
+    const placeholder = `Écrire à ${t.name}`;
     $('#threadTitle').textContent = t.name;
     $('#threadAv').innerHTML = avatar(t.color);
-    setStatus(false);
+    composer.textContent = placeholder;
     $$('.msg', chat).forEach((m) => m.classList.add('is-leaving'));
     await wait(350);
     if (id !== runId) return;
     chat.innerHTML = '';
     for (const step of scriptFor(i)) {
       if (id !== runId) return;
+      if (step.time) { add(step.time, 'msg--time'); continue; }
+      if (step.sys) { await wait(300); add(step.sys, 'msg--sys'); await wait(700); continue; }
       if (step.user) {
-        if (!reduced && !(await typeIn(step.user, id))) return;
-        add(step.user, 'msg--user'); await wait(700); continue;
+        if (!reduced && !(await typeIn(step.user, id, placeholder))) return;
+        add(esc(step.user), 'msg--user'); await wait(700); continue;
       }
-      if (!reduced) {
+      if (!reduced && step.typing) {
         const typing = add('<i></i><i></i><i></i>', 'msg--typing');
-        await wait(step.typing || 1000);
+        await wait(step.typing);
         typing.remove();
       }
       if (id !== runId) return;
-      add(`<span class="msg__meta"><span class="dot-av" style="--c:${t.color}"></span>${t.name}</span>${step.out}`, 'msg--out');
-      if (step.done) setStatus(true);
+      if (step.tool) add(toolCard(step.tool[0], step.tool[1]), 'msg--tool');
+      else add(step.agent, 'msg--agent');
       await wait(1100);
     }
-    await wait(3400);
-    if (id === runId) select((i + 1) % 3);
+    await wait(4200);
+    if (id === runId) select(i === 1 ? 2 : i === 2 ? 3 : 1);
   };
 
   const select = (i) => {
@@ -250,38 +257,70 @@
   };
   list.addEventListener('click', (e) => { const li = e.target.closest('.thread'); if (li) select(+li.dataset.i); });
   list.addEventListener('keydown', (e) => { if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('thread')) { e.preventDefault(); select(+e.target.dataset.i); } });
-
-  // Search filters threads
-  $('.app__search input').addEventListener('input', (e) => {
+  $('#threadSearch').addEventListener('input', (e) => {
     const q = e.target.value.trim().toLowerCase();
     $$('.thread', list).forEach((el) => { el.style.display = THREADS[+el.dataset.i].name.toLowerCase().includes(q) ? '' : 'none'; });
   });
 
-  // Start the conversation when the mockup is visible
-  const appIO = new IntersectionObserver((en) => { if (en[0].isIntersecting) { appIO.disconnect(); setTimeout(() => select(0), 600); } }, { threshold: 0.3 });
+  // Affiche tout de suite un état complet, puis anime quand la fenêtre est visible
+  (() => {
+    $$('.thread', list).forEach((el) => el.classList.toggle('is-active', el.dataset.i === '1'));
+    $('#threadTitle').textContent = THREADS[1].name;
+    $('#threadAv').innerHTML = avatar(THREADS[1].color);
+    composer.textContent = `Écrire à ${THREADS[1].name}`;
+    THREADS[1].script.forEach((st) => {
+      if (st.time) add(st.time, 'msg--time');
+      else if (st.sys) add(st.sys, 'msg--sys');
+      else if (st.user) add(esc(st.user), 'msg--user');
+      else if (st.tool) add(toolCard(st.tool[0], st.tool[1]), 'msg--tool');
+      else add(st.agent, 'msg--agent');
+    });
+    $$('.msg', chat).forEach((m) => { m.style.animation = 'none'; });
+  })();
+  const appIO = new IntersectionObserver((en) => { if (en[0].isIntersecting) { appIO.disconnect(); setTimeout(() => select(2), 5000); } }, { threshold: 0.3 });
   appIO.observe($('#app'));
 
-  /* ---------------- Rôles (chips) ---------------- */
+  /* ---------------- Rôles (chips) + téléphone ---------------- */
   const ROLES = [
-    { name: 'Appels d\'offres', color: '#0093a3', title: 'Des réponses prêtes avant l\'échéance.', desc: 'Analyse le cahier des charges, réunit les pièces administratives et rédige un mémoire technique à partir de vos réponses passées.' },
-    { name: 'Onboarding', color: '#6c6ccb', title: 'Une arrivée sans oubli.', desc: 'Crée les comptes, commande le matériel, planifie les rendez-vous de la première semaine et envoie le livret d\'accueil.' },
-    { name: 'Analyse de données', color: '#dd2229', title: 'Des questions, des graphiques.', desc: 'Interroge vos sources, nettoie les données et livre un graphique commenté en réponse à une question en français.' },
-    { name: 'Traduction', color: '#e8833a', title: 'Vos contenus dans toutes les langues.', desc: 'Traduit pages, fiches et documents en respectant votre glossaire, puis signale les passages à faire relire.' },
-    { name: 'Veille réglementaire', color: '#5a3fa0', title: 'Les textes qui vous concernent, résumés.', desc: 'Suit les publications officielles de votre secteur et vous résume chaque nouveauté avec son impact concret.' },
-    { name: 'Gestion des stocks', color: '#252525', title: 'Jamais en rupture.', desc: 'Surveille les niveaux, anticipe les besoins selon les ventes et prépare les bons de commande à valider.' },
-    { name: 'Préparation de réunions', color: '#e8a33a', title: 'Arrivez en réunion avec le dossier.', desc: 'Rassemble les documents utiles, propose un ordre du jour et prépare les questions ouvertes depuis la dernière séance.' },
+    { name: 'Appels d\'offres', color: '#0093a3', title: 'Des réponses prêtes avant l\'échéance.', desc: 'Analyse le cahier des charges, réunit les pièces administratives et rédige un mémoire technique à partir de vos réponses passées.',
+      chat: [{ user: 'Prépare la réponse à l\'appel d\'offres de la métropole.' }, { agent: 'Cahier des charges analysé : 14 exigences, dont 3 critères éliminatoires. Voici le résumé à valider.' },
+        { mail: ['Objet : Dossier de candidature', 'Madame, Monsieur,', 'Vous trouverez ci-joint notre offre pour le lot 2, accompagnée des attestations demandées et de notre mémoire technique.', 'Bien cordialement,'] , btns: ['Valider', 'Modifier'] }] },
+    { name: 'Onboarding', color: '#6c6ccb', title: 'Une arrivée sans oubli.', desc: 'Crée les comptes, commande le matériel, planifie les rendez-vous de la première semaine et envoie le livret d\'accueil.',
+      chat: [{ user: 'Inès arrive lundi au service marketing.' }, { agent: 'Comptes créés, ordinateur commandé (livraison vendredi), déjeuner d\'équipe réservé mardi.' }, { agent: 'Je lui envoie le livret d\'accueil dimanche soir ?' }, { user: 'Oui, parfait.' }] },
+    { name: 'Analyse de données', color: '#dd2229', title: 'Des questions, des graphiques.', desc: 'Interroge vos sources, nettoie les données et livre un graphique commenté en réponse à une question en français.',
+      chat: [{ user: 'Quel canal a le meilleur taux de conversion ce trimestre ?' }, { agent: 'Le référencement naturel, à 3,8 %, devant l\'e-mail à 2,9 %. Les campagnes payantes reculent de 0,6 point.' }, { agent: 'Graphique ajouté au tableau de bord « Acquisition ».' }] },
+    { name: 'Traduction', color: '#e8833a', title: 'Vos contenus dans toutes les langues.', desc: 'Traduit pages, fiches et documents en respectant votre glossaire, puis signale les passages à faire relire.',
+      chat: [{ user: 'Traduis la page tarifs en espagnol et en italien.' }, { agent: 'C\'est fait pour les deux langues. 2 expressions ont été adaptées au marché italien, je les ai surlignées.' }] },
+    { name: 'Veille réglementaire', color: '#5a3fa0', title: 'Les textes qui vous concernent, résumés.', desc: 'Suit les publications officielles de votre secteur et vous résume chaque nouveauté avec son impact concret.',
+      chat: [{ agent: 'Nouveau décret publié ce matin sur l\'étiquetage des emballages.' }, { agent: 'Impact pour vous : mise à jour des mentions avant le 1er mars sur 3 gammes.' }, { user: 'Préviens l\'équipe packaging.' }] },
+    { name: 'Gestion des stocks', color: '#252525', title: 'Jamais en rupture.', desc: 'Surveille les niveaux, anticipe les besoins selon les ventes et prépare les bons de commande à valider.',
+      chat: [{ agent: 'Le stock de coffrets cadeaux tiendra 9 jours au rythme actuel.' }, { agent: 'Bon de commande de 400 unités prêt pour le fournisseur habituel.' }, { user: 'Envoie-le.' }] },
+    { name: 'Préparation de réunions', color: '#e8a33a', title: 'Arrivez en réunion avec le dossier.', desc: 'Rassemble les documents utiles, propose un ordre du jour et prépare les questions ouvertes depuis la dernière séance.',
+      chat: [{ user: 'Prépare le point produit de demain.' }, { agent: 'Ordre du jour envoyé, avec les 3 décisions en attente depuis la dernière réunion et les chiffres d\'usage à jour.' }] },
   ];
-  const chips = $('#chips'), desc = $('#roleDesc');
+  const chips = $('#chips'), desc = $('#roleDesc'), phoneChat = $('#phoneChat');
   chips.innerHTML = ROLES.map((r, i) => `<button class="chip" role="tab" aria-selected="${i === 0}" data-i="${i}"><span class="dot-av" style="--c:${r.color}"></span>${r.name}</button>`).join('');
   let roleTimer, roleIdx = 0;
+  const renderPhone = (r) => {
+    $('#phoneName').textContent = r.name;
+    $('#phoneAv').style.setProperty('--c', r.color);
+    phoneChat.innerHTML = r.chat.map((m, k) => {
+      const delay = `style="animation-delay:${k * 0.35}s"`;
+      if (m.user) return `<div class="msg msg--user" ${delay}>${esc(m.user)}</div>`;
+      if (m.mail) return `<div class="mail" ${delay}><div class="mail__body">${m.mail.map((l) => `<p>${l}</p>`).join('')}</div><div class="tool__actions"><span class="pbtn pbtn--dark">${m.btns[0]}</span><span class="pbtn pbtn--light">${m.btns[1]}</span></div></div>`;
+      return `<div class="msg msg--agent" ${delay}>${m.agent}</div>`;
+    }).join('');
+  };
   const renderRole = (i, user) => {
     roleIdx = i;
     $$('.chip', chips).forEach((c) => c.setAttribute('aria-selected', String(+c.dataset.i === i)));
     desc.classList.add('is-swapping');
     setTimeout(() => { desc.innerHTML = `<strong>${ROLES[i].title}</strong> ${ROLES[i].desc}`; desc.classList.remove('is-swapping'); }, 200);
+    renderPhone(ROLES[i]);
     clearInterval(roleTimer);
-    if (!user && !reduced) roleTimer = setInterval(() => renderRole((roleIdx + 1) % ROLES.length), 4500);
+    if (!user && !reduced) roleTimer = setInterval(() => renderRole((roleIdx + 1) % ROLES.length), 5000);
   };
+  desc.innerHTML = `<strong>${ROLES[0].title}</strong> ${ROLES[0].desc}`;
   chips.addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (c) renderRole(+c.dataset.i, true); });
   renderRole(0);
   $('#roles').addEventListener('mouseenter', () => clearInterval(roleTimer));
@@ -310,7 +349,7 @@
       inc: 'Tout Pro, plus :', items: ['SSO et provisionnement SCIM', 'Journal d\'audit exportable', 'Données hébergées dans l\'UE', 'Accompagnement dédié'] },
   ];
   const plansEl = $('#plans');
-  const tick = '<svg viewBox="0 0 14 14"><path d="M2.5 7.5 5.5 10.5 11.5 3.5"/></svg>';
+  const tick = '<svg viewBox="0 0 16 16"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>';
   plansEl.innerHTML = PLANS.map((p, i) => `
     <article class="plan reveal reveal--up${p.featured ? ' plan--featured' : ''}" style="--d:${i}" data-i="${i}">
       <div class="plan__top"><span class="plan__name">${p.name}</span>
@@ -318,7 +357,7 @@
       </div>
       <div class="plan__price"><span class="plan__amount">0 €</span><span class="plan__unit">${p.unit || '/ mois'}</span></div>
       <div class="plan__bill"></div>
-      <a href="#cta" class="btn ${p.dark ? 'btn--dark' : 'btn--soft'}">${p.cta}</a>
+      <a href="#cta" class="btn btn--lg ${p.dark ? 'btn--dark' : 'btn--soft'}">${p.cta}</a>
       <div class="plan__inc">${p.inc}</div>
       <ul>${p.items.map((it) => `<li>${tick}${it}</li>`).join('')}</ul>
     </article>`).join('');
