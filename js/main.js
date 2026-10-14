@@ -197,8 +197,8 @@
   ];
 
   const app = $('#app'), list = $('#threads'), chat = $('#chat'), composer = $('#composer');
-  const panel = $('#customerPanel'), panelInner = $('#panelInner'), toggle = $('#panelToggle');
-  let runId = 0, current = 0, filter = 'all';
+  const panelInner = $('#panelInner');
+  let runId = 0, current = 0;
 
   list.innerHTML = THREADS.map((t, i) => `
     <li class="thread" data-i="${i}" data-ch="${t.ch}" role="button" tabindex="0" aria-label="${t.name}, ${CHANNELS[t.ch]}">
@@ -212,10 +212,8 @@
   const renderPanel = (i, flash) => {
     const t = THREADS[i], c = t.customer, o = c.order;
     panelInner.innerHTML = `
-      <div class="panel__bar"><span>Customer</span><div>
-        <button class="icon-btn" aria-label="Customer settings"><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="2" /><path d="M7 1.5v1.6M7 10.9v1.6M1.5 7h1.6M10.9 7h1.6M3.1 3.1l1.1 1.1M9.8 9.8l1.1 1.1M3.1 10.9l1.1-1.1M9.8 4.2l1.1-1.1" /></svg></button>
-        <button class="icon-btn" id="panelClose" aria-label="Close customer details"><svg viewBox="0 0 14 14"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" /></svg></button>
-      </div></div>
+      <div class="panel__bar"><span>Customer</span>
+        <span class="icon-btn" aria-hidden="true"><svg viewBox="0 0 14 14"><circle cx="3.5" cy="7" r=".9" /><circle cx="7" cy="7" r=".9" /><circle cx="10.5" cy="7" r=".9" /></svg></span></div>
       <div class="panel__profile">
         <span class="panel__avatar">${initials(t.name)}${logo(t.ch)}</span>
         <div><div class="panel__name">${t.name}</div><div class="panel__sub">${CHANNELS[t.ch]} · ${c.handle}</div></div>
@@ -223,29 +221,23 @@
       <dl class="panel__list">
         <dt>Email</dt><dd>${c.email}</dd>
         <dt>Customer since</dt><dd>${c.since}</dd>
-        <dt>Orders</dt><dd>${c.orders} · ${money(c.spent)} spent</dd>
+        <dt>Orders</dt><dd>${c.orders} · ${money(c.spent)}</dd>
       </dl>
       <div><div class="panel__label">Shipping address</div><p class="panel__address">${c.address.join('<br>')}</p></div>
+      <div class="panel__sep"></div>
       <div>
-        <div class="panel__label">Latest order</div>
-        <div class="order">
-          <div class="order__head"><span class="order__brand">${'<svg viewBox="0 0 32 32"><use href="#logo-shopify" /></svg>'}Shopify</span><span class="order__status ${statusClass(o.status)}">${o.status}</span></div>
-          <div class="order__id">Order ${o.id} <small>· ${o.date}</small></div>
-          <div class="order__item${flash ? ' is-updated' : ''}"><span class="order__thumb" style="--g:${o.g}"></span><span><strong>${o.item}</strong><small>${o.variant}</small></span><span>${money(o.price)}</span></div>
-          <div class="order__rows"><span>Subtotal</span><span>${money(o.price)}</span><span>Shipping</span><span>${o.shipping ? money(o.shipping) : 'Free'}</span><b>Total</b><b>${money(o.price + o.shipping)}</b></div>
-        </div>
+        <div class="panel__label"><span>Latest order</span><span class="order__brand"><svg><use href="#logo-shopify" /></svg>Shopify</span></div>
+        <div class="order__head"><span class="order__id">${o.id} <small>· ${o.date}</small></span><span class="order__status ${statusClass(o.status)}">${o.status}</span></div>
+        <div class="order__item${flash ? ' is-updated' : ''}"><span class="order__thumb" style="--g:${o.g}"></span><span><strong>${o.item}</strong><small>${o.variant}</small></span><span>${money(o.price)}</span></div>
+        <dl class="panel__list">
+          <dt>Subtotal</dt><dd>${money(o.price)}</dd>
+          <dt>Shipping</dt><dd>${o.shipping ? money(o.shipping) : 'Free'}</dd>
+          <dt class="is-total">Total</dt><dd class="is-total">${money(o.price + o.shipping)}</dd>
+        </dl>
       </div>
-      <a href="#" class="pbtn pbtn--light panel__link" tabindex="-1">Open in Shopify <svg><use href="#ext" /></svg></a>`;
-    $('#panelClose', panelInner).addEventListener('click', () => setPanel(false));
+      <a href="#" class="pbtn pbtn--light panel__link">Open in Shopify <svg><use href="#ext" /></svg></a>`;
     $('.panel__link', panelInner).addEventListener('click', (e) => e.preventDefault());
   };
-  const setPanel = (open) => {
-    app.classList.toggle('panel-open', open);
-    toggle.setAttribute('aria-expanded', String(open));
-    panel.setAttribute('aria-hidden', String(!open));
-    $$('button, a', panelInner).forEach((el) => { el.tabIndex = open ? 0 : -1; });
-  };
-  toggle.addEventListener('click', () => setPanel(!app.classList.contains('panel-open')));
 
   /* Fil de discussion */
   const add = (html, cls) => {
@@ -321,20 +313,10 @@
   list.addEventListener('click', (e) => { const li = e.target.closest('.thread'); if (li) select(+li.dataset.i); });
   list.addEventListener('keydown', (e) => { if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('thread')) { e.preventDefault(); select(+e.target.dataset.i); } });
 
-  /* Recherche + filtre par canal */
-  const applyFilters = () => {
-    const q = $('#threadSearch').value.trim().toLowerCase();
-    $$('.thread', list).forEach((el) => {
-      const t = THREADS[+el.dataset.i];
-      el.classList.toggle('is-hidden', !((filter === 'all' || t.ch === filter) && t.name.toLowerCase().includes(q)));
-    });
-  };
-  $('#threadSearch').addEventListener('input', applyFilters);
-  $('#channels').addEventListener('click', (e) => {
-    const b = e.target.closest('.channel'); if (!b) return;
-    filter = b.dataset.ch;
-    $$('.channel').forEach((x) => { x.classList.toggle('is-active', x === b); x.setAttribute('aria-pressed', String(x === b)); });
-    applyFilters();
+  /* Recherche */
+  $('#threadSearch').addEventListener('input', (e) => {
+    const q = e.target.value.trim().toLowerCase();
+    $$('.thread', list).forEach((el) => el.classList.toggle('is-hidden', !THREADS[+el.dataset.i].name.toLowerCase().includes(q)));
   });
 
   // État complet dès le chargement, animation quand la fenêtre est visible
@@ -342,8 +324,6 @@
     current = 0;
     $$('.thread', list).forEach((el) => el.classList.toggle('is-active', el.dataset.i === '0'));
     showHeader(THREADS[0]);
-    renderPanel(0);
-    setPanel(false);
     THREADS[0].script.forEach((st) => {
       if (st.time) add(st.time, 'msg--time');
       else if (st.sys) add(st.sys, 'msg--sys');
