@@ -144,7 +144,6 @@
     {
       name: 'Emma Laurent', ch: 'whatsapp', time: '10:12 AM', prev: 'Can I still switch my order to size L?',
       customer: { handle: '+33 6 12 48 90 31', email: 'emma.laurent@mail.com', since: 'Mar 2024', orders: 4, spent: 412,
-        address: ['14 Rue des Lilas', '69003 Lyon', 'France'],
         order: { id: '#1042', date: 'Oct 13', status: 'Unfulfilled', item: 'Linen Overshirt', variant: 'Sand · M · ×1', price: 89, shipping: 5, g: 'linear-gradient(135deg,#e8d6bd,#c9a67c)' } },
       script: [
         { time: 'Today, 10:12 AM' },
@@ -158,7 +157,6 @@
     {
       name: 'Lucas Martin', ch: 'instagram', time: '9:58 AM', prev: 'Is the linen shirt back in sand?',
       customer: { handle: '@lucas.mrtn', email: 'lucas.martin@mail.com', since: 'Jan 2025', orders: 2, spent: 158,
-        address: ['3 Avenue Jean Jaurès', '75019 Paris', 'France'],
         order: { id: '#0987', date: 'Sep 2', status: 'Delivered', item: 'Merino Crew Sweater', variant: 'Navy · L · ×1', price: 79, shipping: 0, g: 'linear-gradient(135deg,#9db0cc,#3d4f73)' } },
       script: [
         { time: 'Today, 9:58 AM' },
@@ -171,7 +169,6 @@
     {
       name: 'Hugo Garnier', ch: 'messenger', time: '9:40 AM', prev: 'The sneakers are too small, can I return them?',
       customer: { handle: 'Hugo Garnier', email: 'hugo.garnier@mail.com', since: 'Aug 2026', orders: 1, spent: 120,
-        address: ['27 Quai de la Fosse', '44000 Nantes', 'France'],
         order: { id: '#1037', date: 'Oct 8', status: 'Delivered', item: 'Canvas Low Sneakers', variant: 'Off-white · 43 · ×1', price: 115, shipping: 5, g: 'linear-gradient(135deg,#f1ede4,#cfc6b4)' } },
       script: [
         { time: 'Today, 9:40 AM' },
@@ -183,16 +180,16 @@
       ],
     },
     { name: 'Noah Petit', ch: 'whatsapp', time: '9:15 AM', prev: 'Do you ship to Belgium?',
-      customer: { handle: '+32 470 12 34 56', email: 'noah.petit@mail.com', since: 'Oct 2026', orders: 1, spent: 64, address: ['Rue Neuve 112', '1000 Brussels', 'Belgium'],
+      customer: { handle: '+32 470 12 34 56', email: 'noah.petit@mail.com', since: 'Oct 2026', orders: 1, spent: 64,
         order: { id: '#1045', date: 'Oct 14', status: 'Unfulfilled', item: 'Cotton Tote Bag', variant: 'Natural · ×2', price: 58, shipping: 6, g: 'linear-gradient(135deg,#efe6d2,#d2bf95)' } } },
     { name: 'Léa Moreau', ch: 'instagram', time: 'Yesterday', prev: 'Loved the packaging 😍',
-      customer: { handle: '@lea.moreau', email: 'lea.moreau@mail.com', since: 'Jun 2023', orders: 9, spent: 1186, address: ['8 Place Bellecour', '69002 Lyon', 'France'],
+      customer: { handle: '@lea.moreau', email: 'lea.moreau@mail.com', since: 'Jun 2023', orders: 9, spent: 1186,
         order: { id: '#1029', date: 'Oct 5', status: 'Delivered', item: 'Wool Wrap Coat', variant: 'Camel · S · ×1', price: 240, shipping: 0, g: 'linear-gradient(135deg,#e2c49c,#a9774a)' } } },
     { name: 'Chloé Bernard', ch: 'messenger', time: 'Yesterday', prev: 'Thanks, the tracking link works!',
-      customer: { handle: 'Chloé Bernard', email: 'chloe.b@mail.com', since: 'Feb 2025', orders: 3, spent: 267, address: ['52 Cours Mirabeau', '13100 Aix-en-Provence', 'France'],
+      customer: { handle: 'Chloé Bernard', email: 'chloe.b@mail.com', since: 'Feb 2025', orders: 3, spent: 267,
         order: { id: '#1040', date: 'Oct 11', status: 'In transit', item: 'Silk Scarf', variant: 'Terracotta · ×1', price: 69, shipping: 5, g: 'linear-gradient(135deg,#f0b597,#c0603e)' } } },
     { name: 'Inès Roux', ch: 'whatsapp', time: 'Mon', prev: 'Order received, thank you!',
-      customer: { handle: '+33 7 81 22 09 64', email: 'ines.roux@mail.com', since: 'Nov 2024', orders: 5, spent: 538, address: ['19 Rue Sainte-Catherine', '33000 Bordeaux', 'France'],
+      customer: { handle: '+33 7 81 22 09 64', email: 'ines.roux@mail.com', since: 'Nov 2024', orders: 5, spent: 538,
         order: { id: '#1031', date: 'Oct 6', status: 'Delivered', item: 'Leather Card Holder', variant: 'Cognac · ×1', price: 45, shipping: 5, g: 'linear-gradient(135deg,#d9a57a,#8c5532)' } } },
   ];
 
@@ -223,7 +220,6 @@
         <dt>Customer since</dt><dd>${c.since}</dd>
         <dt>Orders</dt><dd>${c.orders} · ${money(c.spent)}</dd>
       </dl>
-      <div><div class="panel__label">Shipping address</div><p class="panel__address">${c.address.join('<br>')}</p></div>
       <div class="panel__sep"></div>
       <div>
         <div class="panel__label"><span>Latest order</span><span class="order__brand"><svg><use href="#logo-shopify" /></svg>Shopify</span></div>
