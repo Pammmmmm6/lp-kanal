@@ -133,67 +133,121 @@
     }
   }
 
-  /* ---------------- Hero : agents + conversation animée ---------------- */
-  const C = { teal: '#2bb5a4', amber: '#f0a23b', purple: '#7b5ce0', blue: '#3b82f6', red: '#ef5a3c', orange: '#e8833a', ink: '#252525' };
-  const avatar = (c) => `<svg viewBox="0 0 200 200"><use href="#bubble" fill="${c}"/><ellipse cx="74" cy="92" rx="15" ry="20" fill="#fff"/><ellipse cx="126" cy="92" rx="15" ry="20" fill="#fff"/><circle cx="78" cy="97" r="8" fill="#0a0a0a"/><circle cx="130" cy="97" r="8" fill="#0a0a0a"/></svg>`;
-  const toolCard = (title, line) => `
-    <div class="tool__top"><strong>${title}</strong><span class="badge badge--amber"><svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="4.5" /><path d="M6 3.5V6l1.6 1" /></svg>Waiting</span></div>
-    <p class="tool__line">${line}</p>
-    <div class="tool__shot g3"><div class="login"><div class="login__dots"><i></i><i></i><i></i></div><div class="login__bar"></div><div class="login__logo"></div><div class="login__code"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="login__btn">Verify</div></div></div>
-    <div class="tool__actions"><span class="pbtn pbtn--dark">Enter code</span><span class="pbtn pbtn--light">Later</span></div>`;
+  /* ---------------- Hero : inbox multicanal + fiche client ---------------- */
+  const CHANNELS = { whatsapp: 'WhatsApp', instagram: 'Instagram', messenger: 'Messenger' };
+  const logo = (ch) => `<svg viewBox="0 0 32 32"><use href="#logo-${ch}" /></svg>`;
+  const esc = (t) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+  const money = (n) => `$${n.toFixed(2)}`;
+  const initials = (n) => n.split(' ').map((w) => w[0]).join('');
 
   const THREADS = [
-    { name: 'Board summary', time: 'Fri', prev: 'Summary sent to all 9 attendees', color: C.teal },
     {
-      name: 'Monthly report', time: '10:12 AM', prev: 'Waiting on a verification code', color: C.amber,
+      name: 'Emma Laurent', ch: 'whatsapp', time: '10:12 AM', prev: 'Can I still switch my order to size L?',
+      customer: { handle: '+33 6 12 48 90 31', email: 'emma.laurent@mail.com', since: 'Mar 2024', orders: 4, spent: 412,
+        address: ['14 Rue des Lilas', '69003 Lyon', 'France'],
+        order: { id: '#1042', date: 'Oct 13', status: 'Unfulfilled', item: 'Linen Overshirt', variant: 'Sand · M · ×1', price: 89, shipping: 5, g: 'linear-gradient(135deg,#e8d6bd,#c9a67c)' } },
       script: [
         { time: 'Today, 10:12 AM' },
-        { user: 'Put together the monthly sales report for the leadership meeting.\n\nStart from the September numbers, compare them with the budget and point out the three regions that are slipping.' },
-        { agent: 'Starting from the tracking sheet. The West region figures are missing, so I\'m pulling them from the CRM.', typing: 1300 },
-        { sys: 'Opened “Budget 2026.xlsx”' },
-        { tool: ['Computer', 'The CRM wants a verification code it just texted to your phone.'], typing: 900 },
+        { in: 'Hi! I ordered the linen overshirt yesterday in M. Can I still switch it to an L?' },
+        { out: 'Hi Emma! Order #1042 hasn\'t shipped yet, so yes. I\'ve switched it to size L, same price.' },
+        { sys: 'Order #1042 updated in Shopify', patch: { variant: 'Sand · L · ×1' } },
+        { in: 'Perfect, thank you 🙏', typing: 1100 },
+        { out: 'Anytime! It ships this afternoon and I\'ll send the tracking link right here.' },
       ],
     },
     {
-      name: 'Inbox triage', time: '8:50 AM', prev: 'Answered the 11 urgent emails', color: C.red,
+      name: 'Lucas Martin', ch: 'instagram', time: '9:58 AM', prev: 'Is the linen shirt back in sand?',
+      customer: { handle: '@lucas.mrtn', email: 'lucas.martin@mail.com', since: 'Jan 2025', orders: 2, spent: 158,
+        address: ['3 Avenue Jean Jaurès', '75019 Paris', 'France'],
+        order: { id: '#0987', date: 'Sep 2', status: 'Delivered', item: 'Merino Crew Sweater', variant: 'Navy · L · ×1', price: 79, shipping: 0, g: 'linear-gradient(135deg,#9db0cc,#3d4f73)' } },
       script: [
-        { time: 'Today, 8:50 AM' },
-        { user: 'Sort my inbox and deal with anything urgent.' },
-        { agent: '142 emails handled: 96 archived, 31 filed by project, 11 answered.', typing: 1400 },
-        { agent: 'The print shop quote needs your call: two paper stocks, $340 apart.', typing: 1200 },
-        { sys: 'Routine saved: daily at 8:00 AM' },
+        { time: 'Today, 9:58 AM' },
+        { in: 'Hey, is the linen shirt back in sand? Saw it in your last post 👀' },
+        { out: 'It is! Back in S, M and L since this morning. Want me to put an L aside for you, like your last order?' },
+        { in: 'Yes please!', typing: 900 },
+        { sys: 'Checkout link sent · Linen Shirt, Sand, L' },
       ],
     },
     {
-      name: 'Catalog translation', time: 'Mon', prev: '212 product pages now in German', color: C.purple,
+      name: 'Hugo Garnier', ch: 'messenger', time: '9:40 AM', prev: 'The sneakers are too small, can I return them?',
+      customer: { handle: 'Hugo Garnier', email: 'hugo.garnier@mail.com', since: 'Aug 2026', orders: 1, spent: 120,
+        address: ['27 Quai de la Fosse', '44000 Nantes', 'France'],
+        order: { id: '#1037', date: 'Oct 8', status: 'Delivered', item: 'Canvas Low Sneakers', variant: 'Off-white · 43 · ×1', price: 115, shipping: 5, g: 'linear-gradient(135deg,#f1ede4,#cfc6b4)' } },
       script: [
-        { time: 'Monday, 2:20 PM' },
-        { user: 'Translate the winter collection product pages into German.' },
-        { agent: 'Found 212 pages. Using your technical glossary and brand voice.', typing: 1400 },
-        { agent: 'All done. 6 terms with no direct German equivalent are flagged for review.', typing: 1500 },
+        { time: 'Today, 9:40 AM' },
+        { in: 'Hello, the sneakers are a bit small. Can I send them back?' },
+        { out: 'Of course, Hugo. You\'re within the 30-day window, so the return is free. Here\'s your prepaid label.' },
+        { sys: 'Return created for order #1037', patch: { status: 'Return requested' } },
+        { in: 'Great, and can I get a 44 instead?', typing: 1200 },
+        { out: 'Done: a size 44 is reserved and ships as soon as the carrier scans your return.' },
       ],
     },
-    { name: 'Regulatory watch', time: '4:05 PM', prev: 'New labeling rule found, summary ready', color: C.blue },
-    { name: 'Supplier invoices', time: '3:20 PM', prev: '18 invoices matched to bank records', color: C.orange },
-    { name: 'Trade show prep', time: 'Tue', prev: 'Booth confirmed, artwork in progress', color: C.ink },
+    { name: 'Noah Petit', ch: 'whatsapp', time: '9:15 AM', prev: 'Do you ship to Belgium?',
+      customer: { handle: '+32 470 12 34 56', email: 'noah.petit@mail.com', since: 'Oct 2026', orders: 1, spent: 64, address: ['Rue Neuve 112', '1000 Brussels', 'Belgium'],
+        order: { id: '#1045', date: 'Oct 14', status: 'Unfulfilled', item: 'Cotton Tote Bag', variant: 'Natural · ×2', price: 58, shipping: 6, g: 'linear-gradient(135deg,#efe6d2,#d2bf95)' } } },
+    { name: 'Léa Moreau', ch: 'instagram', time: 'Yesterday', prev: 'Loved the packaging 😍',
+      customer: { handle: '@lea.moreau', email: 'lea.moreau@mail.com', since: 'Jun 2023', orders: 9, spent: 1186, address: ['8 Place Bellecour', '69002 Lyon', 'France'],
+        order: { id: '#1029', date: 'Oct 5', status: 'Delivered', item: 'Wool Wrap Coat', variant: 'Camel · S · ×1', price: 240, shipping: 0, g: 'linear-gradient(135deg,#e2c49c,#a9774a)' } } },
+    { name: 'Chloé Bernard', ch: 'messenger', time: 'Yesterday', prev: 'Thanks, the tracking link works!',
+      customer: { handle: 'Chloé Bernard', email: 'chloe.b@mail.com', since: 'Feb 2025', orders: 3, spent: 267, address: ['52 Cours Mirabeau', '13100 Aix-en-Provence', 'France'],
+        order: { id: '#1040', date: 'Oct 11', status: 'In transit', item: 'Silk Scarf', variant: 'Terracotta · ×1', price: 69, shipping: 5, g: 'linear-gradient(135deg,#f0b597,#c0603e)' } } },
+    { name: 'Inès Roux', ch: 'whatsapp', time: 'Mon', prev: 'Order received, thank you!',
+      customer: { handle: '+33 7 81 22 09 64', email: 'ines.roux@mail.com', since: 'Nov 2024', orders: 5, spent: 538, address: ['19 Rue Sainte-Catherine', '33000 Bordeaux', 'France'],
+        order: { id: '#1031', date: 'Oct 6', status: 'Delivered', item: 'Leather Card Holder', variant: 'Cognac · ×1', price: 45, shipping: 5, g: 'linear-gradient(135deg,#d9a57a,#8c5532)' } } },
   ];
 
-  const list = $('#threads'), chat = $('#chat'), composer = $('#composer');
-  let runId = 0;
+  const app = $('#app'), list = $('#threads'), chat = $('#chat'), composer = $('#composer');
+  const panel = $('#customerPanel'), panelInner = $('#panelInner'), toggle = $('#panelToggle');
+  let runId = 0, current = 0, filter = 'all';
 
   list.innerHTML = THREADS.map((t, i) => `
-    <li class="thread" data-i="${i}" role="button" tabindex="0">
-      <span class="thread__av">${avatar(t.color)}</span>
+    <li class="thread" data-i="${i}" data-ch="${t.ch}" role="button" tabindex="0" aria-label="${t.name}, ${CHANNELS[t.ch]}">
+      <span class="thread__av">${logo(t.ch)}</span>
       <span class="thread__name">${t.name}</span><span class="thread__time">${t.time}</span>
-      <span class="thread__prev">${t.prev}</span>
+      <span class="thread__prev">${esc(t.prev)}</span>
     </li>`).join('');
 
-  const scriptFor = (i) => THREADS[i].script || [
-    { time: THREADS[i].time },
-    { user: 'Status update?' },
-    { agent: `${THREADS[i].prev}. I'll ping you as soon as a step needs your approval.`, typing: 1200 },
-  ];
+  /* Fiche client */
+  const statusClass = (st) => (/Unfulfilled|Return|transit/.test(st) ? 'order__status--open' : 'order__status--done');
+  const renderPanel = (i, flash) => {
+    const t = THREADS[i], c = t.customer, o = c.order;
+    panelInner.innerHTML = `
+      <div class="panel__bar"><span>Customer</span><div>
+        <button class="icon-btn" aria-label="Customer settings"><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="2" /><path d="M7 1.5v1.6M7 10.9v1.6M1.5 7h1.6M10.9 7h1.6M3.1 3.1l1.1 1.1M9.8 9.8l1.1 1.1M3.1 10.9l1.1-1.1M9.8 4.2l1.1-1.1" /></svg></button>
+        <button class="icon-btn" id="panelClose" aria-label="Close customer details"><svg viewBox="0 0 14 14"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" /></svg></button>
+      </div></div>
+      <div class="panel__profile">
+        <span class="panel__avatar">${initials(t.name)}${logo(t.ch)}</span>
+        <div><div class="panel__name">${t.name}</div><div class="panel__sub">${CHANNELS[t.ch]} · ${c.handle}</div></div>
+      </div>
+      <dl class="panel__list">
+        <dt>Email</dt><dd>${c.email}</dd>
+        <dt>Customer since</dt><dd>${c.since}</dd>
+        <dt>Orders</dt><dd>${c.orders} · ${money(c.spent)} spent</dd>
+      </dl>
+      <div><div class="panel__label">Shipping address</div><p class="panel__address">${c.address.join('<br>')}</p></div>
+      <div>
+        <div class="panel__label">Latest order</div>
+        <div class="order">
+          <div class="order__head"><span class="order__brand">${'<svg viewBox="0 0 32 32"><use href="#logo-shopify" /></svg>'}Shopify</span><span class="order__status ${statusClass(o.status)}">${o.status}</span></div>
+          <div class="order__id">Order ${o.id} <small>· ${o.date}</small></div>
+          <div class="order__item${flash ? ' is-updated' : ''}"><span class="order__thumb" style="--g:${o.g}"></span><span><strong>${o.item}</strong><small>${o.variant}</small></span><span>${money(o.price)}</span></div>
+          <div class="order__rows"><span>Subtotal</span><span>${money(o.price)}</span><span>Shipping</span><span>${o.shipping ? money(o.shipping) : 'Free'}</span><b>Total</b><b>${money(o.price + o.shipping)}</b></div>
+        </div>
+      </div>
+      <a href="#" class="pbtn pbtn--light panel__link" tabindex="-1">Open in Shopify <svg><use href="#ext" /></svg></a>`;
+    $('#panelClose', panelInner).addEventListener('click', () => setPanel(false));
+    $('.panel__link', panelInner).addEventListener('click', (e) => e.preventDefault());
+  };
+  const setPanel = (open) => {
+    app.classList.toggle('panel-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    panel.setAttribute('aria-hidden', String(!open));
+    $$('button, a', panelInner).forEach((el) => { el.tabIndex = open ? 0 : -1; });
+  };
+  toggle.addEventListener('click', () => setPanel(!app.classList.contains('panel-open')));
 
+  /* Fil de discussion */
   const add = (html, cls) => {
     const el = document.createElement('div');
     el.className = `msg ${cls}`;
@@ -202,83 +256,108 @@
     while (chat.children.length > 8) chat.firstElementChild.remove();
     return el;
   };
-  const esc = (t) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
-
+  const placeholderFor = (t) => `Reply to ${t.name.split(' ')[0]} on ${CHANNELS[t.ch]}`;
   const typeIn = async (text, id, placeholder) => {
-    const line = text.split('\n')[0];
     composer.classList.add('is-typing');
-    for (let i = 1; i <= line.length; i++) {
+    for (let i = 1; i <= text.length; i++) {
       if (id !== runId) return false;
-      composer.textContent = line.slice(0, i);
-      await wait(14 + Math.random() * 22);
+      composer.textContent = text.slice(0, i);
+      await wait(12 + Math.random() * 20);
     }
     await wait(250);
     composer.textContent = placeholder;
     composer.classList.remove('is-typing');
     return true;
   };
+  const showHeader = (t) => {
+    $('#threadAv use').setAttribute('href', `#logo-${t.ch}`);
+    $('#threadTitle').textContent = t.name;
+    $('#threadChannel').textContent = CHANNELS[t.ch];
+    composer.textContent = placeholderFor(t);
+  };
+  const applyPatch = (i, patch) => {
+    Object.assign(THREADS[i].customer.order, patch);
+    if (i === current) renderPanel(i, true);
+  };
+  const scriptFor = (i) => THREADS[i].script || [
+    { time: THREADS[i].time === 'Yesterday' || THREADS[i].time === 'Mon' ? THREADS[i].time : `Today, ${THREADS[i].time}` },
+    { in: THREADS[i].prev },
+  ];
+  const outHtml = (text) => `${esc(text)}<span class="msg__by">Sent by Nova</span>`;
 
   const play = async (i) => {
     const id = ++runId;
     const t = THREADS[i];
-    const placeholder = `Message ${t.name}`;
-    $('#threadTitle').textContent = t.name;
-    $('#threadAv').innerHTML = avatar(t.color);
-    composer.textContent = placeholder;
+    const placeholder = placeholderFor(t);
     $$('.msg', chat).forEach((m) => m.classList.add('is-leaving'));
     await wait(350);
     if (id !== runId) return;
     chat.innerHTML = '';
+    showHeader(t);
     for (const step of scriptFor(i)) {
       if (id !== runId) return;
       if (step.time) { add(step.time, 'msg--time'); continue; }
-      if (step.sys) { await wait(300); add(step.sys, 'msg--sys'); await wait(700); continue; }
-      if (step.user) {
-        if (!reduced && !(await typeIn(step.user, id, placeholder))) return;
-        add(esc(step.user), 'msg--user'); await wait(700); continue;
+      if (step.sys) { await wait(300); add(step.sys, 'msg--sys'); if (step.patch) applyPatch(i, step.patch); await wait(900); continue; }
+      if (step.in) {
+        if (!reduced && step.typing) { const ty = add('<i></i><i></i><i></i>', 'msg--typing'); await wait(step.typing); ty.remove(); }
+        if (id !== runId) return;
+        add(esc(step.in), 'msg--in'); await wait(900); continue;
       }
-      if (!reduced && step.typing) {
-        const typing = add('<i></i><i></i><i></i>', 'msg--typing');
-        await wait(step.typing);
-        typing.remove();
+      if (step.out) {
+        if (!reduced && !(await typeIn(step.out, id, placeholder))) return;
+        add(outHtml(step.out), 'msg--out'); await wait(1000);
       }
-      if (id !== runId) return;
-      if (step.tool) add(toolCard(step.tool[0], step.tool[1]), 'msg--tool');
-      else add(step.agent, 'msg--agent');
-      await wait(1100);
     }
     await wait(4200);
-    if (id === runId) select(i === 1 ? 2 : i === 2 ? 3 : 1);
+    if (id === runId && THREADS[(i + 1) % 3].script) select((i + 1) % 3);
   };
 
   const select = (i) => {
+    current = i;
     $$('.thread', list).forEach((el) => el.classList.toggle('is-active', +el.dataset.i === i));
+    renderPanel(i);
     play(i);
   };
   list.addEventListener('click', (e) => { const li = e.target.closest('.thread'); if (li) select(+li.dataset.i); });
   list.addEventListener('keydown', (e) => { if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('thread')) { e.preventDefault(); select(+e.target.dataset.i); } });
-  $('#threadSearch').addEventListener('input', (e) => {
-    const q = e.target.value.trim().toLowerCase();
-    $$('.thread', list).forEach((el) => { el.style.display = THREADS[+el.dataset.i].name.toLowerCase().includes(q) ? '' : 'none'; });
+
+  /* Recherche + filtre par canal */
+  const applyFilters = () => {
+    const q = $('#threadSearch').value.trim().toLowerCase();
+    $$('.thread', list).forEach((el) => {
+      const t = THREADS[+el.dataset.i];
+      el.classList.toggle('is-hidden', !((filter === 'all' || t.ch === filter) && t.name.toLowerCase().includes(q)));
+    });
+  };
+  $('#threadSearch').addEventListener('input', applyFilters);
+  $('#channels').addEventListener('click', (e) => {
+    const b = e.target.closest('.channel'); if (!b) return;
+    filter = b.dataset.ch;
+    $$('.channel').forEach((x) => { x.classList.toggle('is-active', x === b); x.setAttribute('aria-pressed', String(x === b)); });
+    applyFilters();
   });
 
-  // Affiche tout de suite un état complet, puis anime quand la fenêtre est visible
+  // État complet dès le chargement, animation quand la fenêtre est visible
   (() => {
-    $$('.thread', list).forEach((el) => el.classList.toggle('is-active', el.dataset.i === '1'));
-    $('#threadTitle').textContent = THREADS[1].name;
-    $('#threadAv').innerHTML = avatar(THREADS[1].color);
-    composer.textContent = `Message ${THREADS[1].name}`;
-    THREADS[1].script.forEach((st) => {
+    current = 0;
+    $$('.thread', list).forEach((el) => el.classList.toggle('is-active', el.dataset.i === '0'));
+    showHeader(THREADS[0]);
+    renderPanel(0);
+    setPanel(false);
+    THREADS[0].script.forEach((st) => {
       if (st.time) add(st.time, 'msg--time');
       else if (st.sys) add(st.sys, 'msg--sys');
-      else if (st.user) add(esc(st.user), 'msg--user');
-      else if (st.tool) add(toolCard(st.tool[0], st.tool[1]), 'msg--tool');
-      else add(st.agent, 'msg--agent');
+      else if (st.in) add(esc(st.in), 'msg--in');
+      else add(outHtml(st.out), 'msg--out');
     });
+    // La conversation affichée est déjà terminée : la fiche montre la taille modifiée
+    THREADS[0].customer.order.variant = 'Sand · L · ×1';
+    renderPanel(0);
+    THREADS[0].customer.order.variant = 'Sand · M · ×1';
     $$('.msg', chat).forEach((m) => { m.style.animation = 'none'; });
   })();
-  const appIO = new IntersectionObserver((en) => { if (en[0].isIntersecting) { appIO.disconnect(); setTimeout(() => select(2), 5000); } }, { threshold: 0.3 });
-  appIO.observe($('#app'));
+  const appIO = new IntersectionObserver((en) => { if (en[0].isIntersecting) { appIO.disconnect(); setTimeout(() => select(1), 4500); } }, { threshold: 0.3 });
+  appIO.observe(app);
 
   /* ---------------- Rôles (chips) + téléphone ---------------- */
   const ROLES = [
