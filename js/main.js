@@ -48,7 +48,7 @@
   $$('.reveal').forEach((el) => revealIO.observe(el));
 
   /* ---------------- Counters + in-view ---------------- */
-  const fmt = new Intl.NumberFormat('fr-FR');
+  const fmt = new Intl.NumberFormat('en-US');
   const countUp = (el, dur = 1600) => {
     const target = +el.dataset.count; const suffix = el.dataset.suffix || '';
     if (reduced) { el.textContent = fmt.format(target) + suffix; return Promise.resolve(); }
@@ -137,45 +137,45 @@
   const C = { teal: '#2bb5a4', amber: '#f0a23b', purple: '#7b5ce0', blue: '#3b82f6', red: '#ef5a3c', orange: '#e8833a', ink: '#252525' };
   const avatar = (c) => `<svg viewBox="0 0 200 200"><use href="#bubble" fill="${c}"/><ellipse cx="74" cy="92" rx="15" ry="20" fill="#fff"/><ellipse cx="126" cy="92" rx="15" ry="20" fill="#fff"/><circle cx="78" cy="97" r="8" fill="#0a0a0a"/><circle cx="130" cy="97" r="8" fill="#0a0a0a"/></svg>`;
   const toolCard = (title, line) => `
-    <div class="tool__top"><strong>${title}</strong><span class="badge badge--amber"><svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="4.5" /><path d="M6 3.5V6l1.6 1" /></svg>En attente</span></div>
+    <div class="tool__top"><strong>${title}</strong><span class="badge badge--amber"><svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="4.5" /><path d="M6 3.5V6l1.6 1" /></svg>Waiting</span></div>
     <p class="tool__line">${line}</p>
-    <div class="tool__shot g3"><div class="login"><div class="login__dots"><i></i><i></i><i></i></div><div class="login__bar"></div><div class="login__logo"></div><div class="login__code"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="login__btn">Valider</div></div></div>
-    <div class="tool__actions"><span class="pbtn pbtn--dark">Saisir le code</span><span class="pbtn pbtn--light">Plus tard</span></div>`;
+    <div class="tool__shot g3"><div class="login"><div class="login__dots"><i></i><i></i><i></i></div><div class="login__bar"></div><div class="login__logo"></div><div class="login__code"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="login__btn">Verify</div></div></div>
+    <div class="tool__actions"><span class="pbtn pbtn--dark">Enter code</span><span class="pbtn pbtn--light">Later</span></div>`;
 
   const THREADS = [
-    { name: 'Synthèse comité', time: 'Ven.', prev: 'Note envoyée aux 9 participants', color: C.teal },
+    { name: 'Board summary', time: 'Fri', prev: 'Summary sent to all 9 attendees', color: C.teal },
     {
-      name: 'Rapport mensuel', time: '10:12', prev: 'Validation en deux étapes demandée', color: C.amber,
+      name: 'Monthly report', time: '10:12 AM', prev: 'Waiting on a verification code', color: C.amber,
       script: [
-        { time: 'Aujourd\'hui, 10:12' },
-        { user: 'Prépare le rapport mensuel des ventes pour le comité de direction.\n\nPars des chiffres de septembre, compare-les au budget et mets en avant les trois régions qui décrochent.' },
-        { agent: 'Je pars du tableur de suivi. Il manque les chiffres de la région Ouest : je vais les chercher dans le CRM.', typing: 1300 },
-        { sys: 'Fichier « Budget 2026.xlsx » ouvert' },
-        { tool: ['Ordinateur', 'Le CRM demande un code de validation envoyé sur votre téléphone.'], typing: 900 },
+        { time: 'Today, 10:12 AM' },
+        { user: 'Put together the monthly sales report for the leadership meeting.\n\nStart from the September numbers, compare them with the budget and point out the three regions that are slipping.' },
+        { agent: 'Starting from the tracking sheet. The West region figures are missing, so I\'m pulling them from the CRM.', typing: 1300 },
+        { sys: 'Opened “Budget 2026.xlsx”' },
+        { tool: ['Computer', 'The CRM wants a verification code it just texted to your phone.'], typing: 900 },
       ],
     },
     {
-      name: 'Gestion des e-mails', time: '08:50', prev: 'Réponses envoyées aux 11 messages urgents', color: C.red,
+      name: 'Inbox triage', time: '8:50 AM', prev: 'Answered the 11 urgent emails', color: C.red,
       script: [
-        { time: 'Aujourd\'hui, 08:50' },
-        { user: 'Trie ma boîte de réception et réponds aux messages urgents.' },
-        { agent: '142 messages traités : 96 archivés, 31 classés par projet, 11 réponses envoyées.', typing: 1400 },
-        { agent: 'Le devis de l\'imprimeur demande votre arbitrage : 2 options de papier, écart de 340 €.', typing: 1200 },
-        { sys: 'Routine enregistrée : tous les jours à 8:00' },
+        { time: 'Today, 8:50 AM' },
+        { user: 'Sort my inbox and deal with anything urgent.' },
+        { agent: '142 emails handled: 96 archived, 31 filed by project, 11 answered.', typing: 1400 },
+        { agent: 'The print shop quote needs your call: two paper stocks, $340 apart.', typing: 1200 },
+        { sys: 'Routine saved: daily at 8:00 AM' },
       ],
     },
     {
-      name: 'Traduction catalogue', time: 'Lun.', prev: '212 fiches traduites en allemand', color: C.purple,
+      name: 'Catalog translation', time: 'Mon', prev: '212 product pages now in German', color: C.purple,
       script: [
-        { time: 'Lundi, 14:20' },
-        { user: 'Traduis les fiches produits de la collection hiver en allemand.' },
-        { agent: '212 fiches trouvées. J\'applique votre glossaire technique et le ton de la marque.', typing: 1400 },
-        { agent: 'Traduction terminée. 6 termes sans équivalent direct sont signalés pour relecture.', typing: 1500 },
+        { time: 'Monday, 2:20 PM' },
+        { user: 'Translate the winter collection product pages into German.' },
+        { agent: 'Found 212 pages. Using your technical glossary and brand voice.', typing: 1400 },
+        { agent: 'All done. 6 terms with no direct German equivalent are flagged for review.', typing: 1500 },
       ],
     },
-    { name: 'Veille réglementaire', time: '16:05', prev: 'Nouveau décret repéré, résumé prêt', color: C.blue },
-    { name: 'Factures fournisseurs', time: '15:20', prev: '18 factures rapprochées avec la banque', color: C.orange },
-    { name: 'Préparation salon', time: 'Mar.', prev: 'Stand confirmé, visuels en cours', color: C.ink },
+    { name: 'Regulatory watch', time: '4:05 PM', prev: 'New labeling rule found, summary ready', color: C.blue },
+    { name: 'Supplier invoices', time: '3:20 PM', prev: '18 invoices matched to bank records', color: C.orange },
+    { name: 'Trade show prep', time: 'Tue', prev: 'Booth confirmed, artwork in progress', color: C.ink },
   ];
 
   const list = $('#threads'), chat = $('#chat'), composer = $('#composer');
@@ -190,8 +190,8 @@
 
   const scriptFor = (i) => THREADS[i].script || [
     { time: THREADS[i].time },
-    { user: 'Où en es-tu ?' },
-    { agent: `${THREADS[i].prev}. Je vous préviens dès qu'une étape demande votre validation.`, typing: 1200 },
+    { user: 'Status update?' },
+    { agent: `${THREADS[i].prev}. I'll ping you as soon as a step needs your approval.`, typing: 1200 },
   ];
 
   const add = (html, cls) => {
@@ -221,7 +221,7 @@
   const play = async (i) => {
     const id = ++runId;
     const t = THREADS[i];
-    const placeholder = `Écrire à ${t.name}`;
+    const placeholder = `Message ${t.name}`;
     $('#threadTitle').textContent = t.name;
     $('#threadAv').innerHTML = avatar(t.color);
     composer.textContent = placeholder;
@@ -267,7 +267,7 @@
     $$('.thread', list).forEach((el) => el.classList.toggle('is-active', el.dataset.i === '1'));
     $('#threadTitle').textContent = THREADS[1].name;
     $('#threadAv').innerHTML = avatar(THREADS[1].color);
-    composer.textContent = `Écrire à ${THREADS[1].name}`;
+    composer.textContent = `Message ${THREADS[1].name}`;
     THREADS[1].script.forEach((st) => {
       if (st.time) add(st.time, 'msg--time');
       else if (st.sys) add(st.sys, 'msg--sys');
@@ -282,21 +282,21 @@
 
   /* ---------------- Rôles (chips) + téléphone ---------------- */
   const ROLES = [
-    { name: 'Appels d\'offres', color: '#0093a3', title: 'Des réponses prêtes avant l\'échéance.', desc: 'Analyse le cahier des charges, réunit les pièces administratives et rédige un mémoire technique à partir de vos réponses passées.',
-      chat: [{ user: 'Prépare la réponse à l\'appel d\'offres de la métropole.' }, { agent: 'Cahier des charges analysé : 14 exigences, dont 3 critères éliminatoires. Voici le résumé à valider.' },
-        { mail: ['Objet : Dossier de candidature', 'Madame, Monsieur,', 'Vous trouverez ci-joint notre offre pour le lot 2, accompagnée des attestations demandées et de notre mémoire technique.', 'Bien cordialement,'] , btns: ['Valider', 'Modifier'] }] },
-    { name: 'Onboarding', color: '#6c6ccb', title: 'Une arrivée sans oubli.', desc: 'Crée les comptes, commande le matériel, planifie les rendez-vous de la première semaine et envoie le livret d\'accueil.',
-      chat: [{ user: 'Inès arrive lundi au service marketing.' }, { agent: 'Comptes créés, ordinateur commandé (livraison vendredi), déjeuner d\'équipe réservé mardi.' }, { agent: 'Je lui envoie le livret d\'accueil dimanche soir ?' }, { user: 'Oui, parfait.' }] },
-    { name: 'Analyse de données', color: '#dd2229', title: 'Des questions, des graphiques.', desc: 'Interroge vos sources, nettoie les données et livre un graphique commenté en réponse à une question en français.',
-      chat: [{ user: 'Quel canal a le meilleur taux de conversion ce trimestre ?' }, { agent: 'Le référencement naturel, à 3,8 %, devant l\'e-mail à 2,9 %. Les campagnes payantes reculent de 0,6 point.' }, { agent: 'Graphique ajouté au tableau de bord « Acquisition ».' }] },
-    { name: 'Traduction', color: '#e8833a', title: 'Vos contenus dans toutes les langues.', desc: 'Traduit pages, fiches et documents en respectant votre glossaire, puis signale les passages à faire relire.',
-      chat: [{ user: 'Traduis la page tarifs en espagnol et en italien.' }, { agent: 'C\'est fait pour les deux langues. 2 expressions ont été adaptées au marché italien, je les ai surlignées.' }] },
-    { name: 'Veille réglementaire', color: '#5a3fa0', title: 'Les textes qui vous concernent, résumés.', desc: 'Suit les publications officielles de votre secteur et vous résume chaque nouveauté avec son impact concret.',
-      chat: [{ agent: 'Nouveau décret publié ce matin sur l\'étiquetage des emballages.' }, { agent: 'Impact pour vous : mise à jour des mentions avant le 1er mars sur 3 gammes.' }, { user: 'Préviens l\'équipe packaging.' }] },
-    { name: 'Gestion des stocks', color: '#252525', title: 'Jamais en rupture.', desc: 'Surveille les niveaux, anticipe les besoins selon les ventes et prépare les bons de commande à valider.',
-      chat: [{ agent: 'Le stock de coffrets cadeaux tiendra 9 jours au rythme actuel.' }, { agent: 'Bon de commande de 400 unités prêt pour le fournisseur habituel.' }, { user: 'Envoie-le.' }] },
-    { name: 'Préparation de réunions', color: '#e8a33a', title: 'Arrivez en réunion avec le dossier.', desc: 'Rassemble les documents utiles, propose un ordre du jour et prépare les questions ouvertes depuis la dernière séance.',
-      chat: [{ user: 'Prépare le point produit de demain.' }, { agent: 'Ordre du jour envoyé, avec les 3 décisions en attente depuis la dernière réunion et les chiffres d\'usage à jour.' }] },
+    { name: 'Tenders', color: '#0093a3', title: 'Bids ready ahead of the deadline.', desc: 'Breaks down the specs, collects the paperwork and drafts a technical response from your past submissions.',
+      chat: [{ user: 'Prepare our response to the city\'s transport tender.' }, { agent: 'Specs reviewed: 14 requirements, 3 of them pass/fail. Cover email ready for your approval.' },
+        { mail: ['Subject: Bid for lot 2', 'Hello,', 'Attached is our offer for lot 2, with the requested certificates and our technical proposal.', 'Kind regards,'], btns: ['Approve', 'Edit'] }] },
+    { name: 'Onboarding', color: '#6c6ccb', title: 'A first day with nothing missing.', desc: 'Creates accounts, orders hardware, books first-week meetings and sends out the welcome pack.',
+      chat: [{ user: 'Inès starts in marketing on Monday.' }, { agent: 'Accounts created, laptop ordered (arrives Friday), team lunch booked for Tuesday.' }, { agent: 'Want me to send her the welcome pack Sunday evening?' }, { user: 'Yes, perfect.' }] },
+    { name: 'Data analysis', color: '#dd2229', title: 'Ask a question, get a chart.', desc: 'Queries your sources, cleans the data and answers a plain-language question with an annotated chart.',
+      chat: [{ user: 'Which channel converts best this quarter?' }, { agent: 'Organic search at 3.8%, ahead of email at 2.9%. Paid campaigns dropped 0.6 points.' }, { agent: 'Chart added to the “Acquisition” dashboard.' }] },
+    { name: 'Translation', color: '#e8833a', title: 'Your content, in every language.', desc: 'Translates pages, listings and documents using your glossary, then flags passages that deserve a human read.',
+      chat: [{ user: 'Translate the pricing page into Spanish and Italian.' }, { agent: 'Both versions are live in drafts. I adapted 2 phrases for the Italian market and highlighted them.' }] },
+    { name: 'Regulatory watch', color: '#5a3fa0', title: 'Rule changes, summarized.', desc: 'Tracks official publications in your industry and sums up each change with what it means for you.',
+      chat: [{ agent: 'A new packaging labeling rule was published this morning.' }, { agent: 'What it means for you: relabel 3 product lines before March 1.' }, { user: 'Loop in the packaging team.' }] },
+    { name: 'Inventory', color: '#252525', title: 'No more stockouts.', desc: 'Watches stock levels, forecasts demand from sales and drafts purchase orders for you to approve.',
+      chat: [{ agent: 'Gift box stock will last 9 days at the current pace.' }, { agent: 'A 400-unit purchase order is ready for your usual supplier.' }, { user: 'Send it.' }] },
+    { name: 'Meeting prep', color: '#e8a33a', title: 'Walk in with the brief.', desc: 'Gathers the relevant documents, proposes an agenda and lists the questions still open since last time.',
+      chat: [{ user: 'Prep tomorrow\'s product review.' }, { agent: 'Agenda sent, with the 3 decisions still pending from last session and fresh usage numbers.' }] },
   ];
   const chips = $('#chips'), desc = $('#roleDesc'), phoneChat = $('#phoneChat');
   chips.innerHTML = ROLES.map((r, i) => `<button class="chip" role="tab" aria-selected="${i === 0}" data-i="${i}"><span class="dot-av" style="--c:${r.color}"></span>${r.name}</button>`).join('');
@@ -331,7 +331,7 @@
     const src = video.dataset.src;
     frame.innerHTML = `<video src="${src}" controls autoplay playsinline></video>`;
     const v = frame.querySelector('video');
-    v.addEventListener('error', () => { frame.innerHTML = '<p>Ajoutez votre vidéo de démonstration dans <code>assets/demo.mp4</code>.</p>'; });
+    v.addEventListener('error', () => { frame.innerHTML = '<p>Add your demo video at <code>assets/demo.mp4</code>.</p>'; });
     if (typeof lb.showModal === 'function') lb.showModal(); else lb.setAttribute('open', '');
   });
   const closeLb = () => { lb.close?.(); lb.removeAttribute('open'); frame.innerHTML = ''; };
@@ -341,21 +341,21 @@
 
   /* ---------------- Pricing ---------------- */
   const PLANS = [
-    { name: 'Essentiel', tiers: [['3 agents', 15], ['10 agents', 39]], cta: 'Choisir Essentiel', dark: true,
-      inc: 'Comprend :', items: ['Jusqu\'à 3 agents actifs', 'Historique de 30 jours', 'Intégrations standard', 'Application ordinateur et mobile', 'Support par e-mail'] },
-    { name: 'Pro', tiers: [['Standard', 49], ['Intensif', 129]], cta: 'Choisir Pro', dark: true,
-      inc: 'Tout Essentiel, plus :', items: ['Agents illimités', 'Exécution en parallèle', 'Routines et déclencheurs avancés', 'Historique illimité', 'Support prioritaire'] },
-    { name: 'Entreprise', tiers: [['Équipe', 35], ['Scale', 65]], unit: '/ utilisateur / mois', cta: 'Parler à l\'équipe', dark: false,
-      inc: 'Tout Pro, plus :', items: ['SSO et provisionnement SCIM', 'Journal d\'audit exportable', 'Données hébergées dans l\'UE', 'Accompagnement dédié'] },
+    { name: 'Starter', tiers: [['3 agents', 15], ['10 agents', 39]], cta: 'Choose Starter', dark: true,
+      inc: 'What you get:', items: ['Up to 3 active agents', '30-day history', 'Standard integrations', 'Desktop and mobile apps', 'Email support'] },
+    { name: 'Pro', tiers: [['Standard', 49], ['Intensive', 129]], cta: 'Choose Pro', dark: true,
+      inc: 'All of Starter, and:', items: ['Unlimited agents', 'Parallel runs', 'Advanced routines and triggers', 'Unlimited history', 'Priority support'] },
+    { name: 'Enterprise', tiers: [['Team', 35], ['Scale', 65]], unit: '/ user / month', cta: 'Talk to us', dark: false,
+      inc: 'All of Pro, and:', items: ['SSO and SCIM provisioning', 'Exportable audit log', 'EU data residency', 'Dedicated success manager'] },
   ];
   const plansEl = $('#plans');
   const tick = '<svg viewBox="0 0 16 16"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>';
   plansEl.innerHTML = PLANS.map((p, i) => `
     <article class="plan reveal reveal--up${p.featured ? ' plan--featured' : ''}" style="--d:${i}" data-i="${i}">
       <div class="plan__top"><span class="plan__name">${p.name}</span>
-        <div class="seg" role="group" aria-label="Volume">${p.tiers.map((t, k) => `<button aria-pressed="${k === 0}" data-k="${k}">${t[0]}</button>`).join('')}</div>
+        <div class="seg" role="group" aria-label="Plan size">${p.tiers.map((t, k) => `<button aria-pressed="${k === 0}" data-k="${k}">${t[0]}</button>`).join('')}</div>
       </div>
-      <div class="plan__price"><span class="plan__amount">0 €</span><span class="plan__unit">${p.unit || '/ mois'}</span></div>
+      <div class="plan__price"><span class="plan__amount">$0</span><span class="plan__unit">${p.unit || '/ month'}</span></div>
       <div class="plan__bill"></div>
       <a href="#cta" class="btn btn--lg ${p.dark ? 'btn--dark' : 'btn--soft'}">${p.cta}</a>
       <div class="plan__inc">${p.inc}</div>
@@ -368,9 +368,9 @@
     const base = p.tiers[k][1];
     const price = base;
     const amt = $('.plan__amount', el);
-    amt.textContent = `${fmt.format(price)} €`;
+    amt.textContent = `$${fmt.format(price)}`;
     if (animate) { amt.classList.remove('is-ticking'); void amt.offsetWidth; amt.classList.add('is-ticking'); }
-    $('.plan__bill', el).textContent = 'Facturé mensuellement';
+    $('.plan__bill', el).textContent = 'Billed monthly';
   };
   $$('.plan', plansEl).forEach((el) => {
     renderPrice(el);

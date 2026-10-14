@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nova — Des agents IA qui font le travail</title>
-  <meta name="description" content="Nova : des agents IA à qui confier de vraies tâches, qui travaillent en parallèle et reviennent avec un travail fini." />
+  <title>Nova — Hand off the busywork</title>
+  <meta name="description" content="Nova runs specialized AI agents that carry your processes end to end, in parallel, while you keep the final say." />
   <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,7 +17,7 @@
 </head>
 <body>
 
-  <!-- Mascotte (forme réutilisable) -->
+  <!-- Mascot (reusable shape) -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
       <path id="bubble" d="M100 14C52 14 13 50 13 95c0 23 10 44 27 59L28 190l42-18c9.4 3 19.6 4.6 30 4.6 48 0 87-36 87-81S148 14 100 14z" />
@@ -29,19 +29,19 @@
   <!-- ============ NAV ============ -->
   <header class="nav" id="nav">
     <div class="nav__inner">
-      <a href="#" class="logo" aria-label="Nova — accueil">
+      <a href="#" class="logo" aria-label="Nova home">
         <svg viewBox="0 0 200 200" class="logo__mark" aria-hidden="true"><use href="#bubble" /></svg>
         <span>nova</span>
       </a>
-      <nav class="nav__links" aria-label="Navigation principale">
+      <nav class="nav__links" aria-label="Main navigation">
         <div class="nav__item has-menu">
-          <button class="nav__link" aria-expanded="false">Produits <svg class="chev"><use href="#chev" /></svg></button>
+          <button class="nav__link" aria-expanded="false">Product <svg class="chev"><use href="#chev" /></svg></button>
           <div class="menu">
-            <div class="menu__label">Produits</div>
+            <div class="menu__label">Product</div>
             <a href="#features">Agents</a>
             <a href="#features">Routines</a>
-            <a href="#features">Mémoire</a>
-            <div class="menu__label">Applications</div>
+            <a href="#features">Memory</a>
+            <div class="menu__label">Apps</div>
             <a href="#download">macOS <svg class="menu__ext"><use href="#ext" /></svg></a>
             <a href="#download">iOS <svg class="menu__ext"><use href="#ext" /></svg></a>
           </div>
@@ -49,37 +49,37 @@
         <div class="nav__item has-menu">
           <button class="nav__link" aria-expanded="false">Solutions <svg class="chev"><use href="#chev" /></svg></button>
           <div class="menu">
-            <a href="#roles">Ventes</a>
-            <a href="#roles">Opérations</a>
-            <a href="#roles">Produit</a>
+            <a href="#roles">Sales</a>
+            <a href="#roles">Operations</a>
+            <a href="#roles">Product</a>
             <a href="#roles">Support</a>
           </div>
         </div>
         <div class="nav__item has-menu">
-          <button class="nav__link" aria-expanded="false">Développeurs <svg class="chev"><use href="#chev" /></svg></button>
+          <button class="nav__link" aria-expanded="false">Developers <svg class="chev"><use href="#chev" /></svg></button>
           <div class="menu">
             <a href="#">API <svg class="menu__ext"><use href="#ext" /></svg></a>
             <a href="#">Documentation <svg class="menu__ext"><use href="#ext" /></svg></a>
           </div>
         </div>
         <div class="nav__item has-menu">
-          <button class="nav__link" aria-expanded="false">Entreprise <svg class="chev"><use href="#chev" /></svg></button>
+          <button class="nav__link" aria-expanded="false">Company <svg class="chev"><use href="#chev" /></svg></button>
           <div class="menu">
-            <a href="#">À propos</a>
-            <a href="#">Carrières</a>
+            <a href="#">About</a>
+            <a href="#">Careers</a>
             <a href="#">Contact</a>
           </div>
         </div>
-        <a class="nav__link" href="#pricing">Tarifs</a>
-        <a class="nav__link" href="#guides">Actualités</a>
+        <a class="nav__link" href="#pricing">Pricing</a>
+        <a class="nav__link" href="#guides">Blog</a>
       </nav>
       <div class="nav__cta">
-        <a href="#cta" class="btn btn--light btn--nav hide-sm">Contacter l'équipe</a>
+        <a href="#cta" class="btn btn--light btn--nav hide-sm">Talk to us</a>
         <div class="split">
-          <a href="#download" class="split__main">Télécharger</a>
-          <button class="split__more" aria-label="Autres plateformes" aria-expanded="false"><svg><use href="#chev" /></svg></button>
+          <a href="#download" class="split__main">Download</a>
+          <button class="split__more" aria-label="Other platforms" aria-expanded="false"><svg><use href="#chev" /></svg></button>
           <div class="menu menu--right">
-            <div class="menu__label">Ordinateur</div>
+            <div class="menu__label">Desktop</div>
             <a href="#download">macOS</a>
             <div class="menu__label">Mobile</div>
             <a href="#download">iOS <svg class="menu__ext"><use href="#ext" /></svg></a>
@@ -90,8 +90,8 @@
       </div>
     </div>
     <div class="mobile-menu">
-      <a href="#features">Produits</a><a href="#roles">Solutions</a><a href="#pricing">Tarifs</a><a href="#guides">Actualités</a><a href="#faq">FAQ</a>
-      <a href="#download" class="btn btn--dark">Télécharger</a>
+      <a href="#features">Product</a><a href="#roles">Solutions</a><a href="#pricing">Pricing</a><a href="#guides">Blog</a><a href="#faq">FAQ</a>
+      <a href="#download" class="btn btn--dark">Download</a>
     </div>
   </header>
 
@@ -99,11 +99,11 @@
     <!-- ============ HERO ============ -->
     <section class="hero">
       <a href="#guides" class="pill reveal" style="--d:0">
-        <span class="pill__text"><strong>Nouveau : Nova 1.0</strong><span class="pill__sep">•</span><span>Lire l'annonce</span></span>
+        <span class="pill__text"><strong>New: Nova 1.0</strong><span class="pill__sep">•</span><span>See what's new</span></span>
         <span class="pill__arrow"><svg><use href="#ext" /></svg></span>
       </a>
       <h1 class="hero__title reveal" style="--d:1">
-        <span>Déléguez à</span>
+        <span>Delegate to</span>
         <span class="inline-mascot mascot" data-mascot aria-hidden="true">
           <svg viewBox="0 0 200 200">
             <use href="#bubble" class="m-body" />
@@ -113,35 +113,35 @@
         </span>
         <span>Nova</span>
       </h1>
-      <p class="hero__sub reveal" style="--d:2">Nova orchestre des agents IA spécialisés qui exécutent vos processus de bout en bout : recherche, saisie, analyse, rédaction. Vous gardez le dernier mot.</p>
+      <p class="hero__sub reveal" style="--d:2">Nova runs specialized AI agents that take a process from first step to last: research, data entry, analysis, drafting. You keep the final say.</p>
       <div class="hero__ctas reveal" style="--d:3">
         <a href="#download" class="btn btn--dark btn--lg">
           <svg viewBox="0 0 18 18" class="btn__icon"><path d="M9 2.5v9M5 8l4 4 4-4M3.5 15h11" /></svg>
-          Télécharger pour macOS
+          Get the Mac app
         </a>
-        <a href="#cta" class="btn btn--soft btn--lg">Contacter l'équipe</a>
+        <a href="#cta" class="btn btn--soft btn--lg">Talk to us</a>
       </div>
 
-      <!-- Mockup application -->
+      <!-- App mockup -->
       <div class="app reveal reveal--up" style="--d:4" id="app">
         <aside class="app__side">
           <div class="app__chrome">
             <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-            <button class="icon-btn app__plus" aria-label="Nouvel agent"><svg viewBox="0 0 14 14"><path d="M7 2.5v9M2.5 7h9" /></svg></button>
+            <button class="icon-btn app__plus" aria-label="New agent"><svg viewBox="0 0 14 14"><path d="M7 2.5v9M2.5 7h9" /></svg></button>
           </div>
-          <label class="app__search"><svg viewBox="0 0 14 14"><circle cx="6" cy="6" r="4" /><path d="m9 9 3 3" /></svg><input type="text" placeholder="Rechercher" aria-label="Rechercher un agent" id="threadSearch" /></label>
+          <label class="app__search"><svg viewBox="0 0 14 14"><circle cx="6" cy="6" r="4" /><path d="m9 9 3 3" /></svg><input type="text" placeholder="Search" aria-label="Search agents" id="threadSearch" /></label>
           <ul class="app__list" id="threads"></ul>
           <div class="app__user"><span class="avatar">CM</span><span>Camille Martin</span></div>
         </aside>
         <section class="app__main">
           <header class="app__head">
-            <button class="app__agent"><span class="app__agent-av" id="threadAv"></span><span id="threadTitle">Synthèse comité</span></button>
-            <button class="icon-btn" aria-label="Ordinateur de l'agent"><svg viewBox="0 0 14 14"><rect x="1.5" y="2.5" width="11" height="7" rx="1.2" /><path d="M5 12h4M7 9.5V12" /></svg></button>
+            <button class="app__agent"><span class="app__agent-av" id="threadAv"></span><span id="threadTitle">Monthly report</span></button>
+            <button class="icon-btn" aria-label="Agent computer"><svg viewBox="0 0 14 14"><rect x="1.5" y="2.5" width="11" height="7" rx="1.2" /><path d="M5 12h4M7 9.5V12" /></svg></button>
           </header>
           <div class="app__chat" id="chat" aria-live="polite"></div>
           <footer class="app__composer">
             <span class="composer__add"><svg viewBox="0 0 14 14"><path d="M7 2.5v9M2.5 7h9" /></svg></span>
-            <span class="composer__input" id="composer">Écrire à Synthèse comité</span>
+            <span class="composer__input" id="composer">Message Monthly report</span>
             <span class="composer__send"><svg viewBox="0 0 14 14"><path d="M7 11.5v-9M3.5 6 7 2.5 10.5 6" /></svg></span>
           </footer>
         </section>
@@ -153,8 +153,8 @@
       <div class="wrap">
         <div class="intro reveal reveal--up">
           <div class="intro__text">
-            <h2>Une conversation par mission</h2>
-            <p>Lancez une mission en une phrase, depuis votre ordinateur ou votre téléphone. Chaque agent affiche son plan, ses étapes et ses sources : vous savez toujours où il en est, et pourquoi.</p>
+            <h2>One thread per mission</h2>
+            <p>Kick off a mission in a single sentence, from your laptop or your phone. Each agent shows its plan, its steps and its sources, so you always know where things stand and why.</p>
           </div>
           <div class="intro__mascot" aria-hidden="true">
             <div class="mascot" data-mascot>
@@ -173,17 +173,17 @@
     <section class="sec" id="features">
       <div class="wrap">
         <div class="sec__head reveal">
-          <h2>Une équipe qui s'agrandit en un clic</h2>
-          <p>Ajoutez un agent dès qu'un nouveau chantier apparaît : un sur la prospection, un sur la comptabilité, un sur le reporting. Chacun a sa spécialité, son historique et ses propres accès, et ils avancent en parallèle.</p>
+          <h2>Grow the team in one click</h2>
+          <p>Spin up an agent whenever new work lands, whether it's prospecting, bookkeeping or reporting. Each one keeps its own specialty, history and permissions, and they all make progress side by side.</p>
         </div>
         <div class="grid">
-          <!-- Accès -->
+          <!-- Access -->
           <article class="card reveal reveal--up" data-inview>
-            <h3>Des accès maîtrisés à vos applications</h3>
-            <p>Donnez à chaque agent uniquement les accès dont il a besoin. Il se connecte, agit et consigne chacune de ses actions.</p>
+            <h3>Scoped access to your apps</h3>
+            <p>Grant each agent only the access it needs. It signs in, does the job and logs every single action.</p>
             <div class="tool">
-              <div class="tool__top"><strong>Ordinateur</strong><span class="badge badge--amber"><svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="4.5" /><path d="M6 3.5V6l1.6 1" /></svg>En cours</span></div>
-              <p class="tool__line">Exporter les factures de septembre et les classer par client.</p>
+              <div class="tool__top"><strong>Computer</strong><span class="badge badge--amber"><svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="4.5" /><path d="M6 3.5V6l1.6 1" /></svg>Running</span></div>
+              <p class="tool__line">Export the September invoices and file them by client.</p>
               <div class="shot g1">
                 <div class="window">
                   <div class="window__bar"><span></span><span></span><span></span><b></b></div>
@@ -205,10 +205,10 @@
 
           <!-- Routine -->
           <article class="card reveal reveal--up" style="--d:1" data-inview>
-            <h3>Des routines planifiées</h3>
-            <p>Programmez une mission chaque lundi à 8 h : l'agent collecte les chiffres, met à jour le graphique et vous l'envoie.</p>
+            <h3>Scheduled routines</h3>
+            <p>Schedule a mission for every Monday at 8 a.m. The agent pulls the numbers, refreshes the chart and sends it your way.</p>
             <div class="frame">
-              <div class="frame__bar"><span class="rec__dot"></span>Routine · tous les lundis à 8:00<span class="frame__x">×</span></div>
+              <div class="frame__bar"><span class="rec__dot"></span>Routine · every Monday at 8:00 AM<span class="frame__x">×</span></div>
               <div class="shot g2">
                 <div class="window window--chart">
                   <div class="window__bar"><span></span><span></span><span></span></div>
@@ -221,23 +221,23 @@
 
           <!-- Notes -->
           <article class="card reveal reveal--up" data-inview>
-            <h3>Des notes que vous pouvez relire</h3>
-            <p>Ce que l'agent retient reste visible et modifiable. Corrigez une note, il ajuste son comportement dès la tâche suivante.</p>
+            <h3>Notes you can read and edit</h3>
+            <p>Whatever the agent remembers stays visible and editable. Fix a note and it adjusts from the very next task.</p>
             <div class="memory">
-              <div class="bubble">La remise de 12 % ne s'applique qu'au-delà de 500 unités : je l'ai retirée du devis n° 318.</div>
-              <div class="bubble">À retenir : tout contrat supérieur à 20 k€ passe par le service juridique avant signature.</div>
-              <div class="memory__note">Note ajoutée à <span class="tag tag--purple"><span class="dot-av" style="--c:#6c6ccb"></span>Ventes B2B</span></div>
+              <div class="bubble">The 12% discount only kicks in above 500 units, so I took it off quote #318.</div>
+              <div class="bubble">Worth keeping: any contract over $20k goes through legal before anyone signs.</div>
+              <div class="memory__note">Note added to <span class="tag tag--purple"><span class="dot-av" style="--c:#6c6ccb"></span>B2B Sales</span></div>
             </div>
           </article>
 
-          <!-- Relais -->
+          <!-- Handoffs -->
           <article class="card reveal reveal--up" style="--d:1" data-inview>
-            <h3>Des passages de relais clairs</h3>
-            <p>Quand une demande dépasse sa spécialité, l'agent la confie à un autre et vous indique qui a pris la suite.</p>
+            <h3>Clean handoffs</h3>
+            <p>When a request falls outside its specialty, the agent passes it along and tells you who picked it up.</p>
             <div class="relay">
               <div class="relay__chip">
                 <span class="dot-av" style="--c:#0093a3"></span>
-                <span class="relay__label">Transmis à Analyse<span class="ellipsis"><i>.</i><i>.</i><i>.</i></span></span>
+                <span class="relay__label">Handed to Analysis<span class="ellipsis"><i>.</i><i>.</i><i>.</i></span></span>
                 <span class="stack"><i style="--c:#5a3fa0"></i><i style="--c:#dd2229"></i><i style="--c:#e8833a"></i></span>
               </div>
             </div>
@@ -246,21 +246,21 @@
       </div>
     </section>
 
-    <!-- ============ RÔLES ============ -->
+    <!-- ============ ROLES ============ -->
     <section class="sec sec--roles" id="roles">
       <div class="wrap wrap--narrow cols">
         <div class="roles reveal">
-          <h2>Un modèle par métier</h2>
-          <div class="chips" role="tablist" aria-label="Exemples d'agents" id="chips"></div>
+          <h2>A template for every role</h2>
+          <div class="chips" role="tablist" aria-label="Agent examples" id="chips"></div>
           <p class="roles__desc" id="roleDesc" aria-live="polite"></p>
-          <a href="#guides" class="btn btn--light btn--nav">Parcourir les modèles</a>
+          <a href="#guides" class="btn btn--light btn--nav">Browse templates</a>
         </div>
         <div class="phone reveal reveal--up" aria-hidden="true">
           <div class="phone__screen">
             <div class="phone__status"><span>9:41</span><span class="phone__island"></span><span class="phone__icons"><i></i><i></i><i></i></span></div>
             <div class="phone__head">
               <span class="icon-btn icon-btn--lg"><svg viewBox="0 0 14 14"><path d="M8.5 3 4.5 7l4 4" /></svg></span>
-              <span class="phone__agent"><span class="dot-av" id="phoneAv" style="--c:#0093a3"></span><span id="phoneName">Appels d'offres</span></span>
+              <span class="phone__agent"><span class="dot-av" id="phoneAv" style="--c:#0093a3"></span><span id="phoneName">Tenders</span></span>
               <span class="icon-btn icon-btn--lg"><svg viewBox="0 0 14 14"><circle cx="3.5" cy="7" r=".9" /><circle cx="7" cy="7" r=".9" /><circle cx="10.5" cy="7" r=".9" /></svg></span>
             </div>
             <div class="phone__chat" id="phoneChat"></div>
@@ -276,13 +276,13 @@
     <!-- ============ VIDEO ============ -->
     <section class="sec sec--video">
       <div class="wrap">
-        <h2 class="center reveal">Nova en 90 secondes</h2>
-        <button class="video reveal reveal--up" id="video" data-src="assets/demo.mp4" aria-label="Lire la vidéo">
+        <h2 class="center reveal">Nova in 90 seconds</h2>
+        <button class="video reveal reveal--up" id="video" data-src="assets/demo.mp4" aria-label="Play video">
           <span class="video__poster">
             <span class="video__orb o1"></span><span class="video__orb o2"></span><span class="video__orb o3"></span>
             <span class="video__grain"></span>
           </span>
-          <span class="video__play"><svg viewBox="0 0 16 16"><path d="M4 2.5v11l9-5.5z" /></svg>Lecture</span>
+          <span class="video__play"><svg viewBox="0 0 16 16"><path d="M4 2.5v11l9-5.5z" /></svg>Play</span>
         </button>
       </div>
     </section>
@@ -291,14 +291,14 @@
     <section class="sec" id="pricing">
       <div class="wrap wrap--narrow">
         <div class="center reveal">
-          <h2>Tarifs</h2>
-          <a href="#cta" class="btn btn--soft btn--lg pricing__sales">Contacter l'équipe</a>
+          <h2>Pricing</h2>
+          <a href="#cta" class="btn btn--soft btn--lg pricing__sales">Talk to us</a>
         </div>
         <div class="pricing" id="plans"></div>
         <div class="banner reveal">
           <svg viewBox="0 0 21 20" class="banner__icon"><path d="M16.5 10a6 6 0 1 1-1.8-4.3M16.5 3v3.5H13" /></svg>
-          <p><strong>Plus de 50 personnes ?</strong> <span>Parlons d'un déploiement sur mesure.</span></p>
-          <a href="#cta" class="btn btn--outline btn--nav">Planifier un appel</a>
+          <p><strong>More than 50 people?</strong> <span>Let's plan a custom rollout.</span></p>
+          <a href="#cta" class="btn btn--outline btn--nav">Book a call</a>
         </div>
       </div>
     </section>
@@ -307,18 +307,18 @@
     <section class="sec" id="download">
       <div class="wrap wrap--narrow cols">
         <div class="reveal">
-          <h2>Sur ordinateur et mobile</h2>
-          <p class="sec__lead muted">Installez l'application, connectez vos outils et lancez une première mission en quelques minutes.</p>
+          <h2>On desktop and mobile</h2>
+          <p class="sec__lead muted">Install the app, connect your tools and launch your first mission within minutes.</p>
         </div>
         <div class="downloads reveal reveal--up">
           <a href="#" class="dl">
             <span class="dl__icon"><svg viewBox="0 0 20 20"><rect x="2" y="3.5" width="16" height="10.5" rx="1.8" /><path d="M7 17h6M10 14v3" /></svg></span>
-            <span class="dl__text"><strong>macOS</strong><small>Puces Apple</small></span>
+            <span class="dl__text"><strong>macOS</strong><small>Apple silicon</small></span>
             <svg viewBox="0 0 16 16" class="dl__arrow"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10" /></svg>
           </a>
           <a href="#" class="dl dl--muted">
             <span class="dl__icon"><svg viewBox="0 0 20 20"><rect x="3" y="3" width="6" height="6" rx="1.2" /><rect x="11" y="3" width="6" height="6" rx="1.2" /><rect x="3" y="11" width="6" height="6" rx="1.2" /><rect x="11" y="11" width="6" height="6" rx="1.2" /></svg></span>
-            <span class="dl__text"><strong>Autres téléchargements</strong><small>Autres plateformes et appareils</small></span>
+            <span class="dl__text"><strong>All platforms</strong><small>Windows, iOS, Android and web</small></span>
           </a>
         </div>
       </div>
@@ -327,9 +327,9 @@
     <!-- ============ GUIDES ============ -->
     <section class="sec center" id="guides">
       <div class="wrap">
-        <h2 class="reveal">Ressources</h2>
-        <p class="sec__lead reveal">Modèles de missions et bonnes pratiques pour vos agents.</p>
-        <a href="#" class="btn btn--soft btn--lg reveal guides__btn">Explorer les ressources</a>
+        <h2 class="reveal">Resources</h2>
+        <p class="sec__lead reveal">Mission templates and best practices for your agents.</p>
+        <a href="#" class="btn btn--soft btn--lg reveal guides__btn">Browse resources</a>
       </div>
     </section>
 
@@ -339,28 +339,28 @@
         <h2 class="reveal">FAQ</h2>
         <div class="faq reveal">
           <details open>
-            <summary>Quelles applications Nova peut-il utiliser ?<span class="faq__icon"></span></summary>
-            <div class="faq__body"><p>Toute application accessible depuis un navigateur ou un ordinateur : CRM, tableurs, messagerie, outils internes. Les intégrations natives accélèrent les plus courantes.</p></div>
+            <summary>Which apps can Nova use?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Anything you can open in a browser or on a computer: CRMs, spreadsheets, email, internal tools. Native integrations speed up the most common ones.</p></div>
           </details>
           <details>
-            <summary>Puis-je relire une action avant son exécution ?<span class="faq__icon"></span></summary>
-            <div class="faq__body"><p>Oui. Pour chaque agent, choisissez les actions qui demandent votre accord : envoi d'un e-mail, paiement, suppression de données, etc.</p></div>
+            <summary>Can I review an action before it runs?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Yes. For each agent, choose which actions need your sign-off, such as sending an email, making a payment or deleting data.</p></div>
           </details>
           <details>
-            <summary>Combien d'agents puis-je créer ?<span class="faq__icon"></span></summary>
-            <div class="faq__body"><p>Autant que nécessaire. Le nombre d'agents actifs en simultané dépend de votre offre.</p></div>
+            <summary>How many agents can I create?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>As many as you need. How many can run at the same time depends on your plan.</p></div>
           </details>
           <details>
-            <summary>Que se passe-t-il si un agent se trompe ?<span class="faq__icon"></span></summary>
-            <div class="faq__body"><p>Chaque action est journalisée et la plupart peuvent être annulées. Signalez l'erreur dans le fil : l'agent corrige et ajoute une note pour ne pas la reproduire.</p></div>
+            <summary>What happens if an agent makes a mistake?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Every action is logged and most can be undone. Point out the error in the thread: the agent fixes it and adds a note so it won't happen again.</p></div>
           </details>
           <details>
-            <summary>Où sont hébergées mes données ?<span class="faq__icon"></span></summary>
-            <div class="faq__body"><p>Dans des centres de données européens, chiffrées en transit et au repos. Les accès donnés aux agents sont révocables à tout moment.</p></div>
+            <summary>Where is my data stored?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>In European data centers, encrypted in transit and at rest. Any access you grant an agent can be revoked at any time.</p></div>
           </details>
           <details>
-            <summary>Puis-je résilier quand je veux ?<span class="faq__icon"></span></summary>
-            <div class="faq__body"><p>Oui, les offres mensuelles sont sans engagement. Les offres annuelles sont facturées en une fois avec une remise.</p></div>
+            <summary>Can I cancel anytime?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Yes. Monthly plans have no commitment, and annual plans are billed upfront at a discount.</p></div>
           </details>
         </div>
       </div>
@@ -368,11 +368,11 @@
 
     <!-- ============ CTA ============ -->
     <section class="cta" id="cta">
-      <h2 class="reveal">Prêt à lancer votre première mission ?</h2>
-      <p class="reveal">Essai gratuit de 14 jours, sans carte bancaire.</p>
+      <h2 class="reveal">Ready to launch your first mission?</h2>
+      <p class="reveal">14-day free trial. No credit card needed.</p>
       <div class="hero__ctas reveal">
-        <a href="#" class="btn btn--dark btn--lg">Essayer gratuitement</a>
-        <a href="#" class="btn btn--soft btn--lg">Contacter l'équipe</a>
+        <a href="#" class="btn btn--dark btn--lg">Start free trial</a>
+        <a href="#" class="btn btn--soft btn--lg">Talk to us</a>
       </div>
       <div class="peek mascot" data-mascot id="peek" aria-hidden="true">
         <svg viewBox="0 0 200 200">
@@ -391,31 +391,31 @@
         <a href="#" class="logo logo--sm"><svg viewBox="0 0 200 200" class="logo__mark"><use href="#bubble" /></svg><span>nova</span></a>
         <small>© 2026 Nova</small>
         <div class="footer__tools">
-          <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
             <svg class="i-moon" viewBox="0 0 16 16"><path d="M13 9.5A5.5 5.5 0 0 1 6.5 3a5.5 5.5 0 1 0 6.5 6.5z" /></svg>
             <svg class="i-sun" viewBox="0 0 16 16"><circle cx="8" cy="8" r="3" /><path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3 3l1 1M12 12l1 1M3 13l1-1M12 4l1-1" /></svg>
           </button>
-          <span class="footer__status"><i></i>Systèmes opérationnels</span>
+          <span class="footer__status"><i></i>All systems normal</span>
         </div>
       </div>
       <div class="footer__cols">
-        <div><h4>Produits</h4><a href="#">Agents</a><a href="#">Routines</a><a href="#">Mémoire</a><a href="#">Mobile</a><a href="#">Bureau</a>
-          <h4 class="footer__sub">Télécharger</h4><a href="#">macOS</a><a href="#">iOS</a><a href="#">Android</a></div>
-        <div><h4>Solutions</h4><a href="#">Ventes</a><a href="#">Opérations</a><a href="#">Produit</a><a href="#">Support</a><a href="#">Cas d'usage</a>
-          <h4 class="footer__sub">Nova</h4><a href="#">Présentation</a><a href="#">Modèles</a><a href="#">Guides</a><a href="#">Changelog</a></div>
-        <div><h4>Développeurs</h4><a href="#">API</a><a href="#">Documentation</a><a href="#">Statut</a>
-          <h4 class="footer__sub">Entreprise</h4><a href="#">Contact commercial</a><a href="#">FAQ</a><a href="#">DPA</a></div>
-        <div><h4>Société</h4><a href="#">À propos</a><a href="#">Carrières</a><a href="#">Actualités</a><a href="#">Contact</a>
-          <h4 class="footer__sub">Confiance</h4><a href="#">Sécurité</a><a href="#">Confidentialité</a></div>
-        <div><h4>Légal</h4><a href="#">Conditions</a><a href="#">Cookies</a><a href="#">Mentions légales</a>
-          <h4 class="footer__sub">Réseaux</h4><a href="#">LinkedIn</a><a href="#">X</a></div>
+        <div><h4>Product</h4><a href="#">Agents</a><a href="#">Routines</a><a href="#">Memory</a><a href="#">Mobile</a><a href="#">Desktop</a>
+          <h4 class="footer__sub">Download</h4><a href="#">macOS</a><a href="#">iOS</a><a href="#">Android</a></div>
+        <div><h4>Solutions</h4><a href="#">Sales</a><a href="#">Operations</a><a href="#">Product</a><a href="#">Support</a><a href="#">Use cases</a>
+          <h4 class="footer__sub">Nova</h4><a href="#">Overview</a><a href="#">Templates</a><a href="#">Resources</a><a href="#">Changelog</a></div>
+        <div><h4>Developers</h4><a href="#">API</a><a href="#">Documentation</a><a href="#">Status</a>
+          <h4 class="footer__sub">Enterprise</h4><a href="#">Contact sales</a><a href="#">FAQ</a><a href="#">DPA</a></div>
+        <div><h4>Company</h4><a href="#">About</a><a href="#">Careers</a><a href="#">Blog</a><a href="#">Contact</a>
+          <h4 class="footer__sub">Trust</h4><a href="#">Security</a><a href="#">Privacy</a></div>
+        <div><h4>Legal</h4><a href="#">Terms</a><a href="#">Cookies</a><a href="#">Imprint</a>
+          <h4 class="footer__sub">Social</h4><a href="#">LinkedIn</a><a href="#">X</a></div>
       </div>
     </div>
   </footer>
 
-  <!-- Lightbox vidéo -->
+  <!-- Video lightbox -->
   <dialog class="lightbox" id="lightbox">
-    <button class="lightbox__close" aria-label="Fermer">×</button>
+    <button class="lightbox__close" aria-label="Close">×</button>
     <div class="lightbox__frame" id="lightboxFrame"></div>
   </dialog>
 
