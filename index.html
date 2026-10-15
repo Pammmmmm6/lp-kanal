@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=202610151530" />
+  <link rel="stylesheet" href="css/style.css?v=202610151600" />
   <script>
     var t = null; try { t = localStorage.getItem('kanal-theme'); } catch (e) {}
     if (t) document.documentElement.setAttribute('data-theme', t);
@@ -171,7 +171,7 @@
             <a class="btn btn--dark btn--lg" href="https://getkanal.com/abandoned-cart-recovery" target="_blank" rel="noopener">Explore cart recovery</a>
           </div>
           <div class="feature__visual reveal reveal--up" style="--d:1">
-            <div class="flow" data-inview>
+            <div class="flow" data-flow>
               <div class="flow__head">
                 <span class="flow__icon"><svg aria-hidden="true"><use href="#logo-whatsapp" /></svg></span>
                 <span class="flow__title"><strong>Abandoned cart flow</strong><small>Fincut · WhatsApp</small></span>
@@ -184,7 +184,49 @@
                 <li class="flow__step" style="--i:3"><span class="flow__check" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="m3 6.2 2 2L9 4" /></svg></span><span class="flow__label"><strong>Customer reply</strong><small>Answered by the AI agent</small></span><span class="flow__meta">12 s</span></li>
                 <li class="flow__step flow__step--win" style="--i:4"><span class="flow__check" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="m3 6.2 2 2L9 4" /></svg></span><span class="flow__label"><strong>Order recovered</strong><small>#1042 · Paid in Shopify</small></span><span class="flow__meta flow__amount">€35.10</span></li>
               </ol>
-              <div class="flow__foot"><span>Recovered this month</span><strong>€<span data-count="12480">0</span></strong></div>
+              <div class="flow__foot"><span>Recovered this month</span><strong data-flow-total="12445.20">€12,445.20</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FEATURE : AGENT IA ============ -->
+    <section class="sec sec--feature sec--feature-b" id="ai-agent">
+      <div class="wrap">
+        <div class="feature feature--rev">
+          <div class="feature__text reveal">
+            <h2>Instant answers, 24/7.<span class="muted">Handled by your AI agent.</span></h2>
+            <p>The Kanal AI agent knows your catalog, your orders and your policies. It answers sizing, shipping and order questions in seconds, updates carts in Shopify, and hands off to your team when a human is needed.</p>
+            <a class="btn btn--dark btn--lg" href="https://getkanal.com/whatsapp-ai-agent" target="_blank" rel="noopener">Meet the AI agent</a>
+          </div>
+          <div class="feature__visual feature__visual--b reveal reveal--up" style="--d:1">
+            <div class="chatcard" data-chat>
+              <div class="chatcard__row chatcard__row--in" data-chat-step>
+                <span class="avatar chatcard__av">EL</span>
+                <div class="chatcard__col">
+                  <span class="chatcard__meta"><strong>Emma Laurent</strong>4:12 pm</span>
+                  <p class="chatcard__bubble">Hi! Does the Tech T-shirt run true to size? I'm between M and L.</p>
+                </div>
+              </div>
+              <div class="chatcard__row chatcard__row--out" data-chat-step>
+                <div class="chatcard__col">
+                  <span class="chatcard__meta">4:12 pm<span class="chatcard__by">AI agent</span></span>
+                  <div class="chatcard__slot">
+                    <span class="chatcard__typing" aria-hidden="true"><i></i><i></i><i></i></span>
+                    <p class="chatcard__bubble">It runs slightly slim, so L will give you a relaxed fit. I've swapped it in your cart.</p>
+                  </div>
+                </div>
+                <span class="chatcard__av chatcard__av--agent"><svg viewBox="-1.5 -1 24 26" aria-hidden="true"><use href="#logo-kanal" width="96" height="24" /></svg></span>
+              </div>
+              <div class="chatcard__row chatcard__row--out" data-chat-step>
+                <div class="chatcard__action">
+                  <span class="chatcard__shop"><svg aria-hidden="true"><use href="#logo-shopify" /></svg></span>
+                  <span class="chatcard__actxt"><strong>Cart updated</strong><small>Tech T-shirt · Black, L</small></span>
+                  <span class="chatcard__ok" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="m3 6.2 2 2L9 4" /></svg></span>
+                </div>
+                <span class="chatcard__av chatcard__av--ghost" aria-hidden="true"></span>
+              </div>
             </div>
           </div>
         </div>
@@ -462,6 +504,6 @@
     <div class="lightbox__frame" id="lightboxFrame"></div>
   </dialog>
 
-  <script src="js/main.js?v=202610151530"></script>
+  <script src="js/main.js?v=202610151600"></script>
 </body>
 </html>

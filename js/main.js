@@ -98,6 +98,84 @@
   }, { threshold: 0.35 });
   $$('[data-inview]').forEach((el) => viewIO.observe(el));
 
+  /* ---------------- Feature loops (cart flow + AI agent chat) ---------------- */
+  // Each loop only advances while its card is on screen.
+  const onScreen = (el) => {
+    let visible = false, wake = null;
+    new IntersectionObserver(([en]) => {
+      visible = en.isIntersecting;
+      if (visible && wake) { wake(); wake = null; }
+    }, { threshold: 0.3 }).observe(el);
+    return async (ms) => {
+      await wait(ms);
+      if (!visible) await new Promise((r) => { wake = r; });
+    };
+  };
+  const eur = new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+  const flow = $('[data-flow]');
+  if (flow) {
+    const steps = $$('.flow__step', flow);
+    const totalEl = $('[data-flow-total]', flow);
+    let total = +totalEl.dataset.flowTotal;
+    const bump = (to) => {
+      const from = total, t0 = performance.now();
+      const step = (now) => {
+        const p = Math.min(1, (now - t0) / 900), e = 1 - Math.pow(1 - p, 3);
+        totalEl.textContent = '€' + eur.format(from + (to - from) * e);
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+      total = to;
+    };
+    if (reduced) {
+      steps.forEach((li) => li.classList.add('is-done'));
+    } else {
+      const tick = onScreen(flow);
+      (async () => {
+        for (;;) {
+          await tick(600);
+          for (const li of steps) {
+            li.classList.add('is-active');
+            await tick(li.classList.contains('flow__step--win') ? 900 : 750);
+            li.classList.replace('is-active', 'is-done');
+            await tick(250);
+          }
+          bump(Math.round((total + 35.1) * 100) / 100);
+          await tick(3200);
+          steps.forEach((li) => li.classList.remove('is-done', 'is-active'));
+        }
+      })();
+    }
+  }
+
+  const chatCard = $('[data-chat]');
+  if (chatCard) {
+    const rows = $$('[data-chat-step]', chatCard);
+    const slot = $('.chatcard__slot', chatCard);
+    if (reduced) {
+      rows.forEach((r) => r.classList.add('is-shown'));
+    } else {
+      const tick = onScreen(chatCard);
+      (async () => {
+        for (;;) {
+          await tick(500);
+          rows[0].classList.add('is-shown');
+          await tick(900);
+          slot.classList.add('is-typing');
+          rows[1].classList.add('is-shown');
+          await tick(1500);
+          slot.classList.remove('is-typing');
+          await tick(900);
+          rows[2].classList.add('is-shown');
+          await tick(3600);
+          rows.forEach((r) => r.classList.remove('is-shown'));
+          await tick(500);
+        }
+      })();
+    }
+  }
+
   /* ---------------- Mascots: eyes follow the cursor ---------------- */
   const mascots = $$('[data-mascot]');
   let mx = innerWidth / 2, my = innerHeight / 3, raf = 0;
