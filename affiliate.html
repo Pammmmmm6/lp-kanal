@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kanal Affiliate Program</title>
+  <meta name="description" content="Join the Kanal affiliate program: earn a 15% lifetime recurring commission on every customer you refer. Agencies and integrations can join the Kanal Partner Program." />
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=202610160700" />
+  <link rel="stylesheet" href="css/affiliate.css?v=202610160700" />
+  <script>
+    var t = null; try { t = localStorage.getItem('kanal-theme'); } catch (e) {}
+    if (t) document.documentElement.setAttribute('data-theme', t);
+  </script>
+</head>
+<body>
+
+  <!-- Mascot (reusable shape) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <path id="bubble" d="M100 14C52 14 13 50 13 95c0 23 10 44 27 59L28 190l42-18c9.4 3 19.6 4.6 30 4.6 48 0 87-36 87-81S148 14 100 14z" />
+      <symbol id="logo-whatsapp" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="#25D366" /><g transform="translate(16 16) scale(.94) translate(-16 -16)"><path d="M16 6.6a9.4 9.4 0 0 0-8.1 14.2L6.7 25.3l4.6-1.2A9.4 9.4 0 1 0 16 6.6z" fill="none" stroke="#fff" stroke-width="1.9" stroke-linejoin="round" /><path d="M12.7 11.3c.3-.3.8-.3 1 .1l.9 1.8c.2.3.1.7-.1 1l-.6.6c.5 1.2 1.5 2.2 2.7 2.7l.6-.6c.3-.3.7-.3 1-.1l1.8.9c.4.2.4.7.1 1l-.7.8c-.6.6-1.4.8-2.2.5-2.4-.9-4.3-2.8-5.2-5.2-.3-.8-.1-1.6.5-2.2z" fill="#fff" /></g></symbol>
+      <symbol id="logo-instagram" viewBox="0 0 32 32"><defs><radialGradient id="igGrad" cx="28%" cy="108%" r="140%"><stop offset="0" stop-color="#fdf497" /><stop offset=".08" stop-color="#fdf497" /><stop offset=".42" stop-color="#fd5949" /><stop offset=".62" stop-color="#d6249f" /><stop offset=".95" stop-color="#285aeb" /></radialGradient></defs><rect width="32" height="32" rx="9" fill="url(#igGrad)" /><rect x="7.4" y="7.4" width="17.2" height="17.2" rx="5" fill="none" stroke="#fff" stroke-width="2" /><circle cx="16" cy="16" r="4.1" fill="none" stroke="#fff" stroke-width="2" /><circle cx="21.4" cy="10.6" r="1.25" fill="#fff" /></symbol>
+      <symbol id="logo-imessage" viewBox="0 0 32 32"><defs><linearGradient id="imGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5df876" /><stop offset="1" stop-color="#0ac12b" /></linearGradient></defs><rect width="32" height="32" rx="9" fill="url(#imGrad)" /><path d="M16 8.4c-5.2 0-9.4 3.4-9.4 7.6 0 2.4 1.4 4.6 3.6 6-.2 1.3-.9 2.5-1.9 3.3 2-.1 3.7-.9 4.9-2 .9.2 1.8.3 2.8.3 5.2 0 9.4-3.4 9.4-7.6S21.2 8.4 16 8.4z" fill="#fff" /></symbol>
+      <symbol id="logo-rcs" viewBox="0 0 32 32"><defs><linearGradient id="rcsGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f8df9" /><stop offset="1" stop-color="#1a5fe0" /></linearGradient></defs><rect width="32" height="32" rx="9" fill="url(#rcsGrad)" /><path d="M9.5 8.5h13a3 3 0 0 1 3 3v7.4a3 3 0 0 1-3 3h-7.2l-4.4 3.4v-3.4H9.5a3 3 0 0 1-3-3v-7.4a3 3 0 0 1 3-3z" fill="#fff" /><text x="16" y="18.6" text-anchor="middle" font-family="Geist, Arial, sans-serif" font-size="6.6" font-weight="700" letter-spacing=".2" fill="#1a5fe0">RCS</text></symbol>
+      <symbol id="logo-fincut" viewBox="0 0 256 256"><rect width="256" height="256" fill="#FFF647" /><path d="M132.507 41.7793C72.3543 41.7793 44 70.09 44 129.674V214.189H89.6077V171.509H175.401V150.803H89.6077V129.674C89.6077 83.6143 103.417 61.8546 132.507 61.8546C161.598 61.8546 175.65 83.6143 175.65 129.674H222C222 70.09 193.153 41.7793 132.507 41.7793Z" fill="#1B1B1B" /></symbol>
+      <symbol id="logo-shopify" viewBox="14 304 140 178"><path fill="#95BF47" d="M131.5 341.9c-.1-.9-.9-1.3-1.5-1.3s-13.7-1-13.7-1-9.1-9.1-10.2-10c-1-1-2.9-.7-3.7-.5-.1 0-2 .6-5.1 1.6-3.1-8.9-8.4-17-17.9-17h-.9c-2.6-3.4-6-5-8.8-5-22 0-32.6 27.5-35.9 41.5-8.6 2.7-14.7 4.5-15.4 4.8-4.8 1.5-4.9 1.6-5.5 6.1-.5 3.4-13 100.1-13 100.1l97.3 18.2L150 468c.1-.2-18.4-125.2-18.5-126.1zm-39.6-9.8c-2.4.7-5.3 1.6-8.2 2.6v-1.8c0-5.4-.7-9.8-2-13.3 5 .6 8.1 6.1 10.2 12.5zm-16.3-11.4c1.3 3.4 2.2 8.2 2.2 14.8v1c-5.4 1.7-11.1 3.4-17 5.3 3.3-12.6 9.6-18.8 14.8-21.1zm-6.4-6.2c1 0 2 .4 2.8 1-7.1 3.3-14.6 11.6-17.7 28.4-4.7 1.5-9.2 2.8-13.5 4.2 3.6-12.8 12.6-33.6 28.4-33.6z"/><path fill="#5E8E3E" d="M130 340.4c-.6 0-13.7-1-13.7-1s-9.1-9.1-10.2-10c-.4-.4-.9-.6-1.3-.6l-7.3 150.6 52.8-11.4s-18.5-125.2-18.6-126.1c-.4-.9-1.1-1.3-1.7-1.5z"/><path fill="#FFF" d="M79.4 369.6L73 388.9s-5.8-3.1-12.7-3.1c-10.3 0-10.8 6.5-10.8 8.1 0 8.8 23 12.2 23 32.9 0 16.3-10.3 26.8-24.2 26.8-16.8 0-25.2-10.4-25.2-10.4l4.5-14.8s8.8 7.6 16.2 7.6c4.9 0 6.9-3.8 6.9-6.6 0-11.5-18.8-12-18.8-31 0-15.9 11.4-31.3 34.5-31.3 8.6-.1 13 2.5 13 2.5z"/></symbol>
+      <symbol id="logo-kanal" viewBox="0 0 96 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.8489 19.5168L8.57724 21.7999C7.18839 23.1957 6.49477 23.8928 5.64432 23.9854C5.46971 24.0049 5.29509 24.0049 5.12047 23.9854C4.27164 23.8928 3.57641 23.1957 2.18918 21.7999C0.800328 20.404 0.10671 19.707 0.0145514 18.8539C-0.00485046 18.6784 -0.00485046 18.5029 0.0145514 18.3274C0.10671 17.4743 0.800328 16.7756 2.18918 15.3814L4.46081 13.0984C5.02993 12.5264 5.02993 11.5986 4.46081 11.0282L2.18918 8.74522C0.800328 7.34941 0.10671 6.65232 0.0145514 5.79923C-0.00485046 5.62374 -0.00485046 5.44825 0.0145514 5.27276C0.10671 4.41967 0.800328 3.72096 2.18918 2.32515C3.57803 0.929337 4.27164 0.232245 5.12047 0.139624C5.29509 0.120125 5.46971 0.120125 5.64432 0.139624C6.49315 0.232245 7.18839 0.929337 8.57724 2.32515L10.8489 4.60816C14.9459 8.72572 14.9459 15.4009 10.8489 19.5185V19.5168Z" fill="currentColor"/> <path fill-rule="evenodd" clip-rule="evenodd" d="M15.3337 19.3918L16.4695 21.6749C17.164 23.0707 17.5108 23.7678 17.936 23.8604C18.0233 23.8799 18.1106 23.8799 18.1979 23.8604C18.6223 23.7678 18.9699 23.0707 19.6636 21.6749C20.358 20.279 20.7048 19.582 20.7509 18.7289C20.7606 18.5534 20.7606 18.3779 20.7509 18.2024C20.7048 17.3493 20.358 16.6506 19.6636 15.2564L18.5278 12.9734C18.2432 12.4014 18.2432 11.4736 18.5278 10.9032L19.6636 8.62022C20.358 7.22441 20.7048 6.52732 20.7509 5.67423C20.7606 5.49874 20.7606 5.32325 20.7509 5.14776C20.7048 4.29467 20.358 3.59596 19.6636 2.20015C18.9691 0.804337 18.6223 0.107245 18.1979 0.0146243C18.1106 -0.00487477 18.0233 -0.00487477 17.936 0.0146243C17.5116 0.107245 17.164 0.804337 16.4695 2.20015L15.3337 4.48316C13.2852 8.60072 13.2852 15.2759 15.3337 19.3935V19.3918Z" fill="currentColor"/> <path d="M40.0654 21.9814L33.3463 13.3782V21.9814H29.4592V2.49188H33.3463V10.5383L39.3991 2.49188H44.4801L36.9558 11.6241L45.0354 21.9814H40.0654Z" fill="currentColor"/> <path d="M50.5804 22.3434C46.61 22.3434 43.4448 18.9745 43.4448 14.7981C43.4448 10.6218 46.61 7.19722 50.5804 7.19722C53.0793 7.19722 54.3842 8.22738 55.1616 9.78654V7.50348H58.8822V21.9814H55.2449V19.6148C54.4675 21.2575 53.1626 22.3434 50.5804 22.3434ZM47.1931 14.7703C47.1931 16.9698 48.8034 18.9466 51.1912 18.9466C53.6623 18.9466 55.2449 17.0534 55.2449 14.7981C55.2449 12.5429 53.6623 10.594 51.1912 10.594C48.8034 10.594 47.1931 12.5151 47.1931 14.7703Z" fill="currentColor"/> <path d="M60.5539 21.9814V7.50348H64.2467V9.61949C64.9963 8.00464 66.4401 7.16937 68.6613 7.16937C71.771 7.16937 74.1588 9.48028 74.1588 13.1276V21.9814H70.4105V14.0464C70.4105 11.5406 69.1611 10.4548 67.3008 10.4548C65.7182 10.4548 64.3022 11.5406 64.3022 14.0464V21.9814H60.5539Z" fill="currentColor"/> <path d="M82.2782 22.3434C78.3078 22.3434 75.1425 18.9745 75.1425 14.7981C75.1425 10.6218 78.3078 7.19722 82.2782 7.19722C84.777 7.19722 86.082 8.22738 86.8594 9.78654V7.50348H90.5799V21.9814H86.9427V19.6148C86.1653 21.2575 84.8603 22.3434 82.2782 22.3434ZM78.8908 14.7703C78.8908 16.9698 80.5012 18.9466 82.889 18.9466C85.3601 18.9466 86.9427 17.0534 86.9427 14.7981C86.9427 12.5429 85.3601 10.594 82.889 10.594C80.5012 10.594 78.8908 12.5151 78.8908 14.7703Z" fill="currentColor"/> <path d="M92.2517 21.9814V1.65661H96V21.9814H92.2517Z" fill="currentColor"/></symbol>
+      <symbol id="logo-meta" viewBox="0 0 32 32"><defs><linearGradient id="metaGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0064E1" /><stop offset=".5" stop-color="#0082FB" /><stop offset="1" stop-color="#0064E1" /></linearGradient></defs><path d="M5 19.2c0-5 2.6-9.2 5.6-9.2 3.4 0 5.2 4.6 7.9 9 1.7 2.8 3 3.8 4.4 3.8 1.9 0 3.1-1.7 3.1-4.4 0-4.9-2.6-8.4-5.5-8.4-3 0-4.8 3.6-7.4 8.2-1.8 3.2-3.2 4.6-4.9 4.6C6.4 22.8 5 21.4 5 19.2z" fill="none" stroke="url(#metaGrad)" stroke-width="3.4" stroke-linejoin="round" /></symbol>
+      <symbol id="logo-gads" viewBox="0 0 32 32"><path d="M16.4 6 7 22.4" stroke="#FBBC04" stroke-width="7.2" stroke-linecap="round" /><path d="M15.6 6 25 22.4" stroke="#4285F4" stroke-width="7.2" stroke-linecap="round" /><circle cx="7" cy="22.4" r="3.9" fill="#34A853" /></symbol>
+      <symbol id="logo-sms" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="#1F2937" /><path d="M16 8.5c-5 0-9 3.2-9 7.2 0 2.3 1.3 4.3 3.4 5.6l-.7 3.2 3.5-2c.9.2 1.8.3 2.8.3 5 0 9-3.2 9-7.1s-4-7.2-9-7.2z" fill="#fff" /><text x="16" y="17.9" text-anchor="middle" font-family="Geist, system-ui, sans-serif" font-size="5.6" font-weight="700" fill="#1F2937">SMS</text></symbol>
+      <symbol id="logo-kanal-mark" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="#111110" /><svg x="5.5" y="5" width="21" height="22" viewBox="-1.5 -1 24 26" color="#fff"><use href="#logo-kanal" width="96" height="24" /></svg></symbol>
+      <symbol id="ext" viewBox="0 0 10 10"><path d="M3 7 7 3M4 3h3v3" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" /></symbol>
+      <symbol id="chev" viewBox="0 0 12 12"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></symbol>
+    </defs>
+  </svg>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="logo" aria-label="Kanal home"><svg class="logo__kanal" viewBox="0 0 96 24" role="img" aria-label="Kanal"><use href="#logo-kanal" /></svg></a>
+      <nav class="nav__links" aria-label="Main navigation">
+        <div class="nav__item has-menu has-mega">
+          <button class="nav__link" aria-expanded="false">Product <svg class="chev"><use href="#chev" /></svg></button>
+          <div class="mega">
+            <div class="mega__main">
+              <nav class="mega__big"><a href="https://getkanal.com/whatsapp-shopify">WhatsApp for Shopify</a><a href="https://getkanal.com/abandoned-cart-recovery">Cart recovery</a><a href="https://getkanal.com/whatsapp-campaigns">WhatsApp campaigns</a><a href="https://getkanal.com/whatsapp-ai-agent">AI agent</a><a href="https://getkanal.com/order-notifications">Order notifications</a><a href="https://getkanal.com/back-in-stock">Back in stock</a><a href="https://getkanal.com/post-purchase-upsell">Post-purchase upsell</a><a href="https://getkanal.com/review-collection">Review collection</a><a href="https://getkanal.com/automations">Automations</a></nav>
+              <div class="mega__groups"><div class="mega__group"><div class="mega__label">Connect</div><a href="https://getkanal.com/mcp">Kanal MCP</a><a href="https://getkanal.com/whatsapp-integration">Integrations</a><a href="https://developers.getkanal.com/">Developer API</a></div><div class="mega__group"><div class="mega__label">Channels</div><a href="https://getkanal.com/instagram">Instagram</a><a href="https://getkanal.com/sms">SMS</a><a href="https://getkanal.com/rcs">RCS</a></div></div>
+            </div>
+            <a class="mega__card mega__card--a" href="https://getkanal.com/case-studies">
+              <span class="mega__card-text"><strong>Case studies</strong><span>See how Shopify brands grow their sales with Kanal.</span></span>
+              <span class="mega__card-btn">Read stories</span>
+            </a>
+          </div>
+        </div>
+        <a class="nav__link" href="https://getkanal.com/case-studies">Case Studies</a>
+        <div class="nav__item has-menu has-mega">
+          <button class="nav__link" aria-expanded="false">Resources <svg class="chev"><use href="#chev" /></svg></button>
+          <div class="mega">
+            <div class="mega__main">
+              <nav class="mega__big"><a href="https://getkanal.com/blog">Blog</a><a href="https://getkanal.com/tools">Free tools</a><a href="https://getkanal.com/whatsapp-marketing-glossary">WhatsApp glossary</a><a href="https://getkanal.com/alternatives">Comparisons</a><a href="https://getkanal.com/best-shopify-apps">Best Shopify apps</a><a href="https://help.getkanal.com/">Help center</a></nav>
+              <div class="mega__groups"><div class="mega__group"><div class="mega__label">Learn</div><a href="https://developers.getkanal.com/">Developer API</a><span class="mega__soon">Playbooks <em>Soon</em></span></div><div class="mega__group"><div class="mega__label">Company</div><a href="affiliate.html">Affiliate program</a><a href="https://getkanal.com/careers">Careers</a><a href="https://getkanal.com/contact">Contact</a><a href="https://getkanal.com/demo">Book a demo</a></div></div>
+            </div>
+            <a class="mega__card mega__card--b" href="https://getkanal.com/mcp">
+              <span class="mega__card-text"><strong>Kanal MCP</strong><span>Plug Kanal into Claude, ChatGPT, Codex or Cursor.</span></span>
+              <span class="mega__card-btn">Discover MCP</span>
+            </a>
+          </div>
+        </div>
+        <a class="nav__link is-current" href="affiliate.html" aria-current="page">Affiliate</a>
+        <a class="nav__link" href="pricing.html">Pricing</a>
+      </nav>
+      <div class="nav__cta">
+        <a href="https://getkanal.com/demo" class="btn btn--light btn--nav hide-sm">Book a demo</a>
+        <div class="split">
+          <a href="https://apps.shopify.com/kanal-marketing-ai" class="split__main">Install Kanal</a>
+          <button class="split__more" aria-label="More options" aria-expanded="false"><svg><use href="#chev" /></svg></button>
+          <div class="menu menu--right">
+            <div class="menu__label">Get started</div>
+            <a href="https://apps.shopify.com/kanal-marketing-ai">Install with Shopify <svg class="menu__ext"><use href="#ext" /></svg></a>
+            <a href="https://getkanal.com/demo">Book a demo</a>
+            <div class="menu__label">Account</div>
+            <a href="https://app.getkanal.com/login">Log in <svg class="menu__ext"><use href="#ext" /></svg></a>
+          </div>
+        </div>
+        <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+      </div>
+    </div>
+    <div class="mobile-menu">
+      <a href="https://getkanal.com/whatsapp-shopify">Product</a><a href="https://getkanal.com/case-studies">Case Studies</a><a href="https://getkanal.com/blog">Resources</a><a href="affiliate.html">Affiliate</a><a href="pricing.html">Pricing</a><a href="https://app.getkanal.com/login">Log in</a>
+      <a href="https://apps.shopify.com/kanal-marketing-ai" class="btn btn--dark">Install Kanal</a>
+    </div>
+  </header>
+
+  <main class="affiliate-page">
+    <!-- ============ HERO ============ -->
+    <section class="ah">
+      <div class="wrap">
+        <span class="ah__eyebrow reveal">Affiliate program</span>
+        <h1 class="ah__title reveal" style="--d:1">Earn 15% lifetime commissions.<br /><span class="muted">Share Kanal, get paid every month.</span></h1>
+        <p class="ah__sub reveal" style="--d:2">Join Kanal's affiliate program and receive a 15% commission on every payment from the customers you refer, for as long as they stay.</p>
+        <div class="ah__ctas reveal" style="--d:3">
+          <a class="btn btn--dark btn--lg" href="https://getkanal.firstpromoter.com/" target="_blank" rel="noopener">Become an affiliate</a>
+          <a class="btn btn--soft btn--lg" href="https://getkanal.firstpromoter.com/" target="_blank" rel="noopener">Get affiliate resources</a>
+        </div>
+        <a class="ah__partner reveal" style="--d:4" href="#partners">Agency or integration? <strong>See our Partner Program</strong><span class="pill__arrow"><svg><use href="#chev" /></svg></span></a>
+      </div>
+    </section>
+
+    <!-- ============ CALCULATOR ============ -->
+    <section class="sec sec--calc" id="calculator">
+      <div class="wrap">
+        <div class="calc reveal reveal--up">
+          <div class="calc__text">
+            <h2>See what you could earn.<span class="muted">Every month, for life.</span></h2>
+            <p>Move the slider to estimate your recurring commissions. Each customer you refer pays you 15% of their plan, every month they stay with Kanal.</p>
+            <div class="calc__field">
+              <label class="calc__label" for="refs">Referred customers <output class="calc__count" id="refsOut" for="refs">40</output></label>
+              <input class="calc__range" type="range" id="refs" min="1" max="200" step="1" value="40" style="--p:19.6%" />
+              <div class="calc__scale" aria-hidden="true"><span>1</span><span>50</span><span>100</span><span>150</span><span>200</span></div>
+            </div>
+            <p class="calc__note">Based on the Scale plan at 149€ per month. Recurring for as long as they stay a customer.</p>
+          </div>
+          <div class="calc__media feature__visual feature__visual--b">
+            <div class="payout" aria-live="polite">
+              <div class="payout__head"><strong>Your commissions</strong><span class="payout__live">Recurring</span></div>
+              <div class="payout__big"><span class="payout__amount" id="calcMonthly">894€</span><small>/month</small></div>
+              <div class="payout__chart" aria-hidden="true"><i style="--h:1"></i><i style="--h:2"></i><i style="--h:3"></i><i style="--h:4"></i><i style="--h:5"></i><i style="--h:6"></i><i style="--h:7"></i><i style="--h:8"></i><i style="--h:9"></i><i style="--h:10"></i><i style="--h:11"></i><i style="--h:12"></i></div>
+              <div class="payout__axis" aria-hidden="true"><span>Month 1</span><span>Month 12</span></div>
+              <ul class="payout__lines">
+                <li>Referred customers<b id="calcRefs">40</b></li>
+                <li>Scale plan<b>149€/mo</b></li>
+                <li>Commission<b>15%</b></li>
+              </ul>
+              <div class="payout__foot"><span>Earned in 12 months</span><strong id="calcYearly">10,728€</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HOW IT WORKS ============ -->
+    <section class="sec" id="how">
+      <div class="wrap">
+        <div class="ahow">
+          <div class="ahow__head">
+            <h2 class="ahow__title reveal">Start earning passive income in minutes.<span class="muted">Three steps, no minimum audience.</span></h2>
+            <div class="ahow__intro reveal" style="--d:1">
+              <p>Kanal's affiliate program is for YouTube creators, B2B social media influencers and SMMA communities who want to monetize their content while helping others grow.</p>
+              <a class="btn btn--light btn--nav" href="https://getkanal.firstpromoter.com/" target="_blank" rel="noopener">Earn passive income</a>
+            </div>
+          </div>
+          <div class="steps">
+            <article class="step reveal reveal--up">
+              <div class="step__art feature__visual feature__visual--b">
+                <div class="aui">
+                  <div class="aui__head"><strong>Affiliate account</strong><span class="aui__ok">Active</span></div>
+                  <div class="aui__field"><small>Your link</small><div class="aui__input">getkanal.com/?via=<b>yourname</b><i class="aui__caret"></i></div></div>
+                  <div class="aui__btns"><span class="aui__btn">Customize</span><span class="aui__btn aui__btn--dark">Copy link</span></div>
+                </div>
+              </div>
+              <span class="step__num">Step 01</span>
+              <h3>Join the program</h3>
+              <p>Create your affiliate account, get your affiliate link and customize it.</p>
+            </article>
+            <article class="step reveal reveal--up" style="--d:1">
+              <div class="step__art feature__visual feature__visual--d">
+                <div class="aui">
+                  <div class="aui__head"><strong>Link performance</strong><span class="aui__chip">Last 30 days</span></div>
+                  <ul class="aui__rows">
+                    <li><span class="aui__ico aui__ico--yt"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.5 5.6v4.8L10.6 8z" /></svg></span>YouTube<em>1,284 clicks</em></li>
+                    <li><span class="aui__ico aui__ico--in"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.6 6.4h1.8V12H4.6zM5.5 3.8a1 1 0 1 1 0 2.1 1 1 0 0 1 0-2.1zM7.5 6.4h1.7v.8c.3-.5 1-1 2-1 1.8 0 2.2 1.2 2.2 2.7V12h-1.8V9.3c0-.7 0-1.5-1-1.5s-1.2.7-1.2 1.5V12H7.5z" /></svg></span>LinkedIn<em>736 clicks</em></li>
+                    <li><span class="aui__ico aui__ico--nl"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="4.5" width="10" height="7" rx="1.5" /><path d="m3.5 5.5 4.5 3.2 4.5-3.2" /></svg></span>Newsletter<em>418 clicks</em></li>
+                  </ul>
+                  <div class="aui__foot"><span>New customers</span><strong>42</strong></div>
+                </div>
+              </div>
+              <span class="step__num">Step 02</span>
+              <h3>Share your affiliate link</h3>
+              <p>Share your custom affiliate link with your audience, your followers and your friends.</p>
+            </article>
+            <article class="step reveal reveal--up" style="--d:2">
+              <div class="step__art feature__visual feature__visual--c">
+                <div class="aui">
+                  <div class="aui__head"><strong>Payouts</strong><span class="aui__chip">Monthly</span></div>
+                  <ul class="aui__rows aui__rows--pay">
+                    <li>Nov 2026<b>894.00€</b><em class="is-paid">Paid</em></li>
+                    <li>Oct 2026<b>849.30€</b><em class="is-paid">Paid</em></li>
+                    <li>Sep 2026<b>782.25€</b><em class="is-paid">Paid</em></li>
+                  </ul>
+                  <div class="aui__foot"><span>Next payout</span><strong>Dec 1</strong></div>
+                </div>
+              </div>
+              <span class="step__num">Step 03</span>
+              <h3>Get paid for life</h3>
+              <p>You earn a 15% lifetime recurring commission for every new customer you bring.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="sec" id="faq">
+      <div class="wrap wrap--narrow cols cols--top">
+        <h2 class="reveal">Affiliate program FAQ</h2>
+        <div class="faq reveal">
+          <details open>
+            <summary>How does the Kanal affiliate program work?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Sign up for the affiliate program, get your unique referral link and share it with your audience. You earn a 15% recurring commission for every paying customer you refer.</p></div>
+          </details>
+          <details>
+            <summary>How much can I earn?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>You earn 15% of every payment made by the customers you refer, for as long as they remain paying customers. On Scale at 149€ per month, each referral pays you 22.35€ every month.</p></div>
+          </details>
+          <details>
+            <summary>When and how do I get paid?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Commissions are paid monthly by bank transfer or PayPal. Each commission has a 30-day pending period to account for refunds.</p></div>
+          </details>
+          <details>
+            <summary>Who can join the affiliate program?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Anyone can join. Content creators, agency owners, e-commerce consultants or anyone who loves Kanal: every affiliate is welcome.</p></div>
+          </details>
+          <details>
+            <summary>Is there a minimum payout?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Yes, the minimum payout is 50€. Once your available balance reaches 50€, it is included in the next monthly payout.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PARTNER PROGRAM ============ -->
+    <section class="sec" id="partners">
+      <div class="wrap">
+        <div class="partner reveal reveal--up">
+          <div class="partner__text">
+            <span class="ah__eyebrow">A different path</span>
+            <h2>Become a Kanal Partner.<span class="muted">Grow together.</span></h2>
+            <p>Agencies, integrations and technology partners: let's build a joint go-to-market strategy and unlock new opportunities together.</p>
+            <ul class="partner__list">
+              <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" /><path d="m6.2 10.2 2.5 2.5 5-5.2" /></svg>Co-marketing and joint webinars</li>
+              <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" /><path d="m6.2 10.2 2.5 2.5 5-5.2" /></svg>Featured spot in our partner directory</li>
+              <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" /><path d="m6.2 10.2 2.5 2.5 5-5.2" /></svg>Dedicated partnership manager</li>
+              <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" /><path d="m6.2 10.2 2.5 2.5 5-5.2" /></svg>Revenue share on qualified referrals</li>
+            </ul>
+            <p class="partner__note">Creator or influencer? The affiliate program above is for you. The partner program is for businesses building with or around Kanal.</p>
+            <div class="partner__ctas">
+              <a class="btn btn--dark btn--lg" href="https://app.cal.com/team/kanal/demo?utm_source=getkanal&amp;utm_medium=website&amp;utm_campaign=site-affiliate" target="_blank" rel="noopener">Book a partnership chat</a>
+              <a class="btn btn--outline btn--lg" href="https://getkanal.com/contact" target="_blank" rel="noopener">Contact us</a>
+            </div>
+          </div>
+          <div class="partner__media feature__visual feature__visual--d">
+            <div class="book" id="book">
+              <div class="book__head">
+                <span class="book__mark"><svg aria-hidden="true"><use href="#logo-kanal-mark" /></svg></span>
+                <span class="book__title"><strong>Partnership chat</strong><small>30 min · Video call</small></span>
+              </div>
+              <div class="book__month">November 2026</div>
+              <div class="book__days" role="group" aria-label="Day">
+                <button type="button" aria-pressed="false"><small>Mon</small>16</button>
+                <button type="button" aria-pressed="true"><small>Tue</small>17</button>
+                <button type="button" aria-pressed="false"><small>Wed</small>18</button>
+                <button type="button" aria-pressed="false"><small>Thu</small>19</button>
+                <button type="button" aria-pressed="false"><small>Fri</small>20</button>
+              </div>
+              <div class="book__slots" role="group" aria-label="Time">
+                <button type="button" aria-pressed="false">10:00</button>
+                <button type="button" aria-pressed="true">11:30</button>
+                <button type="button" aria-pressed="false">14:00</button>
+                <button type="button" aria-pressed="false">16:30</button>
+              </div>
+              <a class="book__cta" href="https://app.cal.com/team/kanal/demo?utm_source=getkanal&amp;utm_medium=website&amp;utm_campaign=site-affiliate" target="_blank" rel="noopener">Pick a time</a>
+              <p class="book__fine">We'll reach out before the call.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- ============ FOOTER (structure Gleap, contenu getkanal.com) ============ -->
+  <footer class="footer">
+    <div class="footer__wrap">
+      <div class="footer__card">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo" aria-label="Kanal home"><svg viewBox="0 0 96 24" role="img" aria-label="Kanal"><use href="#logo-kanal" /></svg></a>
+          <p>The easiest way to boost your Shopify sales with Kanal &amp; WhatsApp marketing.</p>
+          <div class="footer__badges"><div class="footer__badge"><span class="footer__badge-icon"><img src="assets/certs/meta-mark.svg" alt="" width="24" height="15" /></span><span><small>Official</small>Meta Business Partner</span></div><div class="footer__badge"><span class="footer__badge-icon"><svg aria-hidden="true"><use href="#logo-shopify" /></svg></span><span><small>Official</small>Shopify Partner</span></div><div class="footer__badge"><span class="footer__badge-icon"><svg class="fb-iso" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="M8 12h.01M12 12h.01M16 12h.01" /></svg></span><span><small>In progress</small>ISO/IEC 27001</span></div><div class="footer__badge"><span class="footer__badge-icon"><img class="fb-full" src="assets/certs/trust-rgpd.svg" alt="" width="36" height="36" /></span><span><small>Compliant</small>GDPR</span></div><div class="footer__badge"><span class="footer__badge-icon"><img class="fb-full" src="assets/certs/cert-eu.svg" alt="" width="36" height="36" /></span><span><small>Data hosting</small>European Union</span></div><div class="footer__badge"><span class="footer__badge-icon"><img class="fb-rcs" src="assets/certs/cert-rcs.svg" alt="" width="21" height="20" /></span><span><small>Google</small>RCS Business Messaging</span></div></div>
+        </div>
+        <nav class="footer__cols" aria-label="Footer">
+          <div><h4>Product</h4><a href="https://getkanal.com/abandoned-cart-recovery">Cart Recovery</a><a href="https://getkanal.com/post-purchase-upsell">Post-Purchase Upsell</a><a href="https://getkanal.com/review-collection">Review Collection</a><a href="https://getkanal.com/whatsapp-campaigns">Campaigns</a><a href="https://getkanal.com/sms">SMS</a><a href="https://getkanal.com/sms-campaigns">SMS Campaigns</a><a href="https://getkanal.com/sms-automation">SMS Automation</a><a href="https://getkanal.com/rcs">RCS marketing</a><a href="https://getkanal.com/whatsapp-newsletter">WhatsApp Newsletter</a><a href="https://getkanal.com/whatsapp-broadcast">WhatsApp Broadcast</a><a href="https://getkanal.com/whatsapp-marketing">WhatsApp Marketing</a><a href="https://getkanal.com/whatsapp-crm">WhatsApp CRM</a><a href="https://getkanal.com/whatsapp-business-api">WhatsApp Business API</a><a href="https://getkanal.com/whatsapp-ai-agent">AI Agent</a><a href="https://getkanal.com/automations">Automations</a><a href="https://getkanal.com/mcp">Kanal MCP</a><a href="pricing.html">Pricing</a></div>
+          <div><h4>Instagram</h4><a href="https://getkanal.com/instagram">Instagram for Shopify</a><a href="https://getkanal.com/instagram-auto-reply">Auto Reply</a><a href="https://getkanal.com/instagram-dm-automation">DM Automation</a><a href="https://getkanal.com/instagram-chatbot">AI Chatbot</a><a href="https://getkanal.com/instagram-automation">Automation Tool</a><a href="https://getkanal.com/alternatives/manychat">ManyChat Alternative</a></div>
+          <div><h4>Integrations</h4><a href="https://getkanal.com/whatsapp-integration">All Integrations</a><a href="https://getkanal.com/whatsapp-shopify">WhatsApp Shopify</a><a href="https://getkanal.com/whatsapp-integration/prestashop">PrestaShop</a><a href="https://getkanal.com/whatsapp-integration/klaviyo">Klaviyo</a><a href="https://getkanal.com/whatsapp-integration/gorgias">Gorgias</a><a href="https://getkanal.com/whatsapp-integration/loyoly">Loyoly</a><a href="https://getkanal.com/whatsapp-integration/splio">Splio</a><a href="https://getkanal.com/whatsapp-integration/zendesk">Zendesk</a><a href="https://getkanal.com/whatsapp-integration/crisp">Crisp</a><a href="https://getkanal.com/whatsapp-integration/recharge">Recharge</a></div>
+          <div><h4>Resources</h4><a href="https://getkanal.com/blog">Blog</a><a href="https://getkanal.com/case-studies">Case Studies</a><a href="https://getkanal.com/best-shopify-apps">Best Shopify Apps</a><a href="https://getkanal.com/alternatives">Alternatives</a><a href="https://getkanal.com/tools">Tools</a><a href="https://getkanal.com/whatsapp-marketing-glossary">Glossary</a><a href="https://help.getkanal.com/">Help Center</a><a href="https://developers.getkanal.com/">Developer API</a></div>
+          <div><h4>Company</h4><a href="affiliate.html">Affiliate Program</a><a href="https://getkanal.com/contact">Contact</a><a href="affiliate.html#partners">Partners</a><a href="https://getkanal.com/whatsapp-marketing-agency">WhatsApp Agency</a><a href="https://getkanal.com/premium-setup">Premium Offer</a><a href="https://getkanal.com/careers">Careers</a><h4 class="footer__sub">Legal</h4><a href="https://getkanal.com/legal/privacy">Privacy Policy</a><a href="https://getkanal.com/legal/terms">Terms of Service</a><a href="https://getkanal.com/legal/sub-processors">Sub-processors</a></div>
+        </nav>
+      </div>
+      <div class="footer__bar">
+        <small>© 2026 Kanal. All rights reserved.</small>
+        <div class="footer__pills">
+          <div class="footer__lang" role="group" aria-label="Language">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" /><path d="M2 8h12M8 2c1.8 1.7 2.6 3.7 2.6 6S9.8 12.3 8 14M8 2C6.2 3.7 5.4 5.7 5.4 8s.8 4.3 2.6 6" /></svg>
+            <a href="#" aria-current="true">English</a>
+            <a href="https://getkanal.com/fr" hreflang="fr" lang="fr">Français</a>
+          </div>
+          <a class="footer__pill" href="https://apps.shopify.com/kanal-marketing-ai/reviews" target="_blank" rel="noopener"><span class="footer__stars">★★★★★</span>5/5 on Shopify</a>
+          <a class="footer__pill" href="https://apps.apple.com/app/kanal-ecommerce-marketing/id6794675748" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.37 12.62c-.02-2.33 1.9-3.45 1.99-3.5-1.08-1.59-2.77-1.8-3.37-1.83-1.43-.15-2.8.85-3.53.85-.73 0-1.85-.83-3.04-.81-1.56.02-3 .91-3.81 2.31-1.63 2.82-.42 6.99 1.17 9.28.78 1.12 1.7 2.37 2.91 2.33 1.17-.05 1.61-.75 3.02-.75 1.41 0 1.81.75 3.04.73 1.26-.02 2.05-1.14 2.82-2.27.89-1.3 1.250-2.56 1.27-2.62-.03-.01-2.44-.94-2.47-3.72zM14.06 5.77c.64-.78 1.08-1.86.96-2.94-.93.04-2.05.62-2.72 1.39-.6.69-1.12 1.79-.98 2.85 1.04.08 2.1-.53 2.74-1.3z" /></svg>App Store</a>
+        </div>
+        <div class="footer__social">
+          <a href="https://www.facebook.com/kanalcom/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3a21 21 0 0 0-2.3-.1c-2.3 0-3.8 1.4-3.8 3.9v2.3H8v3h2.5V21z" fill="currentColor" stroke="none" /></svg></a><a href="https://www.instagram.com/getkanal/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5" /><circle cx="12" cy="12" r="4" /><path d="M17.2 6.8h.01" /></svg></a><a href="https://www.youtube.com/@getkanal" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="4" /><path d="m10 9.2 5 2.8-5 2.8z" fill="currentColor" /></svg></a><a href="https://www.linkedin.com/company/getkanal/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="3" /><path d="M8 10.5V16M8 7.8h.01M11.5 16v-5.5M11.5 13a2.5 2.5 0 0 1 5 0v3" /></svg></a>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="i-moon" viewBox="0 0 16 16"><path d="M13 9.5A5.5 5.5 0 0 1 6.5 3a5.5 5.5 0 1 0 6.5 6.5z" /></svg>
+            <svg class="i-sun" viewBox="0 0 16 16"><circle cx="8" cy="8" r="3" /><path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3 3l1 1M12 12l1 1M3 13l1-1M12 4l1-1" /></svg>
+          </button>
+        </div>
+      </div>
+      <p class="footer__fine">Kanal is the WhatsApp, Instagram, SMS and RCS marketing platform for Shopify brands: cart recovery, campaigns, automations and an AI agent. Hosted in the EU · GDPR compliant · Official Meta Business Partner.</p>
+    </div>
+  </footer>
+
+
+  <script src="js/main.js?v=202610160700"></script>
+  <script src="js/affiliate.js?v=202610160700"></script>
+</body>
+</html>
