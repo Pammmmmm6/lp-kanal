@@ -15,7 +15,7 @@
     { name: 'Pro', tag: 'For brands starting on WhatsApp.', price: 89, cta: 'Choose Pro', href: SHOPIFY, note: 'Install from the Shopify App Store.',
       inc: 'What you get', items: ['1 user', 'Widget chat & inbox', 'Abandoned cart recovery', 'WhatsApp campaigns', 'Performance dashboard'] },
     { name: 'Scale', tag: 'For growing brands that automate more.', price: 149, cta: 'Choose Scale', href: SHOPIFY, featured: true, badge: 'Most popular', note: 'Install from the Shopify App Store.',
-      inc: 'Everything in Pro', items: ['5 users', 'Custom segments', 'Unlimited & advanced automations', 'AI agent', 'Kanal MCP', 'Klaviyo, Gorgias, Recharge & Crisp', 'Multi-market, +50€/mo per market'] },
+      inc: 'Everything in Pro', items: ['5 users', 'Custom segments', 'Unlimited & advanced automations', 'AI agent', 'Kanal MCP', { text: 'Integrations', logos: ['klaviyo', 'gorgias', 'recharge', 'crisp', 'loyoly'] }, 'Multi-market, +50€/mo per market'] },
     { name: 'Business', tag: 'Done for you: our experts run your flows.', price: 350, cta: 'Choose Business', href: SHOPIFY, note: 'Onboarding with our experts.',
       inc: 'Everything in Scale', items: ['Unlimited users', 'Flow setup by our experts', 'Continuous optimization', 'Campaigns on demand', 'Dedicated account manager'] },
     { name: 'Agency', tag: 'For agencies and multi-brand groups.', price: 1900, from: true, cta: 'Contact us', href: DEMO, note: 'Tailored to your brands.',
@@ -31,7 +31,7 @@
       <div class="pcard__price">${p.from ? '<small>From</small>' : ''}<span class="pcard__amount" data-price="${p.price}">${eur(p.price)}</span><span class="pcard__per">/mo</span></div>
       <p class="pcard__bill">No commitment</p>
       <h3 class="pcard__inc">${p.inc}</h3>
-      <ul class="pcard__list">${p.items.map((it) => `<li>${tick}${it}</li>`).join('')}</ul>
+      <ul class="pcard__list">${p.items.map((it) => typeof it === 'string' ? `<li>${tick}${it}</li>` : `<li class="pcard__logos-row">${tick}${it.text}<span class="pcard__logos">${it.logos.map((l) => `<img src="assets/integrations/${l}.webp" alt="${l[0].toUpperCase() + l.slice(1)}" title="${l[0].toUpperCase() + l.slice(1)}" />`).join('')}</span></li>`).join('')}</ul>
       <a class="btn btn--lg ${p.featured ? 'btn--dark' : 'btn--soft'} pcard__cta" href="${p.href}" target="_blank" rel="noopener">${p.cta}</a>
       <p class="pcard__note">${p.note}</p>
     </article>`).join('');
