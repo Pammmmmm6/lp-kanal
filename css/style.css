@@ -778,9 +778,9 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
 .pricing__sales { margin-top: 24px; }
 .pricing { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
 .plan { min-height: 504px; padding: 32px; border-radius: 24px; background: var(--card); display: flex; flex-direction: column; }
-/* Plan mis en avant : posé sur un dégradé peint, visible en liseré de 6 px tout autour */
-.plan.plan--featured { position: relative; isolation: isolate; background: none; box-shadow: 0 24px 48px -28px rgba(80, 60, 160, .45); }
-.plan--featured::before { content: ""; position: absolute; inset: 0; z-index: -2; border-radius: inherit;
+/* Plan mis en avant : même taille que les autres, posé sur un dégradé peint qui déborde de 6 px tout autour */
+.plan.plan--featured { position: relative; isolation: isolate; background: none; }
+.plan--featured::before { content: ""; position: absolute; inset: -6px; z-index: -2; border-radius: 30px; box-shadow: 0 24px 48px -28px rgba(80, 60, 160, .45);
   background-color: #b9c6f5;
   background-image:
     radial-gradient(60% 45% at 10% 0%, rgba(255, 186, 140, .95), transparent 70%),
@@ -788,7 +788,7 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
     radial-gradient(60% 45% at 85% 100%, rgba(255, 140, 190, .9), transparent 70%),
     radial-gradient(55% 45% at 0% 90%, rgba(110, 180, 255, .95), transparent 72%),
     radial-gradient(50% 40% at 50% 50%, rgba(160, 200, 255, .8), transparent 80%); }
-.plan--featured::after { content: ""; position: absolute; inset: 6px; z-index: -1; border-radius: 18px; background: var(--card); }
+.plan--featured::after { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background: var(--card); }
 [data-theme="dark"] .plan--featured::before { filter: saturate(.85) brightness(.75); }
 .plan__top { display: flex; align-items: center; justify-content: space-between; gap: 8px; height: 28px; }
 .plan__name { font-size: 14px; line-height: 20px; font-weight: 500; color: var(--muted); }
