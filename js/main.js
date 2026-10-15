@@ -152,25 +152,39 @@
   const chatCard = $('[data-chat]');
   if (chatCard) {
     const rows = $$('[data-chat-step]', chatCard);
-    const slot = $('.chatcard__slot', chatCard);
+    const [ask, lookup, typing, reply, cta] = rows;
+    // Fixe la hauteur de la carte sur la conversation complète pour qu'elle ne bouge pas pendant la boucle
+    const lockHeight = () => {
+      const prev = rows.map((r) => r.classList.contains('is-shown'));
+      chatCard.style.minHeight = '';
+      rows.forEach((r) => { r.style.transition = 'none'; r.classList.toggle('is-shown', r !== typing); });
+      chatCard.style.minHeight = chatCard.offsetHeight + 'px';
+      rows.forEach((r, i) => { r.classList.toggle('is-shown', prev[i]); r.offsetHeight; r.style.transition = ''; });
+    };
     if (reduced) {
-      rows.forEach((r) => r.classList.add('is-shown'));
+      rows.forEach((r) => r.classList.toggle('is-shown', r !== typing));
     } else {
+      lockHeight();
+      window.addEventListener('resize', lockHeight);
+      document.fonts?.ready.then(lockHeight);
       const tick = onScreen(chatCard);
+      const show = (r) => r.classList.add('is-shown');
       (async () => {
         for (;;) {
           await tick(500);
-          rows[0].classList.add('is-shown');
-          await tick(900);
-          slot.classList.add('is-typing');
-          rows[1].classList.add('is-shown');
-          await tick(1500);
-          slot.classList.remove('is-typing');
-          await tick(900);
-          rows[2].classList.add('is-shown');
-          await tick(3600);
+          show(ask);
+          await tick(1300);
+          show(lookup);
+          await tick(700);
+          show(typing);
+          await tick(1600);
+          typing.classList.remove('is-shown');
+          show(reply);
+          await tick(1100);
+          show(cta);
+          await tick(4000);
           rows.forEach((r) => r.classList.remove('is-shown'));
-          await tick(500);
+          await tick(700);
         }
       })();
     }

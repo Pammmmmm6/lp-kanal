@@ -445,12 +445,18 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
     conic-gradient(from 120deg at 30% 30%, transparent 0 40%, rgba(255, 255, 255, .35) 46%, transparent 54%);
 }
 
-.chatcard { width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 14px; padding: 20px 18px; border-radius: 18px; background: var(--surface); box-shadow: 0 0 0 1px rgba(10, 10, 10, .04), 0 24px 48px -20px rgba(20, 40, 80, .4), 0 6px 14px -8px rgba(20, 40, 80, .2); }
-.chatcard__row { display: flex; align-items: flex-start; gap: 10px; opacity: 0; transform: translateY(6px); transition: opacity .45s var(--ease), transform .45s var(--ease); }
-.chatcard__row.is-shown { opacity: 1; transform: none; }
-.chatcard__row--out { justify-content: flex-end; text-align: right; }
-.chatcard__col { display: flex; flex-direction: column; gap: 5px; min-width: 0; max-width: 300px; }
-.chatcard__row--out .chatcard__col { align-items: flex-end; }
+.chatcard { width: 100%; max-width: 420px; display: flex; flex-direction: column; padding: 8px 18px 14px; border-radius: 18px; background: var(--surface); box-shadow: 0 0 0 1px rgba(10, 10, 10, .04), 0 24px 48px -20px rgba(20, 40, 80, .4), 0 6px 14px -8px rgba(20, 40, 80, .2); }
+/* Chaque message s'ouvre en hauteur (0fr → 1fr) : la conversation se construit de haut en bas sans trou */
+.chatcard__row { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .5s var(--ease), opacity .4s var(--ease); }
+.chatcard__row.is-shown { grid-template-rows: 1fr; opacity: 1; }
+.chatcard__in { min-height: 0; overflow: hidden; }
+.chatcard__line { display: flex; align-items: flex-start; gap: 10px; padding-top: 12px; transform: translateY(8px); transition: transform .5s var(--ease); }
+.is-shown > .chatcard__in > .chatcard__line { transform: none; }
+.chatcard__line--out { justify-content: flex-end; }
+.chatcard__line--sys { justify-content: center; }
+.chatcard__line:has(.chatcard__cta) { padding-bottom: 6px; }
+.chatcard__col { display: flex; flex-direction: column; gap: 5px; min-width: 0; max-width: 312px; }
+.chatcard__line--out .chatcard__col { align-items: flex-end; }
 .chatcard__av { flex: none; width: 28px; height: 28px; }
 .chatcard__av--agent { display: grid; place-items: center; border-radius: 9px; background: var(--ink); color: var(--bg); }
 .chatcard__av--agent svg { width: 15px; height: 17px; overflow: hidden; }
@@ -458,24 +464,16 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
 .chatcard__meta { display: inline-flex; align-items: baseline; gap: 6px; font-size: 11.5px; line-height: 16px; color: var(--muted); }
 .chatcard__meta strong { font-size: 13px; font-weight: 500; color: var(--fg); }
 .chatcard__by { display: inline-flex; align-items: center; height: 18px; padding: 0 7px; border-radius: 9999px; background: var(--tint-2); color: var(--fg-70); font-size: 11px; font-weight: 500; }
-.chatcard__bubble { padding: 8px 12px; border-radius: 14px; background: var(--tint); font-size: 13.5px; line-height: 19px; text-align: left; }
-.chatcard__row--in .chatcard__bubble { border-top-left-radius: 5px; }
-.chatcard__row--out .chatcard__bubble { background: var(--ink); color: var(--bg); border-top-right-radius: 5px; }
-.chatcard__slot { position: relative; display: flex; justify-content: flex-end; }
-.chatcard__slot .chatcard__bubble { transition: opacity .35s var(--ease); }
-.chatcard__typing { position: absolute; top: 0; right: 0; display: flex; gap: 4px; padding: 12px 13px; border-radius: 14px; border-top-right-radius: 5px; background: var(--tint); opacity: 0; transition: opacity .25s; }
+.chatcard__bubble { padding: 8px 12px; border-radius: 14px; background: var(--tint); font-size: 13.5px; line-height: 19px; text-align: left; text-wrap: pretty; }
+.chatcard__line--in .chatcard__bubble { border-top-left-radius: 5px; }
+.chatcard__line--out .chatcard__bubble { background: var(--ink); color: var(--bg); border-top-right-radius: 5px; }
+.chatcard__sys { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px 0 8px; border-radius: 9999px; background: var(--tint); font-size: 11.5px; color: var(--fg-70); }
+.chatcard__sys svg { width: 11px; height: 14px; }
+.chatcard__typing { display: flex; gap: 4px; padding: 11px 13px; border-radius: 14px; border-top-right-radius: 5px; background: var(--tint); }
 .chatcard__typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--sys); opacity: .5; animation: typing 1.1s infinite; }
 .chatcard__typing i:nth-child(2) { animation-delay: .15s; } .chatcard__typing i:nth-child(3) { animation-delay: .3s; }
-.chatcard__slot.is-typing .chatcard__typing { opacity: 1; }
-.chatcard__slot.is-typing .chatcard__bubble { opacity: 0; }
-.chatcard__action { display: flex; align-items: center; gap: 10px; padding: 8px 10px 8px 8px; border-radius: 13px; background: var(--surface); box-shadow: 0 0 0 1px var(--line), 0 4px 12px -8px rgba(10, 10, 10, .25); text-align: left; }
-.chatcard__shop { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 9px; background: rgba(149, 191, 71, .14); }
-.chatcard__shop svg { width: 15px; height: 19px; }
-.chatcard__actxt { display: flex; flex-direction: column; }
-.chatcard__actxt strong { font-size: 13px; line-height: 18px; font-weight: 500; }
-.chatcard__actxt small { font-size: 11.5px; line-height: 16px; color: var(--muted); }
-.chatcard__ok { display: grid; place-items: center; width: 20px; height: 20px; margin-left: 6px; border-radius: 9999px; background: #22c55e; }
-.chatcard__ok svg { width: 10px; height: 10px; fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.chatcard__cta { display: inline-flex; align-items: center; justify-content: center; gap: 7px; height: 34px; padding: 0 16px; border-radius: 9999px; background: var(--surface); box-shadow: 0 0 0 1px var(--line-2), 0 4px 12px -8px rgba(10, 10, 10, .3); font-size: 13px; font-weight: 500; color: var(--fg); }
+.chatcard__cta svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linejoin: round; }
 
 /* ---------- Carte d'intro (1232 × 352) ---------- */
 .sec--intro { padding: 64px 0; }
@@ -746,8 +744,8 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
   .feature__visual { min-height: 0; padding: 32px 16px; border-radius: 18px; }
   .sec--feature + .sec--feature-b { padding-top: 24px; }
   .sec--feature-b { padding-bottom: 72px; }
-  .chatcard { padding: 16px 14px; }
-  .chatcard__col { max-width: 250px; }
+  .chatcard { padding: 4px 14px 16px; }
+  .chatcard__col { max-width: 252px; }
   .sec--video { padding: 80px 0; }
   .hero { padding-top: 48px; padding-bottom: 80px; }
   .hero__title { font-size: 44px; line-height: 48px; }
@@ -779,5 +777,6 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
   .reveal { opacity: 1; transform: none; filter: none; }
-  .chatcard__row { opacity: 1; transform: none; }
+  .chatcard__row { grid-template-rows: 1fr; opacity: 1; }
+  .chatcard [data-chat-typing] { display: none; }
 }
