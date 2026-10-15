@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=202610151830" />
+  <link rel="stylesheet" href="css/style.css?v=202610151930" />
   <script>
     var t = null; try { t = localStorage.getItem('kanal-theme'); } catch (e) {}
     if (t) document.documentElement.setAttribute('data-theme', t);
@@ -345,27 +345,36 @@
       </div>
     </section>
 
-    <!-- ============ ROLES ============ -->
-    <section class="sec sec--roles" id="roles">
-      <div class="wrap wrap--narrow cols">
-        <div class="roles reveal">
-          <h2>A template for every role</h2>
-          <div class="chips" role="tablist" aria-label="Agent examples" id="chips"></div>
-          <p class="roles__desc" id="roleDesc" aria-live="polite"></p>
-          <a href="#guides" class="btn btn--light btn--nav">Browse templates</a>
+    <!-- ============ JOBS : un agent Kanal par cas d'usage ============ -->
+    <section class="sec sec--jobs" id="jobs">
+      <div class="wrap wrap--narrow jobs">
+        <div class="jobs__text reveal">
+          <h2>A Kanal agent for every job</h2>
+          <div class="jobs__pills" id="jobPills" role="group" aria-label="Use cases"></div>
+          <div class="jobs__desc"><p id="jobDesc" aria-live="polite"></p></div>
+          <div><a href="https://getkanal.com/automations" target="_blank" rel="noopener" class="btn btn--light btn--nav">Explore all automations</a></div>
         </div>
-        <div class="phone reveal reveal--up" aria-hidden="true">
-          <div class="phone__screen">
-            <div class="phone__status"><span>9:41</span><span class="phone__island"></span><span class="phone__icons"><i></i><i></i><i></i></span></div>
-            <div class="phone__head">
-              <span class="icon-btn icon-btn--lg"><svg viewBox="0 0 14 14"><path d="M8.5 3 4.5 7l4 4" /></svg></span>
-              <span class="phone__agent"><span class="dot-av" id="phoneAv" style="--c:#0093a3"></span><span id="phoneName">Tenders</span></span>
-              <span class="icon-btn icon-btn--lg"><svg viewBox="0 0 14 14"><circle cx="3.5" cy="7" r=".9" /><circle cx="7" cy="7" r=".9" /><circle cx="10.5" cy="7" r=".9" /></svg></span>
-            </div>
-            <div class="phone__chat" id="phoneChat"></div>
-            <div class="phone__composer">
-              <span class="icon-btn icon-btn--xl"><svg viewBox="0 0 14 14"><path d="M7 2.5v9M2.5 7h9" /></svg></span>
-              <span class="phone__input">Message<span class="composer__send"><svg viewBox="0 0 14 14"><path d="M7 11.5v-9M3.5 6 7 2.5 10.5 6" /></svg></span></span>
+        <div class="jobs__stage reveal reveal--up" style="--d:1">
+          <div class="iphone" aria-hidden="true">
+            <span class="iphone__btn iphone__btn--r"></span><span class="iphone__btn iphone__btn--l1"></span><span class="iphone__btn iphone__btn--l2"></span><span class="iphone__btn iphone__btn--l3"></span>
+            <div class="iphone__frame">
+              <div class="iphone__screen">
+                <div class="iphone__status"><span class="iphone__island"></span></div>
+                <div class="bot" id="bot">
+                  <div class="bot__fade bot__fade--top"></div>
+                  <div class="bot__fade bot__fade--bottom"></div>
+                  <div class="bot__head">
+                    <span class="glass bot__icon"><svg viewBox="0 0 16 16"><path d="M10 3.5 5.5 8l4.5 4.5" /></svg></span>
+                    <span class="glass bot__title"><span class="job-av" id="botAv"></span><span id="botName">Cart Recovery</span></span>
+                    <span class="glass bot__icon"><svg viewBox="0 0 16 16"><rect x="2.5" y="3" width="11" height="7.5" rx="1.5" /><path d="M6 13h4M8 10.5V13" /></svg></span>
+                  </div>
+                  <div class="bot__transcript" id="botTranscript"></div>
+                  <div class="bot__composer">
+                    <span class="glass bot__plus"><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10" /></svg></span>
+                    <span class="bot__field"><span class="bot__placeholder" id="botPlaceholder">Message Cart Recovery</span><span class="bot__mic"><svg viewBox="0 0 16 16"><rect x="6" y="2.5" width="4" height="7" rx="2" /><path d="M4 8a4 4 0 0 0 8 0M8 12v1.5" /></svg></span></span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -518,6 +527,6 @@
     <div class="lightbox__frame" id="lightboxFrame"></div>
   </dialog>
 
-  <script src="js/main.js?v=202610151830"></script>
+  <script src="js/main.js?v=202610151930"></script>
 </body>
 </html>

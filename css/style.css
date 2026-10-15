@@ -589,37 +589,113 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
 .stack i:nth-child(2) { animation-delay: .2s; } .stack i:nth-child(3) { animation-delay: .4s; }
 @keyframes hop { 0%, 60%, 100% { transform: none; } 30% { transform: translateY(-4px); } }
 
-/* ---------- Rôles + téléphone ---------- */
-.sec--roles { padding: 152px 0; }
-.roles { padding-top: 0; }
-.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; max-width: 456px; }
-.chip { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: 9999px; font-size: 14px; line-height: 20px; font-weight: 500; color: var(--fg-70); box-shadow: inset 0 0 0 1px var(--line-2); transition: color .25s, background-color .25s, padding .25s var(--ease), box-shadow .25s; }
-.chip:hover { color: var(--fg); }
-.chip .dot-av { width: 0; margin-right: -6px; opacity: 0; transition: all .3s var(--ease); }
-.chip[aria-selected="true"] { color: var(--teal); background: var(--teal-bg); padding-left: 5px; box-shadow: none; }
-.chip[aria-selected="true"] .dot-av { width: 22px; height: 22px; margin-right: 0; opacity: 1; }
-.roles__desc { margin-top: 42px; max-width: 440px; min-height: 96px; font-size: 16px; line-height: 24px; color: var(--muted); transition: opacity .3s, transform .3s var(--ease); }
-.roles__desc strong { color: var(--fg); font-weight: 500; }
-.roles__desc.is-swapping { opacity: 0; transform: translateY(6px); }
-.roles .btn { margin-top: 38px; }
+/* ---------- Jobs : pastilles + téléphone (relevé x.ai/bot #use-cases à 1440 px) ----------
+   grille 1024 (976 utiles), 2 colonnes, gouttière 64 ; colonne texte min 730, padding 40, gap 32 ;
+   téléphone 300 × 650 centré verticalement dans 730. */
+.sec--jobs { padding: 112px 0; }
+.jobs { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; }
+.jobs__text { display: flex; flex-direction: column; gap: 32px; min-height: 730px; padding: 40px 0; }
+.jobs__pills { display: flex; flex-direction: column; gap: 8px; }
+.jobs__row { display: flex; gap: 8px; }
+.jobs__desc { margin-top: 8px; min-height: 104px; }
+.jobs__desc p { max-width: 448px; font-size: 16px; line-height: 24px; text-wrap: pretty; transition: opacity .25s var(--ease), transform .25s var(--ease); }
+.jobs__desc p.is-swapping { opacity: 0; transform: translateY(6px); }
+.jobs__desc strong { font-weight: 500; color: var(--fg); }
+.jobs__desc span { color: var(--muted); }
 
-.phone { justify-self: center; width: 300px; height: 650px; padding: 4px; border-radius: 44px; background: var(--phone-frame); }
-.phone__screen { height: 100%; border-radius: 40px; background: var(--phone-bezel); overflow: hidden; display: flex; flex-direction: column; }
-.phone__status { height: 49px; padding: 0 26px; display: flex; align-items: center; justify-content: space-between; font-size: 14px; font-weight: 600; position: relative; }
-.phone__island { position: absolute; left: 50%; top: 11px; transform: translateX(-50%); width: 90px; height: 26px; border-radius: 20px; background: #0a0a0a; }
-.phone__icons { display: flex; gap: 3px; } .phone__icons i { width: 5px; height: 9px; border-radius: 1px; background: var(--fg); }
-.phone__icons i:last-child { width: 18px; }
-.phone__head { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: var(--surface-2); }
-.phone__agent { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; }
-.phone__chat { flex: 1; background: var(--surface-2); padding: 8px 16px; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; overflow: hidden; }
-.phone__chat .msg--user { max-width: 219px; }
-.phone__chat .msg--agent { max-width: 237px; }
-.mail { align-self: flex-start; width: 237px; padding: 10px 12px; border-radius: 16px; background: var(--tint); animation: msgIn .55s var(--ease) both; }
-.mail__body { margin-top: 2px; padding: 10px 11px; border-radius: 10px; background: var(--surface); font-size: 12px; line-height: 17px; letter-spacing: -0.1px; }
-.mail__body p + p { margin-top: 8px; }
-.mail .tool__actions { margin-top: 10px; }
-.phone__composer { display: flex; align-items: center; gap: 8px; padding: 8px 12px 24px; background: var(--surface-2); }
-.phone__input { flex: 1; height: 42px; padding: 6px 6px 6px 14px; border-radius: 20px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-2); display: flex; align-items: center; justify-content: space-between; font-size: 14px; color: var(--sys); }
+/* Pastille : l'avatar s'ouvre (0 → 28 px) et prend la couleur du cas d'usage */
+.jpill { display: inline-flex; align-items: center; height: 32px; padding: 0 12px; border-radius: 9999px; font-size: 14px; line-height: 20px; font-weight: 500; white-space: nowrap; color: var(--fg-70); background: transparent; box-shadow: inset 0 0 0 1px var(--line-strong); transition: background-color .3s, color .3s, box-shadow .3s, padding .3s; }
+.jpill:hover { color: var(--fg); }
+.jpill__slot { display: flex; flex: none; width: 0; overflow: hidden; transition: width .3s var(--ease); }
+.jpill .job-av { opacity: 0; transform: scale(0); transition: opacity .3s var(--ease), transform .3s var(--ease); }
+.jpill[aria-pressed="true"] { padding-left: 5px; color: var(--c400); background: var(--c100); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c300) 28%, transparent); }
+.jpill[aria-pressed="true"] .jpill__slot { width: 28px; }
+.jpill[aria-pressed="true"] .job-av { opacity: 1; transform: none; }
+[data-theme="dark"] .jpill[aria-pressed="true"] { color: var(--c300); background: color-mix(in srgb, var(--c550) 32%, transparent); }
+.job-av { flex: none; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--c350); color: #fff; }
+.job-av svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Téléphone */
+.jobs__stage { position: relative; min-width: 0; height: 730px; }
+.iphone { --bot-bg: #fcfcfc; --bot-user: #111110; --bot-user-ink: #fff; --bot-agent: rgba(16, 16, 0, .04); --bot-text: #0a0a0a; --bot-text-2: rgba(0, 0, 0, .55); --bot-text-3: rgba(0, 0, 0, .35); --bot-border: rgba(0, 0, 0, .1); --bot-elevated: #fcfcfc; --bot-fill: rgba(16, 16, 0, .04); --bot-emphasis: #111110; --bot-control: rgba(0, 0, 0, .58); --bot-screen-border: #d5d9e2;
+  position: absolute; top: 50%; left: calc(50% - 150px); width: 300px; height: 650px; transform: translateY(-50%); }
+[data-theme="dark"] .iphone { --bot-bg: #1c1c1c; --bot-user: #ecece8; --bot-user-ink: #141414; --bot-agent: rgba(255, 255, 255, .06); --bot-text: #f2f2f2; --bot-text-2: rgba(255, 255, 255, .58); --bot-text-3: rgba(255, 255, 255, .36); --bot-border: rgba(255, 255, 255, .12); --bot-elevated: #262626; --bot-fill: rgba(255, 255, 255, .06); --bot-emphasis: #f0f0f0; --bot-control: rgba(255, 255, 255, .68); --bot-screen-border: #1f2228; }
+.iphone__btn { position: absolute; width: 4px; background: linear-gradient(to left, #1c1c1e, #2c2c2e); }
+.iphone__btn--r { right: -3px; top: 120px; height: 42px; border-radius: 0 2px 2px 0; background: linear-gradient(to right, #1c1c1e, #2c2c2e); }
+.iphone__btn--l1 { left: -3px; top: 75px; height: 20px; border-radius: 2px 0 0 2px; }
+.iphone__btn--l2 { left: -3px; top: 105px; height: 36px; border-radius: 2px 0 0 2px; }
+.iphone__btn--l3 { left: -3px; top: 150px; height: 36px; border-radius: 2px 0 0 2px; }
+.iphone__frame { position: relative; width: 300px; height: 650px; padding: 4px; border-radius: 44px; background: #3a3a3c; overflow: hidden; }
+.iphone__screen { position: relative; height: 100%; border-radius: 40px; border: 1px solid var(--bot-screen-border); background: var(--bot-bg); overflow: hidden; color: var(--bot-text); font-family: -apple-system, BlinkMacSystemFont, var(--font); }
+.iphone__status { position: relative; height: 48px; }
+.iphone__island { position: absolute; left: 50%; top: 8px; z-index: 50; width: 96px; height: 28px; border-radius: 9999px; background: #000; transform: translateX(-50%); }
+
+.bot { position: relative; height: calc(100% - 48px); overflow: hidden; display: flex; flex-direction: column; }
+.bot__fade { position: absolute; left: 0; right: 0; z-index: 10; pointer-events: none; }
+.bot__fade--top { top: 0; height: 48px; background: linear-gradient(to bottom, var(--bot-bg) 42%, transparent); }
+.bot__fade--bottom { bottom: 0; height: 64px; background: linear-gradient(to top, var(--bot-bg) 42%, transparent); }
+.bot__head { position: absolute; left: 12px; right: 12px; top: 0; z-index: 20; height: 48px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+
+/* Boutons « verre » façon iOS */
+.glass { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; border-radius: 9999px; color: var(--bot-control);
+  background: linear-gradient(135deg, rgba(255, 255, 255, .42) 0%, rgba(255, 255, 255, .2) 52%, rgba(255, 255, 255, .1) 100%), color-mix(in srgb, var(--bot-bg) 78%, transparent);
+  border: 1px solid rgba(255, 255, 255, .42);
+  box-shadow: inset 0 1px rgba(255, 255, 255, .62), inset 0 -1px 1px rgba(255, 255, 255, .12), 0 6px 16px rgba(31, 67, 91, .12), 0 1px 1px rgba(0, 0, 0, .06);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4); backdrop-filter: blur(12px) saturate(1.4); }
+.glass::before { content: ""; position: absolute; inset: 0 9% auto; height: 34%; border-radius: inherit; opacity: .58; pointer-events: none; background: radial-gradient(at 50% 0, rgba(255, 255, 255, .46) 0%, rgba(255, 255, 255, .2) 48%, rgba(255, 255, 255, 0) 76%); }
+[data-theme="dark"] .glass { background: linear-gradient(135deg, rgba(255, 255, 255, .11) 0%, rgba(255, 255, 255, .067) 48%, rgba(255, 255, 255, .035) 100%), color-mix(in srgb, var(--bot-bg) 78%, transparent); border-color: rgba(255, 255, 255, .11); box-shadow: inset 0 1px rgba(255, 255, 255, .13), inset 0 -1px 1px rgba(0, 0, 0, .12), 0 5px 14px rgba(0, 0, 0, .14), 0 1px 1px rgba(0, 0, 0, .12); }
+[data-theme="dark"] .glass::before { opacity: .5; background: radial-gradient(at 50% 0, rgba(255, 255, 255, .18) 0%, rgba(255, 255, 255, .07) 52%, rgba(255, 255, 255, 0) 76%); }
+.glass svg { position: relative; z-index: 1; width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.bot__icon { width: 32px; height: 32px; flex: none; }
+.bot__title { height: 32px; min-width: 0; gap: 8px; padding: 0 12px 0 4px; font-size: 13px; line-height: 16px; font-weight: 500; letter-spacing: -0.15px; color: var(--bot-text); }
+.bot__title > * { position: relative; z-index: 1; }
+.bot__title #botName { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Fil de conversation */
+.bot__transcript { flex: 1; min-height: 0; overflow-y: auto; padding: 56px 16px 80px; scrollbar-width: none; }
+.bot__transcript::-webkit-scrollbar { display: none; }
+.bot__list { display: flex; flex-direction: column; gap: 4px; }
+.bot__list.is-mounting { animation: botMount .3s ease both; }
+@keyframes botMount { from { opacity: 0; } }
+.bot-entry { animation: botEntry .28s cubic-bezier(.2, .9, .3, 1.15) both; }
+.bot-entry.mt { margin-top: 12px; }
+.bot-entry:first-child { margin-top: 0; }
+@keyframes botEntry { from { opacity: 0; transform: translateY(8px) scale(.97); } }
+.bot-time { margin-bottom: 8px; padding: 4px 0; text-align: center; font-size: 12px; line-height: 16px; color: var(--bot-text-2); }
+.bot-sys { display: flex; align-items: center; justify-content: center; gap: 6px; min-width: 0; overflow: hidden; padding: 4px 0; font-size: 13px; line-height: 16px; color: var(--bot-text-2); white-space: nowrap; }
+.bot-sys svg { flex: none; width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+.bot-sys b { font-weight: 400; color: var(--bot-text); overflow: hidden; text-overflow: ellipsis; }
+.bot-msg { padding: 8px 12px; border-radius: 16px; font-size: 14px; line-height: 20px; letter-spacing: -0.15px; white-space: pre-wrap; }
+.bot-msg strong { font-weight: 600; }
+.bot-msg--user { margin-left: auto; width: fit-content; max-width: 85%; background: var(--bot-user); color: var(--bot-user-ink); }
+.bot-msg--agent { width: fit-content; max-width: 92%; background: var(--bot-agent); color: var(--bot-text); }
+.bot-card { max-width: 92%; padding: 10px 12px; border-radius: 16px; background: var(--bot-agent); color: var(--bot-text); font-size: 14px; line-height: 20px; letter-spacing: -0.15px; }
+.bot-card__head { display: flex; align-items: flex-start; gap: 8px; }
+.bot-card__title { font-weight: 600; }
+.bot-card__badge { margin-left: auto; flex: none; display: inline-flex; align-items: center; gap: 4px; padding: 0 7px; border-radius: 999px; font-size: 12px; line-height: 19px; letter-spacing: -0.1px; white-space: nowrap; background: var(--bot-fill); color: var(--bot-text-3); }
+.bot-card__badge::before { content: ""; width: 5px; height: 5px; border-radius: 999px; background: currentColor; }
+.bot-card__badge[data-tone="success"] { background: color-mix(in srgb, #03943c 14%, transparent); color: #03943c; }
+.bot-card__badge[data-tone="accent"] { background: color-mix(in srgb, var(--c400) 14%, transparent); color: var(--c400); }
+[data-theme="dark"] .bot-card__badge[data-tone="success"] { color: #6dd998; }
+[data-theme="dark"] .bot-card__badge[data-tone="accent"] { color: var(--c300); }
+.bot-panel { margin: 8px 0 0; border: .5px solid var(--bot-border); border-radius: 10px; background: var(--bot-elevated); overflow: hidden; }
+.bot-panel__row { display: flex; align-items: baseline; gap: 8px; padding: 6px 10px; border-bottom: .5px solid var(--bot-border); }
+.bot-panel__row dt { flex: none; color: var(--bot-text-3); }
+.bot-panel__row dd { margin: 0; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bot-panel__body { display: flex; flex-direction: column; gap: 8px; padding: 8px 10px 10px; }
+.bot-card__actions { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+.bot-card__action { display: inline-flex; align-items: center; padding: 5px 12px; border-radius: 999px; font-size: 13px; line-height: 18px; font-weight: 500; white-space: nowrap; }
+.bot-card__action--primary { background: var(--bot-emphasis); color: var(--bot-user-ink); }
+.bot-card__action--secondary { border: .5px solid var(--bot-border); background: var(--bot-elevated); color: var(--bot-text); }
+
+/* Barre de saisie */
+.bot__composer { position: absolute; left: 12px; right: 12px; bottom: 12px; z-index: 20; display: flex; align-items: flex-end; gap: 8px; }
+.bot__plus { width: 40px; height: 40px; flex: none; }
+.bot__plus svg { width: 16px; height: 16px; }
+.bot__field { flex: 1; min-width: 0; display: flex; align-items: center; gap: 6px; padding: 6px 6px 6px 14px; border-radius: 20px; border: .5px solid var(--bot-border); background: var(--bot-elevated); box-shadow: 0 2px 12px rgba(0, 0, 0, .1); }
+.bot__placeholder { flex: 1; min-width: 0; font-size: 15px; line-height: 20px; letter-spacing: -0.15px; color: var(--bot-text-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bot__mic { flex: none; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--bot-fill); color: var(--bot-text-2); }
+.bot__mic svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; }
 
 /* ---------- Vidéo (1232 × 693) ---------- */
 .sec--video { padding: 160px 0 151px; }
@@ -750,6 +826,10 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
   .app { grid-template-columns: minmax(0, 1fr) 264px; height: 600px; }
   .app__side { display: none; }
   .grid, .cols { grid-template-columns: 1fr; }
+  .jobs { grid-template-columns: 1fr; gap: 48px; }
+  .jobs__text { min-height: 0; padding: 0; align-items: center; text-align: center; }
+  .jobs__row { justify-content: center; }
+  .jobs__desc p { margin: 0 auto; }
   .cols { gap: 48px; }
   .pricing { grid-template-columns: 1fr; max-width: 440px; margin-left: auto; margin-right: auto; }
   .feature { grid-template-columns: 1fr; gap: 40px; max-width: 560px; }
@@ -763,7 +843,9 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
 }
 @media (max-width: 640px) {
   .wrap, .hero, .cta, .nav__inner, .footer__inner { padding-left: 16px; padding-right: 16px; }
-  .sec, .sec--roles { padding: 80px 0; }
+  .sec, .sec--jobs { padding: 80px 0; }
+  .jobs__row { flex-wrap: wrap; }
+  .jobs__stage { height: 670px; }
   .sec--intro { padding: 32px 0; }
   .intro { padding: 40px 20px 0; }
   .intro__text h2 { font-size: 26px; line-height: 32px; }

@@ -634,50 +634,182 @@
   const appIO = new IntersectionObserver((en) => { if (en[0].isIntersecting) { appIO.disconnect(); setTimeout(() => { if (autoplay) selectChannel('instagram'); }, 5000); } }, { threshold: 0.3 });
   appIO.observe(app);
 
-  /* ---------------- Rôles (chips) + téléphone ---------------- */
-  const ROLES = [
-    { name: 'Tenders', color: '#0093a3', title: 'Bids ready ahead of the deadline.', desc: 'Breaks down the specs, collects the paperwork and drafts a technical response from your past submissions.',
-      chat: [{ user: 'Prepare our response to the city\'s transport tender.' }, { agent: 'Specs reviewed: 14 requirements, 3 of them pass/fail. Cover email ready for your approval.' },
-        { mail: ['Subject: Bid for lot 2', 'Hello,', 'Attached is our offer for lot 2, with the requested certificates and our technical proposal.', 'Kind regards,'], btns: ['Approve', 'Edit'] }] },
-    { name: 'Onboarding', color: '#6c6ccb', title: 'A first day with nothing missing.', desc: 'Creates accounts, orders hardware, books first-week meetings and sends out the welcome pack.',
-      chat: [{ user: 'Inès starts in marketing on Monday.' }, { agent: 'Accounts created, laptop ordered (arrives Friday), team lunch booked for Tuesday.' }, { agent: 'Want me to send her the welcome pack Sunday evening?' }, { user: 'Yes, perfect.' }] },
-    { name: 'Data analysis', color: '#dd2229', title: 'Ask a question, get a chart.', desc: 'Queries your sources, cleans the data and answers a plain-language question with an annotated chart.',
-      chat: [{ user: 'Which channel converts best this quarter?' }, { agent: 'Organic search at 3.8%, ahead of email at 2.9%. Paid campaigns dropped 0.6 points.' }, { agent: 'Chart added to the “Acquisition” dashboard.' }] },
-    { name: 'Translation', color: '#e8833a', title: 'Your content, in every language.', desc: 'Translates pages, listings and documents using your glossary, then flags passages that deserve a human read.',
-      chat: [{ user: 'Translate the pricing page into Spanish and Italian.' }, { agent: 'Both versions are live in drafts. I adapted 2 phrases for the Italian market and highlighted them.' }] },
-    { name: 'Regulatory watch', color: '#5a3fa0', title: 'Rule changes, summarized.', desc: 'Tracks official publications in your industry and sums up each change with what it means for you.',
-      chat: [{ agent: 'A new packaging labeling rule was published this morning.' }, { agent: 'What it means for you: relabel 3 product lines before March 1.' }, { user: 'Loop in the packaging team.' }] },
-    { name: 'Inventory', color: '#252525', title: 'No more stockouts.', desc: 'Watches stock levels, forecasts demand from sales and drafts purchase orders for you to approve.',
-      chat: [{ agent: 'Gift box stock will last 9 days at the current pace.' }, { agent: 'A 400-unit purchase order is ready for your usual supplier.' }, { user: 'Send it.' }] },
-    { name: 'Meeting prep', color: '#e8a33a', title: 'Walk in with the brief.', desc: 'Gathers the relevant documents, proposes an agenda and lists the questions still open since last time.',
-      chat: [{ user: 'Prep tomorrow\'s product review.' }, { agent: 'Agenda sent, with the 3 decisions still pending from last session and fresh usage numbers.' }] },
+  /* ---------------- Jobs: pills + phone (one Kanal agent per use case) ---------------- */
+  // Palettes 100 / 300 / 350 / 400 / 550 par famille de couleur
+  const HUES = {
+    cyan: ['#f2feff', '#4ad8ec', '#01b6c3', '#0093a3', '#012f35'],
+    violet: ['#fafafe', '#b6b3f9', '#8f8deb', '#6c6ccb', '#251f41'],
+    magenta: ['#fff9fd', '#f6a0d5', '#e76cb8', '#c23b90', '#480c34'],
+    green: ['#f4fff8', '#6dd998', '#2cb663', '#03943c', '#012f12'],
+    red: ['#fff9fb', '#ff99a8', '#fd5c6a', '#dd2229', '#4e071c'],
+    blue: ['#f5fbfe', '#7fc3ff', '#2da0f5', '#0e7fcb', '#002843'],
+    orange: ['#fff9f6', '#ffa782', '#fe733d', '#e84302', '#481800'],
+    yellow: ['#fffcf3', '#f8b956', '#db941e', '#b77400', '#3b2703'],
+  };
+  const hueVars = (h) => HUES[h].map((v, i) => `--c${['100', '300', '350', '400', '550'][i]}:${v}`).join(';');
+  const ICONS = {
+    cart: '<path d="M1.5 2.5h2l1.4 6.5h6.6l1.5-4.5H4.3" /><circle cx="6" cy="12.5" r=".9" /><circle cx="11" cy="12.5" r=".9" />',
+    truck: '<path d="M1.5 4h7.5v6.5H1.5zM9 6.5h3l2 2.2v1.8H9" /><circle cx="4.5" cy="12" r="1.2" /><circle cx="11.5" cy="12" r="1.2" />',
+    megaphone: '<path d="M2.5 6.5v3h2l5.5 3v-9l-5.5 3zM12.5 6a2.5 2.5 0 0 1 0 4" />',
+    spark: '<path d="M8 2v3M8 11v3M2 8h3M11 8h3M4 4l1.8 1.8M10.2 10.2 12 12M4 12l1.8-1.8M10.2 5.8 12 4" />',
+    bell: '<path d="M4 11V7.5a4 4 0 0 1 8 0V11l1 1.5H3zM6.5 13.5a1.5 1.5 0 0 0 3 0" />',
+    bag: '<path d="M3.5 5.5h9l-.7 8h-7.6zM6 5.5v-1a2 2 0 0 1 4 0v1M8 8v3.5M6.3 9.8h3.4" />',
+    star: '<path d="m8 2.2 1.8 3.7 4 .6-2.9 2.8.7 4L8 11.4l-3.6 1.9.7-4-2.9-2.8 4-.6z" />',
+    loop: '<path d="M13 8a5 5 0 1 1-1.5-3.6M13 2.5v3h-3" />',
+  };
+  const avatar = (j) => `<span class="job-av"><svg viewBox="0 0 16 16">${ICONS[j.icon]}</svg></span>`;
+  const routineIco = '<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.5" /><path d="M8 5v3l2 1.3" /></svg>';
+
+  const JOBS = [
+    { name: 'Cart Recovery', hue: 'cyan', icon: 'cart', title: 'Win back every abandoned checkout.', desc: 'Follows up on WhatsApp with the right product, timing and offer, answers questions, and brings the order back to Shopify.',
+      chat: [
+        { time: 'Monday 9:02 AM', user: 'recover abandoned checkouts on whatsapp. one reminder after an hour, discount only if they don\'t come back.' },
+        { sys: ['Created automation', 'Abandoned cart flow'] },
+        { time: '6:40 PM', agent: 'flow is live. 42 checkouts abandoned today, 31 reminders sent, 9 recovered.' },
+        { agent: 'that\'s <strong>€1,284</strong> back in Shopify, mostly the Tech T-shirt and the Essentials pack.' },
+        { card: { title: 'Cart reminder', badge: 'Approved', tone: 'success', rows: [['To', 'Emma Laurent'], ['Cart', 'Tech T-shirt · Black, M']], body: ['Hi Emma, you left the Tech T-shirt in your cart.', 'Your size is still in stock. Want me to hold it for you until tonight?'], actions: ['Send now', 'Edit'] } },
+        { user: 'add 10% off for carts over €80' },
+        { agent: 'done. WELCOME10 goes out with the second reminder.' },
+      ] },
+    { name: 'Order Updates', hue: 'violet', icon: 'truck', title: 'Keep every customer in the loop.', desc: 'Sends order confirmations, shipping and delivery updates with live tracking, so your support inbox stays quiet.',
+      chat: [
+        { time: 'Tuesday 10:15 AM', user: 'send shipping updates on whatsapp instead of email, with the tracking link.' },
+        { sys: ['Created automation', 'Shipping notifications'] },
+        { time: 'Friday 5:30 PM', agent: 'connected to your Shopify fulfillments. 128 updates sent this week, 97% read.' },
+        { agent: '<strong>where is my order</strong> tickets dropped from 46 to 9.' },
+        { card: { title: 'Shipping update', badge: 'Live', tone: 'success', rows: [['Order', '#1042 · Maxime Dubois'], ['Carrier', 'Colissimo · In transit']], body: ['Good news Maxime, your order #1042 is on its way.', 'Expected delivery: Thursday. Track it anytime below.'], actions: ['Track order', 'Preview'] } },
+        { user: 'add a reminder on delivery day too' },
+        { agent: 'added. it goes out at 8am on the day.' },
+      ] },
+    { name: 'Campaigns', hue: 'magenta', icon: 'megaphone', title: 'Launch campaigns that get read.', desc: 'Builds segments from your Shopify data, writes the message in your brand voice, and sends when each customer is most active.',
+      chat: [
+        { time: 'Wednesday 11:20 AM', user: 'plan a whatsapp campaign for the new polo drop. only customers who bought tops before.' },
+        { sys: ['Created campaign', 'Polo drop'] },
+        { time: '11:22 AM', agent: 'segment ready: 2,140 customers who bought tops in the last 6 months.' },
+        { agent: 'best send time is <strong>Thursday 6 PM</strong>, when this segment reads fastest.' },
+        { card: { title: 'Campaign', badge: 'Draft', rows: [['Audience', '2,140 customers'], ['Send', 'Thu 6:00 PM']], body: ['The new Polo just dropped. Navy or white, made to last.', 'Early access for you until Friday.'], actions: ['Schedule', 'Edit'] } },
+        { user: 'looks good, schedule it' },
+        { agent: 'scheduled. results land in your inbox friday morning.' },
+      ] },
+    { name: 'AI Agent', hue: 'green', icon: 'spark', title: 'Answer customers 24/7.', desc: 'Handles sizing, shipping and order questions from your catalog and policies, and hands off to your team when a human is needed.',
+      chat: [
+        { time: 'Sunday 11:48 PM', user: 'answer customers on whatsapp overnight. send me anything about refunds.' },
+        { sys: ['Turned on', 'Night shift'] },
+        { time: 'Monday 8:05 AM', agent: 'overnight: 23 conversations, 21 resolved, 2 handed to you.' },
+        { agent: 'most asked: sizing on the <strong>Tech T-shirt</strong> and delivery times to Belgium.' },
+        { card: { title: 'Handoff', badge: 'Needs you', tone: 'accent', rows: [['Customer', 'Julie Bonnet'], ['Topic', 'Damaged item']], body: ['Hi, my order arrived damaged. Can I get a replacement?'], actions: ['Open chat', 'Reply'] } },
+        { user: 'send a replacement, free shipping' },
+        { agent: 'done. replacement order #1063 is in Shopify and Julie has her tracking link.' },
+      ] },
+    { name: 'Back in Stock', hue: 'red', icon: 'bell', title: 'Turn sold out into sold.', desc: 'Collects waitlist sign-ups and messages each customer the moment their size is back, with a one-tap checkout link.',
+      chat: [
+        { time: 'Thursday 3:10 PM', user: 'when sizes come back, message the waitlist before anyone else.' },
+        { sys: ['Created automation', 'Back in stock alerts'] },
+        { time: 'Monday 9:00 AM', agent: '<strong>Polo · White, L</strong> is back. 64 customers are waiting for it.' },
+        { card: { title: 'Restock alert', badge: 'Ready to send', rows: [['Product', 'Polo · White, L'], ['Waitlist', '64 customers']], body: ['It\'s back! The white Polo in L is in stock again.', 'We saved one for you for 24 hours. Tap to check out.'], actions: ['Send to 64', 'Discard'] } },
+        { user: 'send it' },
+        { agent: 'sent. 18 orders in the first hour.' },
+      ] },
+    { name: 'Post-purchase Upsell', hue: 'blue', icon: 'bag', title: 'Grow every order after checkout.', desc: 'Suggests the add-on that pairs with what the customer just bought, and adds it to the same shipment when possible.',
+      chat: [
+        { time: 'Monday 2:30 PM', user: 'after each order, suggest something that goes with it.' },
+        { sys: ['Created automation', 'Post-purchase upsell'] },
+        { time: '2:31 PM', agent: 'pairing products customers buy together. top match: <strong>Tech T-shirt + Trousers</strong>.' },
+        { card: { title: 'Upsell offer', badge: 'Ready', rows: [['Trigger', 'Order paid'], ['Offer', 'Trousers · 15% off']], body: ['Thanks for your order, Maxime!', 'The Trousers pair perfectly with your T-shirt. Add them in one tap, 15% off for 48 hours.'], actions: ['Turn on', 'Edit'] } },
+        { user: 'turn it on' },
+        { agent: 'live. 12% of buyers added the Trousers on day one.' },
+      ] },
+    { name: 'Review Collection', hue: 'orange', icon: 'star', title: 'Collect reviews on autopilot.', desc: 'Asks happy customers for a review after delivery, and routes unhappy ones to your team before they post.',
+      chat: [
+        { time: 'Tuesday 9:40 AM', user: 'ask for a review 3 days after delivery. if someone is unhappy, send them to me.' },
+        { sys: ['Created automation', 'Review requests'] },
+        { time: 'Friday 6:10 PM', agent: 'this week: 54 requests, 31 reviews, average rating 4.8.' },
+        { agent: '2 customers rated <strong>below 3 stars</strong>, both about a late delivery.' },
+        { card: { title: 'Review request', badge: 'Live', tone: 'success', rows: [['When', '3 days after delivery'], ['Channel', 'WhatsApp']], body: ['Hi Emma, how is your Tech T-shirt?', 'Tap a star to rate it. It takes ten seconds.'], actions: ['Preview', 'Edit'] } },
+        { user: 'send both a 10% code with an apology' },
+        { agent: 'sent. i\'ll follow up if they reply.' },
+      ] },
+    { name: 'Win-back', hue: 'yellow', icon: 'loop', title: 'Bring lapsed customers back.', desc: 'Spots customers who haven\'t ordered in a while and sends a personal offer based on what they bought before.',
+      chat: [
+        { time: 'Monday 10:05 AM', user: 'bring back customers who haven\'t ordered in 90 days. keep it personal.' },
+        { sys: ['Created automation', 'Win-back · 90 days'] },
+        { time: '10:07 AM', agent: '<strong>312 customers</strong> match. each message mentions their last purchase.' },
+        { card: { title: 'Personal offer', badge: 'Ready to send', rows: [['To', 'Lucas Martin'], ['Last order', '94 days ago']], body: ['Hey Lucas, your Tech T-shirt has a new match: the black Trousers.', 'Here\'s 15% off if you want to complete the look.'], actions: ['Send to 312', 'Discard'] } },
+        { user: 'start with the top 50' },
+        { agent: 'sending to 50. i\'ll compare them with the rest next week.' },
+      ] },
   ];
-  const chips = $('#chips'), desc = $('#roleDesc'), phoneChat = $('#phoneChat');
-  chips.innerHTML = ROLES.map((r, i) => `<button class="chip" role="tab" aria-selected="${i === 0}" data-i="${i}"><span class="dot-av" style="--c:${r.color}"></span>${r.name}</button>`).join('');
-  let roleTimer, roleIdx = 0;
-  const renderPhone = (r) => {
-    $('#phoneName').textContent = r.name;
-    $('#phoneAv').style.setProperty('--c', r.color);
-    phoneChat.innerHTML = r.chat.map((m, k) => {
-      const delay = `style="animation-delay:${k * 0.35}s"`;
-      if (m.user) return `<div class="msg msg--user" ${delay}>${esc(m.user)}</div>`;
-      if (m.mail) return `<div class="mail" ${delay}><div class="mail__body">${m.mail.map((l) => `<p>${l}</p>`).join('')}</div><div class="tool__actions"><span class="pbtn pbtn--dark">${m.btns[0]}</span><span class="pbtn pbtn--light">${m.btns[1]}</span></div></div>`;
-      return `<div class="msg msg--agent" ${delay}>${m.agent}</div>`;
-    }).join('');
-  };
-  const renderRole = (i, user) => {
-    roleIdx = i;
-    $$('.chip', chips).forEach((c) => c.setAttribute('aria-selected', String(+c.dataset.i === i)));
-    desc.classList.add('is-swapping');
-    setTimeout(() => { desc.innerHTML = `<strong>${ROLES[i].title}</strong> ${ROLES[i].desc}`; desc.classList.remove('is-swapping'); }, 200);
-    renderPhone(ROLES[i]);
-    clearInterval(roleTimer);
-    if (!user && !reduced) roleTimer = setInterval(() => renderRole((roleIdx + 1) % ROLES.length), 5000);
-  };
-  desc.innerHTML = `<strong>${ROLES[0].title}</strong> ${ROLES[0].desc}`;
-  chips.addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (c) renderRole(+c.dataset.i, true); });
-  renderRole(0);
-  $('#roles').addEventListener('mouseenter', () => clearInterval(roleTimer));
+
+  const jobPills = $('#jobPills'), jobDesc = $('#jobDesc'), transcript = $('#botTranscript');
+  if (jobPills && transcript) {
+    const ROWS = [[0, 1, 2], [3, 4], [5, 6], [7]];
+    jobPills.innerHTML = ROWS.map((row) => `<div class="jobs__row">${row.map((i) => {
+      const j = JOBS[i];
+      return `<button type="button" class="jpill" aria-pressed="${i === 0}" data-i="${i}" style="${hueVars(j.hue)}"><span class="jpill__slot">${avatar(j)}</span>${j.name}</button>`;
+    }).join('')}</div>`).join('');
+
+    const card = (c) => `<div class="bot-card"><div class="bot-card__head"><span class="bot-card__title">${c.title}</span><span class="bot-card__badge"${c.tone ? ` data-tone="${c.tone}"` : ''}>${c.badge}</span></div>`
+      + `<dl class="bot-panel">${c.rows.map(([k, v]) => `<div class="bot-panel__row"><dt>${k}</dt><dd>${v}</dd></div>`).join('')}<div class="bot-panel__body">${c.body.map((t) => `<p>${t}</p>`).join('')}</div></dl>`
+      + `<div class="bot-card__actions"><span class="bot-card__action bot-card__action--primary">${c.actions[0]}</span><span class="bot-card__action bot-card__action--secondary">${c.actions[1]}</span></div></div>`;
+    const entryHtml = (e) => {
+      let inner = '';
+      if (e.time) inner += `<div class="bot-time">${e.time}</div>`;
+      if (e.user) inner += `<div class="bot-msg bot-msg--user">${e.user}</div>`;
+      if (e.agent) inner += `<div class="bot-msg bot-msg--agent">${e.agent}</div>`;
+      if (e.sys) inner += `<div class="bot-sys"><span>${e.sys[0]}</span>${routineIco}<b>${e.sys[1]}</b></div>`;
+      if (e.card) inner += card(e.card);
+      return inner;
+    };
+    const kind = (e) => (e.user ? 'user' : e.sys ? 'sys' : 'agent');
+
+    let scrollRaf = 0;
+    const scrollToEnd = (animate) => {
+      cancelAnimationFrame(scrollRaf);
+      const end = transcript.scrollHeight - transcript.clientHeight;
+      if (!animate || reduced) { transcript.scrollTop = end; return; }
+      const from = transcript.scrollTop, t0 = performance.now(), dur = 1000;
+      const step = (now) => {
+        const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+        transcript.scrollTop = from + (end - from) * e;
+        if (p < 1) scrollRaf = requestAnimationFrame(step);
+      };
+      scrollRaf = requestAnimationFrame(step);
+    };
+
+    const renderJob = (i, animate) => {
+      const j = JOBS[i];
+      $$('.jpill', jobPills).forEach((b) => b.setAttribute('aria-pressed', String(+b.dataset.i === i)));
+      const bot = $('#bot');
+      bot.setAttribute('style', hueVars(j.hue));
+      $('#botAv').outerHTML = avatar(j).replace('class="job-av"', 'class="job-av" id="botAv"');
+      $('#botName').textContent = j.name;
+      $('#botPlaceholder').textContent = `Message ${j.name}`;
+      transcript.innerHTML = `<div class="bot__list${animate ? ' is-mounting' : ''}">${j.chat.map((e, k) => {
+        const cont = k > 0 && !e.time && kind(e) === 'agent' && kind(j.chat[k - 1]) === 'agent';
+        return `<div class="bot-entry${cont || k === 0 ? '' : ' mt'}"${animate ? '' : ' style="animation:none"'}>${entryHtml(e)}</div>`;
+      }).join('')}</div>`;
+      transcript.scrollTop = 0;
+      if (animate) requestAnimationFrame(() => scrollToEnd(true)); else scrollToEnd(false);
+      const html = `<strong>${j.title}</strong> <span>${j.desc}</span>`;
+      if (!animate) { jobDesc.innerHTML = html; return; }
+      jobDesc.classList.add('is-swapping');
+      setTimeout(() => { jobDesc.innerHTML = html; jobDesc.classList.remove('is-swapping'); }, 180);
+    };
+
+    jobPills.addEventListener('click', (e) => {
+      const b = e.target.closest('.jpill');
+      if (b && b.getAttribute('aria-pressed') !== 'true') renderJob(+b.dataset.i, true);
+    });
+    renderJob(0, false);
+    // Première apparition : le fil se monte et défile jusqu'en bas, comme au changement de pastille
+    const jobsIO = new IntersectionObserver(([en]) => {
+      if (!en.isIntersecting) return;
+      jobsIO.disconnect();
+      const cur = +$('.jpill[aria-pressed="true"]', jobPills).dataset.i;
+      setTimeout(() => renderJob(cur, true), 350);
+    }, { threshold: 0.45 });
+    jobsIO.observe($('.iphone'));
+  }
 
   /* ---------------- Video lightbox ---------------- */
   const lb = $('#lightbox'), frame = $('#lightboxFrame'), video = $('#video');
