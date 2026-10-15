@@ -31,7 +31,7 @@
       <div class="pcard__price">${p.from ? '<small>From</small>' : ''}<span class="pcard__amount" data-price="${p.price}">${eur(p.price)}</span><span class="pcard__per">/mo</span></div>
       <p class="pcard__bill">No commitment</p>
       <h3 class="pcard__inc">${p.inc}</h3>
-      <ul class="pcard__list">${p.items.map((it) => typeof it === 'string' ? `<li>${tick}${it}</li>` : `<li class="pcard__logos-row">${tick}${it.text}<span class="pcard__logos">${it.logos.map((l) => `<img src="assets/integrations/${l}.webp" alt="${l[0].toUpperCase() + l.slice(1)}" title="${l[0].toUpperCase() + l.slice(1)}" />`).join('')}</span></li>`).join('')}</ul>
+      <ul class="pcard__list">${p.items.map((it) => typeof it === 'string' ? `<li>${tick}${it}</li>` : `<li class="pcard__logos-row">${tick}${it.text}<span class="pcard__logos">${it.logos.map((l) => `<img src="assets/integrations/round/${l}.png" alt="${l[0].toUpperCase() + l.slice(1)}" title="${l[0].toUpperCase() + l.slice(1)}" />`).join('')}</span></li>`).join('')}</ul>
       <a class="btn btn--lg ${p.featured ? 'btn--dark' : 'btn--soft'} pcard__cta" href="${p.href}" target="_blank" rel="noopener">${p.cta}</a>
       <p class="pcard__note">${p.note}</p>
     </article>`).join('');

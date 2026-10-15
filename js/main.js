@@ -859,7 +859,7 @@
       <div class="plan__bill"><span></span>${p.badge ? `<span class="plan__badge">${p.badge}</span>` : ''}</div>
       <a href="https://apps.shopify.com/kanal-marketing-ai" target="_blank" rel="noopener" class="btn btn--lg ${p.dark ? 'btn--dark' : 'btn--soft'}">${p.cta}</a>
       <div class="plan__inc">${p.inc}</div>
-      <ul>${p.items.map((it) => typeof it === 'string' ? `<li>${tick}${it}</li>` : `<li class="plan__logos-row">${tick}${it.text}<span class="plan__logos">${it.logos.map((l) => `<img src="assets/integrations/${l}.webp" alt="${l[0].toUpperCase() + l.slice(1)}" title="${l[0].toUpperCase() + l.slice(1)}" />`).join('')}</span></li>`).join('')}</ul>
+      <ul>${p.items.map((it) => typeof it === 'string' ? `<li>${tick}${it}</li>` : `<li class="plan__logos-row">${tick}${it.text}<span class="plan__logos">${it.logos.map((l) => `<img src="assets/integrations/round/${l}.png" alt="${l[0].toUpperCase() + l.slice(1)}" title="${l[0].toUpperCase() + l.slice(1)}" />`).join('')}</span></li>`).join('')}</ul>
     </article>`).join('');
   $$('.plan', plansEl).forEach((el) => revealIO.observe(el));
   const renderPrice = (el, animate) => {

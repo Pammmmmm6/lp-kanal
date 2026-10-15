@@ -46,9 +46,8 @@
 .pcard__list svg { flex: none; width: 16px; height: 16px; margin-top: 3px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 .pcard__logos-row { align-items: center; }
 .pcard__logos-row svg { margin-top: 0; }
-.pcard__logos { display: inline-flex; margin-left: 4px; }
-.pcard__logos img { width: 22px; height: 22px; border-radius: 7px; box-shadow: 0 0 0 2px var(--card); object-fit: cover; }
-.pcard__logos img + img { margin-left: -4px; }
+.pcard__logos { display: inline-flex; gap: 4px; margin-left: 4px; }
+.pcard__logos img { display: block; width: 22px; height: 22px; border-radius: 50%; box-shadow: 0 0 0 1px var(--line-2); }
 .pcard__cta { margin-top: auto; width: 100%; }
 .pcard__list + .pcard__cta { margin-top: auto; }
 .pcard__list { margin-bottom: 32px; }
