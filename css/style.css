@@ -883,12 +883,15 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
 .footer__logo { display: inline-flex; color: var(--fg); }
 .footer__logo svg { width: 112px; height: 28px; }
 .footer__brand p { max-width: 240px; margin-top: 16px; font-size: 14px; line-height: 21px; color: var(--muted); }
-.footer__badges { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 24px; }
+.footer__badges { display: flex; flex-direction: column; align-items: stretch; width: fit-content; gap: 8px; margin-top: 24px; }
 .footer__badge { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px 8px 8px; border-radius: 14px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); font-size: 13px; line-height: 16px; font-weight: 500; }
 .footer__badge small { display: block; font-size: 11px; line-height: 14px; font-weight: 400; color: var(--muted); }
 .footer__badge-icon { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: #fff; box-shadow: inset 0 0 0 1px var(--line-2); }
 .footer__badge-icon img { width: 22px; height: auto; }
 .footer__badge-icon svg { width: 16px; height: 20px; }
+.footer__badge-icon img.fb-full { width: 28px; height: 28px; }
+.footer__badge-icon img.fb-rcs { width: auto; height: 16px; }
+.footer__badge-icon svg.fb-iso { width: 18px; height: 18px; fill: none; stroke: #0a0a0a; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 .footer__badge { min-width: 210px; }
 .footer__cols { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: 32px; }
 .footer__cols h4 { margin-bottom: 12px; font-size: 13px; line-height: 20px; font-weight: 400; color: var(--muted); }
