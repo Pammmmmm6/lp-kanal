@@ -412,9 +412,9 @@
     if (i === current) renderPanel(i, true);
   };
   const by = (label) => `<span class="msg__by">${label}</span>`;
-  const cardHtml = (c) => `${c.img ? `<img class="card-msg__img" src="${c.img}" alt="" loading="lazy" />` : ''}
-    <div class="card-msg__body"><p>${c.text}</p>${by(`${c.by} · Kanal`)}</div>
-    ${c.buttons ? `<div class="card-msg__btns">${c.buttons.map((b) => `<span>${b}</span>`).join('')}</div>` : ''}`;
+  const cardHtml = (c) => `${c.img ? `<div class="card-msg__media"><img class="card-msg__img" src="${c.img}" alt="" loading="lazy" /></div>` : ''}
+    <div class="card-msg__body"><span class="card-msg__tag">${c.by} · Kanal</span><p>${c.text}</p></div>
+    ${c.buttons ? `<div class="card-msg__btns">${c.buttons.map((b, k) => `<span class="pbtn ${k ? 'pbtn--light' : 'pbtn--dark'}">${b}</span>`).join('')}</div>` : ''}`;
   const storyHtml = (st) => `<span class="story"><img src="${st.img}" alt="" loading="lazy" /><small>Replied to your story</small></span>${esc(st.text)}`;
   const outHtml = (text) => `${esc(text)}${by('Sent by Kanal')}`;
   // Rend une étape du scénario (sans animation)

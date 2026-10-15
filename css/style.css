@@ -281,21 +281,23 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
 .msg--typing.is-out { align-self: flex-end; background: var(--ink); }
 .msg--typing.is-out i { background: var(--bg); }
 
-/* Messages automatisés : carte produit avec photo et boutons */
-.app__chat > *, .phone__chat > * { flex-shrink: 0; }
-.msg--card { align-self: flex-end; width: 248px; max-width: 78%; padding: 0; border-radius: 16px; overflow: hidden; background: var(--surface); box-shadow: 0 0 0 1px var(--line), 0 6px 18px -10px rgba(10,10,10,.18); }
-.card-msg__img { display: block; width: 100%; height: 116px; object-fit: cover; background: #f2f2f0; }
-.card-msg__body { padding: 9px 12px 8px; }
+/* Messages automatisés : carte produit (rayons emboîtés 16 → 11, pilules de la page) */
+.msg--card { align-self: flex-end; width: 256px; max-width: 80%; padding: 5px; border-radius: 16px; background: var(--surface); box-shadow: 0 0 0 1px var(--line), 0 8px 24px -14px rgba(10,10,10,.22); display: flex; flex-direction: column; gap: 0; }
+.card-msg__media { border-radius: 11px; overflow: hidden; background: #f3f2ef; }
+.card-msg__img { display: block; width: 100%; height: 124px; object-fit: cover; }
+.card-msg__body { padding: 9px 8px 2px; display: flex; flex-direction: column; gap: 4px; }
+.card-msg__tag { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; line-height: 14px; color: var(--muted); }
+.card-msg__tag::before { content: ""; width: 5px; height: 5px; border-radius: 9999px; background: var(--teal); }
 .card-msg__body p { font-size: 13.5px; line-height: 19px; letter-spacing: -0.12px; }
 .card-msg__body b { font-weight: 600; }
-.card-msg__body .msg__by { text-align: left; margin-top: 5px; color: var(--muted); opacity: 1; }
-.card-msg__btns { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
-.card-msg__btns span { display: flex; align-items: center; justify-content: center; gap: 6px; height: 34px; font-size: 13px; font-weight: 500; color: var(--teal); }
-.card-msg__btns span + span { border-top: 1px solid var(--line); }
+.card-msg__btns { display: flex; gap: 6px; padding: 9px 3px 3px; }
+.card-msg__btns .pbtn { flex: 1; justify-content: center; height: 30px; padding: 0 10px; font-size: 12.5px; white-space: nowrap; }
+.card-msg__btns .pbtn--light { background: var(--btn-soft); box-shadow: none; }
+[data-theme="dark"] .card-msg__media { background: #222; }
 /* Réponse à une story Instagram */
 .msg--story { display: flex; flex-direction: column; gap: 6px; }
 .story { display: flex; align-items: center; gap: 8px; }
-.story img { width: 38px; height: 58px; border-radius: 8px; object-fit: cover; }
+.story img { width: 36px; height: 54px; border-radius: 8px; object-fit: cover; box-shadow: 0 0 0 1px var(--line); }
 .story small { font-size: 11px; color: var(--sys); }
 
 /* Bouton d'ouverture du panneau */
