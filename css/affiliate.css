@@ -2,14 +2,6 @@
    Page Affiliate — contenu getkanal.com/affiliate, direction artistique Kanal
    ========================================================= */
 
-.nav__link.is-current { background: var(--tint-3); }
-
-/* ---------- Hero ---------- */
-.ah { padding: 72px 0 var(--sec-y); text-align: center; }
-.ah__eyebrow { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 9999px; background: var(--btn-light); font-size: 13px; line-height: 20px; font-weight: 500; color: var(--fg-70); }
-.ah__title { margin-top: 20px; font-size: 64px; line-height: 68px; font-weight: 500; letter-spacing: -1.2px; text-wrap: balance; }
-.ah__sub { max-width: 580px; margin: 24px auto 0; font-size: 18px; line-height: 29.25px; color: var(--muted); }
-.ah__ctas { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 .ah__partner { display: inline-flex; align-items: center; gap: 6px; height: 36px; margin-top: 20px; padding: 6px 6px 6px 12px; border-radius: 9999px; font-size: 13px; line-height: 19.5px; color: var(--muted); transition: background-color .2s; }
 .ah__partner strong { font-weight: 500; color: var(--fg); }
 .ah__partner .pill__arrow { margin-left: 4px; }
@@ -65,53 +57,6 @@
 .payout__foot { display: flex; align-items: baseline; justify-content: space-between; margin-top: 8px; padding-top: 10px; border-top: 1px solid var(--line); color: var(--muted); }
 .payout__foot strong { font-size: 17px; line-height: 22px; font-weight: 500; letter-spacing: -0.17px; color: var(--fg); font-variant-numeric: tabular-nums; }
 
-/* ---------- Comment ça marche ---------- */
-.ahow { max-width: 1080px; margin: 0 auto; }
-.ahow__head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: end; }
-.ahow__title { font-size: 28px; line-height: 36px; letter-spacing: -0.28px; }
-.ahow__title span { display: block; }
-.ahow__intro p { font-size: 16px; line-height: 26px; color: var(--muted); }
-.ahow__intro .btn { margin-top: 20px; }
-.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 40px; }
-.step { padding: 16px 16px 24px; border-radius: 24px; background: var(--card); }
-.step__art.feature__visual { min-height: 0; height: 280px; padding: 24px 20px 0; border-radius: 16px; display: flex; align-items: flex-end; justify-content: center; }
-.step__num { display: inline-flex; align-items: center; height: 24px; margin: 20px 4px 0; padding: 0 10px; border-radius: 9999px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-2); font-size: 12px; font-weight: 500; color: var(--fg-70); font-variant-numeric: tabular-nums; }
-.step h3 { margin-top: 12px; padding: 0 4px; font-size: 16px; line-height: 24px; font-weight: 500; }
-.step p { margin-top: 4px; padding: 0 4px; font-size: 15px; line-height: 24px; color: var(--muted); }
-
-/* mini-interfaces dans les cartes */
-.aui { width: 100%; padding: 16px 16px 14px; border-radius: 14px 14px 0 0; background: var(--surface); box-shadow: 0 0 0 1px rgba(10, 10, 10, .04), 0 18px 40px -20px rgba(20, 40, 80, .4); font-size: 13px; line-height: 18px; }
-.aui__head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-.aui__head strong { font-size: 14px; font-weight: 600; }
-.aui__chip { display: inline-flex; align-items: center; height: 20px; padding: 0 8px; border-radius: 9999px; background: var(--tint-2); font-size: 11px; font-weight: 500; color: var(--fg-60); }
-.aui__ok { display: inline-flex; align-items: center; gap: 5px; height: 20px; padding: 0 8px; border-radius: 9999px; background: rgba(22, 163, 74, .1); color: #15803d; font-size: 11px; font-weight: 500; }
-.aui__ok::before { content: ""; width: 5px; height: 5px; border-radius: 9999px; background: #22c55e; }
-[data-theme="dark"] .aui__ok { color: #4ade80; background: rgba(74, 222, 128, .12); }
-.aui__field { margin-top: 14px; }
-.aui__field small { font-size: 11.5px; color: var(--muted); }
-.aui__input { display: flex; align-items: center; height: 38px; margin-top: 6px; padding: 0 12px; border-radius: 10px; box-shadow: inset 0 0 0 1px var(--line-2); color: var(--fg-60); white-space: nowrap; overflow: hidden; }
-.aui__input b { font-weight: 600; color: var(--fg); }
-.aui__caret { width: 1.5px; height: 16px; margin-left: 2px; background: var(--fg); animation: caret 1s steps(1) infinite; }
-.aui__btns { display: flex; gap: 8px; margin-top: 12px; padding-bottom: 6px; }
-.aui__btn { flex: 1; display: inline-flex; align-items: center; justify-content: center; height: 32px; border-radius: 9999px; box-shadow: inset 0 0 0 1px var(--line-2); font-size: 12.5px; font-weight: 500; }
-.aui__btn--dark { background: var(--ink); color: var(--bg); box-shadow: none; }
-.aui__rows { list-style: none; margin: 10px 0 0; padding: 0; }
-.aui__rows li { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line); font-weight: 500; }
-.aui__rows li:last-child { border-bottom: 0; }
-.aui__rows em { margin-left: auto; font-style: normal; font-size: 12px; font-weight: 400; color: var(--muted); font-variant-numeric: tabular-nums; }
-.aui__ico { display: grid; place-items: center; width: 26px; height: 26px; flex: none; border-radius: 9999px; }
-.aui__ico svg { width: 16px; height: 16px; }
-.aui__ico--yt { background: #ff0033; } .aui__ico--yt svg { fill: #fff; }
-.aui__ico--in { background: #0a66c2; } .aui__ico--in svg { fill: #fff; }
-.aui__ico--nl { background: var(--tint-2); } .aui__ico--nl svg { fill: none; stroke: var(--fg-70); stroke-width: 1.2; stroke-linejoin: round; }
-.aui__rows--pay li { font-weight: 400; color: var(--fg-70); }
-.aui__rows--pay b { margin-left: auto; font-weight: 600; color: var(--fg); font-variant-numeric: tabular-nums; }
-.aui__rows--pay em { margin-left: 0; padding: 2px 10px; border-radius: 9999px; font-size: 11px; font-weight: 500; }
-.aui__rows--pay em.is-paid { color: #15803d; background: rgba(22, 163, 74, .1); }
-[data-theme="dark"] .aui__rows--pay em.is-paid { color: #4ade80; background: rgba(74, 222, 128, .12); }
-.aui__foot { display: flex; justify-content: space-between; margin-top: 4px; padding-top: 8px; border-top: 1px solid var(--line); color: var(--muted); }
-.aui__foot strong { color: var(--fg); font-weight: 600; }
-
 /* ---------- Programme partenaire ---------- */
 .partner { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; border-radius: 24px; background: var(--card); overflow: hidden; }
 .partner__text { display: flex; flex-direction: column; align-items: flex-start; padding: 48px; }
@@ -149,17 +94,11 @@
 /* ---------- Responsive ---------- */
 @media (max-width: 1000px) {
   .calc, .partner { grid-template-columns: 1fr; }
-  .ahow__head { grid-template-columns: 1fr; gap: 20px; }
-  .steps { grid-template-columns: 1fr; max-width: 520px; }
 }
 @media (max-width: 640px) {
-  .ah { padding-top: 48px; }
-  .ah__title { font-size: 40px; line-height: 44px; letter-spacing: -0.6px; }
-  .ah__sub { font-size: 16px; line-height: 26px; }
   .calc__text, .partner__text { padding: 32px 24px 24px; }
   .calc__text h2, .partner__text h2 { font-size: 26px; line-height: 32px; }
   .calc__media.feature__visual, .partner__media.feature__visual { padding: 28px 16px; }
-  .ahow__title { font-size: 24px; line-height: 31px; }
   .payout__amount { font-size: 34px; line-height: 40px; }
 }
 @media (prefers-reduced-motion: reduce) {
