@@ -109,6 +109,8 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
 .logo { display: inline-flex; align-items: center; gap: 6px; height: 26px; font-weight: 600; font-size: 19px; letter-spacing: -0.04em; }
 .logo__mark { width: 22px; height: 22px; fill: var(--fg); transition: transform .5s var(--ease); }
 .logo:hover .logo__mark { transform: rotate(-12deg) scale(1.08); }
+.logo__kanal { display: block; width: 96px; height: 24px; color: var(--fg); }
+.footer__brand .logo__kanal { width: 72px; height: 18px; }
 .nav__links { display: flex; align-items: center; gap: 4px; margin-left: 40px; flex: 1; }
 .nav__link { display: inline-flex; align-items: center; gap: 4px; height: 32px; padding: 6px 12px; border-radius: 9999px; font-size: 13px; line-height: 19.5px; font-weight: 500; color: var(--fg); transition: background-color .2s; }
 .nav__link:hover { background: var(--tint-3); }
