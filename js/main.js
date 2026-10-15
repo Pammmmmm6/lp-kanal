@@ -176,6 +176,41 @@
     }
   }
 
+  const camp = $('[data-camp]');
+  if (camp) {
+    const TOTAL = 12480, el = (k) => $(`[data-camp-${k}]`, camp);
+    const state = el('state'), bar = el('bar');
+    const paint = (p) => {
+      // p : avancement 0 → 1 de l'envoi
+      el('sent').textContent = fmt.format(Math.round(TOTAL * p));
+      bar.style.width = (p * 100).toFixed(2) + '%';
+      el('delivered').textContent = Math.round(98 * Math.min(1, p * 1.15)) + '%';
+      el('read').textContent = Math.round(91 * Math.max(0, p * 1.1 - .1)) + '%';
+      el('revenue').textContent = '€' + fmt.format(Math.round(18240 * Math.pow(p, 1.4)));
+    };
+    const done = (on) => { state.classList.toggle('is-done', on); state.textContent = on ? 'Completed' : 'Sending'; };
+    if (reduced) { paint(1); done(true); } else {
+      const tick = onScreen(camp);
+      paint(0);
+      (async () => {
+        for (;;) {
+          done(false);
+          await tick(500);
+          const t0 = performance.now(), dur = 5200;
+          for (;;) {
+            const p = Math.min(1, (performance.now() - t0) / dur);
+            paint(1 - Math.pow(1 - p, 2));
+            if (p >= 1) break;
+            await new Promise((r) => requestAnimationFrame(r));
+          }
+          done(true);
+          await tick(3200);
+          paint(0);
+        }
+      })();
+    }
+  }
+
   const chatCard = $('[data-chat]');
   if (chatCard) {
     const rows = $$('[data-chat-step]', chatCard);

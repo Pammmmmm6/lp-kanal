@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=202610152040" />
+  <link rel="stylesheet" href="css/style.css?v=202610152100" />
   <script>
     var t = null; try { t = localStorage.getItem('kanal-theme'); } catch (e) {}
     if (t) document.documentElement.setAttribute('data-theme', t);
@@ -237,6 +237,47 @@
       </div>
     </section>
 
+    <!-- ============ FEATURE : CAMPAGNES ============ -->
+    <section class="sec sec--feature sec--feature-c" id="campaigns">
+      <div class="wrap">
+        <div class="feature">
+          <div class="feature__text reveal">
+            <h2>Reach every customer.<span class="muted">Read in minutes, not days.</span></h2>
+            <p>Build segments from your Shopify data, write the message once and send your sale to thousands of customers on WhatsApp. Kanal personalises every message, paces the send and tracks revenue down to the order.</p>
+            <a class="btn btn--dark btn--lg" href="https://getkanal.com/whatsapp-campaigns" target="_blank" rel="noopener">Explore WhatsApp campaigns</a>
+          </div>
+          <div class="feature__visual feature__visual--d reveal reveal--up" style="--d:1">
+            <div class="camp" data-camp>
+              <div class="camp__head">
+                <span class="flow__icon"><svg aria-hidden="true"><use href="#logo-whatsapp" /></svg></span>
+                <span class="flow__title"><strong>Summer Sale · 30% off</strong><small>WhatsApp campaign · Fincut</small></span>
+                <span class="camp__state" data-camp-state>Sending</span>
+              </div>
+              <div class="camp__body">
+                <div class="camp__preview">
+                  <img src="assets/fincut/pack.jpg" alt="" loading="lazy" />
+                  <p>Summer Sale is on: <strong>30% off everything</strong> until Sunday. Your favourites are waiting.</p>
+                </div>
+                <div class="camp__row">
+                  <span class="camp__label">Audience</span>
+                  <span class="camp__chips"><span>Bought in 12 months</span><span>Opted in</span></span>
+                </div>
+                <div class="camp__progress">
+                  <div class="camp__row"><span class="camp__label">Sent</span><span class="camp__num"><b data-camp-sent>0</b> / 12,480</span></div>
+                  <div class="camp__bar"><i data-camp-bar></i></div>
+                </div>
+              </div>
+              <div class="camp__stats">
+                <div><small>Delivered</small><strong data-camp-delivered>0%</strong></div>
+                <div><small>Read</small><strong data-camp-read>0%</strong></div>
+                <div><small>Revenue</small><strong data-camp-revenue>€0</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ BANNIÈRE : TOUS LES CANAUX ============ -->
     <section class="sec sec--intro">
       <div class="wrap">
@@ -439,6 +480,6 @@
     <div class="lightbox__frame" id="lightboxFrame"></div>
   </dialog>
 
-  <script src="js/main.js?v=202610152040"></script>
+  <script src="js/main.js?v=202610152100"></script>
 </body>
 </html>
