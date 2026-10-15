@@ -163,6 +163,12 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
 .pill__arrow { width: 24px; height: 24px; border-radius: 9999px; background: var(--tint-3); display: grid; place-items: center; transition: transform .3s var(--ease); }
 .pill:hover .pill__arrow { transform: translate(1px, -1px); }
 .pill__arrow svg { width: 12px; height: 12px; }
+/* Mot qui défile dans le titre : le sortant part vers le bas, le suivant arrive par le haut */
+.hero__with { white-space: nowrap; }
+.rotator { position: relative; display: inline-grid; vertical-align: bottom; overflow: hidden; padding: .1em 0 .16em; margin: -.1em 0 -.16em; transition: width .45s var(--ease); }
+.rotator__word { grid-area: 1 / 1; justify-self: start; white-space: nowrap; transform: translateY(-105%); opacity: 0; transition: transform .5s var(--ease), opacity .3s var(--ease); }
+.rotator__word.is-on { transform: none; opacity: 1; }
+.rotator__word.is-out { transform: translateY(105%); opacity: 0; }
 .hero__title { margin-top: 20px; padding: 3px 0; font-size: 60px; line-height: 60px; font-weight: 500; letter-spacing: -0.6px; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; column-gap: 10px; }
 .inline-mascot { width: 62px; height: 62px; flex: none; }
 .inline-logo { display: inline-flex; flex: none; width: 50px; height: 62px; margin: 0 6px; transform: translateY(-2px); }
@@ -804,5 +810,6 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
   .reveal { opacity: 1; transform: none; filter: none; }
   .chatcard__row { grid-template-rows: 1fr; opacity: 1; }
+  .rotator__word:not(.is-on) { display: none; }
   .chatcard [data-chat-typing] { display: none; }
 }

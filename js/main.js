@@ -98,6 +98,33 @@
   }, { threshold: 0.35 });
   $$('[data-inview]').forEach((el) => viewIO.observe(el));
 
+  /* ---------------- Hero: rotating channel name ---------------- */
+  const rotator = $('[data-rotator]');
+  if (rotator && !reduced) {
+    const words = $$('.rotator__word', rotator);
+    let cur = 0;
+    const fit = () => { rotator.style.width = words[cur].offsetWidth + 'px'; };
+    fit();
+    document.fonts?.ready.then(fit);
+    window.addEventListener('resize', fit);
+    setInterval(() => {
+      if (document.hidden) return;
+      const prev = words[cur];
+      cur = (cur + 1) % words.length;
+      const next = words[cur];
+      // repart du haut sans transition, puis glisse en place
+      next.style.transition = 'none';
+      next.classList.remove('is-out');
+      next.offsetWidth;
+      next.style.transition = '';
+      prev.classList.replace('is-on', 'is-out');
+      prev.setAttribute('aria-hidden', 'true');
+      next.classList.add('is-on');
+      next.removeAttribute('aria-hidden');
+      fit();
+    }, 2000);
+  }
+
   /* ---------------- Feature loops (cart flow + AI agent chat) ---------------- */
   // Each loop only advances while its card is on screen.
   const onScreen = (el) => {
