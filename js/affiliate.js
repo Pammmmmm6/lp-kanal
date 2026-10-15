@@ -1,42 +1,46 @@
 /* =========================================================
    Page Affiliate : simulateur de commissions
+   Curseur maison piloté par pointer events (souris, tactile, stylet)
+   et clavier, pour un comportement identique sur tous les navigateurs.
    ========================================================= */
 (() => {
   const PRICE = 149;  // plan Scale, €/mois
   const RATE = 0.15;  // commission récurrente
-
-  const range = document.getElementById('refs');
-  if (!range) return;
+  const MIN = 1, MAX = 200;
 
   const $ = (id) => document.getElementById(id);
-  const out = $('refsOut'), fill = $('refsFill'), refs = $('calcRefs');
+  const slider = $('refsSlider'), thumb = $('refs');
+  if (!slider || !thumb) return;
+
+  const out = $('refsOut'), refs = $('calcRefs');
   const monthly = $('calcMonthly'), yearly = $('calcYearly');
-  const bars = [...$('calcChart').children];
-  const min = +range.min, max = +range.max;
+  const bars = Array.prototype.slice.call($('calcChart').children);
 
   const eur = (n) => n.toLocaleString('en-US', {
     minimumFractionDigits: Number.isInteger(n) ? 0 : 2,
     maximumFractionDigits: 2,
   }) + '€';
   const round2 = (n) => Math.round(n * 100) / 100;
-
   const tick = (el) => { el.classList.remove('is-ticking'); void el.offsetWidth; el.classList.add('is-ticking'); };
 
-  let last = null;
-  const render = () => {
-    const n = Math.min(max, Math.max(min, Math.round(+range.value)));
-    if (n === last) return;
-    const animate = last !== null;
-    last = n;
-    const p = (n - min) / (max - min);
-    const m = round2(n * PRICE * RATE);
+  let value = +thumb.getAttribute('aria-valuenow') || 40;
+  let shown = null;
 
-    fill.style.width = `calc(12px + (100% - 24px) * ${p})`;
-    out.textContent = n;
-    refs.textContent = n;
+  const set = (n) => {
+    value = Math.min(MAX, Math.max(MIN, Math.round(n)));
+    const p = (value - MIN) / (MAX - MIN);
+    slider.style.setProperty('--p', p);
+    if (value === shown) return;
+    const animate = shown !== null;
+    shown = value;
+
+    const m = round2(value * PRICE * RATE);
+    out.textContent = value;
+    refs.textContent = value;
     monthly.textContent = eur(m);
     yearly.textContent = eur(round2(m * 12));
-    range.setAttribute('aria-valuetext', `${n} customers, ${eur(m)} per month`);
+    thumb.setAttribute('aria-valuenow', value);
+    thumb.setAttribute('aria-valuetext', value + ' customers, ' + eur(m) + ' per month');
 
     // cumul sur 12 mois : la dernière barre va de 30 % (1 client) à 100 % (200 clients)
     const top = 30 + 70 * p;
@@ -45,16 +49,45 @@
     if (animate) tick(monthly);
   };
 
-  const set = (n) => { range.value = n; render(); };
+  // position du pointeur → valeur (le centre du rond suit le pointeur)
+  const fromX = (x) => {
+    const r = slider.getBoundingClientRect();
+    const half = thumb.offsetWidth / 2;
+    const p = (x - r.left - half) / (r.width - half * 2);
+    set(MIN + Math.min(1, Math.max(0, p)) * (MAX - MIN));
+  };
 
-  range.addEventListener('input', render);
-  range.addEventListener('change', render);
+  let dragging = false;
+  slider.addEventListener('pointerdown', (e) => {
+    if (e.button !== undefined && e.button > 0) return;
+    dragging = true;
+    slider.classList.add('is-dragging');
+    try { slider.setPointerCapture(e.pointerId); } catch (_) {}
+    fromX(e.clientX);
+    thumb.focus({ preventScroll: true });
+    e.preventDefault();
+  });
+  slider.addEventListener('pointermove', (e) => { if (dragging) fromX(e.clientX); });
+  const stop = () => { dragging = false; slider.classList.remove('is-dragging'); };
+  slider.addEventListener('pointerup', stop);
+  slider.addEventListener('pointercancel', stop);
+  slider.addEventListener('lostpointercapture', stop);
+
+  thumb.addEventListener('keydown', (e) => {
+    const steps = { ArrowRight: 1, ArrowUp: 1, ArrowLeft: -1, ArrowDown: -1, PageUp: 10, PageDown: -10 };
+    if (e.key in steps) set(value + steps[e.key]);
+    else if (e.key === 'Home') set(MIN);
+    else if (e.key === 'End') set(MAX);
+    else return;
+    e.preventDefault();
+  });
+
   document.querySelectorAll('.calc__step').forEach((btn) => {
-    btn.addEventListener('click', () => set(+range.value + +btn.dataset.step));
+    btn.addEventListener('click', () => set(value + +btn.dataset.step));
   });
   document.querySelectorAll('.calc__scale button').forEach((btn) => {
     btn.addEventListener('click', () => set(+btn.dataset.set));
   });
 
-  render();
+  set(value);
 })();

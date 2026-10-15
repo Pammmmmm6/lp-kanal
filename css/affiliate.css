@@ -29,18 +29,15 @@
 .calc__step:hover { background: var(--tint-2); color: var(--fg); }
 .calc__count { min-width: 40px; text-align: center; font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; }
 /* rail et remplissage dessinés à part : rendu identique dans tous les navigateurs */
-.calc__slider { position: relative; height: 28px; margin-top: 16px; }
+/* curseur entièrement maison (pointer events) : même comportement sur tous les navigateurs */
+.calc__slider { position: relative; height: 32px; margin-top: 14px; cursor: pointer; touch-action: none; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
 .calc__track { position: absolute; left: 0; right: 0; top: 50%; height: 6px; margin-top: -3px; border-radius: 9999px; background: var(--tint-2); overflow: hidden; pointer-events: none; }
-.calc__fill { display: block; width: calc(12px + (100% - 24px) * .196); height: 100%; border-radius: inherit; background: var(--ink); }
-.calc__range { -webkit-appearance: none; appearance: none; position: relative; display: block; width: 100%; height: 28px; margin: 0; padding: 0; background: transparent; cursor: pointer; }
-.calc__range:focus { outline: none; }
-.calc__range::-webkit-slider-runnable-track { height: 28px; background: transparent; border: 0; }
-.calc__range::-moz-range-track { height: 28px; background: transparent; border: 0; }
-.calc__range::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; margin-top: 2px; border: 0; border-radius: 9999px; background: var(--surface); box-shadow: 0 0 0 1px var(--line-2), 0 2px 8px rgba(10, 10, 10, .18); cursor: grab; transition: transform .2s var(--ease); }
-.calc__range::-moz-range-thumb { width: 24px; height: 24px; border: 0; border-radius: 9999px; background: var(--surface); box-shadow: 0 0 0 1px var(--line-2), 0 2px 8px rgba(10, 10, 10, .18); cursor: grab; }
-.calc__range:active::-webkit-slider-thumb { transform: scale(1.1); cursor: grabbing; }
-.calc__range:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 2px var(--teal), 0 2px 8px rgba(10, 10, 10, .18); }
-.calc__range:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 2px var(--teal), 0 2px 8px rgba(10, 10, 10, .18); }
+.calc__fill { display: block; width: calc(12px + (100% - 24px) * var(--p, .196)); height: 100%; border-radius: inherit; background: var(--ink); }
+.calc__thumb { position: absolute; top: 4px; left: calc((100% - 24px) * var(--p, .196)); width: 24px; height: 24px; border-radius: 9999px; background: var(--surface); box-shadow: 0 0 0 1px var(--line-2), 0 2px 8px rgba(10, 10, 10, .18); cursor: grab; transition: transform .2s var(--ease), box-shadow .2s; }
+.calc__thumb:focus { outline: none; }
+.calc__thumb:focus-visible { box-shadow: 0 0 0 2px var(--teal), 0 2px 8px rgba(10, 10, 10, .18); }
+.calc__slider.is-dragging { cursor: grabbing; }
+.calc__slider.is-dragging .calc__thumb { transform: scale(1.12); cursor: grabbing; }
 .calc__scale { display: flex; justify-content: space-between; margin-top: 6px; }
 .calc__scale button { min-width: 24px; padding: 2px 0; font-size: 12px; line-height: 16px; color: var(--muted); font-variant-numeric: tabular-nums; transition: color .15s; }
 .calc__scale button:hover { color: var(--fg); }

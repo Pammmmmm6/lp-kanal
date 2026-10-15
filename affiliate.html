@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=202610160800" />
-  <link rel="stylesheet" href="css/affiliate.css?v=202610160800" />
+  <link rel="stylesheet" href="css/style.css?v=202610160900" />
+  <link rel="stylesheet" href="css/affiliate.css?v=202610160900" />
   <script>
     var t = null; try { t = localStorage.getItem('kanal-theme'); } catch (e) {}
     if (t) document.documentElement.setAttribute('data-theme', t);
@@ -119,16 +119,16 @@
             <p>Move the slider to estimate your recurring commissions. Each customer you refer pays you 15% of their plan, every month they stay with Kanal.</p>
             <div class="calc__field">
               <div class="calc__label">
-                <label for="refs">Referred customers</label>
+                <span>Referred customers</span>
                 <div class="calc__stepper">
                   <button type="button" class="calc__step" data-step="-1" aria-label="One less customer">−</button>
-                  <output class="calc__count" id="refsOut" for="refs">40</output>
+                  <span class="calc__count" id="refsOut" aria-hidden="true">40</span>
                   <button type="button" class="calc__step" data-step="1" aria-label="One more customer">+</button>
                 </div>
               </div>
-              <div class="calc__slider">
+              <div class="calc__slider" id="refsSlider">
                 <span class="calc__track" aria-hidden="true"><span class="calc__fill" id="refsFill"></span></span>
-                <input class="calc__range" type="range" id="refs" min="1" max="200" step="1" value="40" />
+                <span class="calc__thumb" id="refs" role="slider" tabindex="0" aria-label="Referred customers" aria-valuemin="1" aria-valuemax="200" aria-valuenow="40"></span>
               </div>
               <div class="calc__scale"><button type="button" data-set="1">1</button><button type="button" data-set="50">50</button><button type="button" data-set="100">100</button><button type="button" data-set="150">150</button><button type="button" data-set="200">200</button></div>
             </div>
@@ -321,7 +321,7 @@
   </footer>
 
 
-  <script src="js/main.js?v=202610160800"></script>
-  <script src="js/affiliate.js?v=202610160800"></script>
+  <script src="js/main.js?v=202610160900"></script>
+  <script src="js/affiliate.js?v=202610160900"></script>
 </body>
 </html>
