@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=202610160700" />
-  <link rel="stylesheet" href="css/affiliate.css?v=202610160700" />
+  <link rel="stylesheet" href="css/style.css?v=202610160800" />
+  <link rel="stylesheet" href="css/affiliate.css?v=202610160800" />
   <script>
     var t = null; try { t = localStorage.getItem('kanal-theme'); } catch (e) {}
     if (t) document.documentElement.setAttribute('data-theme', t);
@@ -118,9 +118,19 @@
             <h2>See what you could earn.<span class="muted">Every month, for life.</span></h2>
             <p>Move the slider to estimate your recurring commissions. Each customer you refer pays you 15% of their plan, every month they stay with Kanal.</p>
             <div class="calc__field">
-              <label class="calc__label" for="refs">Referred customers <output class="calc__count" id="refsOut" for="refs">40</output></label>
-              <input class="calc__range" type="range" id="refs" min="1" max="200" step="1" value="40" style="--p:19.6%" />
-              <div class="calc__scale" aria-hidden="true"><span>1</span><span>50</span><span>100</span><span>150</span><span>200</span></div>
+              <div class="calc__label">
+                <label for="refs">Referred customers</label>
+                <div class="calc__stepper">
+                  <button type="button" class="calc__step" data-step="-1" aria-label="One less customer">−</button>
+                  <output class="calc__count" id="refsOut" for="refs">40</output>
+                  <button type="button" class="calc__step" data-step="1" aria-label="One more customer">+</button>
+                </div>
+              </div>
+              <div class="calc__slider">
+                <span class="calc__track" aria-hidden="true"><span class="calc__fill" id="refsFill"></span></span>
+                <input class="calc__range" type="range" id="refs" min="1" max="200" step="1" value="40" />
+              </div>
+              <div class="calc__scale"><button type="button" data-set="1">1</button><button type="button" data-set="50">50</button><button type="button" data-set="100">100</button><button type="button" data-set="150">150</button><button type="button" data-set="200">200</button></div>
             </div>
             <p class="calc__note">Based on the Scale plan at 149€ per month. Recurring for as long as they stay a customer.</p>
           </div>
@@ -128,7 +138,7 @@
             <div class="payout" aria-live="polite">
               <div class="payout__head"><strong>Your commissions</strong><span class="payout__live">Recurring</span></div>
               <div class="payout__big"><span class="payout__amount" id="calcMonthly">894€</span><small>/month</small></div>
-              <div class="payout__chart" aria-hidden="true"><i style="--h:1"></i><i style="--h:2"></i><i style="--h:3"></i><i style="--h:4"></i><i style="--h:5"></i><i style="--h:6"></i><i style="--h:7"></i><i style="--h:8"></i><i style="--h:9"></i><i style="--h:10"></i><i style="--h:11"></i><i style="--h:12"></i></div>
+              <div class="payout__chart" id="calcChart" aria-hidden="true"><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i><i style="--k:6"></i><i style="--k:7"></i><i style="--k:8"></i><i style="--k:9"></i><i style="--k:10"></i><i style="--k:11"></i><i style="--k:12"></i></div>
               <div class="payout__axis" aria-hidden="true"><span>Month 1</span><span>Month 12</span></div>
               <ul class="payout__lines">
                 <li>Referred customers<b id="calcRefs">40</b></li>
@@ -253,27 +263,15 @@
             </div>
           </div>
           <div class="partner__media feature__visual feature__visual--d">
-            <div class="book" id="book">
-              <div class="book__head">
-                <span class="book__mark"><svg aria-hidden="true"><use href="#logo-kanal-mark" /></svg></span>
-                <span class="book__title"><strong>Partnership chat</strong><small>30 min · Video call</small></span>
-              </div>
-              <div class="book__month">November 2026</div>
-              <div class="book__days" role="group" aria-label="Day">
-                <button type="button" aria-pressed="false"><small>Mon</small>16</button>
-                <button type="button" aria-pressed="true"><small>Tue</small>17</button>
-                <button type="button" aria-pressed="false"><small>Wed</small>18</button>
-                <button type="button" aria-pressed="false"><small>Thu</small>19</button>
-                <button type="button" aria-pressed="false"><small>Fri</small>20</button>
-              </div>
-              <div class="book__slots" role="group" aria-label="Time">
-                <button type="button" aria-pressed="false">10:00</button>
-                <button type="button" aria-pressed="true">11:30</button>
-                <button type="button" aria-pressed="false">14:00</button>
-                <button type="button" aria-pressed="false">16:30</button>
-              </div>
-              <a class="book__cta" href="https://app.cal.com/team/kanal/demo?utm_source=getkanal&amp;utm_medium=website&amp;utm_campaign=site-affiliate" target="_blank" rel="noopener">Pick a time</a>
-              <p class="book__fine">We'll reach out before the call.</p>
+            <div class="pdir">
+              <div class="pdir__head"><strong>Partner directory</strong><span class="pdir__chip">Kanal partners</span></div>
+              <ul class="pdir__list">
+                <li class="is-you"><span class="pdir__logo">YA</span><span class="pdir__name"><strong>Your agency</strong><small>WhatsApp marketing agency</small></span><em class="pdir__feat">Featured</em></li>
+                <li><img src="assets/integrations/round/klaviyo.png" alt="" width="32" height="32" /><span class="pdir__name"><strong>Klaviyo</strong><small>Email and SMS</small></span><em>Integration</em></li>
+                <li><img src="assets/integrations/round/gorgias.png" alt="" width="32" height="32" /><span class="pdir__name"><strong>Gorgias</strong><small>Helpdesk</small></span><em>Integration</em></li>
+                <li><img src="assets/integrations/round/recharge.png" alt="" width="32" height="32" /><span class="pdir__name"><strong>Recharge</strong><small>Subscriptions</small></span><em>Integration</em></li>
+              </ul>
+              <div class="pdir__foot"><span>Revenue share</span><strong>On qualified referrals</strong></div>
             </div>
           </div>
         </div>
@@ -323,7 +321,7 @@
   </footer>
 
 
-  <script src="js/main.js?v=202610160700"></script>
-  <script src="js/affiliate.js?v=202610160700"></script>
+  <script src="js/main.js?v=202610160800"></script>
+  <script src="js/affiliate.js?v=202610160800"></script>
 </body>
 </html>

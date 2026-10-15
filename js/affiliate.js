@@ -1,50 +1,60 @@
 /* =========================================================
-   Page Affiliate : calculateur de commissions + prise de rendez-vous
+   Page Affiliate : simulateur de commissions
    ========================================================= */
 (() => {
   const PRICE = 149;  // plan Scale, €/mois
   const RATE = 0.15;  // commission récurrente
 
+  const range = document.getElementById('refs');
+  if (!range) return;
+
+  const $ = (id) => document.getElementById(id);
+  const out = $('refsOut'), fill = $('refsFill'), refs = $('calcRefs');
+  const monthly = $('calcMonthly'), yearly = $('calcYearly');
+  const bars = [...$('calcChart').children];
+  const min = +range.min, max = +range.max;
+
   const eur = (n) => n.toLocaleString('en-US', {
     minimumFractionDigits: Number.isInteger(n) ? 0 : 2,
     maximumFractionDigits: 2,
   }) + '€';
+  const round2 = (n) => Math.round(n * 100) / 100;
 
-  const range = document.getElementById('refs');
-  if (range) {
-    const out = document.getElementById('refsOut');
-    const refs = document.getElementById('calcRefs');
-    const monthly = document.getElementById('calcMonthly');
-    const yearly = document.getElementById('calcYearly');
-    const min = +range.min, max = +range.max;
+  const tick = (el) => { el.classList.remove('is-ticking'); void el.offsetWidth; el.classList.add('is-ticking'); };
 
-    const tick = (el) => { el.classList.remove('is-ticking'); void el.offsetWidth; el.classList.add('is-ticking'); };
+  let last = null;
+  const render = () => {
+    const n = Math.min(max, Math.max(min, Math.round(+range.value)));
+    if (n === last) return;
+    const animate = last !== null;
+    last = n;
+    const p = (n - min) / (max - min);
+    const m = round2(n * PRICE * RATE);
 
-    const update = (animate) => {
-      const n = +range.value;
-      const m = Math.round(n * PRICE * RATE * 100) / 100;
-      range.style.setProperty('--p', ((n - min) / (max - min)) * 100 + '%');
-      out.textContent = n;
-      refs.textContent = n;
-      monthly.textContent = eur(m);
-      yearly.textContent = eur(Math.round(m * 12 * 100) / 100);
-      if (animate) tick(monthly);
-    };
+    fill.style.width = `calc(12px + (100% - 24px) * ${p})`;
+    out.textContent = n;
+    refs.textContent = n;
+    monthly.textContent = eur(m);
+    yearly.textContent = eur(round2(m * 12));
+    range.setAttribute('aria-valuetext', `${n} customers, ${eur(m)} per month`);
 
-    let raf = 0;
-    range.addEventListener('input', () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => update(true));
-    });
-    update(false);
-  }
+    // cumul sur 12 mois : la dernière barre va de 30 % (1 client) à 100 % (200 clients)
+    const top = 30 + 70 * p;
+    bars.forEach((b, i) => { b.style.height = (top * (i + 1)) / 12 + '%'; });
 
-  // Sélection d'un jour et d'un créneau dans la carte de rendez-vous
-  document.querySelectorAll('.book__days, .book__slots').forEach((group) => {
-    group.addEventListener('click', (e) => {
-      const btn = e.target.closest('button');
-      if (!btn) return;
-      group.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
-    });
+    if (animate) tick(monthly);
+  };
+
+  const set = (n) => { range.value = n; render(); };
+
+  range.addEventListener('input', render);
+  range.addEventListener('change', render);
+  document.querySelectorAll('.calc__step').forEach((btn) => {
+    btn.addEventListener('click', () => set(+range.value + +btn.dataset.step));
   });
+  document.querySelectorAll('.calc__scale button').forEach((btn) => {
+    btn.addEventListener('click', () => set(+btn.dataset.set));
+  });
+
+  render();
 })();
