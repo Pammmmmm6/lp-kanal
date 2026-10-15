@@ -164,119 +164,171 @@
   const money = (n) => `€${n.toFixed(2)}`;
   const initials = (n) => n.split(' ').map((w) => w[0]).join('');
 
+  // Visuels produits Fincut
+  const IMG = {
+    tee: 'assets/fincut/tee-black.jpg', poloWhite: 'assets/fincut/polo-white.jpg', poloNavy: 'assets/fincut/polo-navy.jpg',
+    vneck: 'assets/fincut/vneck-black.jpg', pack: 'assets/fincut/pack.jpg', trousers: 'assets/fincut/trousers-black.jpg', box: 'assets/fincut/giftbox.jpg',
+  };
+  const order = (o) => ({ shipping: 0, discount: 0, ...o });
+  const C = (handle, email, since, orders, spent, o) => ({ handle, email, since, orders, spent, order: order(o) });
+
+  /* Chaque conversation est une mise en situation : panier abandonné, confirmation, support, campagne… */
   const THREADS = [
-    {
-      name: 'Emma Laurent', ch: 'whatsapp', time: '10:12 AM', prev: 'Can I still switch my order to size L?',
-      customer: { handle: '+33 6 12 48 90 31', email: 'emma.laurent@mail.com', since: 'Mar 2024', orders: 4, spent: 214,
-        order: { id: '#1042', date: 'Oct 13', status: 'Unfulfilled', item: 'Tech T-shirt', variant: 'Black · M · ×1', price: 39, shipping: 0, g: 'linear-gradient(135deg,#4a4a4f,#151517)' } },
+    // ---- WhatsApp
+    { name: 'Emma Laurent', ch: 'whatsapp', lead: true, time: '10:14 AM', prev: 'Perfect, ordering now 🙌',
+      customer: C('+33 6 12 48 90 31', 'emma.laurent@mail.com', 'Mar 2024', 4, 214, { id: 'Checkout', date: 'Oct 15', status: 'Abandoned', item: 'Tech T-shirt', variant: 'Black · M · ×1', price: 39, img: IMG.tee }),
       script: [
         { time: 'Today, 10:12 AM' },
-        { in: 'Hi! I ordered the Tech T-shirt in M for my partner yesterday. Can I still switch it to an L?' },
-        { out: 'Hi Emma! Order #1042 hasn\'t shipped yet, so yes. I\'ve switched it to size L, same price.' },
-        { sys: 'Order #1042 updated in Shopify', patch: { variant: 'Black · L · ×1' } },
-        { in: 'Perfect, thank you 🙏', typing: 1100 },
-        { out: 'Anytime! It ships this afternoon and I\'ll send the tracking link right here.' },
-      ],
-    },
-    {
-      name: 'Lucas Martin', ch: 'instagram', time: '9:58 AM', prev: 'Is the white Polo back in stock?',
-      customer: { handle: '@lucas.mrtn', email: 'lucas.martin@mail.com', since: 'Jan 2025', orders: 2, spent: 129,
-        order: { id: '#0987', date: 'Sep 2', status: 'Delivered', item: 'Pack of 3 Essentials', variant: 'Black, White, Navy · L', price: 99, shipping: 0, g: 'linear-gradient(135deg,#4a5a7c,#1d2741)' } },
+        { sys: 'Abandoned cart flow · 1 hour after checkout' },
+        { card: { img: IMG.tee, text: 'Still thinking it over, Emma? Your <b>Tech T-shirt</b> in Black (M) is waiting in your cart.', buttons: ['Complete my order', 'Ask a question'], by: 'Abandoned cart' } },
+        { in: 'Is it true to size? I\'m between M and L', typing: 1100 },
+        { out: 'It\'s a slim fit, so if you like a relaxed feel, go for the L. I\'ve updated your cart and added 10% off with WELCOME10.' },
+        { sys: 'Cart updated · Size L · WELCOME10 applied', patch: { variant: 'Black · L · ×1', discount: 3.9 } },
+        { in: 'Perfect, ordering now 🙌', typing: 1000 },
+        { card: { img: IMG.tee, text: '<b>Order #1042 confirmed</b> ✅ Tech T-shirt · Black · L. We\'ll message you here as soon as it ships.', buttons: ['Track my order'], by: 'Order confirmation' }, patch: { id: '#1042', status: 'Paid' } },
+        { sys: '€35.10 attributed to Abandoned cart' },
+      ] },
+    { name: 'Noah Petit', ch: 'whatsapp', time: '9:16 AM', prev: 'Free returns within 30 days, right from this chat.',
+      customer: C('+32 470 12 34 56', 'noah.petit@mail.com', 'Oct 2026', 1, 45, { id: '#1045', date: 'Oct 14', status: 'Unfulfilled', item: 'V-neck T-shirt', variant: 'Black · M · ×1', price: 39, shipping: 6, img: IMG.vneck }),
+      script: [
+        { time: 'Today, 9:15 AM' },
+        { in: 'Hi! Do you ship to Belgium?' },
+        { out: 'We do! Delivery takes 2–4 business days, and it\'s free from €60.' },
+        { in: 'Great, and what about returns?', typing: 900 },
+        { out: 'Free returns within 30 days, right from this chat.' },
+      ] },
+    { name: 'Inès Roux', ch: 'whatsapp', time: 'Wed', prev: 'Order received, thank you! Super comfy 👌',
+      customer: C('+33 7 81 22 09 64', 'ines.roux@mail.com', 'Nov 2024', 3, 187, { id: '#1031', date: 'Oct 6', status: 'In transit', item: 'Gift box · Pack of 2', variant: 'Black, Navy · L', price: 69, img: IMG.box }),
+      script: [
+        { time: 'Mon, 9:02 AM' },
+        { card: { img: IMG.box, text: 'Good news, Inès! <b>Order #1031</b> is on its way 🚚 Estimated delivery: Wednesday.', buttons: ['Track my order'], by: 'Shipping update' } },
+        { time: 'Wed, 2:40 PM' },
+        { card: { text: 'Delivered! 📦 How do you like your order? It takes 10 seconds and helps us a lot.', buttons: ['Leave a review'], by: 'Review request' }, patch: { status: 'Delivered' } },
+        { in: 'Order received, thank you! Super comfy 👌', typing: 900 },
+      ] },
+    { name: 'Tom Mercier', ch: 'whatsapp', time: 'Yesterday', prev: 'Perfect, thanks!',
+      customer: C('+33 6 45 17 82 03', 'tom.mercier@mail.com', 'Jul 2025', 2, 168, { id: '#1036', date: 'Oct 7', status: 'Delivered', item: 'Tech T-shirt', variant: 'Black · L · ×2', price: 78, img: IMG.tee }),
+      script: [
+        { time: 'Yesterday, 6:31 PM' },
+        { in: 'Can I pay in three installments?' },
+        { out: 'Yes! You can pay in 3 or 4 installments at checkout, with no fees. Here\'s The Trousers in your size.' },
+        { card: { img: IMG.trousers, text: '<b>The Trousers</b> · Black · 42 — €89', buttons: ['Check out'], by: 'Product card' } },
+        { in: 'Perfect, thanks!', typing: 900 },
+      ] },
+    // ---- Instagram
+    { name: 'Lucas Martin', ch: 'instagram', lead: true, time: '10:02 AM', prev: 'Great choice! It ships tomorrow morning.',
+      customer: C('@lucas.mrtn', 'lucas.martin@mail.com', 'Jan 2025', 2, 129, { id: '#0987', date: 'Sep 2', status: 'Delivered', item: 'Pack of 3 Essentials', variant: 'Black, White, Navy · L', price: 99, img: IMG.pack }),
       script: [
         { time: 'Today, 9:58 AM' },
-        { in: 'Hey, is the white Polo back in stock? Saw it in your last post 👀' },
-        { out: 'It is! Back in S, M and L since this morning. Want me to save an L for you, same size as your Essentials pack?' },
+        { story: { img: IMG.poloNavy, text: 'Is the white one back in stock? 👀' } },
+        { out: 'It is! The white Polo is back in S, M and L since this morning. You took an L in your Essentials pack, want the same?' },
         { in: 'Yes please!', typing: 900 },
-        { sys: 'Checkout link sent · Polo, White, L' },
-      ],
-    },
-    {
-      name: 'Noah Petit', ch: 'whatsapp', time: '9:15 AM', prev: 'Do you ship to Belgium?',
-      customer: { handle: '+32 470 12 34 56', email: 'noah.petit@mail.com', since: 'Oct 2026', orders: 1, spent: 39,
-        order: { id: '#1045', date: 'Oct 14', status: 'Unfulfilled', item: 'V-neck T-shirt', variant: 'White · M · ×1', price: 39, shipping: 0, g: 'linear-gradient(135deg,#ffffff,#dcdad4)' } },
-    },
-    {
-      name: 'Léa Moreau', ch: 'instagram', time: 'Yesterday', prev: 'My boyfriend loved the packaging 😍',
-      customer: { handle: '@lea.moreau', email: 'lea.moreau@mail.com', since: 'Jun 2023', orders: 6, spent: 412,
-        order: { id: '#1029', date: 'Oct 5', status: 'Delivered', item: 'Smoking Swim', variant: 'Navy · M · ×1', price: 69, shipping: 0, g: 'linear-gradient(135deg,#4a5a7c,#1d2741)' } },
-    },
-    {
-      name: 'Inès Roux', ch: 'whatsapp', time: 'Mon', prev: 'Order received, thank you!',
-      customer: { handle: '+33 7 81 22 09 64', email: 'ines.roux@mail.com', since: 'Nov 2024', orders: 3, spent: 187,
-        order: { id: '#1031', date: 'Oct 6', status: 'Delivered', item: 'Socks', variant: 'Black · 3 pairs', price: 29, shipping: 0, g: 'linear-gradient(135deg,#4a4a4f,#151517)' } },
-    },
-    {
-      name: 'Tom Mercier', ch: 'whatsapp', time: 'Yesterday', prev: 'Can I pay in three installments?',
-      customer: { handle: '+33 6 45 17 82 03', email: 'tom.mercier@mail.com', since: 'Jul 2025', orders: 2, spent: 168,
-        order: { id: '#1036', date: 'Oct 7', status: 'Delivered', item: 'The Trousers', variant: 'Olive · 42 · ×1', price: 89, shipping: 0, g: 'linear-gradient(135deg,#a7aa82,#5d6440)' } },
-    },
-    {
-      name: 'Jade Fontaine', ch: 'instagram', time: '8:47 AM', prev: 'Do you have the V-neck in black? 🖤',
-      customer: { handle: '@jade.fntn', email: 'jade.fontaine@mail.com', since: 'Apr 2025', orders: 3, spent: 156,
-        order: { id: '#1039', date: 'Oct 10', status: 'In transit', item: 'Pack of 2 Mix', variant: 'Grey, Navy · M', price: 69, shipping: 0, g: 'linear-gradient(135deg,#c9cacd,#8d9096)' } },
-    },
-    {
-      name: 'Nathan Robin', ch: 'instagram', time: 'Mon', prev: 'When is the next drop?',
-      customer: { handle: '@nathanrbn', email: 'nathan.robin@mail.com', since: 'Sep 2026', orders: 1, spent: 39,
-        order: { id: '#1030', date: 'Oct 5', status: 'Delivered', item: 'Tech T-shirt', variant: 'Sand · L · ×1', price: 39, shipping: 0, g: 'linear-gradient(135deg,#e9dcc6,#c4ab86)' } },
-    },
-    {
-      name: 'Maxime Dubois', ch: 'imessage', time: '10:20 AM', prev: 'Will my order arrive before Saturday?',
-      customer: { handle: '+33 6 98 02 44 17', email: 'maxime.dubois@mail.com', since: 'Feb 2024', orders: 7, spent: 538,
-        order: { id: '#1048', date: 'Oct 14', status: 'Unfulfilled', item: 'The Trousers', variant: 'Navy · 42 · ×1', price: 89, shipping: 0, g: 'linear-gradient(135deg,#4a5a7c,#1d2741)' } },
+        { card: { img: IMG.poloWhite, text: '<b>Polo</b> · White · L — €55. Free delivery, 30-day returns.', buttons: ['Buy now'], by: 'Product card' } },
+        { in: 'Done ✅', typing: 1200 },
+        { sys: 'Order #1050 · €55.00 attributed to Instagram', patch: { id: '#1050', date: 'Oct 15', status: 'Paid', item: 'Polo', variant: 'White · L · ×1', price: 55, img: IMG.poloWhite } },
+        { out: 'Great choice! It ships tomorrow morning.' },
+      ] },
+    { name: 'Jade Fontaine', ch: 'instagram', time: '8:48 AM', prev: 'V-neck T-shirt · Black — €39',
+      customer: C('@jade.fntn', 'jade.fontaine@mail.com', 'Apr 2025', 3, 156, { id: '#1039', date: 'Oct 10', status: 'In transit', item: 'Pack of 3 Essentials', variant: 'Black, White, Navy · M', price: 99, img: IMG.pack }),
+      script: [
+        { time: 'Today, 8:47 AM' },
+        { in: 'Do you have the V-neck in black? 🖤' },
+        { out: 'Yes! From S to XXL. Most customers go for their usual size.' },
+        { card: { img: IMG.vneck, text: '<b>V-neck T-shirt</b> · Black — €39', buttons: ['Shop now'], by: 'Product card' } },
+      ] },
+    { name: 'Léa Moreau', ch: 'instagram', time: 'Yesterday', prev: 'Here\'s 15% off your next order: THANKYOU15.',
+      customer: C('@lea.moreau', 'lea.moreau@mail.com', 'Jun 2023', 6, 412, { id: '#1029', date: 'Oct 5', status: 'Delivered', item: 'Pack of 4 Signature', variant: 'Mixed colors · M', price: 129, img: IMG.pack }),
+      script: [
+        { time: 'Yesterday, 7:12 PM' },
+        { card: { img: IMG.pack, text: 'Hi Léa! How does the <b>Pack of 4 Signature</b> fit? Your feedback means a lot to us.', buttons: ['Leave a review'], by: 'Review request' } },
+        { in: 'My boyfriend loved the packaging 😍 and the tees are perfect', typing: 1000 },
+        { out: 'That makes our day! Here\'s 15% off your next order: THANKYOU15.' },
+      ] },
+    { name: 'Nathan Robin', ch: 'instagram', time: 'Mon', prev: 'Nathan added to Early access',
+      customer: C('@nathanrbn', 'nathan.robin@mail.com', 'Sep 2026', 1, 39, { id: '#1030', date: 'Oct 5', status: 'Delivered', item: 'Tech T-shirt', variant: 'Black · L · ×1', price: 39, img: IMG.tee }),
+      script: [
+        { time: 'Mon, 5:20 PM' },
+        { in: 'When is the next drop?' },
+        { out: 'Thursday at 10 AM: new colors on the Tech T-shirt. Want early access?' },
+        { in: 'Yes!', typing: 800 },
+        { sys: 'Nathan added to Early access' },
+      ] },
+    // ---- iMessage
+    { name: 'Maxime Dubois', ch: 'imessage', lead: true, time: '10:23 AM', prev: 'Your order #1048 has shipped 🚚',
+      customer: C('+33 6 98 02 44 17', 'maxime.dubois@mail.com', 'Feb 2024', 7, 538, { id: '#1048', date: 'Oct 14', status: 'Unfulfilled', item: 'The Trousers', variant: 'Black · 42 · ×1', price: 89, img: IMG.trousers }),
       script: [
         { time: 'Today, 10:20 AM' },
         { in: 'Hey! I need my trousers for a wedding on Saturday. Will they arrive in time?' },
         { out: 'Hi Maxime! I\'ve upgraded order #1048 to free express delivery. It ships today and arrives Friday before 1 PM.' },
         { sys: 'Order #1048 upgraded to express in Shopify', patch: { status: 'Express' } },
         { in: 'Amazing, thanks a lot 👍', typing: 1000 },
-        { out: 'Enjoy the wedding! The tracking link will land right here as soon as it\'s scanned.' },
-      ],
-    },
-    {
-      name: 'Zoé Lambert', ch: 'imessage', time: '9:05 AM', prev: 'Can you gift-wrap my order?',
-      customer: { handle: '+33 7 52 39 61 08', email: 'zoe.lambert@mail.com', since: 'Nov 2025', orders: 1, spent: 55,
-        order: { id: '#1046', date: 'Oct 14', status: 'Unfulfilled', item: 'Polo', variant: 'Green · L · ×1', price: 55, shipping: 0, g: 'linear-gradient(135deg,#8fae96,#3f6650)' } },
-    },
-    {
-      name: 'Arthur Girard', ch: 'imessage', time: 'Yesterday', prev: 'Thanks for the quick reply!',
-      customer: { handle: '+33 6 21 75 90 46', email: 'arthur.girard@mail.com', since: 'Jan 2024', orders: 11, spent: 864,
-        order: { id: '#1041', date: 'Oct 12', status: 'Delivered', item: 'Pack of 4 Signature', variant: 'Mixed colors · M', price: 129, shipping: 0, g: 'linear-gradient(135deg,#efe6d6,#cdb99a)' } },
-    },
-    {
-      name: 'Clara Morel', ch: 'imessage', time: 'Tue', prev: 'Do you sell gift cards?',
-      customer: { handle: '+33 6 63 48 21 95', email: 'clara.morel@mail.com', since: 'Aug 2025', orders: 2, spent: 118,
-        order: { id: '#1033', date: 'Oct 6', status: 'Delivered', item: 'Pack of 2 Polos Mix', variant: 'White, Navy · L', price: 99, shipping: 0, g: 'linear-gradient(135deg,#ffffff,#dcdad4)' } },
-    },
-    {
-      name: 'Julie Bonnet', ch: 'rcs', time: '10:34 AM', prev: 'Can I change my delivery slot?',
-      customer: { handle: '+33 6 74 30 18 52', email: 'julie.bonnet@mail.com', since: 'Jun 2025', orders: 3, spent: 207,
-        order: { id: '#1049', date: 'Oct 14', status: 'Unfulfilled', item: 'Pack of 3 Essentials', variant: 'Black · M', price: 99, shipping: 0, g: 'linear-gradient(135deg,#4a4a4f,#151517)' } },
+        { card: { img: IMG.trousers, text: '<b>Your order #1048 has shipped</b> 🚚 The Trousers · Black · 42. Arrives Friday before 1 PM.', buttons: ['Track my package'], by: 'Shipping update' }, patch: { status: 'In transit' } },
+      ] },
+    { name: 'Zoé Lambert', ch: 'imessage', time: '9:07 AM', prev: 'Gift box added to order #1046 🎁',
+      customer: C('+33 7 52 39 61 08', 'zoe.lambert@mail.com', 'Nov 2025', 1, 55, { id: '#1046', date: 'Oct 14', status: 'Unfulfilled', item: 'Polo', variant: 'Navy · L · ×1', price: 55, img: IMG.poloNavy }),
       script: [
+        { time: 'Today, 9:05 AM' },
+        { in: 'Can you gift-wrap my order? It\'s for my brother' },
+        { out: 'Of course! I\'ve added our gift box and a handwritten note to order #1046. What should the note say?' },
+        { in: '“Happy birthday Tom!” 🎂', typing: 900 },
+        { card: { img: IMG.box, text: '<b>Gift box added to order #1046</b> 🎁 Note: “Happy birthday Tom!”', by: 'Order update' }, patch: { variant: 'Navy · L · ×1 · Gift box' } },
+      ] },
+    { name: 'Arthur Girard', ch: 'imessage', time: 'Yesterday', prev: 'Thanks for the quick reply!',
+      customer: C('+33 6 21 75 90 46', 'arthur.girard@mail.com', 'Jan 2024', 11, 864, { id: '#1041', date: 'Oct 12', status: 'Delivered', item: 'Pack of 4 Signature', variant: 'Mixed colors · M', price: 129, img: IMG.pack }),
+      script: [
+        { time: 'Yesterday, 11:30 AM' },
+        { in: 'Is there a discount for loyal customers?' },
+        { out: 'You\'re one of our VIPs, Arthur. Here\'s 20% off your next order, valid for 7 days: VIP20.' },
+        { in: 'Thanks for the quick reply!', typing: 800 },
+      ] },
+    { name: 'Clara Morel', ch: 'imessage', time: 'Tue', prev: 'Fincut gift card · from €25',
+      customer: C('+33 6 63 48 21 95', 'clara.morel@mail.com', 'Aug 2025', 2, 118, { id: '#1033', date: 'Oct 6', status: 'Delivered', item: 'Polo', variant: 'White · M · ×1', price: 55, img: IMG.poloWhite }),
+      script: [
+        { time: 'Tue, 4:15 PM' },
+        { in: 'Do you sell gift cards?' },
+        { out: 'Yes, from €25 to €200, sent by email instantly.' },
+        { card: { img: IMG.box, text: '<b>Fincut gift card</b> · from €25', buttons: ['Buy a gift card'], by: 'Product card' } },
+      ] },
+    // ---- RCS
+    { name: 'Julie Bonnet', ch: 'rcs', lead: true, time: '10:36 AM', prev: 'Done! You\'ll get a reminder here the day before.',
+      customer: C('+33 6 74 30 18 52', 'julie.bonnet@mail.com', 'Jun 2025', 3, 207, { id: '#1049', date: 'Oct 14', status: 'Unfulfilled', item: 'Pack of 4 Signature', variant: 'Mixed colors · M', price: 129, img: IMG.pack }),
+      script: [
+        { time: 'Yesterday, 8:42 PM' },
+        { card: { img: IMG.pack, text: 'Thanks for your order, Julie! <b>#1049</b> · Pack of 4 Signature · M. Estimated delivery: Thursday.', buttons: ['View order', 'Change delivery'], by: 'Order confirmation' } },
         { time: 'Today, 10:34 AM' },
         { in: 'Hi, I won\'t be home Thursday. Can I change my delivery slot?' },
-        { out: 'Of course, Julie. Order #1049 can arrive Friday between 9 AM and 1 PM, or Saturday morning. Which works best?' },
-        { in: 'Friday morning is perfect', typing: 1000 },
-        { sys: 'Delivery for order #1049 moved to Friday, 9 AM–1 PM' },
-        { out: 'Done! You\'ll get a tracking update here the day before.' },
-      ],
-    },
-    {
-      name: 'Hugo Lefèvre', ch: 'rcs', time: '9:12 AM', prev: 'Is the sale still on this weekend?',
-      customer: { handle: '+33 6 11 92 47 60', email: 'hugo.lefevre@mail.com', since: 'Mar 2026', orders: 1, spent: 39,
-        order: { id: '#1035', date: 'Oct 7', status: 'Delivered', item: 'Tech T-shirt', variant: 'Grey · M · ×1', price: 39, shipping: 0, g: 'linear-gradient(135deg,#c9cacd,#8d9096)' } },
-    },
-    {
-      name: 'Emma Garcia', ch: 'rcs', time: 'Yesterday', prev: 'Got the discount code, thanks!',
-      customer: { handle: '+33 7 40 85 13 29', email: 'emma.garcia@mail.com', since: 'Oct 2024', orders: 4, spent: 296,
-        order: { id: '#1043', date: 'Oct 12', status: 'In transit', item: 'Pack of 4 Mix', variant: 'Mixed colors · L', price: 119, shipping: 0, g: 'linear-gradient(135deg,#e9dcc6,#c4ab86)' } },
-    },
-    {
-      name: 'Louis Chevalier', ch: 'rcs', time: 'Mon', prev: 'Where do I find my invoice?',
-      customer: { handle: '+33 6 58 26 74 03', email: 'louis.chevalier@mail.com', since: 'Jan 2026', orders: 2, spent: 128,
-        order: { id: '#1032', date: 'Oct 6', status: 'Delivered', item: 'V-neck T-shirt', variant: 'Navy · XL · ×2', price: 78, shipping: 0, g: 'linear-gradient(135deg,#4a5a7c,#1d2741)' } },
-    },
+        { out: 'Of course! Friday between 9 AM and 1 PM, or Saturday morning?' },
+        { in: 'Friday morning is perfect', typing: 900 },
+        { sys: 'Delivery for #1049 moved to Friday, 9 AM–1 PM' },
+        { out: 'Done! You\'ll get a reminder here the day before.' },
+      ] },
+    { name: 'Hugo Lefèvre', ch: 'rcs', time: '9:12 AM', prev: 'Yes, until Sunday midnight.',
+      customer: C('+33 6 11 92 47 60', 'hugo.lefevre@mail.com', 'Mar 2026', 1, 39, { id: '#1035', date: 'Oct 7', status: 'Delivered', item: 'Tech T-shirt', variant: 'Black · M · ×1', price: 39, img: IMG.tee }),
+      script: [
+        { time: 'Today, 9:00 AM' },
+        { card: { img: IMG.pack, text: '<b>Mid-season sale</b> 🔥 -20% on all packs until Sunday.', buttons: ['Shop the sale'], by: 'Campaign' } },
+        { in: 'Is the sale still on this weekend?', typing: 900 },
+        { out: 'Yes, until Sunday midnight. Packs start at €79 during the sale.' },
+      ] },
+    { name: 'Emma Garcia', ch: 'rcs', time: 'Yesterday', prev: 'Got the discount code, thanks!',
+      customer: C('+33 7 40 85 13 29', 'emma.garcia@mail.com', 'Oct 2024', 4, 296, { id: '#1043', date: 'Jul 12', status: 'Delivered', item: 'V-neck T-shirt', variant: 'Black · L · ×2', price: 78, img: IMG.vneck }),
+      script: [
+        { time: 'Yesterday, 12:00 PM' },
+        { card: { img: IMG.tee, text: 'We miss you, Emma! Here\'s <b>15% off</b> your next order: COMEBACK15', buttons: ['Shop now'], by: 'Win-back' } },
+        { in: 'Got the discount code, thanks!', typing: 900 },
+      ] },
+    { name: 'Louis Chevalier', ch: 'rcs', time: 'Mon', prev: 'Invoice #1032 sent',
+      customer: C('+33 6 58 26 74 03', 'louis.chevalier@mail.com', 'Jan 2026', 2, 128, { id: '#1032', date: 'Oct 6', status: 'Delivered', item: 'Polo', variant: 'Navy · XL · ×1', price: 55, img: IMG.poloNavy }),
+      script: [
+        { time: 'Mon, 3:08 PM' },
+        { in: 'Where do I find my invoice?' },
+        { out: 'Here you go, Louis: the invoice for order #1032 is attached. You\'ll also find it in your account under Orders.' },
+        { sys: 'Invoice #1032 sent' },
+      ] },
   ];
+  // Copie de l'état initial des commandes, pour rejouer chaque scénario depuis le début
+  const ORIG = THREADS.map((t) => JSON.stringify(t.customer.order));
+  const resetOrder = (i) => { THREADS[i].customer.order = JSON.parse(ORIG[i]); };
 
   const app = $('#app'), list = $('#threads'), chat = $('#chat'), composer = $('#composer');
   const panelInner = $('#panelInner');
@@ -294,9 +346,11 @@
   };
 
   /* Fiche client */
-  const statusClass = (st) => (/Unfulfilled|Return|transit|pickup|Express/.test(st) ? 'order__status--open' : 'order__status--done');
+  const statusClass = (st) => (/Unfulfilled|Abandoned|transit|Express/.test(st) ? 'order__status--open' : 'order__status--done');
   const renderPanel = (i, flash) => {
     const t = THREADS[i], c = t.customer, o = c.order;
+    const total = o.price - o.discount + o.shipping;
+    const isCart = o.id === 'Checkout';
     panelInner.innerHTML = `
       <div class="panel__bar"><span>Customer</span>
         <span class="icon-btn" aria-hidden="true"><svg viewBox="0 0 14 14"><circle cx="3.5" cy="7" r=".9" /><circle cx="7" cy="7" r=".9" /><circle cx="10.5" cy="7" r=".9" /></svg></span></div>
@@ -311,13 +365,14 @@
       </dl>
       <div class="panel__sep"></div>
       <div>
-        <div class="panel__label"><span>Latest order</span><span class="order__brand"><svg><use href="#logo-shopify" /></svg>Shopify</span></div>
-        <div class="order__head"><span class="order__id">${o.id} <small>· ${o.date}</small></span><span class="order__status ${statusClass(o.status)}">${o.status}</span></div>
-        <div class="order__item${flash ? ' is-updated' : ''}"><span class="order__thumb" style="--g:${o.g}"></span><span><strong>${o.item}</strong><small>${o.variant}</small></span><span>${money(o.price)}</span></div>
+        <div class="panel__label"><span>${isCart ? 'Open cart' : 'Latest order'}</span><span class="order__brand"><svg><use href="#logo-shopify" /></svg>Shopify</span></div>
+        <div class="order__head"><span class="order__id">${isCart ? 'Checkout' : o.id} <small>· ${o.date}</small></span><span class="order__status ${statusClass(o.status)}">${o.status}</span></div>
+        <div class="order__item${flash ? ' is-updated' : ''}"><img class="order__thumb" src="${o.img}" alt="" loading="lazy" /><span><strong>${o.item}</strong><small>${o.variant}</small></span><span>${money(o.price)}</span></div>
         <dl class="panel__list">
           <dt>Subtotal</dt><dd>${money(o.price)}</dd>
+          ${o.discount ? `<dt>Discount</dt><dd>−${money(o.discount)}</dd>` : ''}
           <dt>Shipping</dt><dd>${o.shipping ? money(o.shipping) : 'Free'}</dd>
-          <dt class="is-total">Total</dt><dd class="is-total">${money(o.price + o.shipping)}</dd>
+          <dt class="is-total">Total</dt><dd class="is-total">${money(total)}</dd>
         </dl>
       </div>
       <a href="#" class="pbtn pbtn--light panel__link">Open in Shopify <svg><use href="#ext" /></svg></a>`;
@@ -330,7 +385,7 @@
     el.className = `msg ${cls}`;
     el.innerHTML = html;
     chat.appendChild(el);
-    while (chat.children.length > 8) chat.firstElementChild.remove();
+    while (chat.children.length > 9) chat.firstElementChild.remove();
     return el;
   };
   const placeholderFor = (t) => `Reply to ${t.name.split(' ')[0]} on ${CHANNELS[t.ch]}`;
@@ -339,9 +394,9 @@
     for (let i = 1; i <= text.length; i++) {
       if (id !== runId) return false;
       composer.textContent = text.slice(0, i);
-      await wait(12 + Math.random() * 20);
+      await wait(10 + Math.random() * 18);
     }
-    await wait(250);
+    await wait(220);
     composer.textContent = placeholder;
     composer.classList.remove('is-typing');
     return true;
@@ -356,11 +411,21 @@
     Object.assign(THREADS[i].customer.order, patch);
     if (i === current) renderPanel(i, true);
   };
-  const scriptFor = (i) => THREADS[i].script || [
-    { time: /AM|PM/.test(THREADS[i].time) ? `Today, ${THREADS[i].time}` : THREADS[i].time },
-    { in: THREADS[i].prev },
-  ];
-  const outHtml = (text) => `${esc(text)}<span class="msg__by">Sent by Kanal</span>`;
+  const by = (label) => `<span class="msg__by">${label}</span>`;
+  const cardHtml = (c) => `${c.img ? `<img class="card-msg__img" src="${c.img}" alt="" loading="lazy" />` : ''}
+    <div class="card-msg__body"><p>${c.text}</p>${by(`${c.by} · Kanal`)}</div>
+    ${c.buttons ? `<div class="card-msg__btns">${c.buttons.map((b) => `<span>${b}</span>`).join('')}</div>` : ''}`;
+  const storyHtml = (st) => `<span class="story"><img src="${st.img}" alt="" loading="lazy" /><small>Replied to your story</small></span>${esc(st.text)}`;
+  const outHtml = (text) => `${esc(text)}${by('Sent by Kanal')}`;
+  // Rend une étape du scénario (sans animation)
+  const renderStep = (i, st) => {
+    if (st.time) return add(st.time, 'msg--time');
+    if (st.sys) return add(st.sys, 'msg--sys');
+    if (st.in) return add(esc(st.in), 'msg--in');
+    if (st.story) return add(storyHtml(st.story), 'msg--in msg--story');
+    if (st.card) return add(cardHtml(st.card), 'msg--card');
+    return add(outHtml(st.out), 'msg--out');
+  };
 
   const play = async (i) => {
     const id = ++runId;
@@ -371,19 +436,18 @@
     if (id !== runId) return;
     chat.innerHTML = '';
     showHeader(t);
-    for (const step of scriptFor(i)) {
+    for (const step of t.script) {
       if (id !== runId) return;
-      if (step.time) { add(step.time, 'msg--time'); continue; }
-      if (step.sys) { await wait(300); add(step.sys, 'msg--sys'); if (step.patch) applyPatch(i, step.patch); await wait(900); continue; }
-      if (step.in) {
-        if (!reduced && step.typing) { const ty = add('<i></i><i></i><i></i>', 'msg--typing'); await wait(step.typing); ty.remove(); }
-        if (id !== runId) return;
-        add(esc(step.in), 'msg--in'); await wait(900); continue;
+      if (step.time) { renderStep(i, step); continue; }
+      if ((step.in || step.story) && !reduced && step.typing) {
+        const ty = add('<i></i><i></i><i></i>', 'msg--typing'); await wait(step.typing); ty.remove();
       }
-      if (step.out) {
-        if (!reduced && !(await typeIn(step.out, id, placeholder))) return;
-        add(outHtml(step.out), 'msg--out'); await wait(1000);
-      }
+      if (step.out && !reduced && !(await typeIn(step.out, id, placeholder))) return;
+      if (step.sys || step.card) await wait(350);
+      if (id !== runId) return;
+      renderStep(i, step);
+      if (step.patch) applyPatch(i, step.patch);
+      await wait(step.card ? 1500 : step.sys ? 900 : 1000);
     }
     await wait(4500);
     if (id === runId && autoplay) selectChannel(CH_ORDER[(CH_ORDER.indexOf(channel) + 1) % CH_ORDER.length]);
@@ -392,11 +456,12 @@
   const select = (i) => {
     current = i;
     $$('.thread', list).forEach((el) => el.classList.toggle('is-active', +el.dataset.i === i));
+    resetOrder(i);
     renderPanel(i);
     play(i);
   };
   list.addEventListener('click', (e) => { const li = e.target.closest('.thread'); if (li) { autoplay = false; select(+li.dataset.i); } });
-  list.addEventListener('keydown', (e) => { if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('thread')) { e.preventDefault(); select(+e.target.dataset.i); } });
+  list.addEventListener('keydown', (e) => { if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('thread')) { e.preventDefault(); autoplay = false; select(+e.target.dataset.i); } });
 
   /* Recherche */
   $('#threadSearch').addEventListener('input', (e) => {
@@ -412,7 +477,7 @@
     glider.style.width = `${on.offsetWidth}px`;
     glider.style.transform = `translateX(${on.offsetLeft}px)`;
   };
-  const firstOf = (ch) => THREADS.findIndex((t) => t.ch === ch && t.script);
+  const firstOf = (ch) => THREADS.findIndex((t) => t.ch === ch && t.lead);
   function selectChannel(ch) {
     channel = ch;
     $$('.ctab', tabs).forEach((b) => b.setAttribute('aria-selected', String(b.dataset.ch === ch)));
@@ -435,22 +500,15 @@
   window.addEventListener('resize', moveGlider);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(moveGlider);
 
-  // État complet dès le chargement (WhatsApp), puis lecture quand la fenêtre est visible
+  // État complet dès le chargement : le scénario WhatsApp est affiché terminé, fiche à jour
   (() => {
     renderList('whatsapp');
     current = 0;
     $$('.thread', list).forEach((el) => el.classList.toggle('is-active', el.dataset.i === '0'));
     showHeader(THREADS[0]);
-    THREADS[0].script.forEach((st) => {
-      if (st.time) add(st.time, 'msg--time');
-      else if (st.sys) add(st.sys, 'msg--sys');
-      else if (st.in) add(esc(st.in), 'msg--in');
-      else add(outHtml(st.out), 'msg--out');
-    });
-    // La conversation affichée est déjà terminée : la fiche montre la taille modifiée
-    THREADS[0].customer.order.variant = 'Black · L · ×1';
+    THREADS[0].script.forEach((st) => { renderStep(0, st); if (st.patch) Object.assign(THREADS[0].customer.order, st.patch); });
     renderPanel(0);
-    THREADS[0].customer.order.variant = 'Black · M · ×1';
+    resetOrder(0);
     $$('.msg', chat).forEach((m) => { m.style.animation = 'none'; });
     moveGlider();
   })();
