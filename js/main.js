@@ -29,7 +29,15 @@
     });
     if (item.classList.contains('has-menu')) {
       let t;
-      item.addEventListener('mouseenter', () => { if (matchMedia('(hover: hover)').matches) { clearTimeout(t); closeMenus(item); item.classList.add('is-open'); trigger.setAttribute('aria-expanded', 'true'); } });
+      item.addEventListener('mouseenter', () => {
+        if (!matchMedia('(hover: hover)').matches) return;
+        clearTimeout(t);
+        // Passage d'un méga-menu à l'autre : échange instantané, sans fondu croisé
+        const swap = item.classList.contains('has-mega') && !item.classList.contains('is-open') && $('.has-mega.is-open');
+        if (swap) nav.classList.add('is-swap');
+        closeMenus(item); item.classList.add('is-open'); trigger.setAttribute('aria-expanded', 'true');
+        if (swap) requestAnimationFrame(() => requestAnimationFrame(() => nav.classList.remove('is-swap')));
+      });
       item.addEventListener('mouseleave', () => { if (matchMedia('(hover: hover)').matches) { t = setTimeout(() => { item.classList.remove('is-open'); trigger.setAttribute('aria-expanded', 'false'); }, 120); } });
     }
   });
