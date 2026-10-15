@@ -687,7 +687,6 @@
     truck: '<path d="M1.5 4h7.5v6.5H1.5zM9 6.5h3l2 2.2v1.8H9" /><circle cx="4.5" cy="12" r="1.2" /><circle cx="11.5" cy="12" r="1.2" />',
     megaphone: '<path d="M2.5 6.5v3h2l5.5 3v-9l-5.5 3zM12.5 6a2.5 2.5 0 0 1 0 4" />',
     spark: '<path d="M8 2v3M8 11v3M2 8h3M11 8h3M4 4l1.8 1.8M10.2 10.2 12 12M4 12l1.8-1.8M10.2 5.8 12 4" />',
-    bell: '<path d="M4 11V7.5a4 4 0 0 1 8 0V11l1 1.5H3zM6.5 13.5a1.5 1.5 0 0 0 3 0" />',
     bag: '<path d="M3.5 5.5h9l-.7 8h-7.6zM6 5.5v-1a2 2 0 0 1 4 0v1M8 8v3.5M6.3 9.8h3.4" />',
     star: '<path d="m8 2.2 1.8 3.7 4 .6-2.9 2.8.7 4L8 11.4l-3.6 1.9.7-4-2.9-2.8 4-.6z" />',
     loop: '<path d="M13 8a5 5 0 1 1-1.5-3.6M13 2.5v3h-3" />',
@@ -736,15 +735,6 @@
         { user: 'send a replacement, free shipping' },
         { agent: 'done. replacement order #1063 is in Shopify and Julie has her tracking link.' },
       ] },
-    { name: 'Back in Stock', hue: 'red', icon: 'bell', title: 'Turn sold out into sold.', desc: 'Collects waitlist sign-ups and messages each customer the moment their size is back, with a one-tap checkout link.',
-      chat: [
-        { time: 'Thursday 3:10 PM', user: 'when sizes come back, message the waitlist before anyone else.' },
-        { sys: ['Created automation', 'Back in stock alerts'] },
-        { time: 'Monday 9:00 AM', agent: '<strong>Polo · White, L</strong> is back. 64 customers are waiting for it.' },
-        { card: { title: 'Restock alert', badge: 'Ready to send', rows: [['Product', 'Polo · White, L'], ['Waitlist', '64 customers']], body: ['It\'s back! The white Polo in L is in stock again.', 'We saved one for you for 24 hours. Tap to check out.'], actions: ['Send to 64', 'Discard'] } },
-        { user: 'send it' },
-        { agent: 'sent. 18 orders in the first hour.' },
-      ] },
     { name: 'Post-purchase Upsell', hue: 'blue', icon: 'bag', title: 'Grow every order after checkout.', desc: 'Suggests the add-on that pairs with what the customer just bought, and adds it to the same shipment when possible.',
       chat: [
         { time: 'Monday 2:30 PM', user: 'after each order, suggest something that goes with it.' },
@@ -777,7 +767,7 @@
 
   const jobPills = $('#jobPills'), jobDesc = $('#jobDesc'), transcript = $('#botTranscript');
   if (jobPills && transcript) {
-    const ROWS = [[0, 1, 2], [3, 4], [5, 6], [7]];
+    const ROWS = [[0, 1, 2], [3, 4], [5, 6]];
     jobPills.innerHTML = ROWS.map((row) => `<div class="jobs__row">${row.map((i) => {
       const j = JOBS[i];
       return `<button type="button" class="jpill" aria-pressed="${i === 0}" data-i="${i}" style="${hueVars(j.hue)}"><span class="jpill__slot">${avatar(j)}</span>${j.name}</button>`;
