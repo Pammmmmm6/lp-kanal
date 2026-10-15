@@ -104,15 +104,38 @@
     list.innerHTML = ASKS.map((a, i) => `<button type="button" class="ask-tab" role="tab" id="ask-${i}" aria-controls="askPanel" aria-selected="${i === 0}"><span class="ask-tab__num">${String(i + 1).padStart(2, '0')}</span>${esc(a.title)}<span class="ask-tab__bar" aria-hidden="true"><i></i></span></button>`).join('');
     const tabsEls = $$('.ask-tab', list);
     let cur = 0, timer = 0, auto = !reduced, inView = false;
-    const DUR = 7000;
+    const DUR = 8500;
     box.style.setProperty('--dur', DUR / 1000 + 's');
 
-    const render = () => {
+    // le panneau se joue comme une vraie conversation : questions une à une,
+    // points de saisie, puis ce que l'assistant fait dans Kanal
+    let play = 0;
+    const head = () => `<img src="${ai.logo}" alt="" /><strong>${esc(ai.name)}</strong><span>Kanal MCP</span>`;
+    const render = async () => {
+      const id = ++play;
       const a = ASKS[cur];
       panel.setAttribute('aria-labelledby', 'ask-' + cur);
-      panel.innerHTML = `<div class="achat__head"><img src="${ai.logo}" alt="" /><strong>${esc(ai.name)}</strong><span>Kanal MCP</span></div>
-        <div class="achat__body">${a.q.map((q) => `<p class="achat__q">${esc(q)}</p>`).join('')}
-          <div class="achat__a"><strong><svg aria-hidden="true"><use href="#logo-kanal-mark" /></svg>In Kanal</strong>${esc(a.desc)}</div></div>`;
+      panel.innerHTML = `<div class="achat__head">${head()}</div>
+        <div class="achat__body">${a.q.map((q) => `<p class="achat__q" data-seq>${esc(q)}</p>`).join('')}
+          <div class="achat__dots" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="achat__a" data-seq><strong><svg aria-hidden="true"><use href="#logo-kanal-mark" /></svg>In Kanal</strong>${esc(a.desc)}</div></div>`;
+      const items = $$('[data-seq]', panel), dots = $('.achat__dots', panel);
+      if (reduced) { items.forEach((el) => el.classList.add('is-in')); dots.remove(); return; }
+      for (const [k, el] of items.entries()) {
+        const isAnswer = k === items.length - 1;
+        if (isAnswer) {
+          await wait(450);
+          if (id !== play) return;
+          dots.classList.add('is-in');
+          await wait(1100);
+          if (id !== play) return;
+          dots.remove();
+        } else {
+          await wait(k === 0 ? 250 : 650);
+          if (id !== play) return;
+        }
+        el.classList.add('is-in');
+      }
     };
     const select = (i) => {
       cur = (i + ASKS.length) % ASKS.length;
@@ -147,7 +170,7 @@
       tabsEls[cur].focus();
       schedule();
     });
-    onAi.push(render);
+    onAi.push(() => { const h = $('.achat__head', panel); if (h) h.innerHTML = head(); });
 
     new IntersectionObserver((entries) => {
       entries.forEach((en) => {

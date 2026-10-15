@@ -91,11 +91,16 @@
 .achat__head span { margin-left: auto; display: inline-flex; align-items: center; height: 20px; padding: 0 8px; border-radius: 9999px; background: var(--tint-2); font-size: 11px; font-weight: 500; color: var(--fg-60); }
 .achat__body { display: flex; flex-direction: column; gap: 8px; min-height: 360px; padding: 14px 12px 12px; border-radius: 15px; background: var(--card); box-shadow: inset 0 0 0 1px var(--line); }
 .achat__q { align-self: flex-end; max-width: 88%; padding: 8px 12px; border-radius: 16px; border-bottom-right-radius: 5px; background: var(--ink); color: var(--bg); font-size: 13.5px; line-height: 20px; text-wrap: pretty; }
-.achat__a { margin-top: auto; padding: 12px; border-radius: 14px; background: var(--surface); box-shadow: 0 0 0 1px var(--line); font-size: 13.5px; line-height: 20px; color: var(--fg-70); text-wrap: pretty; }
+.achat__a { margin-top: 4px; padding: 12px; border-radius: 14px; background: var(--surface); box-shadow: 0 0 0 1px var(--line); font-size: 13.5px; line-height: 20px; color: var(--fg-70); text-wrap: pretty; }
 .achat__a strong { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 13px; font-weight: 600; color: var(--fg); }
 .achat__a strong svg { width: 18px; height: 18px; border-radius: 5px; }
-.achat__body > * { animation: msgIn .5s var(--ease) both; }
-.achat__body > :nth-child(2) { animation-delay: .12s; } .achat__body > :nth-child(3) { animation-delay: .24s; } .achat__body > :nth-child(4) { animation-delay: .36s; }
+[data-seq] { opacity: 0; transform: translateY(10px) scale(.98); filter: blur(4px); transition: opacity .5s var(--ease), transform .5s var(--ease), filter .5s var(--ease); }
+.achat__q[data-seq] { transform-origin: right bottom; }
+[data-seq].is-in { opacity: 1; transform: none; filter: none; }
+.achat__dots { display: none; align-self: flex-start; gap: 4px; margin-top: 4px; padding: 12px 14px; border-radius: 14px; background: var(--surface); box-shadow: 0 0 0 1px var(--line); }
+.achat__dots.is-in { display: flex; animation: msgIn .4s var(--ease) both; }
+.achat__dots i { width: 6px; height: 6px; border-radius: 50%; background: var(--fg-40); animation: typing 1.1s infinite; }
+.achat__dots i:nth-child(2) { animation-delay: .15s; } .achat__dots i:nth-child(3) { animation-delay: .3s; }
 [data-theme="dark"] .achat__head img[src*="openai"], [data-theme="dark"] .achat__head img[src*="cursor"] { filter: invert(1); }
 
 /* ---------- Étapes : compléments des mini-interfaces ---------- */
