@@ -140,12 +140,12 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
 /* Méga-menus façon Gleap : grands liens à gauche, carte peinte à droite */
 .nav__inner { position: relative; }
 .nav__item.has-mega { position: static; }
-.mega { position: absolute; left: 24px; right: 24px; top: calc(100% + 6px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; padding: 8px; border-radius: 24px; background: var(--surface); box-shadow: 0 0 0 1px var(--line), 0 24px 60px -24px rgba(10, 10, 10, .28);
+.mega { position: absolute; left: 24px; right: 24px; top: calc(100% + 1px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; padding: 8px; border-radius: 24px; background: var(--surface); box-shadow: 0 0 0 1px var(--line), 0 24px 60px -24px rgba(10, 10, 10, .28);
   transform-origin: 50% 0; opacity: 0; visibility: hidden; transform: translateY(-8px) scale(.985);
   transition: opacity .22s ease, transform .4s var(--ease), visibility 0s linear .22s; }
 .nav.is-swap .mega { transition: none !important; }
 .is-open > .mega { opacity: 1; visibility: visible; transform: none; transition: opacity .22s ease, transform .4s var(--ease), visibility 0s; }
-.mega::before { content: ""; position: absolute; left: 0; right: 0; top: -22px; height: 22px; } /* pont de survol entre le lien et le panneau */
+.mega::before { content: ""; position: absolute; left: 0; right: 0; top: -18px; height: 18px; } /* pont de survol entre le lien et le panneau */
 .mega__main { display: flex; flex-direction: column; justify-content: space-between; gap: 40px; padding: 24px 16px 20px 28px; }
 .mega__big { display: flex; flex-direction: column; align-items: flex-start; }
 .mega__big a { font-size: 26px; line-height: 38px; font-weight: 400; letter-spacing: -0.4px; color: var(--fg); transition: opacity .15s; }
