@@ -493,6 +493,7 @@
   const ORIG = THREADS.map((t) => JSON.stringify(t.customer.order));
   const resetOrder = (i) => { THREADS[i].customer.order = JSON.parse(ORIG[i]); };
 
+  if ($('#app')) {
   const app = $('#app'), list = $('#threads'), chat = $('#chat'), composer = $('#composer');
   const panelInner = $('#panelInner');
   let runId = 0, current = 0;
@@ -677,6 +678,7 @@
   })();
   const appIO = new IntersectionObserver((en) => { if (en[0].isIntersecting) { appIO.disconnect(); setTimeout(() => { if (autoplay) selectChannel('instagram'); }, 5000); } }, { threshold: 0.3 });
   appIO.observe(app);
+  }
 
   /* ---------------- Jobs: pills + phone (one Kanal agent per use case) ---------------- */
   // Palettes 100 / 300 / 350 / 400 / 550 par famille de couleur
@@ -811,6 +813,7 @@
   }
 
   /* ---------------- Video lightbox ---------------- */
+  if ($('#video')) {
   const lb = $('#lightbox'), frame = $('#lightboxFrame'), video = $('#video');
   // Aperçu muet en boucle : se lance quand la carte est à l'écran, se met en pause sinon
   const preview = $('#videoPreview');
@@ -831,8 +834,10 @@
   $('.lightbox__close').addEventListener('click', closeLb);
   lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
   lb.addEventListener('close', () => { frame.innerHTML = ''; syncPreview(); });
+  }
 
   /* ---------------- Pricing ---------------- */
+  if ($('#plans')) {
   const PLANS = [
     { name: 'Pro', price: 89, cta: 'Choose Pro', dark: false,
       inc: 'What you get:', items: ['1 user', 'Widget chat & inbox', 'Abandoned cart recovery', 'WhatsApp campaigns'] },
@@ -873,6 +878,7 @@
       renderPrice(el, true);
     });
   });
+  }
   /* ---------------- FAQ: smooth accordion, one open at a time ---------------- */
   const items = $$('.faq details');
   items.forEach((d) => {
@@ -899,7 +905,7 @@
   });
 
   /* ---------------- Theme toggle ---------------- */
-  $('#themeToggle').addEventListener('click', () => {
+  $('#themeToggle')?.addEventListener('click', () => {
     const root = document.documentElement;
     const isDark = root.getAttribute('data-theme') === 'dark' ||
       (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
