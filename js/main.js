@@ -842,7 +842,7 @@
     { name: 'Pro', price: 89, cta: 'Choose Pro', dark: false,
       inc: 'What you get:', items: ['1 user', 'Widget chat & inbox', 'Abandoned cart recovery', 'WhatsApp campaigns'] },
     { name: 'Scale', price: 149, badge: 'Most popular', cta: 'Choose Scale', dark: true, featured: true,
-      inc: 'Everything in Pro, plus:', items: ['5 users', 'Segments', 'Unlimited automations', 'Advanced automations: A/B tests, Shopify conditions, discount codes, API', 'AI agent', 'Kanal MCP', 'Klaviyo, Recharge, Crisp & Gorgias integrations', 'Multi-market, +50€/mo per market'] },
+      inc: 'Everything in Pro, plus:', items: ['5 users', 'Segments', 'Unlimited automations', 'Advanced automations: A/B tests, Shopify conditions, discount codes, API', 'AI agent', 'Kanal MCP', { text: 'Integrations', logos: ['klaviyo', 'gorgias', 'recharge', 'crisp', 'loyoly'] }, 'Multi-market, +50€/mo per market'] },
     { name: 'Business', price: 350, cta: 'Choose Business', dark: false,
       inc: 'Everything in Scale, plus:', items: ['Unlimited users', 'Flow setup by our experts', 'Continuous optimization', 'Campaigns on demand', 'Dedicated account manager'] },
   ];
@@ -859,7 +859,7 @@
       <div class="plan__bill"><span></span>${p.badge ? `<span class="plan__badge">${p.badge}</span>` : ''}</div>
       <a href="https://apps.shopify.com/kanal-marketing-ai" target="_blank" rel="noopener" class="btn btn--lg ${p.dark ? 'btn--dark' : 'btn--soft'}">${p.cta}</a>
       <div class="plan__inc">${p.inc}</div>
-      <ul>${p.items.map((it) => `<li>${tick}${it}</li>`).join('')}</ul>
+      <ul>${p.items.map((it) => typeof it === 'string' ? `<li>${tick}${it}</li>` : `<li class="plan__logos-row">${tick}${it.text}<span class="plan__logos">${it.logos.map((l) => `<img src="assets/integrations/${l}.webp" alt="${l[0].toUpperCase() + l.slice(1)}" title="${l[0].toUpperCase() + l.slice(1)}" />`).join('')}</span></li>`).join('')}</ul>
     </article>`).join('');
   $$('.plan', plansEl).forEach((el) => revealIO.observe(el));
   const renderPrice = (el, animate) => {
