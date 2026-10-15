@@ -33,6 +33,27 @@
       item.addEventListener('mouseleave', () => { if (matchMedia('(hover: hover)').matches) { t = setTimeout(() => { item.classList.remove('is-open'); trigger.setAttribute('aria-expanded', 'false'); }, 120); } });
     }
   });
+  // Surlignage qui glisse d'un lien à l'autre dans les menus déroulants
+  $$('.menu').forEach((menu) => {
+    const hl = document.createElement('span');
+    hl.className = 'menu__hl';
+    menu.prepend(hl);
+    let shown = false;
+    const moveTo = (a) => {
+      if (!shown) { hl.classList.add('is-instant'); void hl.offsetWidth; }
+      hl.style.width = `${a.offsetWidth}px`;
+      hl.style.height = `${a.offsetHeight}px`;
+      hl.style.transform = `translate(${a.offsetLeft}px, ${a.offsetTop}px)`;
+      if (!shown) { void hl.offsetWidth; hl.classList.remove('is-instant'); }
+      hl.style.opacity = '1';
+      shown = true;
+    };
+    const hide = () => { hl.style.opacity = '0'; shown = false; };
+    menu.addEventListener('mouseover', (e) => { const a = e.target.closest('a'); if (a && menu.contains(a)) moveTo(a); });
+    menu.addEventListener('mouseleave', hide);
+    menu.addEventListener('focusin', (e) => { if (e.target.matches('a')) moveTo(e.target); });
+    menu.addEventListener('focusout', (e) => { if (!menu.contains(e.relatedTarget)) hide(); });
+  });
   document.addEventListener('click', () => closeMenus());
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenus(); });
 
