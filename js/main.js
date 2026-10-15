@@ -157,7 +157,7 @@
   }
 
   /* ---------------- Hero : inbox multicanal + fiche client ---------------- */
-  const CHANNELS = { whatsapp: 'WhatsApp', instagram: 'Instagram', messenger: 'Messenger', imessage: 'iMessage', rcs: 'RCS' };
+  const CHANNELS = { whatsapp: 'WhatsApp', instagram: 'Instagram', imessage: 'iMessage', rcs: 'RCS' };
   const CH_ORDER = Object.keys(CHANNELS);
   const logo = (ch) => `<svg viewBox="0 0 32 32"><use href="#logo-${ch}" /></svg>`;
   const esc = (t) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
@@ -190,28 +190,12 @@
         { sys: 'Checkout link sent · Linen Shirt, Sand, L' },
       ],
     },
-    {
-      name: 'Hugo Garnier', ch: 'messenger', time: '9:40 AM', prev: 'The sneakers are too small, can I return them?',
-      customer: { handle: 'Hugo Garnier', email: 'hugo.garnier@mail.com', since: 'Aug 2026', orders: 1, spent: 120,
-        order: { id: '#1037', date: 'Oct 8', status: 'Delivered', item: 'Canvas Low Sneakers', variant: 'Off-white · 43 · ×1', price: 115, shipping: 5, g: 'linear-gradient(135deg,#f1ede4,#cfc6b4)' } },
-      script: [
-        { time: 'Today, 9:40 AM' },
-        { in: 'Hello, the sneakers are a bit small. Can I send them back?' },
-        { out: 'Of course, Hugo. You\'re within the 30-day window, so the return is free. Here\'s your prepaid label.' },
-        { sys: 'Return created for order #1037', patch: { status: 'Return requested' } },
-        { in: 'Great, and can I get a 44 instead?', typing: 1200 },
-        { out: 'Done: a size 44 is reserved and ships as soon as the carrier scans your return.' },
-      ],
-    },
     { name: 'Noah Petit', ch: 'whatsapp', time: '9:15 AM', prev: 'Do you ship to Belgium?',
       customer: { handle: '+32 470 12 34 56', email: 'noah.petit@mail.com', since: 'Oct 2026', orders: 1, spent: 64,
         order: { id: '#1045', date: 'Oct 14', status: 'Unfulfilled', item: 'Cotton Tote Bag', variant: 'Natural · ×2', price: 58, shipping: 6, g: 'linear-gradient(135deg,#efe6d2,#d2bf95)' } } },
     { name: 'Léa Moreau', ch: 'instagram', time: 'Yesterday', prev: 'Loved the packaging 😍',
       customer: { handle: '@lea.moreau', email: 'lea.moreau@mail.com', since: 'Jun 2023', orders: 9, spent: 1186,
         order: { id: '#1029', date: 'Oct 5', status: 'Delivered', item: 'Wool Wrap Coat', variant: 'Camel · S · ×1', price: 240, shipping: 0, g: 'linear-gradient(135deg,#e2c49c,#a9774a)' } } },
-    { name: 'Chloé Bernard', ch: 'messenger', time: 'Yesterday', prev: 'Thanks, the tracking link works!',
-      customer: { handle: 'Chloé Bernard', email: 'chloe.b@mail.com', since: 'Feb 2025', orders: 3, spent: 267,
-        order: { id: '#1040', date: 'Oct 11', status: 'In transit', item: 'Silk Scarf', variant: 'Terracotta · ×1', price: 69, shipping: 5, g: 'linear-gradient(135deg,#f0b597,#c0603e)' } } },
     { name: 'Inès Roux', ch: 'whatsapp', time: 'Mon', prev: 'Order received, thank you!',
       customer: { handle: '+33 7 81 22 09 64', email: 'ines.roux@mail.com', since: 'Nov 2024', orders: 5, spent: 538,
         order: { id: '#1031', date: 'Oct 6', status: 'Delivered', item: 'Leather Card Holder', variant: 'Cognac · ×1', price: 45, shipping: 5, g: 'linear-gradient(135deg,#d9a57a,#8c5532)' } } },
@@ -224,12 +208,6 @@
     { name: 'Nathan Robin', ch: 'instagram', time: 'Mon', prev: 'When is the next drop?',
       customer: { handle: '@nathanrbn', email: 'nathan.robin@mail.com', since: 'Sep 2026', orders: 1, spent: 72,
         order: { id: '#1030', date: 'Oct 5', status: 'Delivered', item: 'Heavyweight Tee', variant: 'Black · L · ×2', price: 68, shipping: 4, g: 'linear-gradient(135deg,#5a5a5f,#1f1f22)' } } },
-    { name: 'Sacha Leroy', ch: 'messenger', time: '8:30 AM', prev: 'Is there a store in Lille?',
-      customer: { handle: 'Sacha Leroy', email: 'sacha.leroy@mail.com', since: 'May 2024', orders: 6, spent: 731,
-        order: { id: '#1044', date: 'Oct 13', status: 'Unfulfilled', item: 'Linen Trousers', variant: 'Stone · 32 · ×1', price: 95, shipping: 5, g: 'linear-gradient(135deg,#e1d8c6,#b1a184)' } } },
-    { name: 'Manon Faure', ch: 'messenger', time: 'Sun', prev: 'My promo code isn\'t working',
-      customer: { handle: 'Manon Faure', email: 'manon.faure@mail.com', since: 'Dec 2024', orders: 2, spent: 133,
-        order: { id: '#1026', date: 'Oct 2', status: 'Delivered', item: 'Canvas Weekender', variant: 'Navy · ×1', price: 129, shipping: 4, g: 'linear-gradient(135deg,#8d9ab8,#2e3a5c)' } } },
     {
       name: 'Maxime Dubois', ch: 'imessage', time: '10:20 AM', prev: 'Is my order ready for pickup?',
       customer: { handle: '+33 6 98 02 44 17', email: 'maxime.dubois@mail.com', since: 'Feb 2024', orders: 7, spent: 645,
