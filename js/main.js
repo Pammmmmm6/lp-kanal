@@ -838,17 +838,25 @@
 
   /* ---------------- Video lightbox ---------------- */
   const lb = $('#lightbox'), frame = $('#lightboxFrame'), video = $('#video');
+  // Aperçu muet en boucle : se lance quand la carte est à l'écran, se met en pause sinon
+  const preview = $('#videoPreview');
+  let previewOn = false;
+  const syncPreview = () => { if (!preview) return; if (previewOn && !lb.open) preview.play().catch(() => {}); else preview.pause(); };
+  if (preview && !reduced) {
+    new IntersectionObserver(([en]) => { previewOn = en.isIntersecting; syncPreview(); }, { threshold: 0.25 }).observe(video);
+  }
   video.addEventListener('click', () => {
+    preview?.pause();
     const src = video.dataset.src;
     frame.innerHTML = `<video src="${src}" controls autoplay playsinline></video>`;
     const v = frame.querySelector('video');
     v.addEventListener('error', () => { frame.innerHTML = '<p>This video can\'t be played in this browser.</p>'; });
     if (typeof lb.showModal === 'function') lb.showModal(); else lb.setAttribute('open', '');
   });
-  const closeLb = () => { lb.close?.(); lb.removeAttribute('open'); frame.innerHTML = ''; };
+  const closeLb = () => { lb.close?.(); lb.removeAttribute('open'); frame.innerHTML = ''; syncPreview(); };
   $('.lightbox__close').addEventListener('click', closeLb);
   lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
-  lb.addEventListener('close', () => { frame.innerHTML = ''; });
+  lb.addEventListener('close', () => { frame.innerHTML = ''; syncPreview(); });
 
   /* ---------------- Pricing ---------------- */
   const PLANS = [
