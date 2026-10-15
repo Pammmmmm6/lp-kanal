@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=202610152110" />
+  <link rel="stylesheet" href="css/style.css?v=202610152130" />
   <script>
     var t = null; try { t = localStorage.getItem('kanal-theme'); } catch (e) {}
     if (t) document.documentElement.setAttribute('data-theme', t);
@@ -337,13 +337,13 @@
     <!-- ============ VIDEO ============ -->
     <section class="sec sec--video">
       <div class="wrap">
-        <h2 class="center reveal">Kanal in 90 seconds</h2>
-        <button class="video reveal reveal--up" id="video" data-src="assets/demo.mp4" aria-label="Play video">
+        <h2 class="center reveal">Kanal in one minute</h2>
+        <button class="video reveal reveal--up" id="video" data-src="assets/video/kanal-demo.mp4" aria-label="Play the Kanal product video">
           <span class="video__poster">
-            <span class="video__orb o1"></span><span class="video__orb o2"></span><span class="video__orb o3"></span>
-            <span class="video__grain"></span>
+            <img class="video__img" src="assets/video/kanal-demo-poster.jpg" alt="" loading="lazy" />
+            <span class="video__scrim"></span>
           </span>
-          <span class="video__play"><svg viewBox="0 0 16 16"><path d="M4 2.5v11l9-5.5z" /></svg>Play</span>
+          <span class="video__play"><svg viewBox="0 0 16 16"><path d="M4 2.5v11l9-5.5z" /></svg>Play<small>1:06</small></span>
         </button>
       </div>
     </section>
@@ -480,6 +480,6 @@
     <div class="lightbox__frame" id="lightboxFrame"></div>
   </dialog>
 
-  <script src="js/main.js?v=202610152110"></script>
+  <script src="js/main.js?v=202610152130"></script>
 </body>
 </html>

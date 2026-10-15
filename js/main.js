@@ -842,7 +842,7 @@
     const src = video.dataset.src;
     frame.innerHTML = `<video src="${src}" controls autoplay playsinline></video>`;
     const v = frame.querySelector('video');
-    v.addEventListener('error', () => { frame.innerHTML = '<p>Add your demo video at <code>assets/demo.mp4</code>.</p>'; });
+    v.addEventListener('error', () => { frame.innerHTML = '<p>This video can\'t be played in this browser.</p>'; });
     if (typeof lb.showModal === 'function') lb.showModal(); else lb.setAttribute('open', '');
   });
   const closeLb = () => { lb.close?.(); lb.removeAttribute('open'); frame.innerHTML = ''; };
