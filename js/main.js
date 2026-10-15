@@ -860,36 +860,36 @@
 
   /* ---------------- Pricing ---------------- */
   const PLANS = [
-    { name: 'Starter', tiers: [['3 agents', 15], ['10 agents', 39]], cta: 'Choose Starter', dark: true,
-      inc: 'What you get:', items: ['Up to 3 active agents', '30-day history', 'Standard integrations', 'Desktop and mobile apps', 'Email support'] },
-    { name: 'Pro', tiers: [['Standard', 49], ['Intensive', 129]], cta: 'Choose Pro', dark: true,
-      inc: 'All of Starter, and:', items: ['Unlimited agents', 'Parallel runs', 'Advanced routines and triggers', 'Unlimited history', 'Priority support'] },
-    { name: 'Enterprise', tiers: [['Team', 35], ['Scale', 65]], unit: '/ user / month', cta: 'Talk to us', dark: false,
-      inc: 'All of Pro, and:', items: ['SSO and SCIM provisioning', 'Exportable audit log', 'EU data residency', 'Dedicated success manager'] },
+    { name: 'Pro', price: 89, cta: 'Choose Pro', dark: true,
+      inc: 'What you get:', items: ['1 user', 'Widget chat & inbox', 'Abandoned cart recovery', 'WhatsApp campaigns', 'AI agent', 'Segments & multi-market', 'Kanal MCP', 'Klaviyo, Recharge, Crisp & Gorgias'] },
+    { name: 'Scale', price: 149, badge: 'Most popular', cta: 'Choose Scale', dark: true,
+      inc: 'Everything in Pro, plus:', items: ['5 users', 'Unlimited automations', 'Advanced automations: A/B tests, Shopify conditions, discount codes, API', 'Extra markets at +50€/mo each', 'Dedicated account manager'] },
+    { name: 'Business', price: 350, badge: 'Done for you', cta: 'Choose Business', dark: false,
+      inc: 'Everything in Scale, plus:', items: ['Unlimited users', 'Flow setup by our experts', 'Continuous optimization', 'Campaigns on demand'] },
   ];
+  const BILLING = [['Monthly', 1, 'No commitment'], ['Yearly −10%', 0.9, 'Billed yearly']];
+  const eurPrice = (n) => (Number.isInteger(n) ? fmt.format(n) : n.toFixed(2)) + '€';
   const plansEl = $('#plans');
   const tick = '<svg viewBox="0 0 16 16"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>';
   plansEl.innerHTML = PLANS.map((p, i) => `
-    <article class="plan reveal reveal--up${p.featured ? ' plan--featured' : ''}" style="--d:${i}" data-i="${i}">
+    <article class="plan reveal reveal--up" style="--d:${i}" data-i="${i}">
       <div class="plan__top"><span class="plan__name">${p.name}</span>
-        <div class="seg" role="group" aria-label="Plan size">${p.tiers.map((t, k) => `<button aria-pressed="${k === 0}" data-k="${k}">${t[0]}</button>`).join('')}</div>
+        <div class="seg" role="group" aria-label="Billing">${BILLING.map((t, k) => `<button aria-pressed="${k === 0}" data-k="${k}">${t[0]}</button>`).join('')}</div>
       </div>
-      <div class="plan__price"><span class="plan__amount">$0</span><span class="plan__unit">${p.unit || '/ month'}</span></div>
-      <div class="plan__bill"></div>
-      <a href="#cta" class="btn btn--lg ${p.dark ? 'btn--dark' : 'btn--soft'}">${p.cta}</a>
+      <div class="plan__price"><span class="plan__amount">0€</span><span class="plan__unit">/ month</span></div>
+      <div class="plan__bill"><span></span>${p.badge ? `<span class="plan__badge">${p.badge}</span>` : ''}</div>
+      <a href="https://apps.shopify.com/kanal-marketing-ai" target="_blank" rel="noopener" class="btn btn--lg ${p.dark ? 'btn--dark' : 'btn--soft'}">${p.cta}</a>
       <div class="plan__inc">${p.inc}</div>
       <ul>${p.items.map((it) => `<li>${tick}${it}</li>`).join('')}</ul>
     </article>`).join('');
   $$('.plan', plansEl).forEach((el) => revealIO.observe(el));
   const renderPrice = (el, animate) => {
     const p = PLANS[+el.dataset.i];
-    const k = +($('.seg [aria-pressed="true"]', el).dataset.k);
-    const base = p.tiers[k][1];
-    const price = base;
+    const [, factor, bill] = BILLING[+($('.seg [aria-pressed="true"]', el).dataset.k)];
     const amt = $('.plan__amount', el);
-    amt.textContent = `$${fmt.format(price)}`;
+    amt.textContent = eurPrice(Math.round(p.price * factor * 100) / 100);
     if (animate) { amt.classList.remove('is-ticking'); void amt.offsetWidth; amt.classList.add('is-ticking'); }
-    $('.plan__bill', el).textContent = 'Billed monthly';
+    $('.plan__bill span', el).textContent = bill;
   };
   $$('.plan', plansEl).forEach((el) => {
     renderPrice(el);
