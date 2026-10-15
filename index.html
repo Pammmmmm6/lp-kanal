@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=202610151930" />
+  <link rel="stylesheet" href="css/style.css?v=202610152000" />
   <script>
     var t = null; try { t = localStorage.getItem('kanal-theme'); } catch (e) {}
     if (t) document.documentElement.setAttribute('data-theme', t);
@@ -31,6 +31,7 @@
       <symbol id="logo-meta" viewBox="0 0 32 32"><defs><linearGradient id="metaGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0064E1" /><stop offset=".5" stop-color="#0082FB" /><stop offset="1" stop-color="#0064E1" /></linearGradient></defs><path d="M5 19.2c0-5 2.6-9.2 5.6-9.2 3.4 0 5.2 4.6 7.9 9 1.7 2.8 3 3.8 4.4 3.8 1.9 0 3.1-1.7 3.1-4.4 0-4.9-2.6-8.4-5.5-8.4-3 0-4.8 3.6-7.4 8.2-1.8 3.2-3.2 4.6-4.9 4.6C6.4 22.8 5 21.4 5 19.2z" fill="none" stroke="url(#metaGrad)" stroke-width="3.4" stroke-linejoin="round" /></symbol>
       <symbol id="logo-gads" viewBox="0 0 32 32"><path d="M16.4 6 7 22.4" stroke="#FBBC04" stroke-width="7.2" stroke-linecap="round" /><path d="M15.6 6 25 22.4" stroke="#4285F4" stroke-width="7.2" stroke-linecap="round" /><circle cx="7" cy="22.4" r="3.9" fill="#34A853" /></symbol>
       <symbol id="logo-sms" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="#1F2937" /><path d="M16 8.5c-5 0-9 3.2-9 7.2 0 2.3 1.3 4.3 3.4 5.6l-.7 3.2 3.5-2c.9.2 1.8.3 2.8.3 5 0 9-3.2 9-7.1s-4-7.2-9-7.2z" fill="#fff" /><text x="16" y="17.9" text-anchor="middle" font-family="Geist, system-ui, sans-serif" font-size="5.6" font-weight="700" fill="#1F2937">SMS</text></symbol>
+      <symbol id="logo-kanal-mark" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="#111110" /><svg x="5.5" y="5" width="21" height="22" viewBox="-1.5 -1 24 26" color="#fff"><use href="#logo-kanal" width="96" height="24" /></svg></symbol>
       <symbol id="ext" viewBox="0 0 10 10"><path d="M3 7 7 3M4 3h3v3" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" /></symbol>
       <symbol id="chev" viewBox="0 0 12 12"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></symbol>
     </defs>
@@ -241,28 +242,16 @@
       <div class="wrap">
         <div class="intro reveal reveal--up">
           <div class="intro__text">
-            <h2>All your channels, connected.<span class="muted">From ad click to repeat order.</span></h2>
+            <h2>All your channels.<span class="muted">One platform.</span></h2>
             <p>Kanal brings WhatsApp, Instagram, iMessage, RCS and SMS together with Shopify, Meta Ads and Google Ads. Every campaign, automation and AI reply follows the customer across the whole journey.</p>
             <div class="intro__ctas">
               <a class="btn btn--dark btn--lg" href="https://getkanal.com/demo" target="_blank" rel="noopener">Book a demo</a>
               <a class="btn btn--soft btn--lg" href="https://getkanal.com/whatsapp-integration" target="_blank" rel="noopener">See integrations</a>
             </div>
           </div>
-          <div class="orbit" aria-label="Channels and integrations connected to Kanal">
-            <span class="orbit__halo" aria-hidden="true"></span>
-            <ul class="orbit__ring orbit__ring--in">
-              <li class="orbit__item" style="--a:-70deg"><span class="orbit__tile" title="WhatsApp"><svg role="img" aria-label="WhatsApp"><use href="#logo-whatsapp" /></svg><b class="orbit__badge">3</b></span></li>
-              <li class="orbit__item" style="--a:20deg"><span class="orbit__tile" title="Instagram"><svg role="img" aria-label="Instagram"><use href="#logo-instagram" /></svg><b class="orbit__badge">2</b></span></li>
-              <li class="orbit__item" style="--a:110deg"><span class="orbit__tile" title="iMessage"><svg role="img" aria-label="iMessage"><use href="#logo-imessage" /></svg></span></li>
-              <li class="orbit__item" style="--a:200deg"><span class="orbit__tile" title="RCS"><svg role="img" aria-label="RCS"><use href="#logo-rcs" /></svg></span></li>
-            </ul>
-            <ul class="orbit__ring orbit__ring--out">
-              <li class="orbit__item" style="--a:-150deg"><span class="orbit__tile" title="Meta Ads"><svg role="img" aria-label="Meta Ads"><use href="#logo-meta" /></svg></span></li>
-              <li class="orbit__item" style="--a:-35deg"><span class="orbit__tile" title="Shopify"><svg role="img" aria-label="Shopify"><use href="#logo-shopify" /></svg></span></li>
-              <li class="orbit__item" style="--a:60deg"><span class="orbit__tile" title="SMS"><svg role="img" aria-label="SMS"><use href="#logo-sms" /></svg></span></li>
-              <li class="orbit__item" style="--a:155deg"><span class="orbit__tile" title="Google Ads"><svg role="img" aria-label="Google Ads"><use href="#logo-gads" /></svg></span></li>
-            </ul>
-            <span class="orbit__hub" aria-hidden="true"><svg viewBox="-1.5 -1 24 26"><use href="#logo-kanal" width="96" height="24" /></svg></span>
+          <div class="intro__media feature__visual feature__visual--c" aria-label="Channels and integrations connected to Kanal">
+            <div class="imarquee"><ul class="imarquee__track"><li class="ichip"><svg aria-hidden="true"><use href="#logo-whatsapp" /></svg>WhatsApp</li><li class="ichip"><svg aria-hidden="true"><use href="#logo-shopify" /></svg>Shopify</li><li class="ichip"><svg aria-hidden="true"><use href="#logo-instagram" /></svg>Instagram</li><li class="ichip"><svg aria-hidden="true"><use href="#logo-meta" /></svg>Meta Ads</li><li class="ichip"><svg aria-hidden="true"><use href="#logo-imessage" /></svg>iMessage</li><li class="ichip"><svg aria-hidden="true"><use href="#logo-gads" /></svg>Google Ads</li><li class="ichip"><svg aria-hidden="true"><use href="#logo-rcs" /></svg>RCS</li><li class="ichip"><svg aria-hidden="true"><use href="#logo-sms" /></svg>SMS</li><li class="ichip"><svg aria-hidden="true"><use href="#logo-kanal-mark" /></svg>Kanal MCP</li><li class="ichip" aria-hidden="true"><svg aria-hidden="true"><use href="#logo-whatsapp" /></svg>WhatsApp</li><li class="ichip" aria-hidden="true"><svg aria-hidden="true"><use href="#logo-shopify" /></svg>Shopify</li><li class="ichip" aria-hidden="true"><svg aria-hidden="true"><use href="#logo-instagram" /></svg>Instagram</li><li class="ichip" aria-hidden="true"><svg aria-hidden="true"><use href="#logo-meta" /></svg>Meta Ads</li><li class="ichip" aria-hidden="true"><svg aria-hidden="true"><use href="#logo-imessage" /></svg>iMessage</li><li class="ichip" aria-hidden="true"><svg aria-hidden="true"><use href="#logo-gads" /></svg>Google Ads</li><li class="ichip" aria-hidden="true"><svg aria-hidden="true"><use href="#logo-rcs" /></svg>RCS</li><li class="ichip" aria-hidden="true"><svg aria-hidden="true"><use href="#logo-sms" /></svg>SMS</li><li class="ichip" aria-hidden="true"><svg aria-hidden="true"><use href="#logo-kanal-mark" /></svg>Kanal MCP</li></ul></div>
+          </div>
           </div>
         </div>
       </div>
@@ -527,6 +516,6 @@
     <div class="lightbox__frame" id="lightboxFrame"></div>
   </dialog>
 
-  <script src="js/main.js?v=202610151930"></script>
+  <script src="js/main.js?v=202610152000"></script>
 </body>
 </html>
