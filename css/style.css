@@ -475,15 +475,34 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
 .chatcard__cta { display: inline-flex; align-items: center; justify-content: center; gap: 7px; height: 34px; padding: 0 16px; border-radius: 9999px; background: var(--surface); box-shadow: 0 0 0 1px var(--line-2), 0 4px 12px -8px rgba(10, 10, 10, .3); font-size: 13px; font-weight: 500; color: var(--fg); }
 .chatcard__cta svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linejoin: round; }
 
-/* ---------- Carte d'intro (1232 × 352) ---------- */
+/* ---------- Bannière canaux : texte à gauche, orbites à droite ---------- */
 .sec--intro { padding: 64px 0; }
-.intro { position: relative; height: 352px; background: var(--card); border-radius: 24px; padding: 72px 48px; }
-.intro__text { position: relative; z-index: 1; max-width: 667px; }
-.intro__text p { max-width: 448px; margin-top: 20px; font-size: 18px; line-height: 29.25px; color: var(--muted); }
-.intro__mascot { position: absolute; left: 779px; top: -67px; width: 493px; height: 419px; overflow: hidden; }
-.intro__mascot .mascot { width: 493px; height: 493px; }
-.intro__mascot svg { animation: float 6s ease-in-out infinite; }
-@keyframes float { 50% { transform: translateY(-10px) rotate(-2deg); } }
+.intro { position: relative; overflow: hidden; isolation: isolate; min-height: 400px; display: flex; align-items: center; background: var(--card); border-radius: 24px; padding: 64px 56px; }
+.intro__text { position: relative; z-index: 1; max-width: 540px; }
+.intro__text h2 span { display: block; }
+.intro__text p { max-width: 470px; margin-top: 20px; font-size: 18px; line-height: 29.25px; color: var(--muted); }
+.intro__ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+
+.orbit { --r-in: 132px; --r-out: 236px; --spin: 90s; position: absolute; left: calc(100% - 280px); top: 50%; width: 0; height: 0; }
+.orbit__halo { position: absolute; left: -184px; top: -184px; width: 368px; height: 368px; border-radius: 50%; background: radial-gradient(circle, var(--surface) 0 30%, color-mix(in srgb, var(--surface) 55%, transparent) 30.5% 62%, transparent 62.5%); }
+.orbit__ring { list-style: none; margin: 0; padding: 0; position: absolute; border-radius: 50%; border: 1px solid var(--line-2); animation: spin var(--spin) linear infinite; }
+.orbit__ring--in { left: calc(var(--r-in) * -1); top: calc(var(--r-in) * -1); width: calc(var(--r-in) * 2); height: calc(var(--r-in) * 2); }
+.orbit__ring--out { left: calc(var(--r-out) * -1); top: calc(var(--r-out) * -1); width: calc(var(--r-out) * 2); height: calc(var(--r-out) * 2); animation-duration: calc(var(--spin) * 1.6); animation-direction: reverse; border-style: dashed; }
+.orbit__item { position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform: rotate(var(--a)) translateX(var(--r-in)) rotate(calc(var(--a) * -1)); }
+.orbit__ring--out .orbit__item { transform: rotate(var(--a)) translateX(var(--r-out)) rotate(calc(var(--a) * -1)); }
+/* contre-rotation : les logos restent droits pendant que l'anneau tourne */
+.orbit__tile { position: absolute; left: -30px; top: -30px; width: 60px; height: 60px; display: grid; place-items: center; border-radius: 50%; background: var(--surface); box-shadow: 0 0 0 1px var(--line), 0 10px 24px -12px rgba(10, 10, 10, .25); animation: spin var(--spin) linear infinite reverse; }
+.orbit__ring--out .orbit__tile { left: -32px; top: -32px; width: 64px; height: 64px; animation-duration: calc(var(--spin) * 1.6); animation-direction: normal; }
+.orbit__tile svg { width: 30px; height: 30px; border-radius: 8px; }
+.orbit__ring--out .orbit__tile svg { width: 32px; height: 32px; }
+.orbit__badge { position: absolute; top: -3px; right: -3px; min-width: 20px; height: 20px; padding: 0 5px; display: grid; place-items: center; border-radius: 9999px; background: var(--red); color: #fff; font-size: 11px; line-height: 1; font-weight: 600; box-shadow: 0 0 0 2px var(--card); animation: badgePop 6s var(--ease) infinite; }
+.orbit__ring--in .orbit__item:nth-child(2) .orbit__badge { animation-delay: 2.4s; }
+@keyframes badgePop { 0%, 8% { transform: scale(0); } 14% { transform: scale(1.15); } 18%, 78% { transform: scale(1); } 86%, 100% { transform: scale(0); } }
+.orbit__hub { position: absolute; left: -40px; top: -40px; width: 80px; height: 80px; display: grid; place-items: center; border-radius: 24px; background: var(--ink); color: var(--bg); box-shadow: 0 18px 36px -14px rgba(10, 10, 10, .45); }
+.orbit__hub svg { width: 36px; height: 40px; overflow: hidden; }
+.orbit__hub::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: 0 0 0 0 color-mix(in srgb, var(--ink) 30%, transparent); animation: hubPulse 2.8s var(--ease) infinite; }
+@keyframes hubPulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--ink) 22%, transparent); } 100% { box-shadow: 0 0 0 26px transparent; } }
+.intro:hover .orbit__ring, .intro:hover .orbit__tile { animation-play-state: paused; }
 
 /* ---------- Fonctionnalités ---------- */
 .sec__head { max-width: 672px; margin: 0 auto; text-align: center; }
@@ -710,8 +729,8 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
   .footer__inner { grid-template-columns: 1fr; gap: 40px; }
   .footer__brand { border-right: 0; padding-right: 0; }
   .footer__cols { grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: 24px; }
-  .intro__mascot { left: auto; right: -40px; width: 420px; }
-  .intro__mascot .mascot { width: 420px; height: 420px; }
+  .intro__text { max-width: 460px; }
+  .orbit { left: calc(100% - 210px); --r-in: 104px; --r-out: 180px; }
 }
 @media (max-width: 1000px) {
   .nav__links, .hide-sm, .split { display: none; }
@@ -730,15 +749,22 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
   .feature { grid-template-columns: 1fr; gap: 40px; max-width: 560px; }
   .feature__text { max-width: none; padding-left: 0; }
   .feature--rev .feature__visual { order: 0; }
-  .intro { height: auto; padding: 48px 32px 0; overflow: hidden; }
-  .intro__mascot { position: relative; left: auto; right: auto; top: auto; margin: 32px auto 0; width: 300px; height: 220px; }
-  .intro__mascot .mascot { width: 300px; height: 300px; }
+  .intro { flex-direction: column; align-items: stretch; padding: 48px 32px 0; }
+  .intro__text { max-width: none; }
+  .orbit { position: relative; left: auto; top: auto; width: auto; height: 400px; margin: 24px -32px 0; }
+  .orbit > * { margin-left: 50%; margin-top: 200px; }
   .footer__cols { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 24px; }
 }
 @media (max-width: 640px) {
   .wrap, .hero, .cta, .nav__inner, .footer__inner { padding-left: 16px; padding-right: 16px; }
   .sec, .sec--roles { padding: 80px 0; }
   .sec--intro { padding: 32px 0; }
+  .intro { padding: 40px 20px 0; }
+  .intro__text h2 { font-size: 26px; line-height: 32px; }
+  .orbit { height: 340px; margin: 16px -20px 0; --r-in: 96px; --r-out: 158px; }
+  .orbit > * { margin-top: 170px; }
+  .orbit__tile, .orbit__ring--out .orbit__tile { left: -26px; top: -26px; width: 52px; height: 52px; }
+  .orbit__tile svg, .orbit__ring--out .orbit__tile svg { width: 26px; height: 26px; }
   .sec--feature { padding: 72px 0 24px; }
   .feature__text h2 { font-size: 24px; line-height: 31px; }
   .feature__visual { min-height: 0; padding: 32px 16px; border-radius: 18px; }
