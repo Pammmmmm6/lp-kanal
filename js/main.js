@@ -864,7 +864,7 @@
       inc: 'What you get:', items: ['1 user', 'Widget chat & inbox', 'Abandoned cart recovery', 'WhatsApp campaigns', 'AI agent', 'Segments & multi-market', 'Kanal MCP', 'Klaviyo, Recharge, Crisp & Gorgias'] },
     { name: 'Scale', price: 149, badge: 'Most popular', cta: 'Choose Scale', dark: true, featured: true,
       inc: 'Everything in Pro, plus:', items: ['5 users', 'Unlimited automations', 'Advanced automations: A/B tests, Shopify conditions, discount codes, API', 'Extra markets at +50€/mo each', 'Dedicated account manager'] },
-    { name: 'Business', price: 350, badge: 'Done for you', cta: 'Choose Business', dark: false,
+    { name: 'Business', price: 350, cta: 'Choose Business', dark: false,
       inc: 'Everything in Scale, plus:', items: ['Unlimited users', 'Flow setup by our experts', 'Continuous optimization', 'Campaigns on demand'] },
   ];
   const BILLING = [['Monthly', 1, 'No commitment'], ['Yearly −10%', 0.9, 'Billed yearly']];
