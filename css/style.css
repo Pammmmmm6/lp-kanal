@@ -161,7 +161,7 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
 
 /* Barre de canaux au-dessus de la fenêtre */
 .ctabs-wrap { display: flex; justify-content: center; margin-top: 56px; }
-.ctabs { position: relative; display: inline-flex; gap: 4px; padding: 5px; border-radius: 9999px; background: var(--btn-light); box-shadow: inset 0 0 0 1px var(--line); }
+.ctabs { position: relative; display: inline-flex; gap: 4px; padding: 5px; border-radius: 9999px; background: var(--btn-light); }
 .ctabs__glider { position: absolute; top: 5px; left: 0; height: 40px; width: 0; border-radius: 9999px; background: var(--tab-on); transition: transform .45s var(--ease), width .45s var(--ease); }
 .ctab { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 10px; height: 40px; padding: 0 20px 0 14px; border-radius: 9999px; font-size: 15px; line-height: 20px; color: var(--fg-70); white-space: nowrap; transition: color .25s; }
 .ctab svg { width: 20px; height: 20px; flex: none; border-radius: 6px; }
