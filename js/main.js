@@ -157,7 +157,7 @@
   }
 
   /* ---------------- Hero : inbox multicanal + fiche client ---------------- */
-  const CHANNELS = { whatsapp: 'WhatsApp', instagram: 'Instagram', messenger: 'Messenger', imessage: 'iMessage' };
+  const CHANNELS = { whatsapp: 'WhatsApp', instagram: 'Instagram', messenger: 'Messenger', imessage: 'iMessage', rcs: 'RCS' };
   const CH_ORDER = Object.keys(CHANNELS);
   const logo = (ch) => `<svg viewBox="0 0 32 32"><use href="#logo-${ch}" /></svg>`;
   const esc = (t) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
@@ -252,6 +252,28 @@
     { name: 'Clara Morel', ch: 'imessage', time: 'Tue', prev: 'Do you price match?',
       customer: { handle: '+33 6 63 48 21 95', email: 'clara.morel@mail.com', since: 'Aug 2025', orders: 2, spent: 158,
         order: { id: '#1033', date: 'Oct 6', status: 'Delivered', item: 'Leather Belt', variant: 'Black · 85 · ×1', price: 59, shipping: 5, g: 'linear-gradient(135deg,#4e4a46,#1d1b19)' } } },
+    {
+      name: 'Julie Bonnet', ch: 'rcs', time: '10:34 AM', prev: 'Can I change my delivery slot?',
+      customer: { handle: '+33 6 74 30 18 52', email: 'julie.bonnet@mail.com', since: 'Jun 2025', orders: 3, spent: 247,
+        order: { id: '#1049', date: 'Oct 14', status: 'Unfulfilled', item: 'Linen Duvet Cover', variant: 'Sage · Queen · ×1', price: 139, shipping: 0, g: 'linear-gradient(135deg,#c9d3bf,#7f9171)' } },
+      script: [
+        { time: 'Today, 10:34 AM' },
+        { in: 'Hi, I won\'t be home Thursday. Can I change my delivery slot?' },
+        { out: 'Of course, Julie. Order #1049 can arrive Friday between 9 AM and 1 PM, or Saturday morning. Which works best?' },
+        { in: 'Friday morning is perfect', typing: 1000 },
+        { sys: 'Delivery for order #1049 moved to Friday, 9 AM–1 PM' },
+        { out: 'Done! You\'ll get a tracking update here the day before.' },
+      ],
+    },
+    { name: 'Hugo Lefèvre', ch: 'rcs', time: '9:12 AM', prev: 'Is the sale still on this weekend?',
+      customer: { handle: '+33 6 11 92 47 60', email: 'hugo.lefevre@mail.com', since: 'Mar 2026', orders: 1, spent: 58,
+        order: { id: '#1035', date: 'Oct 7', status: 'Delivered', item: 'Organic Cotton Hoodie', variant: 'Grey · M · ×1', price: 54, shipping: 4, g: 'linear-gradient(135deg,#c4c6cb,#8b8e95)' } } },
+    { name: 'Emma Garcia', ch: 'rcs', time: 'Yesterday', prev: 'Got the discount code, thanks!',
+      customer: { handle: '+33 7 40 85 13 29', email: 'emma.garcia@mail.com', since: 'Oct 2024', orders: 5, spent: 498,
+        order: { id: '#1043', date: 'Oct 12', status: 'In transit', item: 'Ceramic Mug Set', variant: 'Sand · ×4', price: 64, shipping: 6, g: 'linear-gradient(135deg,#ead9c2,#c2a07a)' } } },
+    { name: 'Louis Chevalier', ch: 'rcs', time: 'Mon', prev: 'Where do I find my invoice?',
+      customer: { handle: '+33 6 58 26 74 03', email: 'louis.chevalier@mail.com', since: 'Jan 2026', orders: 2, spent: 176,
+        order: { id: '#1032', date: 'Oct 6', status: 'Delivered', item: 'Leather Backpack', variant: 'Cognac · ×1', price: 172, shipping: 4, g: 'linear-gradient(135deg,#c48a5a,#7a4a26)' } } },
   ];
 
   const app = $('#app'), list = $('#threads'), chat = $('#chat'), composer = $('#composer');
@@ -336,7 +358,7 @@
     { time: /AM|PM/.test(THREADS[i].time) ? `Today, ${THREADS[i].time}` : THREADS[i].time },
     { in: THREADS[i].prev },
   ];
-  const outHtml = (text) => `${esc(text)}<span class="msg__by">Sent by Nova</span>`;
+  const outHtml = (text) => `${esc(text)}<span class="msg__by">Sent by Kanal</span>`;
 
   const play = async (i) => {
     const id = ++runId;
@@ -565,6 +587,6 @@
       (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
     const next = isDark ? 'light' : 'dark';
     root.setAttribute('data-theme', next);
-    try { localStorage.setItem('nova-theme', next); } catch (e) {}
+    try { localStorage.setItem('kanal-theme', next); } catch (e) {}
   });
 })();

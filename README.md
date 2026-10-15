@@ -1,6 +1,6 @@
 # Landing page — gabarit
 
-Landing page statique (HTML, CSS, JS vanilla, sans build) qui reprend la structure, la palette, la typographie et les animations d'une page produit « agents IA » minimaliste. Marque, textes et mascotte sont des contenus de remplacement originaux (« Nova ») à adapter au projet.
+Landing page statique (HTML, CSS, JS vanilla, sans build) qui reprend la structure, la palette, la typographie et les animations d'une page produit « agents IA » minimaliste. Marque, textes et mascotte sont des contenus de remplacement originaux (« Kanal ») à adapter au projet.
 
 ```
 index.html          structure et contenu
