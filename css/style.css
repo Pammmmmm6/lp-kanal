@@ -170,6 +170,8 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
 .hero__sub { max-width: 672px; margin: 20px auto 0; font-size: 18px; line-height: 29.25px; color: var(--muted); }
 .trust { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 24px; font-size: 12.5px; line-height: 18px; flex-wrap: wrap; }
 .trust__rating { display: inline-flex; align-items: center; gap: 8px; color: var(--fg); }
+.trust__link { text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 3px; transition: text-decoration-color .2s; }
+.trust__rating:hover .trust__link, .trust__rating:focus-visible .trust__link { text-decoration-color: currentColor; }
 .trust__stars { letter-spacing: 1px; font-size: 11.5px; color: var(--fg); }
 .trust__sep { width: 1px; height: 16px; background: var(--line-strong); }
 .trust__count { color: var(--muted); }
@@ -182,6 +184,17 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
 .ctab { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 10px; height: 40px; padding: 0 20px 0 14px; border-radius: 9999px; font-size: 15px; line-height: 20px; color: var(--fg-70); white-space: nowrap; transition: color .25s; }
 .ctab svg { width: 20px; height: 20px; flex: none; border-radius: 6px; }
 .ctab:hover, .ctab[aria-selected="true"] { color: var(--fg); }
+
+/* Bandeau de logos clients sous la fenêtre */
+.logos { max-width: 976px; margin: 56px auto 0; display: grid; grid-template-columns: 200px minmax(0, 1fr); align-items: center; gap: 40px; text-align: left; }
+.logos__label { font-size: 14px; line-height: 20px; color: var(--muted); }
+.logos__viewport { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.logos__track { display: flex; align-items: center; gap: 56px; width: max-content; padding-right: 56px; animation: logos 42s linear infinite; }
+.logos:hover .logos__track { animation-play-state: paused; }
+.logos__track img { display: block; height: var(--h, 22px); width: auto; opacity: .5; transition: opacity .25s; }
+.logos__track img:hover { opacity: .9; }
+[data-theme="dark"] .logos__track img { filter: invert(1); }
+@keyframes logos { to { transform: translateX(-50%); } }
 
 /* ---------- Mascotte ---------- */
 .mascot svg { width: 100%; height: 100%; overflow: visible; }
@@ -618,6 +631,8 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
   .video__play { left: 24px; font-size: 28px; }
   .footer__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ctabs-wrap { margin-top: 40px; }
+  .logos { grid-template-columns: 1fr; gap: 20px; margin-top: 40px; text-align: center; }
+  .logos__track { gap: 40px; padding-right: 40px; }
   .trust { gap: 12px; font-size: 12px; }
   .ctab { padding: 0 12px; gap: 8px; }
   .ctab:not([aria-selected="true"]) span { display: none; }
