@@ -161,79 +161,97 @@
   const CH_ORDER = Object.keys(CHANNELS);
   const logo = (ch) => `<svg viewBox="0 0 32 32"><use href="#logo-${ch}" /></svg>`;
   const esc = (t) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
-  const money = (n) => `$${n.toFixed(2)}`;
+  const money = (n) => `€${n.toFixed(2)}`;
   const initials = (n) => n.split(' ').map((w) => w[0]).join('');
 
   const THREADS = [
     {
       name: 'Emma Laurent', ch: 'whatsapp', time: '10:12 AM', prev: 'Can I still switch my order to size L?',
-      customer: { handle: '+33 6 12 48 90 31', email: 'emma.laurent@mail.com', since: 'Mar 2024', orders: 4, spent: 412,
-        order: { id: '#1042', date: 'Oct 13', status: 'Unfulfilled', item: 'Linen Overshirt', variant: 'Sand · M · ×1', price: 89, shipping: 5, g: 'linear-gradient(135deg,#e8d6bd,#c9a67c)' } },
+      customer: { handle: '+33 6 12 48 90 31', email: 'emma.laurent@mail.com', since: 'Mar 2024', orders: 4, spent: 214,
+        order: { id: '#1042', date: 'Oct 13', status: 'Unfulfilled', item: 'Tech T-shirt', variant: 'Black · M · ×1', price: 39, shipping: 0, g: 'linear-gradient(135deg,#4a4a4f,#151517)' } },
       script: [
         { time: 'Today, 10:12 AM' },
-        { in: 'Hi! I ordered the linen overshirt yesterday in M. Can I still switch it to an L?' },
+        { in: 'Hi! I ordered the Tech T-shirt in M for my partner yesterday. Can I still switch it to an L?' },
         { out: 'Hi Emma! Order #1042 hasn\'t shipped yet, so yes. I\'ve switched it to size L, same price.' },
-        { sys: 'Order #1042 updated in Shopify', patch: { variant: 'Sand · L · ×1' } },
+        { sys: 'Order #1042 updated in Shopify', patch: { variant: 'Black · L · ×1' } },
         { in: 'Perfect, thank you 🙏', typing: 1100 },
         { out: 'Anytime! It ships this afternoon and I\'ll send the tracking link right here.' },
       ],
     },
     {
-      name: 'Lucas Martin', ch: 'instagram', time: '9:58 AM', prev: 'Is the linen shirt back in sand?',
-      customer: { handle: '@lucas.mrtn', email: 'lucas.martin@mail.com', since: 'Jan 2025', orders: 2, spent: 158,
-        order: { id: '#0987', date: 'Sep 2', status: 'Delivered', item: 'Merino Crew Sweater', variant: 'Navy · L · ×1', price: 79, shipping: 0, g: 'linear-gradient(135deg,#9db0cc,#3d4f73)' } },
+      name: 'Lucas Martin', ch: 'instagram', time: '9:58 AM', prev: 'Is the white Polo back in stock?',
+      customer: { handle: '@lucas.mrtn', email: 'lucas.martin@mail.com', since: 'Jan 2025', orders: 2, spent: 129,
+        order: { id: '#0987', date: 'Sep 2', status: 'Delivered', item: 'Pack of 3 Essentials', variant: 'Black, White, Navy · L', price: 99, shipping: 0, g: 'linear-gradient(135deg,#4a5a7c,#1d2741)' } },
       script: [
         { time: 'Today, 9:58 AM' },
-        { in: 'Hey, is the linen shirt back in sand? Saw it in your last post 👀' },
-        { out: 'It is! Back in S, M and L since this morning. Want me to put an L aside for you, like your last order?' },
+        { in: 'Hey, is the white Polo back in stock? Saw it in your last post 👀' },
+        { out: 'It is! Back in S, M and L since this morning. Want me to save an L for you, same size as your Essentials pack?' },
         { in: 'Yes please!', typing: 900 },
-        { sys: 'Checkout link sent · Linen Shirt, Sand, L' },
+        { sys: 'Checkout link sent · Polo, White, L' },
       ],
     },
-    { name: 'Noah Petit', ch: 'whatsapp', time: '9:15 AM', prev: 'Do you ship to Belgium?',
-      customer: { handle: '+32 470 12 34 56', email: 'noah.petit@mail.com', since: 'Oct 2026', orders: 1, spent: 64,
-        order: { id: '#1045', date: 'Oct 14', status: 'Unfulfilled', item: 'Cotton Tote Bag', variant: 'Natural · ×2', price: 58, shipping: 6, g: 'linear-gradient(135deg,#efe6d2,#d2bf95)' } } },
-    { name: 'Léa Moreau', ch: 'instagram', time: 'Yesterday', prev: 'Loved the packaging 😍',
-      customer: { handle: '@lea.moreau', email: 'lea.moreau@mail.com', since: 'Jun 2023', orders: 9, spent: 1186,
-        order: { id: '#1029', date: 'Oct 5', status: 'Delivered', item: 'Wool Wrap Coat', variant: 'Camel · S · ×1', price: 240, shipping: 0, g: 'linear-gradient(135deg,#e2c49c,#a9774a)' } } },
-    { name: 'Inès Roux', ch: 'whatsapp', time: 'Mon', prev: 'Order received, thank you!',
-      customer: { handle: '+33 7 81 22 09 64', email: 'ines.roux@mail.com', since: 'Nov 2024', orders: 5, spent: 538,
-        order: { id: '#1031', date: 'Oct 6', status: 'Delivered', item: 'Leather Card Holder', variant: 'Cognac · ×1', price: 45, shipping: 5, g: 'linear-gradient(135deg,#d9a57a,#8c5532)' } } },
-    { name: 'Tom Mercier', ch: 'whatsapp', time: 'Yesterday', prev: 'Can I pay in three installments?',
-      customer: { handle: '+33 6 45 17 82 03', email: 'tom.mercier@mail.com', since: 'Jul 2025', orders: 2, spent: 286,
-        order: { id: '#1036', date: 'Oct 7', status: 'Delivered', item: 'Waxed Field Jacket', variant: 'Olive · M · ×1', price: 189, shipping: 0, g: 'linear-gradient(135deg,#b7b98f,#5f6a3c)' } } },
-    { name: 'Jade Fontaine', ch: 'instagram', time: '8:47 AM', prev: 'Do you have this one in black? 🖤',
-      customer: { handle: '@jade.fntn', email: 'jade.fontaine@mail.com', since: 'Apr 2025', orders: 3, spent: 214,
-        order: { id: '#1039', date: 'Oct 10', status: 'In transit', item: 'Ribbed Knit Top', variant: 'Ecru · S · ×1', price: 49, shipping: 5, g: 'linear-gradient(135deg,#f3ece0,#d4c3a5)' } } },
-    { name: 'Nathan Robin', ch: 'instagram', time: 'Mon', prev: 'When is the next drop?',
-      customer: { handle: '@nathanrbn', email: 'nathan.robin@mail.com', since: 'Sep 2026', orders: 1, spent: 72,
-        order: { id: '#1030', date: 'Oct 5', status: 'Delivered', item: 'Heavyweight Tee', variant: 'Black · L · ×2', price: 68, shipping: 4, g: 'linear-gradient(135deg,#5a5a5f,#1f1f22)' } } },
     {
-      name: 'Maxime Dubois', ch: 'imessage', time: '10:20 AM', prev: 'Is my order ready for pickup?',
-      customer: { handle: '+33 6 98 02 44 17', email: 'maxime.dubois@mail.com', since: 'Feb 2024', orders: 7, spent: 645,
-        order: { id: '#1048', date: 'Oct 14', status: 'Unfulfilled', item: 'Suede Chelsea Boots', variant: 'Tobacco · 42 · ×1', price: 210, shipping: 0, g: 'linear-gradient(135deg,#c79a6c,#7a4f2c)' } },
+      name: 'Noah Petit', ch: 'whatsapp', time: '9:15 AM', prev: 'Do you ship to Belgium?',
+      customer: { handle: '+32 470 12 34 56', email: 'noah.petit@mail.com', since: 'Oct 2026', orders: 1, spent: 39,
+        order: { id: '#1045', date: 'Oct 14', status: 'Unfulfilled', item: 'V-neck T-shirt', variant: 'White · M · ×1', price: 39, shipping: 0, g: 'linear-gradient(135deg,#ffffff,#dcdad4)' } },
+    },
+    {
+      name: 'Léa Moreau', ch: 'instagram', time: 'Yesterday', prev: 'My boyfriend loved the packaging 😍',
+      customer: { handle: '@lea.moreau', email: 'lea.moreau@mail.com', since: 'Jun 2023', orders: 6, spent: 412,
+        order: { id: '#1029', date: 'Oct 5', status: 'Delivered', item: 'Smoking Swim', variant: 'Navy · M · ×1', price: 69, shipping: 0, g: 'linear-gradient(135deg,#4a5a7c,#1d2741)' } },
+    },
+    {
+      name: 'Inès Roux', ch: 'whatsapp', time: 'Mon', prev: 'Order received, thank you!',
+      customer: { handle: '+33 7 81 22 09 64', email: 'ines.roux@mail.com', since: 'Nov 2024', orders: 3, spent: 187,
+        order: { id: '#1031', date: 'Oct 6', status: 'Delivered', item: 'Socks', variant: 'Black · 3 pairs', price: 29, shipping: 0, g: 'linear-gradient(135deg,#4a4a4f,#151517)' } },
+    },
+    {
+      name: 'Tom Mercier', ch: 'whatsapp', time: 'Yesterday', prev: 'Can I pay in three installments?',
+      customer: { handle: '+33 6 45 17 82 03', email: 'tom.mercier@mail.com', since: 'Jul 2025', orders: 2, spent: 168,
+        order: { id: '#1036', date: 'Oct 7', status: 'Delivered', item: 'The Trousers', variant: 'Olive · 42 · ×1', price: 89, shipping: 0, g: 'linear-gradient(135deg,#a7aa82,#5d6440)' } },
+    },
+    {
+      name: 'Jade Fontaine', ch: 'instagram', time: '8:47 AM', prev: 'Do you have the V-neck in black? 🖤',
+      customer: { handle: '@jade.fntn', email: 'jade.fontaine@mail.com', since: 'Apr 2025', orders: 3, spent: 156,
+        order: { id: '#1039', date: 'Oct 10', status: 'In transit', item: 'Pack of 2 Mix', variant: 'Grey, Navy · M', price: 69, shipping: 0, g: 'linear-gradient(135deg,#c9cacd,#8d9096)' } },
+    },
+    {
+      name: 'Nathan Robin', ch: 'instagram', time: 'Mon', prev: 'When is the next drop?',
+      customer: { handle: '@nathanrbn', email: 'nathan.robin@mail.com', since: 'Sep 2026', orders: 1, spent: 39,
+        order: { id: '#1030', date: 'Oct 5', status: 'Delivered', item: 'Tech T-shirt', variant: 'Sand · L · ×1', price: 39, shipping: 0, g: 'linear-gradient(135deg,#e9dcc6,#c4ab86)' } },
+    },
+    {
+      name: 'Maxime Dubois', ch: 'imessage', time: '10:20 AM', prev: 'Will my order arrive before Saturday?',
+      customer: { handle: '+33 6 98 02 44 17', email: 'maxime.dubois@mail.com', since: 'Feb 2024', orders: 7, spent: 538,
+        order: { id: '#1048', date: 'Oct 14', status: 'Unfulfilled', item: 'The Trousers', variant: 'Navy · 42 · ×1', price: 89, shipping: 0, g: 'linear-gradient(135deg,#4a5a7c,#1d2741)' } },
       script: [
         { time: 'Today, 10:20 AM' },
-        { in: 'Hey! Is my order ready for pickup at the Lyon store?' },
-        { out: 'Hi Maxime! Order #1048 is packed and waiting at Lyon Confluence. The store is open until 7 PM.' },
-        { sys: 'Order #1048 marked ready for pickup', patch: { status: 'Ready for pickup' } },
-        { in: 'Great, I\'ll swing by after work 👍', typing: 1000 },
-        { out: 'Perfect. Just show this message at the counter and you\'re all set.' },
+        { in: 'Hey! I need my trousers for a wedding on Saturday. Will they arrive in time?' },
+        { out: 'Hi Maxime! I\'ve upgraded order #1048 to free express delivery. It ships today and arrives Friday before 1 PM.' },
+        { sys: 'Order #1048 upgraded to express in Shopify', patch: { status: 'Express' } },
+        { in: 'Amazing, thanks a lot 👍', typing: 1000 },
+        { out: 'Enjoy the wedding! The tracking link will land right here as soon as it\'s scanned.' },
       ],
     },
-    { name: 'Zoé Lambert', ch: 'imessage', time: '9:05 AM', prev: 'Can you gift-wrap my order?',
-      customer: { handle: '+33 7 52 39 61 08', email: 'zoe.lambert@mail.com', since: 'Nov 2025', orders: 1, spent: 85,
-        order: { id: '#1046', date: 'Oct 14', status: 'Unfulfilled', item: 'Cashmere Beanie', variant: 'Oat · ×1', price: 80, shipping: 5, g: 'linear-gradient(135deg,#e7dcc8,#bfa98a)' } } },
-    { name: 'Arthur Girard', ch: 'imessage', time: 'Yesterday', prev: 'Thanks for the quick reply!',
-      customer: { handle: '+33 6 21 75 90 46', email: 'arthur.girard@mail.com', since: 'Jan 2024', orders: 11, spent: 1420,
-        order: { id: '#1041', date: 'Oct 12', status: 'Delivered', item: 'Merino Overcoat', variant: 'Charcoal · L · ×1', price: 320, shipping: 0, g: 'linear-gradient(135deg,#7d7f86,#34363c)' } } },
-    { name: 'Clara Morel', ch: 'imessage', time: 'Tue', prev: 'Do you price match?',
-      customer: { handle: '+33 6 63 48 21 95', email: 'clara.morel@mail.com', since: 'Aug 2025', orders: 2, spent: 158,
-        order: { id: '#1033', date: 'Oct 6', status: 'Delivered', item: 'Leather Belt', variant: 'Black · 85 · ×1', price: 59, shipping: 5, g: 'linear-gradient(135deg,#4e4a46,#1d1b19)' } } },
+    {
+      name: 'Zoé Lambert', ch: 'imessage', time: '9:05 AM', prev: 'Can you gift-wrap my order?',
+      customer: { handle: '+33 7 52 39 61 08', email: 'zoe.lambert@mail.com', since: 'Nov 2025', orders: 1, spent: 55,
+        order: { id: '#1046', date: 'Oct 14', status: 'Unfulfilled', item: 'Polo', variant: 'Green · L · ×1', price: 55, shipping: 0, g: 'linear-gradient(135deg,#8fae96,#3f6650)' } },
+    },
+    {
+      name: 'Arthur Girard', ch: 'imessage', time: 'Yesterday', prev: 'Thanks for the quick reply!',
+      customer: { handle: '+33 6 21 75 90 46', email: 'arthur.girard@mail.com', since: 'Jan 2024', orders: 11, spent: 864,
+        order: { id: '#1041', date: 'Oct 12', status: 'Delivered', item: 'Pack of 4 Signature', variant: 'Mixed colors · M', price: 129, shipping: 0, g: 'linear-gradient(135deg,#efe6d6,#cdb99a)' } },
+    },
+    {
+      name: 'Clara Morel', ch: 'imessage', time: 'Tue', prev: 'Do you sell gift cards?',
+      customer: { handle: '+33 6 63 48 21 95', email: 'clara.morel@mail.com', since: 'Aug 2025', orders: 2, spent: 118,
+        order: { id: '#1033', date: 'Oct 6', status: 'Delivered', item: 'Pack of 2 Polos Mix', variant: 'White, Navy · L', price: 99, shipping: 0, g: 'linear-gradient(135deg,#ffffff,#dcdad4)' } },
+    },
     {
       name: 'Julie Bonnet', ch: 'rcs', time: '10:34 AM', prev: 'Can I change my delivery slot?',
-      customer: { handle: '+33 6 74 30 18 52', email: 'julie.bonnet@mail.com', since: 'Jun 2025', orders: 3, spent: 247,
-        order: { id: '#1049', date: 'Oct 14', status: 'Unfulfilled', item: 'Linen Duvet Cover', variant: 'Sage · Queen · ×1', price: 139, shipping: 0, g: 'linear-gradient(135deg,#c9d3bf,#7f9171)' } },
+      customer: { handle: '+33 6 74 30 18 52', email: 'julie.bonnet@mail.com', since: 'Jun 2025', orders: 3, spent: 207,
+        order: { id: '#1049', date: 'Oct 14', status: 'Unfulfilled', item: 'Pack of 3 Essentials', variant: 'Black · M', price: 99, shipping: 0, g: 'linear-gradient(135deg,#4a4a4f,#151517)' } },
       script: [
         { time: 'Today, 10:34 AM' },
         { in: 'Hi, I won\'t be home Thursday. Can I change my delivery slot?' },
@@ -243,15 +261,21 @@
         { out: 'Done! You\'ll get a tracking update here the day before.' },
       ],
     },
-    { name: 'Hugo Lefèvre', ch: 'rcs', time: '9:12 AM', prev: 'Is the sale still on this weekend?',
-      customer: { handle: '+33 6 11 92 47 60', email: 'hugo.lefevre@mail.com', since: 'Mar 2026', orders: 1, spent: 58,
-        order: { id: '#1035', date: 'Oct 7', status: 'Delivered', item: 'Organic Cotton Hoodie', variant: 'Grey · M · ×1', price: 54, shipping: 4, g: 'linear-gradient(135deg,#c4c6cb,#8b8e95)' } } },
-    { name: 'Emma Garcia', ch: 'rcs', time: 'Yesterday', prev: 'Got the discount code, thanks!',
-      customer: { handle: '+33 7 40 85 13 29', email: 'emma.garcia@mail.com', since: 'Oct 2024', orders: 5, spent: 498,
-        order: { id: '#1043', date: 'Oct 12', status: 'In transit', item: 'Ceramic Mug Set', variant: 'Sand · ×4', price: 64, shipping: 6, g: 'linear-gradient(135deg,#ead9c2,#c2a07a)' } } },
-    { name: 'Louis Chevalier', ch: 'rcs', time: 'Mon', prev: 'Where do I find my invoice?',
-      customer: { handle: '+33 6 58 26 74 03', email: 'louis.chevalier@mail.com', since: 'Jan 2026', orders: 2, spent: 176,
-        order: { id: '#1032', date: 'Oct 6', status: 'Delivered', item: 'Leather Backpack', variant: 'Cognac · ×1', price: 172, shipping: 4, g: 'linear-gradient(135deg,#c48a5a,#7a4a26)' } } },
+    {
+      name: 'Hugo Lefèvre', ch: 'rcs', time: '9:12 AM', prev: 'Is the sale still on this weekend?',
+      customer: { handle: '+33 6 11 92 47 60', email: 'hugo.lefevre@mail.com', since: 'Mar 2026', orders: 1, spent: 39,
+        order: { id: '#1035', date: 'Oct 7', status: 'Delivered', item: 'Tech T-shirt', variant: 'Grey · M · ×1', price: 39, shipping: 0, g: 'linear-gradient(135deg,#c9cacd,#8d9096)' } },
+    },
+    {
+      name: 'Emma Garcia', ch: 'rcs', time: 'Yesterday', prev: 'Got the discount code, thanks!',
+      customer: { handle: '+33 7 40 85 13 29', email: 'emma.garcia@mail.com', since: 'Oct 2024', orders: 4, spent: 296,
+        order: { id: '#1043', date: 'Oct 12', status: 'In transit', item: 'Pack of 4 Mix', variant: 'Mixed colors · L', price: 119, shipping: 0, g: 'linear-gradient(135deg,#e9dcc6,#c4ab86)' } },
+    },
+    {
+      name: 'Louis Chevalier', ch: 'rcs', time: 'Mon', prev: 'Where do I find my invoice?',
+      customer: { handle: '+33 6 58 26 74 03', email: 'louis.chevalier@mail.com', since: 'Jan 2026', orders: 2, spent: 128,
+        order: { id: '#1032', date: 'Oct 6', status: 'Delivered', item: 'V-neck T-shirt', variant: 'Navy · XL · ×2', price: 78, shipping: 0, g: 'linear-gradient(135deg,#4a5a7c,#1d2741)' } },
+    },
   ];
 
   const app = $('#app'), list = $('#threads'), chat = $('#chat'), composer = $('#composer');
@@ -270,7 +294,7 @@
   };
 
   /* Fiche client */
-  const statusClass = (st) => (/Unfulfilled|Return|transit|pickup/.test(st) ? 'order__status--open' : 'order__status--done');
+  const statusClass = (st) => (/Unfulfilled|Return|transit|pickup|Express/.test(st) ? 'order__status--open' : 'order__status--done');
   const renderPanel = (i, flash) => {
     const t = THREADS[i], c = t.customer, o = c.order;
     panelInner.innerHTML = `
@@ -424,9 +448,9 @@
       else add(outHtml(st.out), 'msg--out');
     });
     // La conversation affichée est déjà terminée : la fiche montre la taille modifiée
-    THREADS[0].customer.order.variant = 'Sand · L · ×1';
+    THREADS[0].customer.order.variant = 'Black · L · ×1';
     renderPanel(0);
-    THREADS[0].customer.order.variant = 'Sand · M · ×1';
+    THREADS[0].customer.order.variant = 'Black · M · ×1';
     $$('.msg', chat).forEach((m) => { m.style.animation = 'none'; });
     moveGlider();
   })();
