@@ -283,6 +283,7 @@
   // Peek mascot rises as the CTA scrolls into view
   const peek = $('#peek');
   const onPeek = () => {
+    if (!peek) return;
     const r = peek.getBoundingClientRect();
     const p = Math.min(1, Math.max(0, (innerHeight - r.top) / (r.height + innerHeight * 0.25)));
     peek.style.setProperty('--peek', p.toFixed(3));
