@@ -20,7 +20,9 @@
     if (!trigger) return;
     trigger.addEventListener('click', (e) => {
       e.stopPropagation();
-      const open = !item.classList.contains('is-open');
+      // Sur ordinateur, le survol ouvre déjà le menu : le clic ne doit pas le refermer
+      const hoverOpen = item.classList.contains('has-menu') && matchMedia('(hover: hover)').matches;
+      const open = hoverOpen ? true : !item.classList.contains('is-open');
       closeMenus(item);
       item.classList.toggle('is-open', open);
       trigger.setAttribute('aria-expanded', String(open));
