@@ -849,11 +849,11 @@
   /* ---------------- Pricing ---------------- */
   const PLANS = [
     { name: 'Pro', price: 89, cta: 'Choose Pro', dark: false,
-      inc: 'What you get:', items: ['1 user', 'Widget chat & inbox', 'Abandoned cart recovery', 'WhatsApp campaigns', 'AI agent', 'Segments & multi-market', 'Kanal MCP', 'Klaviyo, Recharge, Crisp & Gorgias'] },
+      inc: 'What you get:', items: ['1 user', 'Widget chat & inbox', 'Abandoned cart recovery', 'WhatsApp campaigns'] },
     { name: 'Scale', price: 149, badge: 'Most popular', cta: 'Choose Scale', dark: true, featured: true,
-      inc: 'Everything in Pro, plus:', items: ['5 users', 'Unlimited automations', 'Advanced automations: A/B tests, Shopify conditions, discount codes, API', 'Extra markets at +50€/mo each', 'Dedicated account manager'] },
+      inc: 'Everything in Pro, plus:', items: ['5 users', 'Segments', 'Unlimited automations', 'Advanced automations: A/B tests, Shopify conditions, discount codes, API', 'AI agent', 'Kanal MCP', 'Klaviyo, Recharge, Crisp & Gorgias integrations', 'Multi-market, +50€/mo per market'] },
     { name: 'Business', price: 350, cta: 'Choose Business', dark: false,
-      inc: 'Everything in Scale, plus:', items: ['Unlimited users', 'Flow setup by our experts', 'Continuous optimization', 'Campaigns on demand'] },
+      inc: 'Everything in Scale, plus:', items: ['Unlimited users', 'Flow setup by our experts', 'Continuous optimization', 'Campaigns on demand', 'Dedicated account manager'] },
   ];
   const BILLING = [['Monthly', 1, 'No commitment'], ['Yearly −10%', 0.9, 'Billed yearly']];
   const eurPrice = (n) => (Number.isInteger(n) ? fmt.format(n) : n.toFixed(2)) + '€';
