@@ -105,25 +105,6 @@
 .bill h3 { margin-top: 20px; padding: 0 4px; font-size: 16px; line-height: 24px; font-weight: 500; }
 .bill p { margin-top: 4px; padding: 0 4px; font-size: 15px; line-height: 24px; color: var(--muted); }
 
-/* ---------- CTA final ---------- */
-.pcta { text-align: center; }
-.badges { display: flex; justify-content: center; gap: 16px; padding-top: 24px; }
-.badge-card { position: relative; display: flex; flex-direction: column; align-items: center; width: 116px; padding: 0 10px 14px; border-radius: 12px; background: var(--surface); box-shadow: 0 0 0 1px var(--line), 0 12px 28px -16px rgba(10, 10, 10, .3); transform: rotate(var(--r)); transition: transform .4s var(--ease); }
-.badge-card:hover { transform: rotate(0) translateY(-4px); }
-.badge-card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 64px; border-radius: 12px 12px 0 0; background: var(--c); opacity: .18; }
-.badge-card__strap { position: absolute; top: -22px; left: 50%; width: 10px; height: 26px; border-radius: 3px; background: var(--c); transform: translateX(-50%); }
-.badge-card__no { position: relative; align-self: flex-start; margin-top: 8px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9px; color: var(--fg-60); }
-.badge-card__icon { position: relative; display: grid; place-items: center; width: 40px; height: 40px; margin-top: 12px; border-radius: 12px; background: var(--surface); box-shadow: 0 0 0 1px var(--line); }
-.badge-card__icon svg { width: 26px; height: 26px; border-radius: 7px; }
-.badge-card strong { margin-top: 10px; font-size: 13px; font-weight: 500; }
-.badge-card small { font-size: 11px; line-height: 15px; color: var(--muted); }
-.pcta__title { max-width: 900px; margin: 40px auto 0; font-size: 56px; line-height: 60px; letter-spacing: -1px; }
-.pcta__btns { display: inline-flex; margin-top: 32px; }
-.pcta__btns .btn:first-child { border-radius: 9999px 0 0 9999px; }
-.pcta__btns .btn:last-child { border-radius: 0 9999px 9999px 0; }
-.pcta__rating { margin-top: 24px; font-size: 14px; color: var(--fg-70); }
-.pcta__rating span { letter-spacing: 1px; color: var(--fg); }
-
 /* ---------- Responsive ---------- */
 @media (max-width: 1100px) {
   .pcards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -141,8 +122,4 @@
       .pcards { grid-template-columns: 1fr; }
   .ptitle { font-size: 24px; line-height: 31px; }
   .ct__head { top: 64px; }
-  .badges { gap: 8px; }
-  .badge-card { width: 76px; padding: 0 6px 10px; }
-  .badge-card small { display: none; }
-  .pcta__title { font-size: 34px; line-height: 38px; }
 }
