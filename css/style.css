@@ -775,7 +775,6 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
 .lightbox__close { position: absolute; top: 10px; right: 12px; z-index: 2; width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,.15); color: #fff; font-size: 20px; }
 
 /* ---------- Tarifs ---------- */
-.pricing__sales { margin-top: 24px; }
 .pricing { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
 .plan { min-height: 504px; padding: 32px; border-radius: 24px; background: var(--card); display: flex; flex-direction: column; }
 /* Plan mis en avant : même taille que les autres, posé sur un dégradé peint qui déborde de 6 px tout autour */
