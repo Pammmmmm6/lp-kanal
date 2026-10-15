@@ -708,60 +708,51 @@
     { name: 'Cart Recovery', hue: 'cyan', icon: 'cart', title: 'Win back every abandoned checkout.', desc: 'A friendly reminder with the product, the right timing and a one-tap link back to checkout. Questions get answered in the same chat.',
       chat: [
         { time: 'Today 3:12 PM', sys: ['Triggered by', 'Abandoned checkout'] },
-        { card: { title: 'Still thinking?', badge: 'Cart reminder', tone: 'accent', rows: [['Item', 'Tech T-shirt · Black'], ['Size', 'M']], body: ['Hi Emma, you left the Tech T-shirt in your cart. Your size is still in stock.'], actions: ['Complete order', 'Change size'] } },
-        { user: 'is it true to size? i usually wear M but sometimes L' },
-        { agent: 'It runs true to size, so M is perfect. Want me to keep it for you until tonight?' },
-        { user: 'yes please, ordering now' },
-        { agent: 'All set, order <strong>#1042</strong> is confirmed. Thanks Emma!' },
+        { tpl: { img: 'tee-black', title: 'Still thinking it over?', text: 'Hi Emma, your Tech T-shirt is still in your cart, and size M is in stock.', btns: [['link', 'Complete my order'], ['reply', 'Change size']] } },
+        { user: 'is it true to size?' },
+        { agent: 'Yes, M will fit you perfectly. Your cart is saved until tonight.' },
       ] },
     { name: 'Order Updates', hue: 'violet', icon: 'truck', title: 'Keep every customer in the loop.', desc: 'Order confirmation, shipping and delivery updates with live tracking, sent automatically from Shopify.',
       chat: [
-        { time: 'Monday 10:02 AM', sys: ['Triggered by', 'Order paid'] },
-        { card: { title: 'Order confirmed', badge: '#1042', tone: 'success', rows: [['Items', 'Tech T-shirt, Trousers'], ['Total', '€84.00']], body: ['Thanks Maxime! Your order is confirmed and ships within 24 hours.'], actions: ['View order', 'Manage order'] } },
         { time: 'Tuesday 8:15 AM', sys: ['Triggered by', 'Order shipped'] },
-        { agent: 'Good news Maxime, your order is on its way. Expected delivery: <strong>Thursday</strong>.' },
-        { user: 'can I get it delivered to my office instead?' },
-        { agent: 'Of course. The carrier has your new address, same delivery date.' },
+        { tpl: { img: 'pack', title: 'Your order is on its way', text: 'Hi Maxime, order #1042 has shipped. Expected delivery: Thursday.', btns: [['link', 'Track my order'], ['reply', 'Change address']] } },
+        { user: 'can it go to my office?' },
+        { agent: 'Done, same delivery date.' },
       ] },
     { name: 'Campaigns', hue: 'magenta', icon: 'megaphone', title: 'Launch campaigns that get read.', desc: 'Send a drop, a sale or a restock to the right segment, with images and buttons customers actually tap.',
       chat: [
         { time: 'Thursday 6:00 PM', sys: ['Campaign', 'Summer Sale'] },
-        { card: { title: 'Summer Sale is on', badge: '−30%', tone: 'accent', rows: [['Ends', 'Sunday midnight'], ['Code', 'SUMMER30']], body: ['Hi Lucas, 30% off everything until Sunday. Your favourites are waiting.'], actions: ['Shop now', 'Stop promos'] } },
-        { user: 'does it work on the new polos too?' },
-        { agent: 'Yes, the new Polo is included. Navy and white are both in stock in L.' },
-        { user: 'perfect, just ordered the navy one' },
-        { agent: 'Great choice! Order <strong>#1051</strong> is confirmed.' },
+        { tpl: { img: 'polo-navy', title: 'Summer Sale: 30% off', text: 'Hi Lucas, 30% off everything until Sunday.', btns: [['link', 'Shop the sale'], ['reply', 'Stop promotions']] } },
+        { user: 'does it work on the new polos?' },
+        { agent: 'Yes! The navy one is in stock.' },
       ] },
     { name: 'Customer Support', hue: 'green', icon: 'chat', title: 'Answer every question, day or night.', desc: 'Sizing, delivery, returns: customers get an answer in seconds, and your team steps in whenever it matters.',
       chat: [
-        { time: 'Sunday 11:48 PM', user: 'hi, my order arrived damaged. can I get a replacement?' },
-        { agent: 'Sorry about that, Julie. Could you send me a photo of the item?' },
-        { user: 'here it is, the seam is torn' },
-        { card: { title: 'Replacement sent', badge: '#1063', tone: 'success', rows: [['Item', 'Polo · White, M'], ['Shipping', 'Free, 2–3 days']], body: ['We\'ve sent you a new one at no cost. No need to return the damaged item.'], actions: ['Track order', 'Talk to the team'] } },
-        { user: 'wow that was fast, thank you!' },
+        { time: 'Sunday 11:48 PM', user: 'hi, my polo arrived damaged. can I get a replacement?' },
+        { agent: 'So sorry, Julie. A new one ships today, free of charge.' },
+        { tpl: { img: 'polo-white', title: 'Replacement on its way', text: 'Polo · White, M. No need to send the damaged one back.', btns: [['link', 'Track my order']] } },
+        { user: 'wow, thank you!' },
       ] },
     { name: 'Post-purchase Upsell', hue: 'blue', icon: 'bag', title: 'Grow every order after checkout.', desc: 'Suggest the product that pairs with what they just bought, added to the same shipment in one tap.',
       chat: [
         { time: 'Monday 2:31 PM', sys: ['Triggered by', 'Order paid'] },
-        { agent: 'Thanks for your order, Maxime! One more thing before it ships…' },
-        { card: { title: 'Complete the look', badge: '−15%', tone: 'accent', rows: [['Item', 'Trousers · Black'], ['Ships', 'With order #1042']], body: ['The Trousers pair perfectly with your Tech T-shirt.'], actions: ['Add to my order', 'No thanks'] } },
-        { user: 'add them, size 32' },
-        { agent: 'Added to order <strong>#1042</strong>, same delivery date.' },
+        { tpl: { img: 'trousers-black', title: 'Complete the look', text: 'These Trousers pair perfectly with your Tech T-shirt: 15% off for 48h.', btns: [['reply', 'Add to my order'], ['reply', 'No thanks']] } },
+        { user: 'Add to my order' },
+        { agent: 'Done! Added to order #1042, same delivery date.' },
       ] },
     { name: 'Review Collection', hue: 'orange', icon: 'star', title: 'Collect reviews on autopilot.', desc: 'Ask happy customers for a review after delivery, and catch unhappy ones before they post.',
       chat: [
         { time: 'Friday 10:00 AM', sys: ['Triggered by', 'Delivered + 3 days'] },
-        { card: { title: 'How was your order?', badge: 'Review', rows: [['Item', 'Tech T-shirt · Black']], body: ['Hi Emma, how do you like your Tech T-shirt? Tap a star to rate it.'], actions: ['★★★★★', 'Not great'] } },
-        { user: '★★★★★ love it, super soft' },
-        { agent: 'Thank you Emma! Your review is live. Here\'s 10% off your next order: <strong>THANKS10</strong>' },
+        { tpl: { img: 'vneck-black', title: 'How do you like it?', text: 'Hi Emma, how is your Tech T-shirt?', btns: [['reply', 'Love it'], ['reply', 'Something\'s wrong']] } },
+        { user: 'Love it' },
+        { agent: 'Thank you Emma! Here\'s 10% off your next order: <strong>THANKS10</strong>' },
       ] },
     { name: 'Win-back', hue: 'yellow', icon: 'loop', title: 'Bring lapsed customers back.', desc: 'A personal message for customers who haven\'t ordered in a while, based on what they bought before.',
       chat: [
-        { time: 'Monday 10:00 AM', sys: ['Triggered by', '90 days without an order'] },
-        { card: { title: 'Picked for you', badge: '−15%', tone: 'accent', rows: [['For', 'Lucas Martin'], ['Pairs with', 'Your Tech T-shirt']], body: ['Hey Lucas, it\'s been a while! The black Trousers match your Tech T-shirt. Here\'s 15% off this week.'], actions: ['See the Trousers', 'Not now'] } },
-        { user: 'nice, do you have them in 30?' },
-        { agent: 'Yes, size 30 is in stock. Your 15% is applied at checkout.' },
-        { user: 'ordered!' },
+        { time: 'Monday 10:00 AM', sys: ['Triggered by', '90 days inactive'] },
+        { tpl: { img: 'giftbox', title: 'We miss you, Lucas', text: 'Here\'s 15% off your next order this week.', btns: [['link', 'Shop new arrivals'], ['reply', 'Not now']] } },
+        { user: 'trousers in size 30?' },
+        { agent: 'In stock, and your 15% is applied.' },
       ] },
   ];
 
@@ -773,33 +764,20 @@
       return `<button type="button" class="jpill" aria-pressed="${i === 0}" data-i="${i}" style="${hueVars(j.hue)}"><span class="jpill__slot">${avatar(j)}</span>${j.name}</button>`;
     }).join('')}</div>`).join('');
 
-    const card = (c) => `<div class="bot-card"><div class="bot-card__head"><span class="bot-card__title">${c.title}</span><span class="bot-card__badge"${c.tone ? ` data-tone="${c.tone}"` : ''}>${c.badge}</span></div>`
-      + `<dl class="bot-panel">${c.rows.map(([k, v]) => `<div class="bot-panel__row"><dt>${k}</dt><dd>${v}</dd></div>`).join('')}<div class="bot-panel__body">${c.body.map((t) => `<p>${t}</p>`).join('')}</div></dl>`
-      + `<div class="bot-card__actions"><span class="bot-card__action bot-card__action--primary">${c.actions[0]}</span><span class="bot-card__action bot-card__action--secondary">${c.actions[1]}</span></div></div>`;
+    const btnIco = { link: '<svg viewBox="0 0 16 16"><path d="M6.5 3.5h-3v9h9v-3M9 2.5h4.5V7M13.5 2.5 7.5 8.5" /></svg>', reply: '<svg viewBox="0 0 16 16"><path d="M6.5 4 2.5 8l4 4M2.5 8h7a4 4 0 0 1 4 4" /></svg>' };
+    const tplHtml = (t) => `<div class="wa-tpl"><img class="wa-tpl__img" src="assets/fincut/${t.img}.jpg" alt="" loading="lazy" />`
+      + `<div class="wa-tpl__body"><strong>${t.title}</strong><p>${t.text}</p></div>`
+      + `<div class="wa-tpl__btns">${t.btns.map(([k, l]) => `<span class="wa-tpl__btn">${btnIco[k]}${l}</span>`).join('')}</div></div>`;
     const entryHtml = (e) => {
       let inner = '';
       if (e.time) inner += `<div class="bot-time">${e.time}</div>`;
       if (e.user) inner += `<div class="bot-msg bot-msg--user">${e.user}</div>`;
       if (e.agent) inner += `<div class="bot-msg bot-msg--agent">${e.agent}</div>`;
       if (e.sys) inner += `<div class="bot-sys"><span>${e.sys[0]}</span>${routineIco}<b>${e.sys[1]}</b></div>`;
-      if (e.card) inner += card(e.card);
+      if (e.tpl) inner += tplHtml(e.tpl);
       return inner;
     };
     const kind = (e) => (e.user ? 'user' : e.sys ? 'sys' : 'agent');
-
-    let scrollRaf = 0;
-    const scrollToEnd = (animate) => {
-      cancelAnimationFrame(scrollRaf);
-      const end = transcript.scrollHeight - transcript.clientHeight;
-      if (!animate || reduced) { transcript.scrollTop = end; return; }
-      const from = transcript.scrollTop, t0 = performance.now(), dur = 1000;
-      const step = (now) => {
-        const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3);
-        transcript.scrollTop = from + (end - from) * e;
-        if (p < 1) scrollRaf = requestAnimationFrame(step);
-      };
-      scrollRaf = requestAnimationFrame(step);
-    };
 
     const renderJob = (i, animate) => {
       const j = JOBS[i];
@@ -808,10 +786,9 @@
       bot.setAttribute('style', hueVars(j.hue));
       transcript.innerHTML = `<div class="bot__list${animate ? ' is-mounting' : ''}">${j.chat.map((e, k) => {
         const cont = k > 0 && !e.time && kind(e) === 'agent' && kind(j.chat[k - 1]) === 'agent';
-        return `<div class="bot-entry${cont || k === 0 ? '' : ' mt'}"${animate ? '' : ' style="animation:none"'}>${entryHtml(e)}</div>`;
+        return `<div class="bot-entry${cont || k === 0 ? '' : ' mt'}" style="${animate ? `animation-delay:${k * 160}ms` : 'animation:none'}">${entryHtml(e)}</div>`;
       }).join('')}</div>`;
       transcript.scrollTop = 0;
-      if (animate) requestAnimationFrame(() => scrollToEnd(true)); else scrollToEnd(false);
       const html = `<strong>${j.title}</strong> <span>${j.desc}</span>`;
       if (!animate) { jobDesc.innerHTML = html; return; }
       jobDesc.classList.add('is-swapping');
