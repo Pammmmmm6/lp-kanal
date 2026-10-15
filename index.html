@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=202610160220" />
+  <link rel="stylesheet" href="css/style.css?v=202610160230" />
   <script>
     var t = null; try { t = localStorage.getItem('kanal-theme'); } catch (e) {}
     if (t) document.documentElement.setAttribute('data-theme', t);
@@ -42,33 +42,31 @@
     <div class="nav__inner">
       <a href="#" class="logo" aria-label="Kanal home"><svg class="logo__kanal" viewBox="0 0 96 24" role="img" aria-label="Kanal"><use href="#logo-kanal" /></svg></a>
       <nav class="nav__links" aria-label="Main navigation">
-        <div class="nav__item has-menu">
+        <div class="nav__item has-menu has-mega">
           <button class="nav__link" aria-expanded="false">Product <svg class="chev"><use href="#chev" /></svg></button>
-          <div class="menu">
-            <div class="menu__label">Product</div>
-            <a href="https://getkanal.com/whatsapp-shopify">WhatsApp for Shopify</a>
-            <a href="https://getkanal.com/abandoned-cart-recovery">Cart recovery</a>
-            <a href="https://getkanal.com/whatsapp-campaigns">WhatsApp campaigns</a>
-            <a href="https://getkanal.com/whatsapp-ai-agent">AI agent</a>
-            <a href="https://getkanal.com/order-notifications">Order notifications</a>
-            <a href="https://getkanal.com/back-in-stock">Back in stock</a>
-            <a href="https://getkanal.com/post-purchase-upsell">Post-purchase upsell</a>
-            <a href="https://getkanal.com/review-collection">Review collection</a>
-            <a href="https://getkanal.com/automations">Automations</a>
-            <div class="menu__label">Connect</div>
-            <a href="https://getkanal.com/mcp">Kanal MCP</a>
-            <a href="https://getkanal.com/whatsapp-integration">Integrations</a>
+          <div class="mega">
+            <div class="mega__main">
+              <nav class="mega__big"><a href="https://getkanal.com/whatsapp-shopify">WhatsApp for Shopify</a><a href="https://getkanal.com/abandoned-cart-recovery">Cart recovery</a><a href="https://getkanal.com/whatsapp-campaigns">WhatsApp campaigns</a><a href="https://getkanal.com/whatsapp-ai-agent">AI agent</a><a href="https://getkanal.com/order-notifications">Order notifications</a><a href="https://getkanal.com/back-in-stock">Back in stock</a><a href="https://getkanal.com/post-purchase-upsell">Post-purchase upsell</a><a href="https://getkanal.com/review-collection">Review collection</a><a href="https://getkanal.com/automations">Automations</a></nav>
+              <div class="mega__groups"><div class="mega__group"><div class="mega__label">Connect</div><a href="https://getkanal.com/mcp">Kanal MCP</a><a href="https://getkanal.com/whatsapp-integration">Integrations</a><a href="https://developers.getkanal.com/">Developer API</a></div><div class="mega__group"><div class="mega__label">Channels</div><a href="https://getkanal.com/instagram">Instagram</a><a href="https://getkanal.com/sms">SMS</a><a href="https://getkanal.com/rcs">RCS</a></div></div>
+            </div>
+            <a class="mega__card mega__card--a" href="https://getkanal.com/case-studies">
+              <span class="mega__card-text"><strong>Case studies</strong><span>See how Shopify brands grow their sales with Kanal.</span></span>
+              <span class="mega__card-btn">Read stories</span>
+            </a>
           </div>
         </div>
         <a class="nav__link" href="https://getkanal.com/case-studies">Case Studies</a>
-        <div class="nav__item has-menu">
+        <div class="nav__item has-menu has-mega">
           <button class="nav__link" aria-expanded="false">Resources <svg class="chev"><use href="#chev" /></svg></button>
-          <div class="menu">
-            <a href="https://getkanal.com/blog">Blog</a>
-            <a href="https://getkanal.com/tools">Free Tools</a>
-            <a href="https://getkanal.com/whatsapp-marketing-glossary">WhatsApp glossary</a>
-            <a href="https://getkanal.com/alternatives">Comparisons</a>
-            <span class="menu__soon">Playbooks <em>Soon</em></span>
+          <div class="mega">
+            <div class="mega__main">
+              <nav class="mega__big"><a href="https://getkanal.com/blog">Blog</a><a href="https://getkanal.com/tools">Free tools</a><a href="https://getkanal.com/whatsapp-marketing-glossary">WhatsApp glossary</a><a href="https://getkanal.com/alternatives">Comparisons</a><a href="https://getkanal.com/best-shopify-apps">Best Shopify apps</a><a href="https://help.getkanal.com/">Help center</a></nav>
+              <div class="mega__groups"><div class="mega__group"><div class="mega__label">Learn</div><a href="https://developers.getkanal.com/">Developer API</a><span class="mega__soon">Playbooks <em>Soon</em></span></div><div class="mega__group"><div class="mega__label">Company</div><a href="https://getkanal.com/affiliate">Affiliate program</a><a href="https://getkanal.com/careers">Careers</a><a href="https://getkanal.com/contact">Contact</a><a href="https://getkanal.com/demo">Book a demo</a></div></div>
+            </div>
+            <a class="mega__card mega__card--b" href="https://getkanal.com/mcp">
+              <span class="mega__card-text"><strong>Kanal MCP</strong><span>Plug Kanal into Claude, ChatGPT, Codex or Cursor.</span></span>
+              <span class="mega__card-btn">Discover MCP</span>
+            </a>
           </div>
         </div>
         <a class="nav__link" href="https://getkanal.com/affiliate">Affiliate</a>
@@ -457,6 +455,6 @@
     <div class="lightbox__frame" id="lightboxFrame"></div>
   </dialog>
 
-  <script src="js/main.js?v=202610160220"></script>
+  <script src="js/main.js?v=202610160230"></script>
 </body>
 </html>
