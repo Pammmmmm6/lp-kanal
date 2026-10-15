@@ -860,7 +860,7 @@
 
   /* ---------------- Pricing ---------------- */
   const PLANS = [
-    { name: 'Pro', price: 89, cta: 'Choose Pro', dark: true,
+    { name: 'Pro', price: 89, cta: 'Choose Pro', dark: false,
       inc: 'What you get:', items: ['1 user', 'Widget chat & inbox', 'Abandoned cart recovery', 'WhatsApp campaigns', 'AI agent', 'Segments & multi-market', 'Kanal MCP', 'Klaviyo, Recharge, Crisp & Gorgias'] },
     { name: 'Scale', price: 149, badge: 'Most popular', cta: 'Choose Scale', dark: true,
       inc: 'Everything in Pro, plus:', items: ['5 users', 'Unlimited automations', 'Advanced automations: A/B tests, Shopify conditions, discount codes, API', 'Extra markets at +50€/mo each', 'Dedicated account manager'] },
