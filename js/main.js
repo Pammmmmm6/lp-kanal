@@ -862,7 +862,7 @@
   const PLANS = [
     { name: 'Pro', price: 89, cta: 'Choose Pro', dark: false,
       inc: 'What you get:', items: ['1 user', 'Widget chat & inbox', 'Abandoned cart recovery', 'WhatsApp campaigns', 'AI agent', 'Segments & multi-market', 'Kanal MCP', 'Klaviyo, Recharge, Crisp & Gorgias'] },
-    { name: 'Scale', price: 149, badge: 'Most popular', cta: 'Choose Scale', dark: true,
+    { name: 'Scale', price: 149, badge: 'Most popular', cta: 'Choose Scale', dark: true, featured: true,
       inc: 'Everything in Pro, plus:', items: ['5 users', 'Unlimited automations', 'Advanced automations: A/B tests, Shopify conditions, discount codes, API', 'Extra markets at +50€/mo each', 'Dedicated account manager'] },
     { name: 'Business', price: 350, badge: 'Done for you', cta: 'Choose Business', dark: false,
       inc: 'Everything in Scale, plus:', items: ['Unlimited users', 'Flow setup by our experts', 'Continuous optimization', 'Campaigns on demand'] },
@@ -872,7 +872,7 @@
   const plansEl = $('#plans');
   const tick = '<svg viewBox="0 0 16 16"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>';
   plansEl.innerHTML = PLANS.map((p, i) => `
-    <article class="plan reveal reveal--up" style="--d:${i}" data-i="${i}">
+    <article class="plan reveal reveal--up${p.featured ? ' plan--featured' : ''}" style="--d:${i}" data-i="${i}">
       <div class="plan__top"><span class="plan__name">${p.name}</span>
         <div class="seg" role="group" aria-label="Billing">${BILLING.map((t, k) => `<button aria-pressed="${k === 0}" data-k="${k}">${t[0]}</button>`).join('')}</div>
       </div>
