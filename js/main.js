@@ -134,7 +134,8 @@
   }
 
   /* ---------------- Hero : inbox multicanal + fiche client ---------------- */
-  const CHANNELS = { whatsapp: 'WhatsApp', instagram: 'Instagram', messenger: 'Messenger' };
+  const CHANNELS = { whatsapp: 'WhatsApp', instagram: 'Instagram', messenger: 'Messenger', imessage: 'iMessage' };
+  const CH_ORDER = Object.keys(CHANNELS);
   const logo = (ch) => `<svg viewBox="0 0 32 32"><use href="#logo-${ch}" /></svg>`;
   const esc = (t) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
   const money = (n) => `$${n.toFixed(2)}`;
@@ -191,21 +192,62 @@
     { name: 'Inès Roux', ch: 'whatsapp', time: 'Mon', prev: 'Order received, thank you!',
       customer: { handle: '+33 7 81 22 09 64', email: 'ines.roux@mail.com', since: 'Nov 2024', orders: 5, spent: 538,
         order: { id: '#1031', date: 'Oct 6', status: 'Delivered', item: 'Leather Card Holder', variant: 'Cognac · ×1', price: 45, shipping: 5, g: 'linear-gradient(135deg,#d9a57a,#8c5532)' } } },
+    { name: 'Tom Mercier', ch: 'whatsapp', time: 'Yesterday', prev: 'Can I pay in three installments?',
+      customer: { handle: '+33 6 45 17 82 03', email: 'tom.mercier@mail.com', since: 'Jul 2025', orders: 2, spent: 286,
+        order: { id: '#1036', date: 'Oct 7', status: 'Delivered', item: 'Waxed Field Jacket', variant: 'Olive · M · ×1', price: 189, shipping: 0, g: 'linear-gradient(135deg,#b7b98f,#5f6a3c)' } } },
+    { name: 'Jade Fontaine', ch: 'instagram', time: '8:47 AM', prev: 'Do you have this one in black? 🖤',
+      customer: { handle: '@jade.fntn', email: 'jade.fontaine@mail.com', since: 'Apr 2025', orders: 3, spent: 214,
+        order: { id: '#1039', date: 'Oct 10', status: 'In transit', item: 'Ribbed Knit Top', variant: 'Ecru · S · ×1', price: 49, shipping: 5, g: 'linear-gradient(135deg,#f3ece0,#d4c3a5)' } } },
+    { name: 'Nathan Robin', ch: 'instagram', time: 'Mon', prev: 'When is the next drop?',
+      customer: { handle: '@nathanrbn', email: 'nathan.robin@mail.com', since: 'Sep 2026', orders: 1, spent: 72,
+        order: { id: '#1030', date: 'Oct 5', status: 'Delivered', item: 'Heavyweight Tee', variant: 'Black · L · ×2', price: 68, shipping: 4, g: 'linear-gradient(135deg,#5a5a5f,#1f1f22)' } } },
+    { name: 'Sacha Leroy', ch: 'messenger', time: '8:30 AM', prev: 'Is there a store in Lille?',
+      customer: { handle: 'Sacha Leroy', email: 'sacha.leroy@mail.com', since: 'May 2024', orders: 6, spent: 731,
+        order: { id: '#1044', date: 'Oct 13', status: 'Unfulfilled', item: 'Linen Trousers', variant: 'Stone · 32 · ×1', price: 95, shipping: 5, g: 'linear-gradient(135deg,#e1d8c6,#b1a184)' } } },
+    { name: 'Manon Faure', ch: 'messenger', time: 'Sun', prev: 'My promo code isn\'t working',
+      customer: { handle: 'Manon Faure', email: 'manon.faure@mail.com', since: 'Dec 2024', orders: 2, spent: 133,
+        order: { id: '#1026', date: 'Oct 2', status: 'Delivered', item: 'Canvas Weekender', variant: 'Navy · ×1', price: 129, shipping: 4, g: 'linear-gradient(135deg,#8d9ab8,#2e3a5c)' } } },
+    {
+      name: 'Maxime Dubois', ch: 'imessage', time: '10:20 AM', prev: 'Is my order ready for pickup?',
+      customer: { handle: '+33 6 98 02 44 17', email: 'maxime.dubois@mail.com', since: 'Feb 2024', orders: 7, spent: 645,
+        order: { id: '#1048', date: 'Oct 14', status: 'Unfulfilled', item: 'Suede Chelsea Boots', variant: 'Tobacco · 42 · ×1', price: 210, shipping: 0, g: 'linear-gradient(135deg,#c79a6c,#7a4f2c)' } },
+      script: [
+        { time: 'Today, 10:20 AM' },
+        { in: 'Hey! Is my order ready for pickup at the Lyon store?' },
+        { out: 'Hi Maxime! Order #1048 is packed and waiting at Lyon Confluence. The store is open until 7 PM.' },
+        { sys: 'Order #1048 marked ready for pickup', patch: { status: 'Ready for pickup' } },
+        { in: 'Great, I\'ll swing by after work 👍', typing: 1000 },
+        { out: 'Perfect. Just show this message at the counter and you\'re all set.' },
+      ],
+    },
+    { name: 'Zoé Lambert', ch: 'imessage', time: '9:05 AM', prev: 'Can you gift-wrap my order?',
+      customer: { handle: '+33 7 52 39 61 08', email: 'zoe.lambert@mail.com', since: 'Nov 2025', orders: 1, spent: 85,
+        order: { id: '#1046', date: 'Oct 14', status: 'Unfulfilled', item: 'Cashmere Beanie', variant: 'Oat · ×1', price: 80, shipping: 5, g: 'linear-gradient(135deg,#e7dcc8,#bfa98a)' } } },
+    { name: 'Arthur Girard', ch: 'imessage', time: 'Yesterday', prev: 'Thanks for the quick reply!',
+      customer: { handle: '+33 6 21 75 90 46', email: 'arthur.girard@mail.com', since: 'Jan 2024', orders: 11, spent: 1420,
+        order: { id: '#1041', date: 'Oct 12', status: 'Delivered', item: 'Merino Overcoat', variant: 'Charcoal · L · ×1', price: 320, shipping: 0, g: 'linear-gradient(135deg,#7d7f86,#34363c)' } } },
+    { name: 'Clara Morel', ch: 'imessage', time: 'Tue', prev: 'Do you price match?',
+      customer: { handle: '+33 6 63 48 21 95', email: 'clara.morel@mail.com', since: 'Aug 2025', orders: 2, spent: 158,
+        order: { id: '#1033', date: 'Oct 6', status: 'Delivered', item: 'Leather Belt', variant: 'Black · 85 · ×1', price: 59, shipping: 5, g: 'linear-gradient(135deg,#4e4a46,#1d1b19)' } } },
   ];
 
   const app = $('#app'), list = $('#threads'), chat = $('#chat'), composer = $('#composer');
   const panelInner = $('#panelInner');
   let runId = 0, current = 0;
 
-  list.innerHTML = THREADS.map((t, i) => `
-    <li class="thread" data-i="${i}" data-ch="${t.ch}" role="button" tabindex="0" aria-label="${t.name}, ${CHANNELS[t.ch]}">
+  let channel = 'whatsapp', autoplay = true;
+  const renderList = (ch) => {
+    list.innerHTML = THREADS.map((t, i) => (t.ch !== ch ? '' : `
+    <li class="thread" data-i="${i}" role="button" tabindex="0" aria-label="${t.name}, ${CHANNELS[t.ch]}">
       <span class="thread__av">${logo(t.ch)}</span>
       <span class="thread__name">${t.name}</span><span class="thread__time">${t.time}</span>
       <span class="thread__prev">${esc(t.prev)}</span>
-    </li>`).join('');
+    </li>`)).join('');
+    $('#threadSearch').value = '';
+  };
 
   /* Fiche client */
-  const statusClass = (st) => (/Unfulfilled|Return|transit/.test(st) ? 'order__status--open' : 'order__status--done');
+  const statusClass = (st) => (/Unfulfilled|Return|transit|pickup/.test(st) ? 'order__status--open' : 'order__status--done');
   const renderPanel = (i, flash) => {
     const t = THREADS[i], c = t.customer, o = c.order;
     panelInner.innerHTML = `
@@ -268,7 +310,7 @@
     if (i === current) renderPanel(i, true);
   };
   const scriptFor = (i) => THREADS[i].script || [
-    { time: THREADS[i].time === 'Yesterday' || THREADS[i].time === 'Mon' ? THREADS[i].time : `Today, ${THREADS[i].time}` },
+    { time: /AM|PM/.test(THREADS[i].time) ? `Today, ${THREADS[i].time}` : THREADS[i].time },
     { in: THREADS[i].prev },
   ];
   const outHtml = (text) => `${esc(text)}<span class="msg__by">Sent by Nova</span>`;
@@ -296,8 +338,8 @@
         add(outHtml(step.out), 'msg--out'); await wait(1000);
       }
     }
-    await wait(4200);
-    if (id === runId && THREADS[(i + 1) % 3].script) select((i + 1) % 3);
+    await wait(4500);
+    if (id === runId && autoplay) selectChannel(CH_ORDER[(CH_ORDER.indexOf(channel) + 1) % CH_ORDER.length]);
   };
 
   const select = (i) => {
@@ -306,7 +348,7 @@
     renderPanel(i);
     play(i);
   };
-  list.addEventListener('click', (e) => { const li = e.target.closest('.thread'); if (li) select(+li.dataset.i); });
+  list.addEventListener('click', (e) => { const li = e.target.closest('.thread'); if (li) { autoplay = false; select(+li.dataset.i); } });
   list.addEventListener('keydown', (e) => { if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('thread')) { e.preventDefault(); select(+e.target.dataset.i); } });
 
   /* Recherche */
@@ -315,8 +357,40 @@
     $$('.thread', list).forEach((el) => el.classList.toggle('is-hidden', !THREADS[+el.dataset.i].name.toLowerCase().includes(q)));
   });
 
-  // État complet dès le chargement, animation quand la fenêtre est visible
+  /* Barre de canaux */
+  const tabs = $('#channelTabs'), glider = $('.ctabs__glider', tabs);
+  const moveGlider = () => {
+    const on = $('.ctab[aria-selected="true"]', tabs);
+    if (!on) return;
+    glider.style.width = `${on.offsetWidth}px`;
+    glider.style.transform = `translateX(${on.offsetLeft}px)`;
+  };
+  const firstOf = (ch) => THREADS.findIndex((t) => t.ch === ch && t.script);
+  function selectChannel(ch) {
+    channel = ch;
+    $$('.ctab', tabs).forEach((b) => b.setAttribute('aria-selected', String(b.dataset.ch === ch)));
+    moveGlider();
+    renderList(ch);
+    select(firstOf(ch));
+  }
+  tabs.addEventListener('click', (e) => {
+    const b = e.target.closest('.ctab'); if (!b) return;
+    autoplay = false;
+    if (b.dataset.ch !== channel) selectChannel(b.dataset.ch);
+  });
+  tabs.addEventListener('keydown', (e) => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    const k = CH_ORDER.indexOf(channel) + (e.key === 'ArrowRight' ? 1 : -1);
+    const next = CH_ORDER[(k + CH_ORDER.length) % CH_ORDER.length];
+    autoplay = false; selectChannel(next);
+    $(`.ctab[data-ch="${next}"]`, tabs).focus();
+  });
+  window.addEventListener('resize', moveGlider);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(moveGlider);
+
+  // État complet dès le chargement (WhatsApp), puis lecture quand la fenêtre est visible
   (() => {
+    renderList('whatsapp');
     current = 0;
     $$('.thread', list).forEach((el) => el.classList.toggle('is-active', el.dataset.i === '0'));
     showHeader(THREADS[0]);
@@ -331,8 +405,9 @@
     renderPanel(0);
     THREADS[0].customer.order.variant = 'Sand · M · ×1';
     $$('.msg', chat).forEach((m) => { m.style.animation = 'none'; });
+    moveGlider();
   })();
-  const appIO = new IntersectionObserver((en) => { if (en[0].isIntersecting) { appIO.disconnect(); setTimeout(() => select(1), 4500); } }, { threshold: 0.3 });
+  const appIO = new IntersectionObserver((en) => { if (en[0].isIntersecting) { appIO.disconnect(); setTimeout(() => { if (autoplay) selectChannel('instagram'); }, 5000); } }, { threshold: 0.3 });
   appIO.observe(app);
 
   /* ---------------- Rôles (chips) + téléphone ---------------- */
