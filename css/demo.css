@@ -30,14 +30,13 @@
 .dform__field.is-invalid input { box-shadow: inset 0 0 0 1.5px #d93025; }
 .dform__field.is-invalid .dform__err { display: block; }
 [data-theme="dark"] .dform__err { color: #ff7a6e; }
-.dform__chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.dform__chips button { height: 34px; padding: 0 14px; border-radius: 9999px; box-shadow: inset 0 0 0 1px var(--line-2); font-size: 13px; font-weight: 500; color: var(--fg-70); transition: background-color .2s, color .2s, box-shadow .2s; }
+.dform__chips { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.dform__chips button { height: 38px; padding: 0 8px; white-space: nowrap; border-radius: 9999px; box-shadow: inset 0 0 0 1px var(--line-2); font-size: 13px; font-weight: 500; color: var(--fg-70); transition: background-color .2s, color .2s, box-shadow .2s; }
 .dform__chips button:hover { background: var(--tint); color: var(--fg); }
 .dform__chips button[aria-checked="true"] { background: var(--ink); color: var(--bg); box-shadow: none; }
 .dform__submit { width: 100%; margin-top: 24px; }
 .dform__submit svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: transform .25s var(--ease); }
 .dform__submit:hover svg { transform: translateX(2px); }
-.dform__note { margin-top: 14px; text-align: center; font-size: 12.5px; line-height: 18px; color: var(--muted); }
 
 /* état envoyé : remplace les champs dans la même carte */
 .dform__done { display: none; flex-direction: column; align-items: center; text-align: center; padding: 12px 0 4px; }
