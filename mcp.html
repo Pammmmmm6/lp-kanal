@@ -9,9 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=202610171000" />
-  <link rel="stylesheet" href="css/pages.css?v=202610171000" />
-  <link rel="stylesheet" href="css/mcp.css?v=202610171000" />
+  <link rel="stylesheet" href="css/style.css?v=202610171100" />
+  <link rel="stylesheet" href="css/pages.css?v=202610171100" />
+  <link rel="stylesheet" href="css/mcp.css?v=202610171100" />
   <script>
     var t = null; try { t = localStorage.getItem('kanal-theme'); } catch (e) {}
     if (t) document.documentElement.setAttribute('data-theme', t);
@@ -116,7 +116,7 @@
     <section class="sec mcp-demo-sec">
       <div class="wrap">
         <div class="mcp-demo feature__visual feature__visual--b reveal reveal--up">
-          <div class="mwin" id="mcpDemo">
+          <div class="mwin" id="mcpDemo" data-ai="Claude">
             <div class="mwin__bar">
               <div class="mwin__tabs" role="tablist" aria-label="AI assistant">
                 <span class="mwin__glider" aria-hidden="true"></span>
@@ -142,6 +142,17 @@
               <p class="mmsg mmsg--user" data-step>Yes, schedule it.</p>
               <div class="mdone" data-step><span class="mact__check"><svg viewBox="0 0 12 12"><path d="m2.5 6.2 2.3 2.3 4.7-4.9" /></svg></span>Send confirmed<b>Scheduled Thursday, 10 am</b></div>
               <div class="mmsg mmsg--ai" data-step data-typing><span class="mmsg__avatar"><img src="assets/ai/claude.svg" alt="" data-ai-logo /></span><p>The campaign is scheduled. You can still edit or pause it in Kanal.</p></div>
+            </div>
+            <div class="mcomp" aria-hidden="true">
+              <div class="mcomp__box">
+                <div class="mcomp__field"><span class="mcomp__text" id="mcompText"></span><span class="mcomp__caret"></span><span class="mcomp__ph" id="mcompPh">Reply to Claude…</span></div>
+                <div class="mcomp__row">
+                  <span class="mcomp__plus"><svg viewBox="0 0 16 16"><path d="M8 3.5v9M3.5 8h9" /></svg></span>
+                  <span class="mcomp__chip mcomp__chip--agent"><svg viewBox="0 0 16 16"><path d="M4.6 10.4c-1.4 0-2.4-1-2.4-2.4s1-2.4 2.4-2.4c2.6 0 4.2 4.8 6.8 4.8 1.4 0 2.4-1 2.4-2.4s-1-2.4-2.4-2.4c-2.6 0-4.2 4.8-6.8 4.8z" /></svg>Agent</span>
+                  <span class="mcomp__chip mcomp__chip--model">Auto</span>
+                  <span class="mcomp__send"><svg viewBox="0 0 16 16"><path d="M8 12.5v-9M4 7.5l4-4 4 4" /></svg></span>
+                </div>
+              </div>
             </div>
             <div class="mwin__foot">
               <span>Demonstration, sample data</span>
@@ -337,7 +348,7 @@
   </footer>
 
 
-  <script src="js/main.js?v=202610171000"></script>
-  <script src="js/mcp.js?v=202610171000"></script>
+  <script src="js/main.js?v=202610171100"></script>
+  <script src="js/mcp.js?v=202610171100"></script>
 </body>
 </html>

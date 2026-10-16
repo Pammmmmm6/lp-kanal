@@ -15,7 +15,30 @@
   if (win) {
     const tabs = $('.mwin__tabs', win), glider = $('.mwin__glider', tabs);
     const steps = $$('[data-step]', win);
+    const comp = $('.mcomp', win), field = $('.mcomp__field', win), compText = $('#mcompText'), compPh = $('#mcompPh');
+    const PLACEHOLDER = { Claude: 'Reply to Claude…', Codex: 'Ask Codex anything', Cursor: 'Plan, search, build anything' };
     let run = 0, visible = false;
+
+    // le message de l'utilisateur est d'abord tapé dans le champ de saisie, puis envoyé
+    const type = async (text, id) => {
+      comp.classList.add('has-text');
+      const step = Math.max(8, Math.min(28, 1100 / text.length));
+      for (let i = 1; i <= text.length; i++) {
+        if (id !== run) return false;
+        compText.textContent = text.slice(0, i);
+        field.scrollLeft = field.scrollWidth; // comme un vrai champ : la fin du texte reste visible
+        await wait(step);
+      }
+      await wait(250);
+      if (id !== run) return false;
+      comp.classList.add('is-sending');
+      await wait(160);
+      comp.classList.remove('is-sending', 'has-text');
+      compText.textContent = '';
+      field.scrollLeft = 0;
+      return true;
+    };
+    const clearComp = () => { comp.classList.remove('has-text', 'is-sending'); compText.textContent = ''; };
 
     const moveGlider = () => {
       const on = $('[aria-selected="true"]', tabs);
@@ -29,10 +52,12 @@
       const id = ++run;
       if (reduced) { win.classList.remove('is-playing'); return; }
       reset();
+      clearComp();
       win.classList.add('is-playing');
       await wait(500);
       for (const el of steps) {
         if (id !== run) return;
+        if (el.classList.contains('mmsg--user') && !(await type(el.textContent.trim(), id))) return;
         el.classList.add('is-in');
         if (el.hasAttribute('data-typing')) {
           el.classList.add('is-typing');
@@ -59,6 +84,8 @@
       $$('button', tabs).forEach((b) => b.setAttribute('aria-selected', String(b === btn)));
       moveGlider();
       ai = { name: btn.dataset.ai, logo: btn.dataset.logo };
+      win.dataset.ai = ai.name;
+      compPh.textContent = PLACEHOLDER[ai.name] || 'Ask anything';
       onAi.forEach((fn) => fn());
       play();
     });

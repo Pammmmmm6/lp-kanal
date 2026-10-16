@@ -12,7 +12,7 @@
 /* ---------- Démo : fenêtre de conversation sur panneau peint ---------- */
 .mcp-demo-sec { padding-top: 0; }
 .mcp-demo.feature__visual { max-width: 1080px; margin: 0 auto; min-height: 0; padding: 48px 32px; border-radius: 24px; }
-.mwin { width: 100%; max-width: 720px; border-radius: 20px; background: var(--surface); box-shadow: 0 0 0 1px rgba(10, 10, 10, .04), 0 32px 64px -28px rgba(30, 30, 60, .45), 0 8px 18px -10px rgba(30, 30, 60, .2); overflow: hidden; }
+.mwin { width: 100%; max-width: 720px; border-radius: 20px; background: var(--w-bg, var(--surface)); transition: background-color .35s var(--ease); box-shadow: 0 0 0 1px rgba(10, 10, 10, .04), 0 32px 64px -28px rgba(30, 30, 60, .45), 0 8px 18px -10px rgba(30, 30, 60, .2); overflow: hidden; }
 .mwin__bar { display: flex; justify-content: center; padding: 12px; border-bottom: 1px solid var(--line); }
 .mwin__tabs { position: relative; display: inline-flex; gap: 2px; padding: 4px; border-radius: 9999px; background: var(--btn-light); }
 .mwin__glider { position: absolute; top: 4px; left: 0; height: 32px; width: 0; border-radius: 9999px; background: var(--surface); box-shadow: 0 1px 3px rgba(10, 10, 10, .1), inset 0 0 0 1px var(--line); transition: transform .4s var(--ease), width .4s var(--ease); }
@@ -28,11 +28,46 @@
 .mwin__replay:hover { background: var(--tint-2); color: var(--fg); }
 .mwin__replay svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
 
+/* ---------- Le champ de saisie et les messages prennent l'apparence de chaque assistant ---------- */
+.mwin[data-ai="Claude"] { --w-bg: #faf9f5; --u-bg: #f0eee6; --u-fg: #141413; --u-radius: 14px;
+  --c-bg: #fff; --c-ring: 0 0 0 1px #e8e6dc, 0 2px 10px -2px rgba(31, 30, 29, .08); --c-radius: 20px; --c-ph: #87867f;
+  --s-bg: #c96442; --s-off: #e8b8a4; --s-fg: #fff; --s-radius: 9px; --p-ring: inset 0 0 0 1px #e3e1d9; --p-radius: 9px; }
+.mwin[data-ai="Codex"] { --w-bg: #fff; --u-bg: #f4f4f4; --u-fg: #0d0d0d; --u-radius: 18px;
+  --c-bg: #fff; --c-ring: 0 0 0 1px rgba(13, 13, 13, .1), 0 6px 20px -8px rgba(13, 13, 13, .14); --c-radius: 28px; --c-ph: #8f8f8f;
+  --s-bg: #0d0d0d; --s-off: #d7d7d7; --s-fg: #fff; --s-radius: 9999px; --p-ring: none; --p-radius: 9999px; }
+.mwin[data-ai="Cursor"] { --w-bg: #fcfcfc; --u-bg: #f3f3f3; --u-fg: #1f1f1f; --u-radius: 8px; --u-ring: inset 0 0 0 1px #e4e4e4;
+  --c-bg: #fff; --c-ring: 0 0 0 1px #dedede; --c-radius: 10px; --c-ph: #9a9a9a;
+  --s-bg: #1f1f1f; --s-off: #e6e6e6; --s-fg: #fff; --s-radius: 9999px; --p-ring: none; --p-radius: 6px; }
+[data-theme="dark"] .mwin[data-ai="Claude"] { --w-bg: #262624; --u-bg: #141413; --u-fg: #faf9f5; --c-bg: #30302e; --c-ring: 0 0 0 1px #3d3d3a; --c-ph: #9a9893; --s-off: #6b4436; --p-ring: inset 0 0 0 1px #4a4a46; }
+[data-theme="dark"] .mwin[data-ai="Codex"] { --w-bg: #212121; --u-bg: #303030; --u-fg: #ececec; --c-bg: #303030; --c-ring: 0 0 0 1px rgba(255, 255, 255, .08); --c-ph: #a3a3a3; --s-bg: #fff; --s-fg: #0d0d0d; --s-off: #4a4a4a; }
+[data-theme="dark"] .mwin[data-ai="Cursor"] { --w-bg: #181818; --u-bg: #222; --u-fg: #e4e4e4; --u-ring: inset 0 0 0 1px #333; --c-bg: #1f1f1f; --c-ring: 0 0 0 1px #333; --c-ph: #7a7a7a; --s-bg: #e4e4e4; --s-fg: #181818; --s-off: #3a3a3a; }
+
+.mcomp { padding: 0 24px 16px; }
+.mcomp__box { padding: 12px 12px 10px 16px; border-radius: var(--c-radius); background: var(--c-bg); box-shadow: var(--c-ring); transition: border-radius .35s var(--ease), background-color .35s var(--ease), box-shadow .35s var(--ease); }
+.mwin[data-ai="Cursor"] .mcomp__box { padding: 10px 10px 8px 12px; }
+.mcomp__field { position: relative; min-height: 22px; font-size: 14px; line-height: 22px; color: var(--u-fg); white-space: nowrap; overflow: hidden; }
+.mcomp__ph { position: absolute; left: 0; top: 0; color: var(--c-ph); pointer-events: none; }
+.mcomp.has-text .mcomp__ph { display: none; }
+.mcomp__caret { display: none; width: 1.5px; height: 17px; margin-left: 1px; vertical-align: -3px; background: var(--u-fg); animation: caret 1s steps(1) infinite; }
+.mcomp.has-text .mcomp__caret { display: inline-block; }
+.mcomp__row { display: flex; align-items: center; gap: 6px; margin-top: 10px; }
+.mcomp__plus { display: grid; place-items: center; width: 30px; height: 30px; border-radius: var(--p-radius); box-shadow: var(--p-ring); color: var(--c-ph); }
+.mcomp__plus svg, .mcomp__send svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.mcomp__chip { display: none; align-items: center; gap: 5px; height: 24px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 500; color: var(--c-ph); }
+.mcomp__chip svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.4; }
+.mcomp__chip--agent { background: color-mix(in srgb, var(--u-fg) 7%, transparent); color: var(--u-fg); }
+.mwin[data-ai="Cursor"] .mcomp__chip { display: inline-flex; }
+.mwin[data-ai="Cursor"] .mcomp__plus { display: none; }
+.mcomp__send { display: grid; place-items: center; width: 32px; height: 32px; margin-left: auto; border-radius: var(--s-radius); background: var(--s-off); color: var(--s-fg); transition: background-color .25s, transform .2s var(--ease), border-radius .35s var(--ease); }
+.mwin[data-ai="Cursor"] .mcomp__send { width: 26px; height: 26px; }
+.mcomp.has-text .mcomp__send { background: var(--s-bg); }
+.mcomp.is-sending .mcomp__send { transform: scale(.88); }
+
 /* chaque élément de la conversation garde sa place : pas de saut de mise en page */
 [data-step] { transition: opacity .45s var(--ease), transform .45s var(--ease), filter .45s var(--ease); }
 .mwin.is-playing [data-step]:not(.is-in) { opacity: 0; transform: translateY(8px); filter: blur(3px); }
 .mmsg { font-size: 14px; line-height: 21px; letter-spacing: -0.1px; }
-.mmsg--user { align-self: flex-end; max-width: 78%; padding: 9px 14px; border-radius: 18px; border-bottom-right-radius: 6px; background: var(--ink); color: var(--bg); text-wrap: pretty; }
+.mmsg--user { align-self: flex-end; max-width: 78%; padding: 9px 14px; border-radius: var(--u-radius); background: var(--u-bg); color: var(--u-fg); box-shadow: var(--u-ring, none); font-family: var(--u-font, inherit); text-wrap: pretty; transition: background-color .35s var(--ease), border-radius .35s var(--ease); }
 .mmsg--ai { display: flex; align-items: flex-start; gap: 10px; max-width: 90%; }
 .mmsg--ai p { padding-top: 3px; text-wrap: pretty; }
 .mmsg__avatar { display: grid; place-items: center; width: 28px; height: 28px; flex: none; border-radius: 9999px; background: #fff; box-shadow: inset 0 0 0 1px var(--line-2); }
@@ -164,6 +199,7 @@
   .mact, .mdone { margin-left: 0; }
   .mact__list li, .mdone { font-size: 12.5px; gap: 8px; }
   .mwin__foot { padding-left: 14px; }
+  .mcomp { padding: 0 12px 12px; }
   .asks__media.feature__visual { padding: 28px 12px; }
   .asks__list { margin: 24px -16px 0; padding: 0 16px 4px; }
   .guard li { padding: 10px; }
