@@ -776,9 +776,14 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
 .wa-tpl__body { padding: 8px 12px 10px; font-size: 14px; line-height: 19px; letter-spacing: -0.15px; color: var(--bot-text); }
 .wa-tpl__body strong { display: block; font-weight: 600; }
 .wa-tpl__body p { margin-top: 2px; }
-.wa-tpl__btns { display: flex; flex-direction: column; }
-.wa-tpl__btn { display: flex; align-items: center; justify-content: center; gap: 6px; height: 38px; border-top: .5px solid var(--bot-border); font-size: 14px; font-weight: 500; letter-spacing: -0.15px; color: #0a84c6; }
+/* boutons du message : pilules douces empilées, dans le langage des boutons de la maquette */
+.wa-tpl__btns { display: flex; flex-direction: column; gap: 6px; padding: 2px 6px 6px; }
+.wa-tpl__btn { display: flex; align-items: center; justify-content: center; gap: 7px; height: 36px; border-radius: 9999px; background: rgba(10, 132, 198, .08); font-size: 13.5px; font-weight: 500; letter-spacing: -0.15px; color: #0a84c6; }
+.wa-tpl__btn:first-child { background: #0a84c6; color: #fff; box-shadow: 0 1px 2px rgba(10, 132, 198, .3); }
+[data-theme="dark"] .wa-tpl__btn { background: rgba(76, 180, 240, .12); }
+[data-theme="dark"] .wa-tpl__btn:first-child { background: #2a9ad8; color: #fff; }
 [data-theme="dark"] .wa-tpl__btn { color: #4cb4f0; }
+
 .wa-tpl__btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 
 /* Barre de saisie */
