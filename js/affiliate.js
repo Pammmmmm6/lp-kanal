@@ -24,6 +24,7 @@
   const tick = (el) => { el.classList.remove('is-ticking'); void el.offsetWidth; el.classList.add('is-ticking'); };
 
   let value = +thumb.getAttribute('aria-valuenow') || 40;
+  let dragging = false;
   let shown = null;
 
   const set = (n) => {
@@ -46,7 +47,9 @@
     const top = 30 + 70 * p;
     bars.forEach((b, i) => { b.style.height = (top * (i + 1)) / 12 + '%'; });
 
-    if (animate) tick(monthly);
+    // animation seulement pour un changement ponctuel (clic, bouton, clavier) :
+    // pendant un glissement, le montant se met à jour en direct, sans clignoter
+    if (animate && !dragging) tick(monthly);
   };
 
   // position du pointeur → valeur (le centre du rond suit le pointeur)
@@ -57,10 +60,10 @@
     set(MIN + Math.min(1, Math.max(0, p)) * (MAX - MIN));
   };
 
-  let dragging = false;
   slider.addEventListener('pointerdown', (e) => {
     if (e.button !== undefined && e.button > 0) return;
     dragging = true;
+    monthly.classList.remove('is-ticking');
     slider.classList.add('is-dragging');
     try { slider.setPointerCapture(e.pointerId); } catch (_) {}
     fromX(e.clientX);
