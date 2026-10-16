@@ -119,24 +119,30 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
 .nav__link { display: inline-flex; align-items: center; gap: 4px; height: 32px; padding: 6px 12px; border-radius: 9999px; font-size: 13px; line-height: 19.5px; font-weight: 500; color: var(--fg); transition: background-color .2s; }
 .nav__link:hover { background: var(--tint-3); }
 .nav__item, .split { position: relative; }
+/* Menu « Install Kanal » : même langage que les méga-menus (panneau 20 px, lignes avec icône) */
 .menu {
-  position: absolute; top: calc(100% + 8px); left: 0; min-width: 151px; padding: 9px; display: flex; flex-direction: column;
-  background: var(--surface); border: 1px solid var(--tint-3); border-radius: 12px; box-shadow: 0 12px 32px rgba(10,10,10,.08);
-  opacity: 0; visibility: hidden; transform: translateY(-4px); transition: opacity .18s var(--ease), transform .22s var(--ease), visibility .18s;
+  position: absolute; top: calc(100% + 10px); left: 0; width: 320px; padding: 6px; display: flex; flex-direction: column; gap: 2px;
+  background: var(--surface); border-radius: 20px; box-shadow: 0 0 0 1px var(--line), 0 24px 48px -16px rgba(10, 10, 10, .18), 0 6px 16px -8px rgba(10, 10, 10, .08);
+  transform-origin: 100% 0; opacity: 0; visibility: hidden; transform: translateY(-6px) scale(.985);
+  transition: opacity .2s ease, transform .35s var(--ease), visibility 0s linear .2s;
 }
+.menu::before { content: ""; position: absolute; left: 0; right: 0; top: -12px; height: 12px; } /* pont de survol */
+[data-theme="dark"] .menu { box-shadow: 0 0 0 1px var(--line-2), 0 24px 48px -16px rgba(0, 0, 0, .6); }
 .menu--right { left: auto; right: 0; }
 .split .menu { color: var(--fg); }
-.menu__label { padding: 4px 8px 0; margin-bottom: 4px; font-size: 10px; line-height: 15px; font-weight: 500; letter-spacing: .5px; text-transform: uppercase; color: rgba(10,10,10,.6); }
-.menu__label:not(:first-child) { margin-top: 12px; }
-.menu a { display: flex; align-items: center; gap: 6px; height: 36px; padding: 0 8px; border-radius: 6px; font-size: 14px; line-height: 20px; font-weight: 500; white-space: nowrap; transition: background-color .15s; }
-.menu a { position: relative; z-index: 1; }
-.menu a:hover { background: transparent; }
-.menu__hl { position: absolute; top: 0; left: 0; width: 0; height: 36px; border-radius: 6px; background: var(--tint-2); opacity: 0; pointer-events: none; z-index: 0; transition: transform .28s var(--ease), width .28s var(--ease), height .28s var(--ease), opacity .18s ease; }
+.menu a { position: relative; z-index: 1; display: flex; align-items: center; gap: 12px; padding: 8px 10px 8px 8px; border-radius: 14px; white-space: nowrap; }
+.menu__ico { display: grid; place-items: center; width: 40px; height: 40px; flex: none; border-radius: 12px; background: var(--card); box-shadow: inset 0 0 0 1px var(--line); color: var(--fg); transition: background-color .2s, box-shadow .2s; }
+.menu__ico svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.menu__ico svg:has(use[href="#logo-shopify"]) { width: 18px; height: 22px; }
+.menu a:hover .menu__ico, .menu a:focus-visible .menu__ico { background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-2), 0 2px 6px -2px rgba(10, 10, 10, .12); }
+.menu__txt { display: flex; flex-direction: column; min-width: 0; }
+.menu__txt strong { font-size: 14px; line-height: 20px; font-weight: 500; }
+.menu__txt small { font-size: 12.5px; line-height: 17px; color: var(--muted); }
+.menu__ext { width: 10px; height: 10px; margin-left: auto; align-self: center; color: var(--muted); }
+.menu__sep { height: 1px; margin: 4px 10px; background: var(--line); }
+.menu__hl { position: absolute; top: 0; left: 0; width: 0; height: 56px; border-radius: 14px; background: var(--tint); opacity: 0; pointer-events: none; z-index: 0; transition: transform .28s var(--ease), width .28s var(--ease), height .28s var(--ease), opacity .18s ease; }
 .menu__hl.is-instant { transition: opacity .18s ease; }
-.menu__ext { width: 10px; height: 10px; color: var(--muted); }
-.menu__soon { display: flex; align-items: center; gap: 6px; height: 36px; padding: 0 8px; font-size: 14px; line-height: 20px; font-weight: 500; color: var(--muted); white-space: nowrap; }
-.menu__soon em { font-style: normal; font-size: 10px; line-height: 15px; font-weight: 500; letter-spacing: .5px; text-transform: uppercase; padding: 1px 6px; border-radius: 999px; background: var(--tint-2); color: var(--fg-60); }
-.is-open > .menu { opacity: 1; visibility: visible; transform: none; }
+.is-open > .menu { opacity: 1; visibility: visible; transform: none; transition: opacity .2s ease, transform .35s var(--ease), visibility 0s; }
 /* Méga-menus façon Gleap : grands liens à gauche, carte peinte à droite */
 .nav__inner { position: relative; }
 .nav__item.has-mega { position: static; }
