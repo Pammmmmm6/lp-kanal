@@ -1,5 +1,5 @@
 /* =========================================================
-   Page Affiliate — contenu getkanal.com/affiliate, direction artistique Kanal
+   Page affiliation (fichier sans « affiliate » dans le nom : les bloqueurs de pub le bloqueraient) — contenu getkanal.com/affiliate, direction artistique Kanal
    ========================================================= */
 
 .ah__partner { display: inline-flex; align-items: center; gap: 6px; height: 36px; margin-top: 20px; padding: 6px 6px 6px 12px; border-radius: 9999px; font-size: 13px; line-height: 19.5px; color: var(--muted); transition: background-color .2s; }

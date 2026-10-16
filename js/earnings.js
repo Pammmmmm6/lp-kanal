@@ -1,5 +1,7 @@
 /* =========================================================
-   Page Affiliate : simulateur de commissions
+   Page affiliation : simulateur de commissions
+   Fichier volontairement nommé sans « affiliate » : les bloqueurs de pub
+   bloquent ces URL et le simulateur ne réagissait plus.
    Curseur maison piloté par pointer events (souris, tactile, stylet)
    et clavier, pour un comportement identique sur tous les navigateurs.
    ========================================================= */
