@@ -9,7 +9,7 @@
 .dh__title span { display: block; }
 .dh__sub { max-width: 460px; margin-top: 20px; font-size: 18px; line-height: 29.25px; color: var(--muted); }
 .dh__trust { justify-content: flex-start; margin-top: 32px; }
-.dh__panel.feature__visual { min-height: 600px; padding: 40px 32px; border-radius: 24px; }
+.dh__panel.feature__visual { min-height: 0; padding: 48px 40px; border-radius: 24px; }
 
 /* ---------- Formulaire ---------- */
 .dform { position: relative; width: 100%; max-width: 420px; padding: 24px; border-radius: 20px; background: var(--surface); box-shadow: 0 0 0 1px rgba(10, 10, 10, .04), 0 32px 64px -28px rgba(30, 30, 60, .45), 0 8px 18px -10px rgba(30, 30, 60, .2); }
