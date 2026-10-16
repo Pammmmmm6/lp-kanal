@@ -15,6 +15,8 @@
   if (win) {
     const tabs = $('.mwin__tabs', win), glider = $('.mwin__glider', tabs);
     const steps = $$('[data-step]', win);
+    const body = $('.mwin__body', win);
+    const toBottom = () => body.scrollTo({ top: body.scrollHeight, behavior: 'smooth' });
     const comp = $('.mcomp', win), field = $('.mcomp__field', win), compText = $('#mcompText'), compPh = $('#mcompPh');
     const PLACEHOLDER = { Claude: 'Reply to Claude…', Codex: 'Ask Codex anything', Cursor: 'Plan, search, build anything' };
     let run = 0, visible = false;
@@ -53,12 +55,14 @@
       if (reduced) { win.classList.remove('is-playing'); return; }
       reset();
       clearComp();
+      body.scrollTop = 0;
       win.classList.add('is-playing');
       await wait(500);
       for (const el of steps) {
         if (id !== run) return;
         if (el.classList.contains('mmsg--user') && !(await type(el.textContent.trim(), id))) return;
         el.classList.add('is-in');
+        toBottom();
         if (el.hasAttribute('data-typing')) {
           el.classList.add('is-typing');
           await wait(850);
