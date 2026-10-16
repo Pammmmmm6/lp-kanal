@@ -767,8 +767,9 @@
     }).join('')}</div>`).join('');
 
     const btnIco = { link: '<svg viewBox="0 0 16 16"><path d="M6.5 3.5h-3v9h9v-3M9 2.5h4.5V7M13.5 2.5 7.5 8.5" /></svg>', reply: '<svg viewBox="0 0 16 16"><path d="M6.5 4 2.5 8l4 4M2.5 8h7a4 4 0 0 1 4 4" /></svg>' };
-    const tplHtml = (t) => `<div class="wa-tpl"><img class="wa-tpl__img" src="assets/fincut/${t.img}.jpg" alt="" loading="lazy" />`
-      + `<div class="wa-tpl__body"><strong>${t.title}</strong><p>${t.text}</p></div>`
+    // carte du message, puis les boutons en dessous, détachés du corps comme dans WhatsApp
+    const tplHtml = (t) => `<div class="wa-tpl-wrap"><div class="wa-tpl"><img class="wa-tpl__img" src="assets/fincut/${t.img}.jpg" alt="" loading="lazy" />`
+      + `<div class="wa-tpl__body"><strong>${t.title}</strong><p>${t.text}</p></div></div>`
       + `<div class="wa-tpl__btns">${t.btns.map(([k, l]) => `<span class="wa-tpl__btn">${btnIco[k]}${l}</span>`).join('')}</div></div>`;
     const entryHtml = (e) => {
       let inner = '';

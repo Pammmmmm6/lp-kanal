@@ -770,19 +770,17 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
 .bot-msg--user { margin-left: auto; width: fit-content; max-width: 85%; background: var(--bot-user); color: var(--bot-user-ink); }
 .bot-msg--agent { width: fit-content; max-width: 92%; background: var(--bot-agent); color: var(--bot-text); }
 /* Template WhatsApp : image, texte, boutons empilés pleine largeur */
-.wa-tpl { width: 236px; max-width: 92%; overflow: hidden; border-radius: 16px; background: var(--surface); box-shadow: 0 0 0 1px var(--bot-border), 0 4px 14px -10px rgba(10, 10, 10, .3); }
+.wa-tpl-wrap { width: 236px; max-width: 92%; }
+.wa-tpl { overflow: hidden; border-radius: 16px; background: var(--surface); box-shadow: 0 0 0 1px var(--bot-border), 0 4px 14px -10px rgba(10, 10, 10, .3); }
 [data-theme="dark"] .wa-tpl { background: #262626; }
 .wa-tpl__img { display: block; width: calc(100% - 8px); height: 96px; margin: 4px 4px 0; border-radius: 12px; object-fit: cover; background: #f3f2ef; }
 .wa-tpl__body { padding: 8px 12px 10px; font-size: 14px; line-height: 19px; letter-spacing: -0.15px; color: var(--bot-text); }
 .wa-tpl__body strong { display: block; font-weight: 600; }
 .wa-tpl__body p { margin-top: 2px; }
-/* boutons du message : pilules douces empilées, dans le langage des boutons de la maquette */
-.wa-tpl__btns { display: flex; flex-direction: column; gap: 6px; padding: 2px 6px 6px; }
-.wa-tpl__btn { display: flex; align-items: center; justify-content: center; gap: 7px; height: 36px; border-radius: 9999px; background: rgba(10, 132, 198, .08); font-size: 13.5px; font-weight: 500; letter-spacing: -0.15px; color: #0a84c6; }
-.wa-tpl__btn:first-child { background: #0a84c6; color: #fff; box-shadow: 0 1px 2px rgba(10, 132, 198, .3); }
-[data-theme="dark"] .wa-tpl__btn { background: rgba(76, 180, 240, .12); }
-[data-theme="dark"] .wa-tpl__btn:first-child { background: #2a9ad8; color: #fff; }
-[data-theme="dark"] .wa-tpl__btn { color: #4cb4f0; }
+/* boutons sous le message : noir pour l'action principale, gris pour la suivante (boutons de la maquette) */
+.wa-tpl__btns { display: flex; flex-direction: column; gap: 6px; margin-top: 6px; }
+.wa-tpl__btn { display: flex; align-items: center; justify-content: center; gap: 7px; height: 36px; border-radius: 9999px; background: var(--btn-light); color: var(--fg); font-size: 13.5px; font-weight: 500; letter-spacing: -0.15px; }
+.wa-tpl__btn:first-child { background: var(--btn-dark); color: var(--btn-dark-fg); }
 
 .wa-tpl__btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 
