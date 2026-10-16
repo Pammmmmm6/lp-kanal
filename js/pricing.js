@@ -9,7 +9,7 @@
   const fmt2 = new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const eur = (n) => { const v = Math.round(n * 100) / 100; return (Number.isInteger(v) ? fmt : fmt2).format(v) + '€'; };
   const SHOPIFY = 'https://apps.shopify.com/kanal-marketing-ai';
-  const DEMO = 'https://getkanal.com/demo';
+  const DEMO = 'demo.html';
 
   const PLANS = [
     { name: 'Pro', tag: 'For brands starting on WhatsApp.', price: 89, cta: 'Choose Pro', href: SHOPIFY, note: 'Install from the Shopify App Store.',
@@ -32,7 +32,7 @@
       <p class="pcard__bill">No commitment</p>
       <h3 class="pcard__inc">${p.inc}</h3>
       <ul class="pcard__list">${p.items.map((it) => typeof it === 'string' ? `<li>${tick}${it}</li>` : `<li class="pcard__logos-row">${tick}${it.text}<span class="pcard__logos">${it.logos.map((l) => `<img src="assets/integrations/round/${l}.png" alt="${l[0].toUpperCase() + l.slice(1)}" title="${l[0].toUpperCase() + l.slice(1)}" />`).join('')}</span></li>`).join('')}</ul>
-      <a class="btn btn--lg ${p.featured ? 'btn--dark' : 'btn--soft'} pcard__cta" href="${p.href}" target="_blank" rel="noopener">${p.cta}</a>
+      <a class="btn btn--lg ${p.featured ? 'btn--dark' : 'btn--soft'} pcard__cta" href="${p.href}"${/^https?:/.test(p.href) ? ' target="_blank" rel="noopener"' : ''}>${p.cta}</a>
       <p class="pcard__note">${p.note}</p>
     </article>`).join('');
   // Les cartes sont injectées après l'observateur de main.js : on les révèle nous-mêmes
