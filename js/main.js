@@ -493,6 +493,9 @@
   const ORIG = THREADS.map((t) => JSON.stringify(t.customer.order));
   const resetOrder = (i) => { THREADS[i].customer.order = JSON.parse(ORIG[i]); };
 
+  // photos portées (mannequin) : recadrées ; packshots sur fond gris : affichés en entier
+  const isPhoto = (src) => /polo-navy|trousers/.test(src);
+
   if ($('#app')) {
   const app = $('#app'), list = $('#threads'), chat = $('#chat'), composer = $('#composer');
   const panelInner = $('#panelInner');
@@ -576,7 +579,7 @@
     if (i === current) renderPanel(i, true);
   };
   const by = (label) => `<span class="msg__by">${label}</span>`;
-  const cardHtml = (c) => `${c.img ? `<div class="card-msg__media"><img class="card-msg__img" src="${c.img}" alt="" loading="lazy" /></div>` : ''}
+  const cardHtml = (c) => `${c.img ? `<div class="card-msg__media"><img class="card-msg__img${isPhoto(c.img) ? ' is-photo' : ''}" src="${c.img}" alt="" loading="lazy" /></div>` : ''}
     <div class="card-msg__body"><span class="card-msg__tag">${c.by} · Kanal</span><p>${c.text}</p></div>
     ${c.buttons ? `<div class="card-msg__btns">${c.buttons.map((b, k) => `<span class="pbtn ${k ? 'pbtn--light' : 'pbtn--dark'}">${b}</span>`).join('')}</div>` : ''}`;
   const storyHtml = (st) => `<span class="story"><img src="${st.img}" alt="" loading="lazy" /><small>Replied to your story</small></span>${esc(st.text)}`;
@@ -768,7 +771,7 @@
 
     const btnIco = { link: '<svg viewBox="0 0 16 16"><path d="M6.5 3.5h-3v9h9v-3M9 2.5h4.5V7M13.5 2.5 7.5 8.5" /></svg>', reply: '<svg viewBox="0 0 16 16"><path d="M6.5 4 2.5 8l4 4M2.5 8h7a4 4 0 0 1 4 4" /></svg>' };
     // carte du message, puis les boutons en dessous, détachés du corps comme dans WhatsApp
-    const tplHtml = (t) => `<div class="wa-tpl-wrap"><div class="wa-tpl"><img class="wa-tpl__img" src="assets/fincut/${t.img}.jpg" alt="" loading="lazy" />`
+    const tplHtml = (t) => `<div class="wa-tpl-wrap"><div class="wa-tpl"><img class="wa-tpl__img${isPhoto(t.img) ? ' is-photo' : ''}" src="assets/fincut/${t.img}.jpg" alt="" loading="lazy" />`
       + `<div class="wa-tpl__body"><strong>${t.title}</strong><p>${t.text}</p></div></div>`
       + `<div class="wa-tpl__btns">${t.btns.map(([k, l]) => `<span class="wa-tpl__btn">${btnIco[k]}${l}</span>`).join('')}</div></div>`;
     const entryHtml = (e) => {

@@ -337,8 +337,10 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
 
 /* Messages automatisés : carte produit (rayons emboîtés 16 → 11, pilules de la page) */
 .msg--card { align-self: flex-end; width: 256px; max-width: 80%; padding: 5px; border-radius: 16px; background: var(--surface); box-shadow: 0 0 0 1px var(--line), 0 8px 24px -14px rgba(10,10,10,.22); display: flex; flex-direction: column; gap: 0; }
-.card-msg__media { border-radius: 11px; overflow: hidden; background: #f3f2ef; }
-.card-msg__img { display: block; width: 100%; height: 124px; object-fit: cover; }
+.card-msg__media { border-radius: 11px; overflow: hidden; background: #f4f4f4; }
+/* packshot entier sur son fond gris ; les photos portées restent recadrées */
+.card-msg__img { display: block; width: 100%; height: 150px; object-fit: contain; }
+.card-msg__img.is-photo, .wa-tpl__img.is-photo { object-fit: cover; object-position: center 22%; }
 .card-msg__body { padding: 9px 8px 2px; display: flex; flex-direction: column; gap: 4px; }
 .card-msg__tag { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; line-height: 14px; color: var(--muted); }
 .card-msg__tag::before { content: ""; width: 5px; height: 5px; border-radius: 9999px; background: var(--teal); }
@@ -347,7 +349,6 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
 .card-msg__btns { display: flex; gap: 6px; padding: 9px 3px 3px; }
 .card-msg__btns .pbtn { flex: 1; justify-content: center; height: 30px; padding: 0 10px; font-size: 12.5px; white-space: nowrap; }
 .card-msg__btns .pbtn--light { background: var(--btn-soft); box-shadow: none; }
-[data-theme="dark"] .card-msg__media { background: #222; }
 /* Réponse à une story Instagram */
 .msg--story { display: flex; flex-direction: column; gap: 6px; }
 .story { display: flex; align-items: center; gap: 8px; }
@@ -773,7 +774,7 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
 .wa-tpl-wrap { width: 236px; max-width: 92%; }
 .wa-tpl { overflow: hidden; border-radius: 16px; background: var(--surface); box-shadow: 0 0 0 1px var(--bot-border), 0 4px 14px -10px rgba(10, 10, 10, .3); }
 [data-theme="dark"] .wa-tpl { background: #262626; }
-.wa-tpl__img { display: block; width: calc(100% - 8px); height: 96px; margin: 4px 4px 0; border-radius: 12px; object-fit: cover; background: #f3f2ef; }
+.wa-tpl__img { display: block; width: calc(100% - 8px); height: 100px; margin: 4px 4px 0; border-radius: 12px; object-fit: contain; background: #f4f4f4; }
 .wa-tpl__body { padding: 8px 12px 10px; font-size: 14px; line-height: 19px; letter-spacing: -0.15px; color: var(--bot-text); }
 .wa-tpl__body strong { display: block; font-weight: 600; }
 .wa-tpl__body p { margin-top: 2px; }
