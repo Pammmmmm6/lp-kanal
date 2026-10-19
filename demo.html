@@ -9,9 +9,22 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=202610191027" />
-  <link rel="stylesheet" href="css/pages.css?v=202610191027" />
-  <link rel="stylesheet" href="css/demo.css?v=202610191027" />
+  <link rel="stylesheet" href="css/style.css?v=202610191107" />
+  <link rel="stylesheet" href="css/pages.css?v=202610191107" />
+  <link rel="stylesheet" href="css/demo.css?v=202610191107" />
+  <script>window.KANAL_LIVE=/(^|\.)getkanal\.com$/.test(location.hostname);</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://getkanal.com/#organization","name":"Kanal","alternateName":["Kanal App","getkanal","Kanal WhatsApp Marketing"],"url":"https://getkanal.com","logo":"https://getkanal.com/images/logo-kanal.svg","description":"WhatsApp Marketing Platform for Shopify & E-commerce","foundingDate":"2023","founder":{"@type":"Person","name":"Nicolas Provost","url":"https://www.linkedin.com/in/nicolasprovost/","image":"https://getkanal.com/images/authors/nicolas-provost.jpg","jobTitle":"WhatsApp Marketing & Shopify Expert","description":"Founder of Kanal, the WhatsApp marketing platform for Shopify. Writes about WhatsApp Business API, conversational commerce and e-commerce retention.","knowsAbout":["WhatsApp Business API","WhatsApp marketing","Shopify","Conversational commerce","E-commerce retention"],"worksFor":{"@type":"Organization","name":"Kanal","url":"https://getkanal.com"},"sameAs":["https://www.linkedin.com/in/nicolasprovost/"]},"contactPoint":{"@type":"ContactPoint","contactType":"customer support","email":"hello@getkanal.com","availableLanguage":["English","French","Spanish"]},"sameAs":["https://apps.shopify.com/kanal-marketing-ai","https://chromewebstore.google.com/detail/quickwhats-whatsapp-direc/kjnikcnfppmfegkhneffgajcigmehjil","https://www.facebook.com/kanal.app","https://www.instagram.com/getkanal/","https://www.youtube.com/@kanal-app","https://www.linkedin.com/company/kanal-app"]}</script>
+  <link rel="alternate" type="application/rss+xml" title="Kanal Blog" href="https://getkanal.com/feed.xml" />
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted',functionality_storage:'granted',security_storage:'granted'});
+window.__kanalConsent={v:1,ts:Date.now(),analytics:true,marketing:true};</script>
+  <script>if(window.KANAL_LIVE){
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KFG4FTSL');
+}</script>
   <script>
     var t = null; try { t = localStorage.getItem('kanal-theme'); } catch (e) {}
     if (t) document.documentElement.setAttribute('data-theme', t);
@@ -123,27 +136,34 @@
                 <span class="dform__err">Enter a valid work email.</span>
               </label>
               <label class="dform__field">
-                <span class="dform__label">Your store</span>
-                <input type="text" name="store" placeholder="yourstore.com" autocomplete="url" required />
+                <span class="dform__label">Your store <span class="dform__stack" data-stack hidden></span></span>
+                <input type="text" name="website" placeholder="yourstore.com" autocomplete="url" required />
                 <span class="dform__err">Enter your store URL.</span>
               </label>
               <div class="dform__field">
                 <span class="dform__label" id="revLabel">Monthly revenue <em>Optional</em></span>
                 <div class="dform__chips" role="radiogroup" aria-labelledby="revLabel">
-                  <button type="button" role="radio" aria-checked="false" data-v="Under €50k / month">Under €50k</button>
-                  <button type="button" role="radio" aria-checked="false" data-v="€50k to €200k / month">€50k–200k</button>
-                  <button type="button" role="radio" aria-checked="false" data-v="Over €200k / month">Over €200k</button>
+                  <button type="button" role="radio" aria-checked="false" data-v="10k-50k">Under €50k</button>
+                  <button type="button" role="radio" aria-checked="false" data-v="50k-200k">€50k–200k</button>
+                  <button type="button" role="radio" aria-checked="false" data-v="200k-1m">Over €200k</button>
                 </div>
               </div>
-              <button type="submit" class="btn btn--dark btn--lg dform__submit">Continue to booking<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h9M8.5 4l4 4-4 4" /></svg></button>
-              <div class="dform__done" aria-live="polite">
-                <span class="dform__ok"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 10.4 2.6 2.6L14 7.4" /></svg></span>
-                <strong>Thanks, pick a time that suits you.</strong>
-                <small>The booking calendar opens in a new tab, with your email already filled in.</small>
-                <a class="btn btn--dark btn--lg" id="demoCal" href="https://app.cal.com/team/kanal/demo" target="_blank" rel="noopener">Open the calendar</a>
+              <button type="submit" class="btn btn--dark btn--lg dform__submit" data-sending="Saving…">Continue to booking<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h9M8.5 4l4 4-4 4" /></svg></button>
+              <p class="dform__fail" role="alert" hidden>Something went wrong. Try again or email hello@getkanal.com.</p>
+            </form>
+            <div class="dbook" id="demoBook" hidden>
+              <div class="dbook__head">
+                <span class="dform__mark"><svg aria-hidden="true"><use href="#logo-kanal-mark" /></svg></span>
+                <span><strong>Pick a time that suits you</strong><small data-book-email></small></span>
                 <button type="button" class="dform__back" id="demoBack">Edit my details</button>
               </div>
-            </form>
+              <div class="dbook__cal" id="my-cal-inline-demo"></div>
+              <div class="dbook__fail" id="demoFallback" hidden>
+                <strong>Our booking widget didn't load</strong>
+                <p>This usually happens when a browser extension or privacy setting blocks third-party scripts. You can still book a demo directly, we'll confirm your slot right away.</p>
+                <div class="dbook__ctas"><a class="btn btn--dark btn--lg" id="demoFallbackCal" href="https://app.cal.com/team/kanal/demo" target="_blank" rel="noopener">Open booking page</a><a class="btn btn--soft btn--lg" id="demoFallbackMail" href="mailto:hello@getkanal.com">Email us</a></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -229,7 +249,8 @@
   </footer>
 
 
-  <script src="js/main.js?v=202610191027"></script>
-  <script src="js/demo.js?v=202610191027"></script>
+  <script src="js/kanal.js?v=202610191107"></script>
+  <script src="js/main.js?v=202610191107"></script>
+  <script src="js/demo.js?v=202610191107"></script>
 </body>
 </html>

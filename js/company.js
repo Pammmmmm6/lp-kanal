@@ -1,5 +1,5 @@
 /* =========================================================
-   Pages société : formulaires (validation côté client, état envoyé, sans serveur),
+   Pages société : formulaires (validation côté client puis envoi aux routes /api du site),
    annuaire des partenaires (filtres), sommaire des pages légales
    ========================================================= */
 (() => {
@@ -12,9 +12,40 @@
   const validStore = (v) => /^(https?:\/\/)?[^\s.]+\.[^\s]{2,}$/.test(v);
   const validUrl = (v) => { try { const u = new URL(/^https?:\/\//.test(v) ? v : 'https://' + v); return u.hostname.includes('.'); } catch (e) { return false; } };
 
+  // Mêmes envois que le site actuel (ContactPage, CareersPage, PremiumSetupPage) :
+  // mêmes routes, mêmes champs, même provenance (getLeadAttribution).
+  const val = (form, name) => (form.elements.namedItem(name) ? form.elements.namedItem(name).value : '');
+  const SENDERS = {
+    contactForm: (f) => window.Kanal.post('/api/contact', {
+      name: val(f, 'name').trim(), email: val(f, 'email').trim(), company: val(f, 'company').trim(),
+      reason: val(f, 'reason'), message: val(f, 'message').trim(), website: val(f, 'website'),
+      attribution: window.Kanal.leadAttribution(),
+    }),
+    careersForm: (f) => window.Kanal.post('/api/careers', {
+      name: val(f, 'name'), email: val(f, 'email'), link: val(f, 'link'), message: val(f, 'message'),
+      website: val(f, 'website'), locale: 'en', attribution: window.Kanal.leadAttribution(),
+    }),
+    premiumForm: (f) => window.Kanal.post('/api/premium-order', {
+      firstName: val(f, 'firstName'), lastName: val(f, 'lastName'), shopUrl: val(f, 'shopUrl'),
+      price: f.dataset.price || '€750 excl. VAT', source: f.dataset.source || '/premium-setup',
+      attribution: window.Kanal.leadAttribution(),
+    }),
+    toolForm: (f) => {
+      const slug = f.dataset.auditTool, store = val(f, 'store').trim();
+      return window.Kanal.post('/api/contact', {
+        name: `Audit WhatsApp (outil ${slug})`, email: val(f, 'email').trim(), company: store,
+        message: `Demande d'audit WhatsApp depuis l'outil ${slug} (en). Boutique : ${store || 'non renseignée'}. Page : ${location.href}`,
+        reason: 'tool', website: val(f, 'website'), attribution: window.Kanal.leadAttribution(),
+      }).then(() => window.Kanal.trackEvent(window.Kanal.EVENTS.CTA_CLICK, { cta: 'tool-audit', tool: slug }));
+    },
+  };
+
   $$('form[data-form]').forEach((form) => {
     const submit = $('.dform__submit', form);
     const label = submit.firstChild.textContent;
+    const fail = document.createElement('p');
+    fail.className = 'dform__fail'; fail.setAttribute('role', 'alert'); fail.hidden = true;
+    submit.after(fail);
 
     // pastilles à choix unique (un second clic désélectionne)
     $$('[data-radio]', form).forEach((group) => {
@@ -58,21 +89,34 @@
         if (!ok && !first) first = $('[role="radio"]', group);
       });
       if (first) { first.focus(); return; }
-      if ($('.hp', form).value) return; // robot
 
-      // maquette : pas de serveur, on simule l'envoi
+      const send = SENDERS[form.id];
+      if (!send) return;
       form.classList.add('is-sending');
+      fail.hidden = true;
       submit.firstChild.textContent = submit.dataset.sending || label;
-      setTimeout(() => {
-        form.classList.remove('is-sending');
-        submit.firstChild.textContent = label;
-        form.reset();
-        $$('[role="radio"]', form).forEach((c) => c.setAttribute('aria-checked', 'false'));
-        $$('[data-hint-for]', form).forEach((h) => { h.hidden = true; });
-        form.classList.add('is-done');
-        $('.dform__done', form).setAttribute('tabindex', '-1');
-        $('.dform__done', form).focus({ preventScroll: true });
-      }, 900);
+      send(form)
+        .then(() => {
+          form.reset();
+          $$('[role="radio"]', form).forEach((c) => c.setAttribute('aria-checked', 'false'));
+          $$('[data-hint-for]', form).forEach((h) => { h.hidden = true; });
+          form.classList.add('is-done');
+          const done = $('.dform__done', form);
+          if (!window.Kanal.live && !$('.dform__preview', done)) {
+            done.insertAdjacentHTML('beforeend', '<small class="dform__preview">Preview site: nothing was sent. On getkanal.com this form reaches the team.</small>');
+          }
+          done.setAttribute('tabindex', '-1');
+          done.focus({ preventScroll: true });
+        })
+        .catch((err) => {
+          fail.textContent = (form.id === 'contactForm' && err && err.message && err.message !== 'Failed to submit')
+            ? err.message : (form.dataset.error || 'Something went wrong. Please try again.');
+          fail.hidden = false;
+        })
+        .finally(() => {
+          form.classList.remove('is-sending');
+          submit.firstChild.textContent = label;
+        });
     });
   });
 

@@ -9,9 +9,23 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css?v=202610191027" />
-  <link rel="stylesheet" href="../css/pages.css?v=202610191027" />
-  <link rel="stylesheet" href="../css/tools.css?v=202610191027" />
+  <link rel="stylesheet" href="../css/style.css?v=202610191107" />
+  <link rel="stylesheet" href="../css/pages.css?v=202610191107" />
+  <link rel="stylesheet" href="../css/demo.css?v=202610191107" />
+  <link rel="stylesheet" href="../css/tools.css?v=202610191107" />
+  <script>window.KANAL_LIVE=/(^|\.)getkanal\.com$/.test(location.hostname);</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://getkanal.com/#organization","name":"Kanal","alternateName":["Kanal App","getkanal","Kanal WhatsApp Marketing"],"url":"https://getkanal.com","logo":"https://getkanal.com/images/logo-kanal.svg","description":"WhatsApp Marketing Platform for Shopify & E-commerce","foundingDate":"2023","founder":{"@type":"Person","name":"Nicolas Provost","url":"https://www.linkedin.com/in/nicolasprovost/","image":"https://getkanal.com/images/authors/nicolas-provost.jpg","jobTitle":"WhatsApp Marketing & Shopify Expert","description":"Founder of Kanal, the WhatsApp marketing platform for Shopify. Writes about WhatsApp Business API, conversational commerce and e-commerce retention.","knowsAbout":["WhatsApp Business API","WhatsApp marketing","Shopify","Conversational commerce","E-commerce retention"],"worksFor":{"@type":"Organization","name":"Kanal","url":"https://getkanal.com"},"sameAs":["https://www.linkedin.com/in/nicolasprovost/"]},"contactPoint":{"@type":"ContactPoint","contactType":"customer support","email":"hello@getkanal.com","availableLanguage":["English","French","Spanish"]},"sameAs":["https://apps.shopify.com/kanal-marketing-ai","https://chromewebstore.google.com/detail/quickwhats-whatsapp-direc/kjnikcnfppmfegkhneffgajcigmehjil","https://www.facebook.com/kanal.app","https://www.instagram.com/getkanal/","https://www.youtube.com/@kanal-app","https://www.linkedin.com/company/kanal-app"]}</script>
+  <link rel="alternate" type="application/rss+xml" title="Kanal Blog" href="https://getkanal.com/feed.xml" />
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted',functionality_storage:'granted',security_storage:'granted'});
+window.__kanalConsent={v:1,ts:Date.now(),analytics:true,marketing:true};</script>
+  <script>if(window.KANAL_LIVE){
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KFG4FTSL');
+}</script>
   <script>
     var t = null; try { t = localStorage.getItem('kanal-theme'); } catch (e) {}
     if (t) document.documentElement.setAttribute('data-theme', t);
@@ -161,6 +175,28 @@
       </div>
     </section>
 
+    <!-- ============ AUDIT ============ -->
+    <section class="sec">
+      <div class="wrap">
+        <article class="duo duo--rev tl-lead reveal reveal--up">
+          <div class="duo__text">
+            <h2>Your Shopify store on WhatsApp in 15 minutes</h2>
+            <p>Leave your email and store address: a Kanal expert shows you the WhatsApp flows that pay for your catalog, cart recovery, order updates and campaigns.</p>
+          </div>
+          <div class="duo__media feature__visual feature__visual--b">
+            <form class="dform" id="toolForm" data-form data-audit-tool="discount-code-generator" data-error="Something went wrong, please try again or email hugo@getkanal.com." novalidate>
+              <div class="dform__head"><span class="dform__mark"><svg aria-hidden="true"><use href="#logo-kanal-mark" /></svg></span><span><strong>WhatsApp audit</strong><small>15 min · Free</small></span></div>
+              <label class="dform__field"><span class="dform__label">Work email</span><input type="email" name="email" placeholder="you@store.com" autocomplete="email" required /><span class="dform__err">Enter a valid work email.</span></label>
+              <label class="dform__field"><span class="dform__label">Your store address <em>Optional</em></span><input type="text" name="store" placeholder="mystore.com" autocomplete="url" /></label>
+              <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+              <button type="submit" class="btn btn--dark btn--lg dform__submit" data-sending="Sending…">Get my audit<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h9M8.5 4l4 4-4 4" /></svg></button>
+              <div class="dform__done" aria-live="polite"><span class="dform__ok"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 10.4 2.6 2.6L14 7.4" /></svg></span><strong>Request received</strong><small>Thanks, a Kanal expert will get back to you within one business day.</small></div>
+            </form>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <!-- ============ COMMENT ÇA MARCHE ============ -->
     <section class="sec">
       <div class="wrap wrap--narrow cols cols--top">
@@ -259,7 +295,9 @@
   </footer>
 
 
-  <script src="../js/main.js?v=202610191027"></script>
-  <script src="../js/tools.js?v=202610191027"></script>
+  <script src="../js/kanal.js?v=202610191107"></script>
+  <script src="../js/main.js?v=202610191107"></script>
+  <script src="../js/company.js?v=202610191107"></script>
+  <script src="../js/tools.js?v=202610191107"></script>
 </body>
 </html>

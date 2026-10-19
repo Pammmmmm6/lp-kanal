@@ -1006,3 +1006,42 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
   .rotator__word:not(.is-on) { display: none; }
   .chatcard [data-chat-typing] { display: none; }
 }
+
+/* =========================================================
+   Widget « Chat with us » (js/kanal.js) : même contenu que le site actuel
+   ========================================================= */
+.kchat { position: fixed; right: 20px; bottom: 20px; z-index: 60; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; pointer-events: none; }
+.kchat > * { pointer-events: auto; }
+.kchat__btn { position: relative; width: 56px; height: 56px; padding: 0; border: 0; border-radius: 9999px; background: var(--surface); box-shadow: 0 0 0 1px var(--line), 0 12px 28px -10px rgba(10, 10, 10, .35); cursor: pointer; opacity: 0; transform: translateY(12px) scale(.9); transition: opacity .4s var(--ease), transform .4s var(--ease), box-shadow .2s; }
+.kchat.is-in .kchat__btn { opacity: 1; transform: none; }
+.kchat__btn:hover { box-shadow: 0 0 0 1px var(--line-2), 0 16px 32px -10px rgba(10, 10, 10, .4); }
+.kchat__btn img { width: 52px; height: 52px; margin: 2px; border-radius: 9999px; object-fit: cover; }
+.kchat__dot { position: absolute; right: 2px; bottom: 2px; width: 12px; height: 12px; border-radius: 9999px; background: #22c55e; box-shadow: 0 0 0 2.5px var(--surface); }
+.kchat__panel { width: min(340px, calc(100vw - 40px)); border-radius: 22px; background: var(--surface); box-shadow: 0 0 0 1px var(--line), 0 28px 60px -24px rgba(10, 10, 10, .4); overflow: hidden; animation: kchatIn .35s var(--ease); }
+.kchat__panel[hidden], .kchat__nudge[hidden], .kchat__chips[hidden], .kchat__bubble[hidden], .kchat__typing[hidden] { display: none; }
+@keyframes kchatIn { from { opacity: 0; transform: translateY(10px) scale(.98); } }
+.kchat__head { display: flex; align-items: center; gap: 12px; padding: 16px 14px 14px 16px; border-bottom: 1px solid var(--line); }
+.kchat__head img { width: 40px; height: 40px; border-radius: 9999px; object-fit: cover; }
+.kchat__head span { flex: 1; display: flex; flex-direction: column; }
+.kchat__head strong { font-size: 15px; line-height: 20px; font-weight: 500; }
+.kchat__head small { font-size: 12.5px; line-height: 18px; color: var(--muted); }
+.kchat__x { display: grid; place-items: center; width: 30px; height: 30px; flex: none; border: 0; border-radius: 9999px; background: var(--tint-2); color: var(--fg-70); cursor: pointer; transition: background-color .15s; }
+.kchat__x:hover { background: var(--btn-hover); }
+.kchat__x svg { width: 10px; height: 10px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; }
+.kchat__body { display: flex; flex-direction: column; gap: 12px; padding: 16px; }
+.kchat__msg { display: flex; align-items: flex-end; gap: 8px; }
+.kchat__msg img { width: 26px; height: 26px; border-radius: 9999px; object-fit: cover; flex: none; }
+.kchat__bubble { max-width: 260px; padding: 10px 14px; border-radius: 16px 16px 16px 4px; background: var(--tint-2); font-size: 14px; line-height: 21px; animation: kchatIn .25s var(--ease); }
+.kchat__typing { display: inline-flex; gap: 4px; padding: 12px 14px; border-radius: 16px 16px 16px 4px; background: var(--tint-2); }
+.kchat__typing i { width: 6px; height: 6px; border-radius: 9999px; background: var(--fg-40); animation: kchatDot .7s ease-in-out infinite; }
+.kchat__typing i:nth-child(2) { animation-delay: .15s; } .kchat__typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes kchatDot { 50% { transform: translateY(-3px); opacity: 1; } 0%, 100% { opacity: .4; } }
+.kchat__chips { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding-left: 34px; animation: kchatIn .3s var(--ease); }
+.kchat__chip { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 16px 0 13px; border-radius: 9999px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-2); font-size: 14px; font-weight: 500; color: var(--fg); transition: background-color .15s; }
+.kchat__chip:hover { background: var(--btn-light); }
+.kchat__chip svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; color: var(--fg-70); }
+.kchat__nudge { display: flex; align-items: flex-start; gap: 10px; width: min(300px, calc(100vw - 40px)); padding: 12px 10px 12px 12px; border-radius: 18px; background: var(--surface); box-shadow: 0 0 0 1px var(--line), 0 20px 44px -20px rgba(10, 10, 10, .4); cursor: pointer; animation: kchatIn .4s var(--ease); }
+.kchat__nudge img { width: 32px; height: 32px; border-radius: 9999px; object-fit: cover; flex: none; }
+.kchat__nudge p { flex: 1; font-size: 13.5px; line-height: 20px; color: var(--fg-70); }
+@media (prefers-reduced-motion: reduce) { .kchat__btn, .kchat__panel, .kchat__nudge, .kchat__bubble, .kchat__chips { transition: none; animation: none; } }
+@media (max-width: 640px) { .kchat { right: 14px; bottom: 14px; } .kchat__btn, .kchat__btn img { width: 50px; height: 50px; } .kchat__btn img { width: 46px; height: 46px; } }

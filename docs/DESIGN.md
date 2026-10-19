@@ -73,3 +73,24 @@ Serve the repo (`python3 -m http.server 8765`) and screenshot with Playwright
 (`/opt/node22/lib/node_modules/playwright/index.mjs`, Chromium at
 `/opt/pw-browsers/chromium-1194/chrome-linux/chrome`) at 1440 and 390, light and dark.
 Check the console has no errors and `document.documentElement.scrollWidth - innerWidth === 0`.
+
+## Forms and tracking (same behaviour as getkanal.com)
+
+- `js/kanal.js` is compiled by `build/runtime/build.mjs` (`npm ci --prefix build/runtime`, then
+  `node build/runtime/build.mjs --site /path/to/getkanal.com`). It bundles the live site's own modules
+  `src/lib/tracking/{utm,events,consent,channel,pixel,oaiq}` unchanged, and reproduces the layout's
+  components: TrackingProvider (first-touch attribution, page_view), MetaPixel, OpenAiPixel,
+  LemlistTracker, WebVitalsReporter, Button (Shopify install links decorated + tracked),
+  HomeScrollTracker, ChatWidget. Rebuild it whenever `src/lib/tracking` changes on the live site.
+- `<head>` (build.py `tracking_block`): `window.KANAL_LIVE` (true only on getkanal.com), the implicit
+  consent snippet (cookie banner off in production), GTM from Sanity `siteSettings.headScripts`
+  (snapshot in `build/data/sanity-site-scripts.json`, `KANAL_REFRESH=1` to refresh), the Organization
+  JSON-LD and the RSS link.
+- Forms post the exact payloads of the live components to the same routes: contact → `/api/contact`,
+  careers → `/api/careers`, premium → `/api/premium-order`, tool audit → `/api/contact`
+  (reason `tool`), demo → `/api/detect-stack` + `/api/lead-qualification` (partial, complete, booked)
+  with the Cal.com calendar embedded in the page (`team/kanal/demo`).
+- Off getkanal.com (GitHub Pages, localhost) nothing leaves: `/api/*` calls are answered locally and
+  logged in the console, GTM/Meta/OpenAI/Lemlist do not load, forms show a "preview" note.
+- The relative `/api/*` calls only work once the pages are served from the getkanal.com Next.js
+  server (same origin); the production API does not accept cross-origin calls.

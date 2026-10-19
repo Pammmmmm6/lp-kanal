@@ -78,3 +78,42 @@
   .dform { padding: 20px 16px; }
   .quotes { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* envoi réel : message d'erreur sous le bouton, note sur le site d'aperçu */
+.dform__fail { margin-top: -4px; font-size: 13.5px; line-height: 20px; color: var(--red); text-align: center; }
+.dform__fail[hidden] { display: none; }
+.dform__preview { display: block; margin-top: 10px; padding: 6px 12px; border-radius: 9999px; background: var(--tint-2); font-size: 12px; line-height: 18px; color: var(--fg-60); }
+.dform.is-sending .dform__submit { opacity: .6; pointer-events: none; }
+
+/* plateforme détectée à côté du champ boutique */
+.dform__stack { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 9px; border-radius: 9999px; background: var(--tint-2); font-size: 12px; font-weight: 500; color: var(--fg-70); }
+.dform__stack[hidden] { display: none; }
+.dform__stack img { width: 14px; height: 14px; border-radius: 3px; }
+
+/* étape réservation : le calendrier Cal.com prend toute la largeur */
+.dh.is-booking .dh__grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+.dh.is-booking .dh__text { text-align: center; }
+.dh.is-booking .dh__sub { margin-left: auto; margin-right: auto; }
+.dh.is-booking .dh__trust { justify-content: center; }
+.dh.is-booking .dh__panel.feature__visual { padding: 32px; }
+.dbook { width: 100%; max-width: 1000px; border-radius: 20px; background: var(--surface); box-shadow: 0 0 0 1px rgba(10, 10, 10, .04), 0 32px 64px -28px rgba(30, 30, 60, .45); overflow: hidden; scroll-margin-top: 88px; }
+.dbook[hidden] { display: none; }
+.dbook__head { display: flex; align-items: center; gap: 12px; padding: 18px 20px; border-bottom: 1px solid var(--line); }
+.dbook__head > span:nth-child(2) { flex: 1; display: flex; flex-direction: column; }
+.dbook__head strong { font-size: 15px; line-height: 20px; font-weight: 500; }
+.dbook__head small { font-size: 13px; line-height: 18px; color: var(--muted); }
+.dbook__head .dform__back { margin: 0; }
+.dbook__cal { min-height: 580px; width: 100%; overflow: hidden; }
+.dbook__cal[hidden] { display: none; }
+.dbook__fail { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 48px 24px; text-align: center; }
+.dbook__fail[hidden] { display: none; }
+.dbook__fail strong { font-size: 20px; line-height: 28px; font-weight: 500; }
+.dbook__fail p { max-width: 480px; font-size: 15px; line-height: 24px; color: var(--muted); }
+.dbook__ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 8px; }
+@media (max-width: 640px) {
+  .dh.is-booking .dh__panel.feature__visual { padding: 12px; }
+  .dbook__head { flex-wrap: wrap; padding: 14px 16px; }
+  .dbook__cal { min-height: 640px; }
+}
+.dform .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; } /* champ piège anti-robots */
+.dh__panel { scroll-margin-top: 80px; }

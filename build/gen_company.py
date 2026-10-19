@@ -315,7 +315,7 @@ def careers(d, site):
             <p class="reveal" style="--d:1">{e(t['spontaneous']['subtitle'])}</p>
           </div>
           <div class="dh__panel feature__visual feature__visual--d reveal reveal--up" style="--d:1">
-            <form class="dform" id="careersForm" data-form novalidate>
+            <form class="dform" id="careersForm" data-form novalidate data-error="{a(f['error'])}">
               <div class="dform__head">
                 {MARK}
                 <span><strong>{e(sc(t['hero']['cta']))}</strong><small>Kanal · {e(sc(t['preheader']))}</small></span>
@@ -639,7 +639,7 @@ def premium(d, site):
             <ul class="cplan__list">{feats}</ul>
           </article>
           <div class="cplan__panel dh__panel feature__visual feature__visual--d reveal reveal--up" style="--d:1">
-            <form class="dform" id="premiumForm" data-form novalidate>
+            <form class="dform" id="premiumForm" data-form novalidate data-price="{a(pr['price'])}" data-source="/premium-setup" data-error="{a(fm['sendError'])}">
               <div class="dform__head">
                 {MARK}
                 <span><strong>{e(fm['title'])}</strong><small>{e(sc(pr['name']))} · {e(amount)}</small></span>

@@ -173,6 +173,31 @@ def detail_page(i, t, tools, guide):
     </section>
 ''')
 
+    # Capture de lead : audit WhatsApp de la boutique (ToolLeadForm, envoyé sur /api/contact)
+    out.append(f'''
+    <!-- ============ AUDIT ============ -->
+    <section class="sec">
+      <div class="wrap">
+        <article class="duo duo--rev tl-lead reveal reveal--up">
+          <div class="duo__text">
+            <h2>Your Shopify store on WhatsApp in 15 minutes</h2>
+            <p>Leave your email and store address: a Kanal expert shows you the WhatsApp flows that pay for your catalog, cart recovery, order updates and campaigns.</p>
+          </div>
+          <div class="duo__media feature__visual feature__visual--{'b' if grad != 'b' else 'd'}">
+            <form class="dform" id="toolForm" data-form data-audit-tool="{a(t['slug'])}" data-error="Something went wrong, please try again or email hugo@getkanal.com." novalidate>
+              <div class="dform__head"><span class="dform__mark"><svg aria-hidden="true"><use href="#logo-kanal-mark" /></svg></span><span><strong>WhatsApp audit</strong><small>15 min · Free</small></span></div>
+              <label class="dform__field"><span class="dform__label">Work email</span><input type="email" name="email" placeholder="you@store.com" autocomplete="email" required /><span class="dform__err">Enter a valid work email.</span></label>
+              <label class="dform__field"><span class="dform__label">Your store address <em>Optional</em></span><input type="text" name="store" placeholder="mystore.com" autocomplete="url" /></label>
+              <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+              <button type="submit" class="btn btn--dark btn--lg dform__submit" data-sending="Sending…">Get my audit<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h9M8.5 4l4 4-4 4" /></svg></button>
+              <div class="dform__done" aria-live="polite"><span class="dform__ok"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 10.4 2.6 2.6L14 7.4" /></svg></span><strong>Request received</strong><small>Thanks, a Kanal expert will get back to you within one business day.</small></div>
+            </form>
+          </div>
+        </article>
+      </div>
+    </section>
+''')
+
     steps = t.get('howItWorks') or []
     if steps:
         lis = ''.join(f'<li><span class="tl-step__n">{n + 1}</span><div><h3>{e(s["title"])}</h3><p>{e(s["description"])}</p></div></li>'
@@ -226,7 +251,7 @@ def detail_page(i, t, tools, guide):
     # [slug]/page.tsx : suffixe « Free Shopify Tool » seulement si le titre ne cite pas Shopify
     title = t['title'] if 'shopify' in t['title'].lower() else f"{t['title']} | Free Shopify Tool"
     return {'out': f'tools/{t["slug"]}.html', 'title': f'{title} | Kanal', 'description': t['description'],
-            'styles': ['pages.css', 'tools.css'], 'scripts': [] if static else ['tools.js'], 'current': None, 'extra': '',
+            'styles': ['pages.css', 'demo.css', 'tools.css'], 'scripts': ['company.js'] + ([] if static else ['tools.js']), 'current': None, 'extra': '',
             'main': ''.join(out)}
 
 
