@@ -157,7 +157,7 @@
 .scmp__ch svg { width: 22px; height: 22px; flex: none; border-radius: 6px; }
 .scmp__lab { display: none; }
 .stake { max-width: 1080px; margin: 16px auto 0; }
-.stake__card.feature__visual { display: flex; place-items: initial; min-height: 0; padding: 8px; border-radius: 24px; }
+.stake__card.feature__visual { display: flex; place-items: initial; min-height: 0; padding: 28px; border-radius: 24px; }
 .stake__card .ps__inner { padding: 32px; }
 .stake__card .ps__inner p { margin-top: 18px; font-size: 22px; line-height: 32px; letter-spacing: -0.2px; color: var(--fg); text-wrap: pretty; }
 .stake .fres svg { stroke: var(--muted); }
@@ -339,6 +339,7 @@
   .scase .duo__text h2 { font-size: 24px; line-height: 31px; }
   .sspec div { grid-template-columns: 104px minmax(0, 1fr); gap: 12px; }
   .stake__card .ps__inner { padding: 24px 20px; }
+  .stake__card.feature__visual { padding: 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .smsb--pop { animation: none; }
