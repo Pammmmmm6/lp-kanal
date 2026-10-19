@@ -1,0 +1,163 @@
+/* =========================================================
+   Page RCS — fil RCS codé (expéditeur vérifié, cartes, carrousel), sans image
+   ========================================================= */
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.rgap { margin-top: 40px; }
+.rgap .fcards { margin-top: 0; }
+.rverified { width: 14px; height: 14px; flex: none; }
+.rglyph { width: 16px; height: 16px; flex: none; }
+.rmono { display: grid; place-items: center; flex: none; width: 38px; height: 38px; border-radius: 9999px; background: #111110; color: #fff; font-size: 14px; font-weight: 500; letter-spacing: .2px; }
+
+/* ---------- Téléphone : fil RCS ---------- */
+.rph { width: 100%; max-width: 300px; display: flex; flex-direction: column; border-radius: 28px; background: var(--surface); box-shadow: 0 0 0 1px rgba(10, 10, 10, .05), 0 30px 60px -24px rgba(30, 30, 60, .45), 0 8px 18px -10px rgba(30, 30, 60, .2); overflow: hidden; text-align: left; }
+.rph__head { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 18px 16px 12px; border-bottom: 1px solid var(--line); }
+.rph__brand { display: inline-flex; align-items: center; gap: 4px; margin-top: 4px; font-size: 13px; line-height: 18px; font-weight: 600; }
+.rph__head small { font-size: 11px; line-height: 14px; color: var(--muted); }
+.rph__body { display: flex; flex-direction: column; gap: 8px; padding: 14px 12px 14px; min-height: 0; }
+.rph__time { align-self: center; font-size: 11px; font-weight: 500; color: var(--muted); }
+.rbub { align-self: flex-start; max-width: 92%; padding: 9px 13px; border-radius: 18px 18px 18px 6px; background: var(--tint-2); font-size: 14px; line-height: 19px; overflow-wrap: anywhere; }
+.rph__input { display: flex; align-items: center; justify-content: space-between; margin: 0 10px 12px; height: 38px; padding: 0 6px 0 14px; border-radius: 9999px; background: var(--tint); font-size: 13px; color: var(--muted); }
+.rph__input i { width: 28px; height: 28px; border-radius: 9999px; background: var(--tint-2); }
+
+/* carte riche */
+.rcard { display: flex; flex-direction: column; height: 100%; border-radius: 16px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-2); overflow: hidden; }
+.rart { display: grid; place-items: center; height: 96px; }
+.rart svg { height: 78%; width: auto; }
+.rcard__body { display: flex; flex-direction: column; gap: 1px; padding: 9px 12px 8px; flex: 1; }
+.rcard__body b { font-size: 13.5px; line-height: 17px; font-weight: 600; }
+.rcard__body small { font-size: 12px; line-height: 16px; color: var(--muted); }
+.rcard__body strong { margin-top: 4px; font-size: 13.5px; font-weight: 600; }
+.rcard__acts { display: flex; flex-direction: column; gap: 6px; padding: 0 10px 10px; }
+.rcard__acts span { display: flex; align-items: center; justify-content: center; min-height: 30px; padding: 0 12px; border-radius: 9999px; background: var(--tint-2); font-size: 12.5px; font-weight: 500; text-align: center; }
+.rsolo { max-width: 220px; }
+
+/* carrousel */
+.rcar__track { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin: 0 -12px; padding: 0 12px; scroll-padding: 0 12px; }
+.rcar__track::-webkit-scrollbar { display: none; }
+.rcar__item { flex: 0 0 196px; scroll-snap-align: start; }
+.rcar__dots { display: flex; justify-content: center; gap: 5px; margin-top: 8px; }
+.rcar__dots i { width: 5px; height: 5px; border-radius: 9999px; background: var(--line-2); transition: background-color .25s, width .25s var(--ease); }
+.rcar__dots i.is-on { width: 14px; background: var(--fg-40); }
+
+/* suggestions */
+.rchips { display: flex; flex-wrap: wrap; gap: 6px; }
+.rchips span { display: inline-flex; align-items: center; min-height: 30px; padding: 0 12px; border-radius: 9999px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-2); font-size: 12.5px; font-weight: 500; }
+
+/* arrivée des messages quand le téléphone entre à l'écran */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal .rstep { opacity: 0; transform: translateY(8px) scale(.97); transform-origin: 0 100%; }
+  .reveal.is-visible .rstep { animation: rpop .45s var(--ease) both; animation-delay: calc(.5s + var(--i, 0) * .45s); }
+}
+@keyframes rpop { from { opacity: 0; transform: translateY(8px) scale(.97); } to { opacity: 1; transform: none; } }
+
+/* ---------- Hero : SMS vs RCS ---------- */
+.rhero { max-width: 1080px; margin: 0 auto; }
+.rhero__panel.feature__visual { display: grid; grid-template-columns: minmax(0, 380px) 300px; justify-content: center; gap: 96px; align-items: center; min-height: 0; padding: 56px 72px; border-radius: 24px; place-items: initial; }
+.rhero__col { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.rhero__col--phone { align-items: center; }
+.rhero__col--phone .rph { width: 300px; }
+.rhero figcaption { margin-top: 14px; text-align: center; font-size: 14px; line-height: 20px; color: var(--muted); }
+.rlabel { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 9999px; background: var(--surface); font-size: 13px; font-weight: 500; color: var(--fg-70); box-shadow: 0 6px 16px -10px rgba(30, 30, 60, .35); }
+.rsms { width: 100%; max-width: 380px; padding: 14px; border-radius: 20px; background: var(--surface); box-shadow: 0 0 0 1px rgba(10, 10, 10, .04), 0 24px 48px -24px rgba(30, 30, 60, .4); }
+.rsms__head { display: flex; align-items: center; gap: 10px; }
+.rsms__head b { display: block; font-size: 14px; line-height: 18px; font-weight: 600; }
+.rsms__head small { display: block; font-size: 12px; line-height: 16px; color: var(--muted); }
+.rsms__ico { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9999px; background: var(--tint-2); color: var(--fg-70); }
+.rsms__bub { margin-top: 12px; padding: 10px 13px; border-radius: 18px 18px 18px 6px; background: var(--tint-2); font-size: 14px; line-height: 20px; }
+.rsms__bub u { color: #1d5fd1; text-underline-offset: 2px; }
+[data-theme="dark"] .rsms__bub u { color: #7aa7ff; }
+.rlegend { width: 100%; max-width: 380px; margin-top: 4px; padding: 20px 22px; border-radius: 20px; background: var(--surface); box-shadow: 0 0 0 1px rgba(10, 10, 10, .04), 0 24px 48px -24px rgba(30, 30, 60, .4); }
+.rlegend h2 { font-size: 18px; line-height: 24px; font-weight: 500; letter-spacing: -0.18px; }
+.rlegend ul { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+.rlegend li { display: flex; gap: 10px; font-size: 14.5px; line-height: 21px; color: var(--fg-70); }
+.rlegend svg { width: 16px; height: 16px; flex: none; margin-top: 2.5px; fill: none; stroke: var(--fg); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- Ce que RCS change : mini-visuels ---------- */
+.rdiff__art { display: grid; place-items: center; height: 148px; margin-bottom: 4px; border-radius: 16px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); overflow: hidden; }
+.rdiff .fcard__ico { display: none; }
+.rdiff h3 { margin-top: 20px; }
+.rdiff h3:first-child { margin-top: 0; }
+.rmini { font-size: 12px; line-height: 16px; }
+.rmini b { display: flex; align-items: center; gap: 4px; font-weight: 600; }
+.rmini small { color: var(--muted); }
+.rmini--sender { display: flex; align-items: center; gap: 10px; padding: 12px 16px 12px 12px; border-radius: 16px; background: var(--surface); box-shadow: 0 12px 28px -18px rgba(0, 0, 0, .45), inset 0 0 0 1px var(--line); }
+.rmini--sender .rmono { width: 32px; height: 32px; font-size: 12px; }
+.rmini--sender b { font-size: 14px; line-height: 18px; }
+.rmini--card { display: flex; flex-direction: column; width: 150px; border-radius: 14px; box-shadow: inset 0 0 0 1px var(--line-2); overflow: hidden; }
+.rmini--card .rart { height: 58px; }
+.rmini--card b { padding: 6px 10px 0; }
+.rmini--card small { padding: 0 10px 8px; }
+.rmini--car { display: flex; gap: 8px; transform: translateX(40px); }
+.rmini--car > div { flex: 0 0 92px; border-radius: 12px; box-shadow: inset 0 0 0 1px var(--line-2); overflow: hidden; }
+.rmini--car .rart { height: 60px; }
+.rmini--car b { padding: 6px 8px; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+.rmini--chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; padding: 0 16px; }
+.rmini--chips span { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 9999px; box-shadow: inset 0 0 0 1px var(--line-2); font-weight: 500; }
+
+/* sources + notes */
+.rsrc { margin-top: 12px !important; font-size: 13px !important; line-height: 20px !important; color: var(--muted); }
+.rsrc a { color: var(--fg-70); text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px; transition: color .15s, text-decoration-color .15s; }
+.rsrc a:hover { color: var(--fg); text-decoration-color: currentColor; }
+.rnote { max-width: 1080px; margin: 16px auto 0; font-size: 14px; line-height: 22px; color: var(--muted); }
+.rnote p:first-child { color: var(--fg-70); }
+.rnote .rsrc { margin-top: 4px !important; }
+
+/* ---------- Cas d'usage ---------- */
+.rcases { display: flex; flex-direction: column; gap: 16px; }
+.rcase { width: 100%; }
+.rcase .duo__media { display: flex; align-items: center; justify-content: center; }
+.rspec { width: 100%; margin: 24px 0 0; border-top: 1px solid var(--line-2); }
+.rspec div { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line-2); }
+.rspec dt { font-size: 14px; line-height: 22px; color: var(--muted); }
+.rspec dd { margin: 0; font-size: 15px; line-height: 22px; font-weight: 500; }
+
+/* ---------- Phrase forte ---------- */
+.rstate { max-width: 760px; margin: 0 auto; text-align: center; }
+.rstate h2 { font-size: 44px; line-height: 50px; font-weight: 500; letter-spacing: -0.9px; text-wrap: balance; }
+.rstate p { margin-top: 16px; font-size: 18px; line-height: 28px; color: var(--muted); text-wrap: balance; }
+
+/* ---------- Tableau comparatif ---------- */
+.rcmp { max-width: 1080px; margin: 40px auto 0; border-radius: 24px; background: var(--card); overflow: hidden; }
+.rcmp table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.rcmp th, .rcmp td { padding: 18px 24px; text-align: left; vertical-align: top; font-size: 15px; line-height: 24px; }
+.rcmp thead th { font-size: 14px; font-weight: 500; color: var(--muted); }
+.rcmp thead th:first-child { width: 19%; }
+.rcmp thead th span { display: inline-flex; align-items: center; gap: 8px; font-size: 18px; line-height: 24px; color: var(--fg); }
+.rcmp thead th .rverified, .rcmp thead th .rglyph { width: 18px; height: 18px; }
+.rcmp tbody th { font-weight: 500; }
+.rcmp tbody tr { box-shadow: inset 0 1px 0 var(--line-2); }
+.rcmp td { color: var(--fg-70); }
+.rcmp__ch { display: none; }
+.rlinks { margin-top: 24px; }
+
+/* ---------- Étapes ---------- */
+.rnum { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 9999px; background: var(--ink); color: var(--bg); font-size: 15px; font-weight: 500; }
+
+/* ---------- Aller plus loin ---------- */
+.rmore a { padding: 14px 0; }
+.rmore a > span { display: flex; flex-direction: column; gap: 2px; }
+.rmore b { font-weight: 500; color: var(--fg); }
+.rmore small { font-size: 14px; line-height: 20px; color: var(--muted); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1000px) {
+  .rhero__panel.feature__visual { grid-template-columns: minmax(0, 1fr); justify-items: center; gap: 32px; padding: 40px 32px; }
+  .rhero__col { align-items: center; }
+  .rhero__col--phone { order: -1; }
+  .rcmp { background: none; border-radius: 0; overflow: visible; }
+  .rcmp table, .rcmp tbody, .rcmp tr, .rcmp th, .rcmp td { display: block; width: auto; }
+  .rcmp thead { display: none; }
+  .rcmp tbody { display: flex; flex-direction: column; gap: 12px; }
+  .rcmp tbody tr { padding: 22px 22px 6px; border-radius: 20px; background: var(--card); box-shadow: none; }
+  .rcmp tbody th { padding: 0 0 8px; font-size: 18px; line-height: 24px; }
+  .rcmp td { padding: 10px 0; border-top: 1px solid var(--line); }
+  .rcmp__ch { display: flex; align-items: center; gap: 6px; margin-bottom: 2px; font-size: 13px; font-weight: 600; color: var(--fg); }
+}
+@media (max-width: 640px) {
+  .rhero__panel.feature__visual { padding: 28px 14px; border-radius: 18px; }
+  .rhero__col--phone .rph { width: 100%; }
+  .rstate h2 { font-size: 32px; line-height: 38px; letter-spacing: -0.5px; }
+  .rspec div { grid-template-columns: 100px minmax(0, 1fr); }
+  .rmini--car { transform: translateX(24px); }
+}
