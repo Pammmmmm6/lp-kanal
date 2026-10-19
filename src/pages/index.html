@@ -1,0 +1,297 @@
+<!--page {"title": "Kanal — Sell more on WhatsApp", "description": "Turn WhatsApp into your #1 sales channel with Kanal. Recover abandoned carts, re-engage customers, and drive repeat purchases with +90% open rates.", "styles": [], "scripts": [], "current": null, "extra": "  <!-- Video lightbox -->\n  <dialog class=\"lightbox\" id=\"lightbox\">\n    <button class=\"lightbox__close\" aria-label=\"Close\">×</button>\n    <div class=\"lightbox__frame\" id=\"lightboxFrame\"></div>\n  </dialog>\n"} -->
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <a href="mcp.html" class="pill reveal" style="--d:0">
+        <span class="pill__text"><strong>Kanal MCP is here</strong><span class="pill__sep">•</span><span>Plug Kanal into your AI assistant</span></span>
+        <span class="pill__arrow"><svg><use href="#ext" /></svg></span>
+      </a>
+      <h1 class="hero__title reveal" style="--d:1">
+        <span>Sell more</span>
+        <span class="inline-logo" role="img" aria-label="Shopify"><svg><use href="#logo-shopify" /></svg></span>
+        <span class="hero__with">with <span class="rotator" data-rotator><span class="rotator__word is-on">WhatsApp</span><span class="rotator__word" aria-hidden="true">Instagram</span><span class="rotator__word" aria-hidden="true">RCS</span></span></span>
+      </h1>
+      <p class="hero__sub reveal" style="--d:2">Turn WhatsApp into your #1 sales channel with Kanal. Recover abandoned carts, re-engage customers, and drive repeat purchases with +90% open rates.</p>
+      <div class="hero__ctas reveal" style="--d:3">
+        <a href="https://apps.shopify.com/kanal-marketing-ai" class="btn btn--dark btn--lg">
+          Install on Shopify
+        </a>
+        <a href="demo.html" class="btn btn--soft btn--lg">Talk to us</a>
+      </div>
+      <div class="trust reveal" style="--d:3">
+        <a class="trust__rating" href="https://apps.shopify.com/kanal-marketing-ai/reviews" target="_blank" rel="noopener" title="Read Kanal reviews on the Shopify App Store"><span class="trust__stars" aria-hidden="true">★★★★★</span><span class="trust__link">5/5 on Shopify</span></a>
+        <span class="trust__sep" aria-hidden="true"></span>
+        <span class="trust__count">Trusted by 700+ shops</span>
+      </div>
+
+      <!-- App mockup -->
+      <div class="ctabs-wrap reveal" style="--d:4">
+        <div class="ctabs" role="tablist" aria-label="Channels" id="channelTabs">
+          <span class="ctabs__glider" aria-hidden="true"></span>
+          <button class="ctab" role="tab" aria-selected="true" aria-controls="app" data-ch="whatsapp"><svg><use href="#logo-whatsapp" /></svg><span>WhatsApp</span></button>
+          <button class="ctab" role="tab" aria-selected="false" aria-controls="app" data-ch="instagram"><svg><use href="#logo-instagram" /></svg><span>Instagram</span></button>
+          <button class="ctab" role="tab" aria-selected="false" aria-controls="app" data-ch="imessage"><svg><use href="#logo-imessage" /></svg><span>iMessage</span><em class="soon">Soon</em></button>
+          <button class="ctab" role="tab" aria-selected="false" aria-controls="app" data-ch="rcs"><svg><use href="#logo-rcs" /></svg><span>RCS</span></button>
+        </div>
+      </div>
+      <div class="app reveal reveal--up" style="--d:5" id="app" role="tabpanel">
+        <aside class="app__side">
+          <div class="app__chrome">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <button class="icon-btn app__plus" aria-label="New conversation"><svg viewBox="0 0 14 14"><path d="M7 2.5v9M2.5 7h9" /></svg></button>
+          </div>
+          <label class="app__search"><svg viewBox="0 0 14 14"><circle cx="6" cy="6" r="4" /><path d="m9 9 3 3" /></svg><input type="text" placeholder="Search" aria-label="Search conversations" id="threadSearch" /></label>
+          <ul class="app__list" id="threads"></ul>
+          <div class="app__user"><span class="avatar avatar--brand"><svg viewBox="0 0 256 256" aria-hidden="true"><use href="#logo-fincut" /></svg></span><span class="app__team"><strong>Fincut</strong><small>Shopify store</small></span></div>
+        </aside>
+        <section class="app__main">
+          <header class="app__head">
+            <button class="app__agent"><svg class="app__agent-av" id="threadAv"><use href="#logo-whatsapp" /></svg><span id="threadTitle">Emma Laurent</span><span class="app__channel" id="threadChannel">WhatsApp</span></button>
+            <span class="icon-btn panel-toggle is-on" aria-hidden="true"><svg viewBox="0 0 14 14"><rect x="1.5" y="2.5" width="11" height="7" rx="1.2" /><path d="M5 12h4M7 9.5V12" /></svg></span>
+          </header>
+          <div class="app__chat" id="chat" aria-live="polite"></div>
+          <footer class="app__composer">
+            <span class="composer__add"><svg viewBox="0 0 14 14"><path d="M7 2.5v9M2.5 7h9" /></svg></span>
+            <span class="composer__input" id="composer">Reply to Emma on WhatsApp</span>
+            <span class="composer__send"><svg viewBox="0 0 14 14"><path d="M7 11.5v-9M3.5 6 7 2.5 10.5 6" /></svg></span>
+          </footer>
+        </section>
+        <aside class="app__panel" id="customerPanel" aria-label="Customer details">
+          <div class="panel__inner" id="panelInner"></div>
+        </aside>
+      </div>
+      <div class="logos reveal" style="--d:5">
+        <p class="logos__label">Trusted by fast-growing brands and global retailers</p>
+        <div class="logos__viewport">
+          <div class="logos__track"><img src="assets/brands/decathlon.png" alt="Decathlon" style="--h:18px" loading="lazy" /><img src="assets/brands/fromfuture.png" alt="From Future" style="--h:26px" loading="lazy" /><img src="assets/brands/fincut.png" alt="Fincut" style="--h:17px" loading="lazy" /><img src="assets/brands/mushngo.png" alt="Mush n Go" style="--h:19px" loading="lazy" /><img src="assets/brands/maisondutemps.png" alt="Maison Du Temps" style="--h:14px" loading="lazy" /><img src="assets/brands/wanimo.png" alt="Wanimo" style="--h:27px" loading="lazy" /><img src="assets/brands/arntreal.png" alt="Arntreal" style="--h:24px" loading="lazy" /><img src="assets/brands/bliss.png" alt="Bliss" style="--h:24px" loading="lazy" /><img src="assets/brands/laocare.png" alt="Lao Care" style="--h:28px" loading="lazy" /><img src="assets/brands/decathlon.png" alt="" aria-hidden="true" style="--h:18px" loading="lazy" /><img src="assets/brands/fromfuture.png" alt="" aria-hidden="true" style="--h:26px" loading="lazy" /><img src="assets/brands/fincut.png" alt="" aria-hidden="true" style="--h:17px" loading="lazy" /><img src="assets/brands/mushngo.png" alt="" aria-hidden="true" style="--h:19px" loading="lazy" /><img src="assets/brands/maisondutemps.png" alt="" aria-hidden="true" style="--h:14px" loading="lazy" /><img src="assets/brands/wanimo.png" alt="" aria-hidden="true" style="--h:27px" loading="lazy" /><img src="assets/brands/arntreal.png" alt="" aria-hidden="true" style="--h:24px" loading="lazy" /><img src="assets/brands/bliss.png" alt="" aria-hidden="true" style="--h:24px" loading="lazy" /><img src="assets/brands/laocare.png" alt="" aria-hidden="true" style="--h:28px" loading="lazy" /></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FEATURE : RELANCE DE PANIERS ============ -->
+    <section class="sec sec--feature" id="cart-recovery">
+      <div class="wrap">
+        <div class="feature feature--rev">
+          <div class="feature__text reveal">
+            <h2>Win back abandoned carts.<span class="muted">Automatically, on WhatsApp.</span></h2>
+            <p>Kanal follows up on every abandoned checkout with the right product, the right timing and the right offer. Customers reply, the AI agent answers, and the order lands back in Shopify.</p>
+            <a class="btn btn--dark btn--lg" href="https://getkanal.com/abandoned-cart-recovery" target="_blank" rel="noopener">Explore cart recovery</a>
+          </div>
+          <div class="feature__visual reveal reveal--up" style="--d:1">
+            <div class="flow" data-flow>
+              <div class="flow__head">
+                <span class="flow__icon"><svg aria-hidden="true"><use href="#logo-whatsapp" /></svg></span>
+                <span class="flow__title"><strong>Abandoned cart flow</strong><small>Fincut · WhatsApp</small></span>
+                <span class="flow__live">Live</span>
+              </div>
+              <ol class="flow__steps">
+                <li class="flow__step" style="--i:0"><span class="flow__check" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="m3 6.2 2 2L9 4" /></svg></span><span class="flow__label"><strong>Checkout abandoned</strong><small>Tech T-shirt · Black, M</small></span><span class="flow__meta">2:14 pm</span></li>
+                <li class="flow__step" style="--i:1"><span class="flow__check" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="m3 6.2 2 2L9 4" /></svg></span><span class="flow__label"><strong>Wait 1 hour</strong><small>Smart delay, quiet hours respected</small></span><span class="flow__meta">1 h</span></li>
+                <li class="flow__step" style="--i:2"><span class="flow__check" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="m3 6.2 2 2L9 4" /></svg></span><span class="flow__label"><strong>WhatsApp reminder</strong><small>Product photo · 2 buttons</small></span><span class="flow__meta">Read</span></li>
+                <li class="flow__step" style="--i:3"><span class="flow__check" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="m3 6.2 2 2L9 4" /></svg></span><span class="flow__label"><strong>Customer reply</strong><small>Answered by the AI agent</small></span><span class="flow__meta">12 s</span></li>
+                <li class="flow__step flow__step--win" style="--i:4"><span class="flow__check" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="m3 6.2 2 2L9 4" /></svg></span><span class="flow__label"><strong>Order recovered</strong><small>#1042 · Paid in Shopify</small></span><span class="flow__meta flow__amount">€35.10</span></li>
+              </ol>
+              <div class="flow__foot"><span>Recovered this month</span><strong data-flow-total="12445.20">€12,445.20</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FEATURE : AGENT IA ============ -->
+    <section class="sec sec--feature sec--feature-b" id="ai-agent">
+      <div class="wrap">
+        <div class="feature">
+          <div class="feature__text reveal">
+            <h2>Instant answers, 24/7.<span class="muted">Handled by your AI agent.</span></h2>
+            <p>The Kanal AI agent knows your catalog, your orders and your policies. It answers sizing, shipping and order questions in seconds, shares live tracking from Shopify, and hands off to your team when a human is needed.</p>
+            <a class="btn btn--dark btn--lg" href="https://getkanal.com/whatsapp-ai-agent" target="_blank" rel="noopener">Meet the AI agent</a>
+          </div>
+          <div class="feature__visual feature__visual--b reveal reveal--up" style="--d:1">
+            <div class="chatcard" data-chat>
+              <div class="chatcard__row" data-chat-step><div class="chatcard__in"><div class="chatcard__line chatcard__line--in">
+                <span class="avatar chatcard__av">EL</span>
+                <div class="chatcard__col">
+                  <span class="chatcard__meta"><strong>Emma Laurent</strong>9:41 am</span>
+                  <p class="chatcard__bubble">Hi, I've been waiting 3 days for my order. Where is it?? Is this a scam?</p>
+                </div>
+              </div></div></div>
+              <div class="chatcard__row" data-chat-step><div class="chatcard__in"><div class="chatcard__line chatcard__line--sys">
+                <span class="chatcard__sys"><svg aria-hidden="true"><use href="#logo-shopify" /></svg>Order #1042 · Picked up by carrier</span>
+              </div></div></div>
+              <div class="chatcard__row" data-chat-step data-chat-typing><div class="chatcard__in"><div class="chatcard__line chatcard__line--out">
+                <span class="chatcard__typing" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="chatcard__av chatcard__av--agent"><svg viewBox="-1.5 -1 24 26" aria-hidden="true"><use href="#logo-kanal" width="96" height="24" /></svg></span>
+              </div></div></div>
+              <div class="chatcard__row" data-chat-step><div class="chatcard__in"><div class="chatcard__line chatcard__line--out">
+                <div class="chatcard__col">
+                  <span class="chatcard__meta">9:41 am<span class="chatcard__by">AI agent</span></span>
+                  <p class="chatcard__bubble">I just checked: your order was picked up by the carrier this morning and will be with you within 24 hours. Tap the button below to track it.</p>
+                </div>
+                <span class="chatcard__av chatcard__av--agent"><svg viewBox="-1.5 -1 24 26" aria-hidden="true"><use href="#logo-kanal" width="96" height="24" /></svg></span>
+              </div></div></div>
+              <div class="chatcard__row" data-chat-step><div class="chatcard__in"><div class="chatcard__line chatcard__line--out">
+                <span class="chatcard__cta"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 5.5 8 2.5l5.5 3v5L8 13.5l-5.5-3z" /><path d="M2.5 5.5 8 8.5l5.5-3M8 8.5v5" /></svg>Track my order</span>
+                <span class="chatcard__av chatcard__av--ghost" aria-hidden="true"></span>
+              </div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FEATURE : CAMPAGNES ============ -->
+    <section class="sec sec--feature sec--feature-c" id="campaigns">
+      <div class="wrap">
+        <div class="feature feature--rev">
+          <div class="feature__text reveal">
+            <h2>Reach every customer.<span class="muted">Read in minutes, not days.</span></h2>
+            <p>Build segments from your Shopify data, write the message once and send your sale to thousands of customers on WhatsApp. Kanal personalises every message, paces the send and tracks revenue down to the order.</p>
+            <a class="btn btn--dark btn--lg" href="https://getkanal.com/whatsapp-campaigns" target="_blank" rel="noopener">Explore WhatsApp campaigns</a>
+          </div>
+          <div class="feature__visual feature__visual--d reveal reveal--up" style="--d:1">
+            <div class="camp" data-camp>
+              <div class="camp__head">
+                <span class="flow__icon"><svg aria-hidden="true"><use href="#logo-whatsapp" /></svg></span>
+                <span class="flow__title"><strong>Summer Sale · 30% off</strong><small>WhatsApp campaign · Fincut</small></span>
+                <span class="camp__state" data-camp-state>Sending</span>
+              </div>
+              <div class="camp__body">
+                <div class="camp__preview">
+                  <img src="assets/fincut/pack.jpg" alt="" loading="lazy" />
+                  <p>Summer Sale is on: <strong>30% off everything</strong> until Sunday. Your favourites are waiting.</p>
+                </div>
+                <div class="camp__row">
+                  <span class="camp__label">Audience</span>
+                  <span class="camp__chips"><span>Bought in 12 months</span><span>Opted in</span></span>
+                </div>
+                <div class="camp__progress">
+                  <div class="camp__row"><span class="camp__label">Sent</span><span class="camp__num"><b data-camp-sent>0</b> / 12,480</span></div>
+                  <div class="camp__bar"><i data-camp-bar></i></div>
+                </div>
+              </div>
+              <div class="camp__stats">
+                <div><small>Delivered</small><strong data-camp-delivered>0%</strong></div>
+                <div><small>Read</small><strong data-camp-read>0%</strong></div>
+                <div><small>Revenue</small><strong data-camp-revenue>€0</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BANNIÈRE : TOUS LES CANAUX ============ -->
+    <section class="sec sec--intro">
+      <div class="wrap">
+        <div class="intro reveal reveal--up">
+          <div class="intro__text">
+            <h2>All your channels.<span class="muted">One platform.</span></h2>
+            <p>Kanal brings WhatsApp, Instagram, RCS, SMS and soon iMessage together with Shopify, Meta and Google Ads, and the tools you already use: Recharge, Gorgias, Klaviyo and more. Every campaign, automation and AI reply follows the customer across the whole journey.</p>
+            <div class="intro__ctas">
+              <a class="btn btn--dark btn--lg" href="demo.html">Book a demo</a>
+              <a class="btn btn--soft btn--lg" href="https://getkanal.com/whatsapp-integration" target="_blank" rel="noopener">See integrations</a>
+            </div>
+          </div>
+          <div class="intro__media feature__visual feature__visual--c" aria-label="Channels and integrations connected to Kanal">
+            <div class="imarquees">
+              <div class="imarquee"><ul class="imarquee__track"><li class="ichip"><svg aria-hidden="true"><use href="#logo-whatsapp" /></svg>WhatsApp</li><li class="ichip"><svg aria-hidden="true"><use href="#logo-instagram" /></svg>Instagram</li><li class="ichip"><svg aria-hidden="true"><use href="#logo-meta" /></svg>Meta Ads</li><li class="ichip"><svg aria-hidden="true"><use href="#logo-imessage" /></svg>iMessage<em class="soon">Soon</em></li><li class="ichip"><svg aria-hidden="true"><use href="#logo-gads" /></svg>Google Ads</li><li class="ichip"><svg aria-hidden="true"><use href="#logo-rcs" /></svg>RCS</li><li class="ichip"><svg aria-hidden="true"><use href="#logo-sms" /></svg>SMS</li><li class="ichip"><svg aria-hidden="true"><use href="#logo-kanal-mark" /></svg>Kanal MCP</li><li class="ichip" aria-hidden="true"><svg aria-hidden="true"><use href="#logo-whatsapp" /></svg>WhatsApp</li><li class="ichip" aria-hidden="true"><svg aria-hidden="true"><use href="#logo-instagram" /></svg>Instagram</li><li class="ichip" aria-hidden="true"><svg aria-hidden="true"><use href="#logo-meta" /></svg>Meta Ads</li><li class="ichip" aria-hidden="true"><svg aria-hidden="true"><use href="#logo-imessage" /></svg>iMessage<em class="soon">Soon</em></li><li class="ichip" aria-hidden="true"><svg aria-hidden="true"><use href="#logo-gads" /></svg>Google Ads</li><li class="ichip" aria-hidden="true"><svg aria-hidden="true"><use href="#logo-rcs" /></svg>RCS</li><li class="ichip" aria-hidden="true"><svg aria-hidden="true"><use href="#logo-sms" /></svg>SMS</li><li class="ichip" aria-hidden="true"><svg aria-hidden="true"><use href="#logo-kanal-mark" /></svg>Kanal MCP</li></ul></div>
+              <div class="imarquee imarquee--rev"><ul class="imarquee__track"><li class="ichip"><svg aria-hidden="true"><use href="#logo-shopify" /></svg>Shopify</li><li class="ichip"><img src="assets/integrations/recharge.webp" alt="" width="24" height="24" loading="lazy" />Recharge</li><li class="ichip"><img src="assets/integrations/gorgias.webp" alt="" width="24" height="24" loading="lazy" />Gorgias</li><li class="ichip"><img src="assets/integrations/klaviyo.webp" alt="" width="24" height="24" loading="lazy" />Klaviyo</li><li class="ichip"><img src="assets/integrations/prestashop.webp" alt="" width="24" height="24" loading="lazy" />PrestaShop</li><li class="ichip"><img src="assets/integrations/zendesk.webp" alt="" width="24" height="24" loading="lazy" />Zendesk</li><li class="ichip"><img src="assets/integrations/loyoly.webp" alt="" width="24" height="24" loading="lazy" />Loyoly</li><li class="ichip"><img src="assets/integrations/crisp.webp" alt="" width="24" height="24" loading="lazy" />Crisp</li><li class="ichip"><img src="assets/integrations/splio.webp" alt="" width="24" height="24" loading="lazy" />Splio</li><li class="ichip" aria-hidden="true"><svg aria-hidden="true"><use href="#logo-shopify" /></svg>Shopify</li><li class="ichip" aria-hidden="true"><img src="assets/integrations/recharge.webp" alt="" width="24" height="24" loading="lazy" />Recharge</li><li class="ichip" aria-hidden="true"><img src="assets/integrations/gorgias.webp" alt="" width="24" height="24" loading="lazy" />Gorgias</li><li class="ichip" aria-hidden="true"><img src="assets/integrations/klaviyo.webp" alt="" width="24" height="24" loading="lazy" />Klaviyo</li><li class="ichip" aria-hidden="true"><img src="assets/integrations/prestashop.webp" alt="" width="24" height="24" loading="lazy" />PrestaShop</li><li class="ichip" aria-hidden="true"><img src="assets/integrations/zendesk.webp" alt="" width="24" height="24" loading="lazy" />Zendesk</li><li class="ichip" aria-hidden="true"><img src="assets/integrations/loyoly.webp" alt="" width="24" height="24" loading="lazy" />Loyoly</li><li class="ichip" aria-hidden="true"><img src="assets/integrations/crisp.webp" alt="" width="24" height="24" loading="lazy" />Crisp</li><li class="ichip" aria-hidden="true"><img src="assets/integrations/splio.webp" alt="" width="24" height="24" loading="lazy" />Splio</li></ul></div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ JOBS : un agent Kanal par cas d'usage ============ -->
+    <section class="sec sec--jobs" id="jobs">
+      <div class="wrap wrap--narrow jobs">
+        <div class="jobs__text reveal">
+          <h2>A scenario for every moment</h2>
+          <div class="jobs__pills" id="jobPills" role="group" aria-label="Customer journey moments"></div>
+          <div class="jobs__desc"><p id="jobDesc" aria-live="polite"></p></div>
+          <div><a href="https://getkanal.com/automations" target="_blank" rel="noopener" class="btn btn--light btn--nav">Explore all automations</a></div>
+        </div>
+        <div class="jobs__stage reveal reveal--up" style="--d:1">
+          <div class="iphone" aria-hidden="true">
+            <span class="iphone__btn iphone__btn--r"></span><span class="iphone__btn iphone__btn--l1"></span><span class="iphone__btn iphone__btn--l2"></span><span class="iphone__btn iphone__btn--l3"></span>
+            <div class="iphone__frame">
+              <div class="iphone__screen">
+                <div class="iphone__status"><span class="iphone__island"></span></div>
+                <div class="bot" id="bot">
+                  <div class="bot__fade bot__fade--top"></div>
+                  <div class="bot__fade bot__fade--bottom"></div>
+                  <div class="bot__head">
+                    <span class="glass bot__icon"><svg viewBox="0 0 16 16"><path d="M10 3.5 5.5 8l4.5 4.5" /></svg></span>
+                    <span class="glass bot__title"><span class="bot__brand"><svg viewBox="0 0 256 256" aria-hidden="true"><use href="#logo-fincut" /></svg></span><span id="botName">Fincut</span><span class="bot__verified" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="m5 8.2 2 2L11 6" /></svg></span></span>
+                    <span class="glass bot__icon"><svg viewBox="0 0 16 16"><rect x="2.5" y="3" width="11" height="7.5" rx="1.5" /><path d="M6 13h4M8 10.5V13" /></svg></span>
+                  </div>
+                  <div class="bot__transcript" id="botTranscript"></div>
+                  <div class="bot__composer">
+                    <span class="glass bot__plus"><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10" /></svg></span>
+                    <span class="bot__field"><span class="bot__placeholder" id="botPlaceholder">Message</span><span class="bot__mic"><svg viewBox="0 0 16 16"><rect x="6" y="2.5" width="4" height="7" rx="2" /><path d="M4 8a4 4 0 0 0 8 0M8 12v1.5" /></svg></span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VIDEO ============ -->
+    <section class="sec sec--video">
+      <div class="wrap">
+        <h2 class="center reveal">Kanal in one minute</h2>
+        <button class="video reveal reveal--up" id="video" data-src="assets/video/kanal-demo.mp4" aria-label="Play the Kanal product video">
+          <span class="video__poster">
+            <video class="video__img" id="videoPreview" src="assets/video/kanal-demo.mp4" poster="assets/video/kanal-demo-poster.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+            <span class="video__scrim"></span>
+          </span>
+          <span class="video__play"><svg viewBox="0 0 16 16"><path d="M4 2.5v11l9-5.5z" /></svg>Watch with sound<small>1:06</small></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ PRICING ============ -->
+    <section class="sec" id="pricing">
+      <div class="wrap wrap--narrow">
+        <div class="center reveal">
+          <h2>Pricing</h2>
+        </div>
+        <div class="pricing" id="plans"></div>
+        <div class="banner reveal">
+          <svg viewBox="0 0 21 20" class="banner__icon"><path d="M16.5 10a6 6 0 1 1-1.8-4.3M16.5 3v3.5H13" /></svg>
+          <p><strong>Agency or multi-brand?</strong> <span>From 1,900€/month: strategy, creative, copywriting and reporting by our team.</span></p>
+          <a href="demo.html" class="btn btn--outline btn--nav">Contact us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="sec" id="faq">
+      <div class="wrap wrap--narrow cols cols--top">
+        <h2 class="reveal">FAQ</h2>
+        <div class="faq reveal">
+          <details open>
+            <summary>What is Kanal and how does it work?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Kanal is a WhatsApp marketing platform designed for e-commerce brands. It integrates directly with your Shopify store to automate cart recovery, send targeted campaigns, and provide 24/7 customer support through WhatsApp.</p></div>
+          </details>
+          <details>
+            <summary>How does Kanal integrate with Shopify?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Kanal connects seamlessly with your Shopify store in just a few clicks. Once installed, it automatically syncs your products, customer data, and order information to power personalized WhatsApp campaigns.</p></div>
+          </details>
+          <details>
+            <summary>What kind of ROI can I expect?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Our merchants see an average 12X return on investment. With 96%+ open rates on WhatsApp compared to ~20% for email, your messages actually get seen and acted upon.</p></div>
+          </details>
+          <details>
+            <summary>How is WhatsApp marketing different from email?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>WhatsApp delivers 96%+ open rates vs ~20% for email. Messages feel personal and conversational, leading to higher engagement, faster responses, and significantly better conversion rates.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>

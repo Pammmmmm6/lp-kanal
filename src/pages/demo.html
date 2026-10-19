@@ -1,0 +1,98 @@
+<!--page {"title": "Book a Kanal Demo", "description": "Book a Kanal demo: a personalized strategy session with a free audit of your WhatsApp and SMS setup, a tailored demo and a 30-day plan. In English or French.", "styles": ["pages.css", "demo.css"], "scripts": ["demo.js"], "current": null, "extra": ""} -->
+  <main class="demo-page">
+    <!-- ============ HERO + FORMULAIRE ============ -->
+    <section class="dh">
+      <div class="wrap">
+        <div class="dh__grid">
+          <div class="dh__text">
+            <span class="ah__eyebrow reveal">Book a demo</span>
+            <h1 class="dh__title reveal" style="--d:1">See Kanal in action.<span class="muted">On your own store.</span></h1>
+            <p class="dh__sub reveal" style="--d:2">More than a demo: a personalized strategy session to uncover your WhatsApp growth potential.</p>
+            <div class="trust dh__trust reveal" style="--d:3">
+              <a class="trust__rating" href="https://apps.shopify.com/kanal-marketing-ai/reviews" target="_blank" rel="noopener"><span class="trust__stars" aria-hidden="true">★★★★★</span><span class="trust__link">5/5 on Shopify</span></a>
+              <span class="trust__sep" aria-hidden="true"></span>
+              <span class="trust__count">500+ brands trust us</span>
+            </div>
+          </div>
+
+          <div class="dh__panel feature__visual feature__visual--b reveal reveal--up" style="--d:2">
+            <form class="dform" id="demoForm" novalidate>
+              <div class="dform__head">
+                <span class="dform__mark"><svg aria-hidden="true"><use href="#logo-kanal-mark" /></svg></span>
+                <span><strong>Strategy session</strong><small>30 min · Video call</small></span>
+              </div>
+              <label class="dform__field">
+                <span class="dform__label">Work email</span>
+                <input type="email" name="email" placeholder="you@store.com" autocomplete="email" required />
+                <span class="dform__err">Enter a valid work email.</span>
+              </label>
+              <label class="dform__field">
+                <span class="dform__label">Your store <span class="dform__stack" data-stack hidden></span></span>
+                <input type="text" name="website" placeholder="yourstore.com" autocomplete="url" required />
+                <span class="dform__err">Enter your store URL.</span>
+              </label>
+              <div class="dform__field">
+                <span class="dform__label" id="revLabel">Monthly revenue <em>Optional</em></span>
+                <div class="dform__chips" role="radiogroup" aria-labelledby="revLabel">
+                  <button type="button" role="radio" aria-checked="false" data-v="10k-50k">Under €50k</button>
+                  <button type="button" role="radio" aria-checked="false" data-v="50k-200k">€50k–200k</button>
+                  <button type="button" role="radio" aria-checked="false" data-v="200k-1m">Over €200k</button>
+                </div>
+              </div>
+              <button type="submit" class="btn btn--dark btn--lg dform__submit" data-sending="Saving…">Continue to booking<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h9M8.5 4l4 4-4 4" /></svg></button>
+              <p class="dform__fail" role="alert" hidden>Something went wrong. Try again or email hello@getkanal.com.</p>
+            </form>
+            <div class="dbook" id="demoBook" hidden>
+              <div class="dbook__head">
+                <span class="dform__mark"><svg aria-hidden="true"><use href="#logo-kanal-mark" /></svg></span>
+                <span><strong>Pick a time that suits you</strong><small data-book-email></small></span>
+                <button type="button" class="dform__back" id="demoBack">Edit my details</button>
+              </div>
+              <div class="dbook__cal" id="my-cal-inline-demo"></div>
+              <div class="dbook__fail" id="demoFallback" hidden>
+                <strong>Our booking widget didn't load</strong>
+                <p>This usually happens when a browser extension or privacy setting blocks third-party scripts. You can still book a demo directly, we'll confirm your slot right away.</p>
+                <div class="dbook__ctas"><a class="btn btn--dark btn--lg" id="demoFallbackCal" href="https://app.cal.com/team/kanal/demo" target="_blank" rel="noopener">Open booking page</a><a class="btn btn--soft btn--lg" id="demoFallbackMail" href="mailto:hello@getkanal.com">Email us</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LOGOS ============ -->
+    <section class="sec plogos-demo">
+      <div class="wrap">
+      <div class="logos reveal">
+        <p class="logos__label">Trusted by fast-growing brands and global retailers</p>
+        <div class="logos__viewport">
+          <div class="logos__track"><img src="assets/brands/decathlon.png" alt="Decathlon" style="--h:18px" loading="lazy" /><img src="assets/brands/fromfuture.png" alt="From Future" style="--h:26px" loading="lazy" /><img src="assets/brands/fincut.png" alt="Fincut" style="--h:17px" loading="lazy" /><img src="assets/brands/mushngo.png" alt="Mush n Go" style="--h:19px" loading="lazy" /><img src="assets/brands/maisondutemps.png" alt="Maison Du Temps" style="--h:14px" loading="lazy" /><img src="assets/brands/wanimo.png" alt="Wanimo" style="--h:27px" loading="lazy" /><img src="assets/brands/arntreal.png" alt="Arntreal" style="--h:24px" loading="lazy" /><img src="assets/brands/bliss.png" alt="Bliss" style="--h:24px" loading="lazy" /><img src="assets/brands/laocare.png" alt="Lao Care" style="--h:28px" loading="lazy" /><img src="assets/brands/decathlon.png" alt="" aria-hidden="true" style="--h:18px" loading="lazy" /><img src="assets/brands/fromfuture.png" alt="" aria-hidden="true" style="--h:26px" loading="lazy" /><img src="assets/brands/fincut.png" alt="" aria-hidden="true" style="--h:17px" loading="lazy" /><img src="assets/brands/mushngo.png" alt="" aria-hidden="true" style="--h:19px" loading="lazy" /><img src="assets/brands/maisondutemps.png" alt="" aria-hidden="true" style="--h:14px" loading="lazy" /><img src="assets/brands/wanimo.png" alt="" aria-hidden="true" style="--h:27px" loading="lazy" /><img src="assets/brands/arntreal.png" alt="" aria-hidden="true" style="--h:24px" loading="lazy" /><img src="assets/brands/bliss.png" alt="" aria-hidden="true" style="--h:24px" loading="lazy" /><img src="assets/brands/laocare.png" alt="" aria-hidden="true" style="--h:28px" loading="lazy" /></div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- ============ TÉMOIGNAGES ============ -->
+    <section class="sec" id="reviews">
+      <div class="wrap">
+        <div class="shead">
+          <h2 class="shead__title reveal">Loved by high-growth e‑commerce brands.<span class="muted">500+ brands trust Kanal.</span></h2>
+          <div class="shead__intro reveal" style="--d:1">
+            <p>From the first recovery flow to six-figure campaigns: what merchants say after switching to WhatsApp with Kanal.</p>
+            <a class="btn btn--light btn--nav" href="https://apps.shopify.com/kanal-marketing-ai/reviews" target="_blank" rel="noopener">Read reviews on Shopify</a>
+          </div>
+        </div>
+        <div class="quotes">
+          <figure class="quote reveal reveal--up"><span class="quote__stars" aria-label="5 out of 5">★★★★★</span><blockquote>“Setting up was incredibly easy. Within 15 minutes we were sending our first recovery campaign and seeing results immediately.”</blockquote><figcaption><img src="assets/people/gaetan.jpg" alt="" width="40" height="40" loading="lazy" /><span><strong>Gaëtan</strong><small>CEO, Barz</small></span></figcaption></figure>
+          <figure class="quote reveal reveal--up" style="--d:1"><span class="quote__stars" aria-label="5 out of 5">★★★★★</span><blockquote>“Our customer engagement has increased by 300% since switching to WhatsApp marketing with Kanal. Best decision we made.”</blockquote><figcaption><img src="assets/people/alexandre.jpg" alt="" width="40" height="40" loading="lazy" /><span><strong>Alexandre</strong><small>Founder, Mushngo</small></span></figcaption></figure>
+          <figure class="quote reveal reveal--up" style="--d:2"><span class="quote__stars" aria-label="5 out of 5">★★★★★</span><blockquote>“The AI chatbot handles 80% of our support queries automatically. Our team can now focus on what matters most.”</blockquote><figcaption><img src="assets/people/abdel.jpg" alt="" width="40" height="40" loading="lazy" /><span><strong>Abdel</strong><small>CEO, Odor</small></span></figcaption></figure>
+          <figure class="quote reveal reveal--up"><span class="quote__stars" aria-label="5 out of 5">★★★★★</span><blockquote>“We tried 3 other WhatsApp tools before Kanal. Nothing comes close in terms of ease of use and ROI.”</blockquote><figcaption><img src="assets/people/olivia.jpg" alt="" width="40" height="40" loading="lazy" /><span><strong>Olivia</strong><small>COO, Molleni</small></span></figcaption></figure>
+          <figure class="quote reveal reveal--up" style="--d:1"><span class="quote__stars" aria-label="5 out of 5">★★★★★</span><blockquote>“The campaign builder is so intuitive. We went from zero WhatsApp presence to $100k+ in revenue in 3 months.”</blockquote><figcaption><img src="assets/people/lea.jpg" alt="" width="40" height="40" loading="lazy" /><span><strong>Léa</strong><small>E-commerce manager, Lao Care</small></span></figcaption></figure>
+          <figure class="quote reveal reveal--up" style="--d:2"><span class="quote__stars" aria-label="5 out of 5">★★★★★</span><blockquote>“Kanal's VIP offer feature transformed how we reward our loyal customers. Repeat purchase rate is up 45%.”</blockquote><figcaption><img src="assets/people/andrea.jpg" alt="" width="40" height="40" loading="lazy" /><span><strong>Andréa</strong><small>Founder, Arntreal</small></span></figcaption></figure>
+          <figure class="quote reveal reveal--up"><span class="quote__stars" aria-label="5 out of 5">★★★★★</span><blockquote>“Integration with Shopify is seamless. Product sync, order tracking, everything just works out of the box.”</blockquote><figcaption><img src="assets/people/k.jpg" alt="" width="40" height="40" loading="lazy" /><span><strong>K.</strong><small>Founder, PDS Shop</small></span></figcaption></figure>
+          <figure class="quote reveal reveal--up" style="--d:1"><span class="quote__stars" aria-label="5 out of 5">★★★★★</span><blockquote>“The ROI is unmatched. For every $1 spent on Kanal, we generate $14 in revenue. No other channel comes close.”</blockquote><figcaption><img src="assets/people/elias.jpg" alt="" width="40" height="40" loading="lazy" /><span><strong>Elias</strong><small>CEO, Omaxbooks</small></span></figcaption></figure>
+          <figure class="quote reveal reveal--up" style="--d:2"><span class="quote__stars" aria-label="5 out of 5">★★★★★</span><blockquote>“Our customers actually prefer hearing from us on WhatsApp. Response rates are 10x higher than email campaigns.”</blockquote><figcaption><img src="assets/people/hugo.jpg" alt="" width="40" height="40" loading="lazy" /><span><strong>Hugo</strong><small>CEO, Maison Du Temps</small></span></figcaption></figure>
+        </div>
+      </div>
+    </section>
+  </main>

@@ -1,0 +1,83 @@
+/* =========================================================
+   Pages produit (gabarit commun) — contenu getkanal.com, direction artistique Kanal
+   Visuels : mêmes cartes animées que l'accueil (flow, camp, chatcard)
+   ========================================================= */
+
+/* ---------- Hero ---------- */
+.fh__title { max-width: 900px; margin: 20px auto 0; font-size: 56px; line-height: 60px; font-weight: 500; letter-spacing: -1px; text-wrap: balance; }
+.fh__trust { margin-top: 24px; }
+.fh-visual { padding-top: 0; }
+.fh__panel.feature__visual { max-width: 1080px; margin: 0 auto; min-height: 0; padding: 56px 32px; border-radius: 24px; }
+.fh__panel .flow, .fh__panel .camp { max-width: 420px; }
+.fh__panel .chatcard { width: 100%; max-width: 460px; }
+.fh-logos { padding-top: 0; }
+.fh-logos .logos { margin-top: 0; }
+
+/* ---------- Problème / solution ---------- */
+.ps { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+.ps__card { display: flex; flex-direction: column; align-items: flex-start; min-height: 360px; padding: 40px; border-radius: 24px; }
+.ps__card:not(.feature__visual) { background: var(--card); } /* le fond gris ne doit pas écraser le dégradé */
+.ps__card h2 { margin-top: 20px; font-size: 28px; line-height: 36px; letter-spacing: -0.28px; text-wrap: balance; }
+.ps__card p { margin-top: 14px; font-size: 16px; line-height: 26px; color: var(--muted); text-wrap: pretty; }
+.ps__tag { display: inline-flex; align-items: center; gap: 8px; height: 28px; padding: 0 12px; border-radius: 9999px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-2); font-size: 13px; font-weight: 500; color: var(--fg-70); }
+.ps__tag svg { width: 16px; height: 16px; border-radius: 4px; }
+.ps__card--sol.feature__visual { display: flex; place-items: initial; justify-content: center; min-height: 360px; padding: 28px; }
+.ps__inner { flex: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; height: 100%; padding: 32px; border-radius: 18px; background: var(--surface); box-shadow: 0 24px 48px -24px rgba(30, 30, 60, .35); }
+.ps__tag--sol { background: var(--card); }
+
+/* ---------- Chiffres ---------- */
+.fstats { max-width: 1080px; margin: 16px auto 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-radius: 24px; background: var(--card); }
+.fstats__cell { display: flex; flex-direction: column; gap: 4px; padding: 28px 32px; }
+.fstats__cell + .fstats__cell { box-shadow: inset 1px 0 0 var(--line-2); }
+.fstats__cell strong { font-size: 44px; line-height: 52px; font-weight: 500; letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+.fstats__cell span { font-size: 14px; line-height: 20px; color: var(--muted); }
+
+/* ---------- Fonctionnalités ---------- */
+.fcards { max-width: 1080px; margin: 40px auto 0; display: grid; gap: 16px; }
+.fcards--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.fcards--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.fcard { padding: 28px; border-radius: 24px; background: var(--card); }
+.fcard__ico { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); color: var(--fg); }
+.fcard__ico svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.fcard h3 { margin-top: 20px; font-size: 17px; line-height: 24px; font-weight: 500; }
+.fcard p { margin-top: 6px; font-size: 15px; line-height: 24px; color: var(--muted); text-wrap: pretty; }
+
+/* ---------- Capture produit ---------- */
+.fshot { max-width: 1080px; margin: 0 auto; }
+.fshot__frame.feature__visual { min-height: 0; padding: 40px 40px 0; border-radius: 24px; display: block; }
+.fshot__frame img { display: block; width: 100%; height: auto; border-radius: 14px 14px 0 0; box-shadow: 0 0 0 1px rgba(10, 10, 10, .06), 0 24px 48px -20px rgba(30, 30, 60, .4); }
+.fshot figcaption { margin-top: 14px; text-align: center; font-size: 14px; line-height: 20px; color: var(--muted); }
+
+/* ---------- Aller plus loin ---------- */
+.fmore { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+.fmore--two { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.fmore__col { padding: 32px; border-radius: 24px; background: var(--card); }
+.fmore__col h3 { font-size: 20px; line-height: 28px; font-weight: 500; letter-spacing: -0.2px; }
+.fres { list-style: none; margin: 16px 0 0; padding: 0; }
+.fres li + li { border-top: 1px solid var(--line); }
+.fres a { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; font-size: 15px; line-height: 22px; color: var(--fg-70); transition: color .15s; }
+.fres a:hover { color: var(--fg); }
+.fres svg { width: 10px; height: 10px; flex: none; fill: none; stroke: var(--muted); stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+.fpills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.fpills a { display: inline-flex; align-items: center; height: 36px; padding: 0 14px; border-radius: 9999px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-2); font-size: 14px; color: var(--fg-70); transition: background-color .15s, color .15s; }
+.fpills a:hover { background: var(--btn-soft); color: var(--fg); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1000px) {
+  .ps, .fmore--two, .fcards--3 { grid-template-columns: minmax(0, 1fr); }
+  .ps__card, .ps__card--sol.feature__visual { min-height: 0; }
+}
+@media (max-width: 640px) {
+  .fh__title { font-size: 36px; line-height: 40px; letter-spacing: -0.6px; }
+  .fh__panel.feature__visual { padding: 28px 12px; border-radius: 18px; }
+  .ps__card { padding: 28px 22px; }
+  .ps__card h2 { font-size: 24px; line-height: 31px; }
+  .ps__inner { padding: 24px 20px; }
+  .ps__card--sol.feature__visual { padding: 14px; }
+  .fstats { grid-template-columns: minmax(0, 1fr); }
+  .fstats__cell + .fstats__cell { box-shadow: inset 0 1px 0 var(--line-2); }
+  .fstats__cell strong { font-size: 36px; line-height: 44px; }
+  .fcards--2 { grid-template-columns: minmax(0, 1fr); }
+  .fcard, .fmore__col { padding: 24px 20px; }
+  .fshot__frame.feature__visual { padding: 20px 12px 0; }
+}

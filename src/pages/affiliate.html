@@ -1,0 +1,184 @@
+<!--page {"title": "Kanal Affiliate Program", "description": "Join the Kanal affiliate program: earn a 15% lifetime recurring commission on every customer you refer. Agencies and integrations can join the Kanal Partner Program.", "styles": ["pages.css", "earnings.css"], "scripts": ["earnings.js"], "current": "affiliate.html", "extra": ""} -->
+  <main class="earn-page">
+    <!-- ============ HERO ============ -->
+    <section class="ah">
+      <div class="wrap">
+        <span class="ah__eyebrow reveal">Affiliate program</span>
+        <h1 class="ah__title reveal" style="--d:1">Earn 15% lifetime commissions.<br /><span class="muted">Share Kanal, get paid every month.</span></h1>
+        <p class="ah__sub reveal" style="--d:2">Join Kanal's affiliate program and receive a 15% commission on every payment from the customers you refer, for as long as they stay.</p>
+        <div class="ah__ctas reveal" style="--d:3">
+          <a class="btn btn--dark btn--lg" href="https://getkanal.firstpromoter.com/" target="_blank" rel="noopener">Become an affiliate</a>
+          <a class="btn btn--soft btn--lg" href="https://getkanal.firstpromoter.com/" target="_blank" rel="noopener">Get affiliate resources</a>
+        </div>
+        <a class="ah__partner reveal" style="--d:4" href="#partners">Agency or integration? <strong>See our Partner Program</strong><span class="pill__arrow"><svg><use href="#chev" /></svg></span></a>
+      </div>
+    </section>
+
+    <!-- ============ CALCULATOR ============ -->
+    <section class="sec sec--calc" id="calculator">
+      <div class="wrap">
+        <div class="calc reveal reveal--up">
+          <div class="calc__text">
+            <h2>See what you could earn.<span class="muted">Every month, for life.</span></h2>
+            <p>Move the slider to estimate your recurring commissions. Each customer you refer pays you 15% of their plan, every month they stay with Kanal.</p>
+            <div class="calc__field">
+              <div class="calc__label">
+                <span>Referred customers</span>
+                <div class="calc__stepper">
+                  <button type="button" class="calc__step" data-step="-1" aria-label="One less customer">−</button>
+                  <span class="calc__count" id="refsOut" aria-hidden="true">40</span>
+                  <button type="button" class="calc__step" data-step="1" aria-label="One more customer">+</button>
+                </div>
+              </div>
+              <div class="calc__slider" id="refsSlider">
+                <span class="calc__track" aria-hidden="true"><span class="calc__fill" id="refsFill"></span></span>
+                <span class="calc__thumb" id="refs" role="slider" tabindex="0" aria-label="Referred customers" aria-valuemin="1" aria-valuemax="200" aria-valuenow="40"></span>
+              </div>
+              <div class="calc__scale"><button type="button" data-set="1">1</button><button type="button" data-set="50">50</button><button type="button" data-set="100">100</button><button type="button" data-set="150">150</button><button type="button" data-set="200">200</button></div>
+            </div>
+            <p class="calc__note">Based on the Scale plan at 149€ per month. Recurring for as long as they stay a customer.</p>
+          </div>
+          <div class="calc__media feature__visual feature__visual--b">
+            <div class="payout" aria-live="polite">
+              <div class="payout__head"><strong>Your commissions</strong><span class="payout__live">Recurring</span></div>
+              <div class="payout__big"><span class="payout__amount" id="calcMonthly">894€</span><small>/month</small></div>
+              <div class="payout__chart" id="calcChart" aria-hidden="true"><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i><i style="--k:6"></i><i style="--k:7"></i><i style="--k:8"></i><i style="--k:9"></i><i style="--k:10"></i><i style="--k:11"></i><i style="--k:12"></i></div>
+              <div class="payout__axis" aria-hidden="true"><span>Month 1</span><span>Month 12</span></div>
+              <ul class="payout__lines">
+                <li>Referred customers<b id="calcRefs">40</b></li>
+                <li>Scale plan<b>149€/mo</b></li>
+                <li>Commission<b>15%</b></li>
+              </ul>
+              <div class="payout__foot"><span>Earned in 12 months</span><strong id="calcYearly">10,728€</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HOW IT WORKS ============ -->
+    <section class="sec" id="how">
+      <div class="wrap">
+        <div class="ahow">
+          <div class="ahow__head">
+            <h2 class="ahow__title reveal">Start earning passive income in minutes.<span class="muted">Three steps, no minimum audience.</span></h2>
+            <div class="ahow__intro reveal" style="--d:1">
+              <p>Kanal's affiliate program is for YouTube creators, B2B social media influencers and SMMA communities who want to monetize their content while helping others grow.</p>
+              <a class="btn btn--light btn--nav" href="https://getkanal.firstpromoter.com/" target="_blank" rel="noopener">Earn passive income</a>
+            </div>
+          </div>
+          <div class="steps">
+            <article class="step reveal reveal--up">
+              <div class="step__art feature__visual feature__visual--b">
+                <div class="aui">
+                  <div class="aui__head"><strong>Affiliate account</strong><span class="aui__ok">Active</span></div>
+                  <div class="aui__field"><small>Your link</small><div class="aui__input">getkanal.com/?via=<b>yourname</b><i class="aui__caret"></i></div></div>
+                  <div class="aui__btns"><span class="aui__btn">Customize</span><span class="aui__btn aui__btn--dark">Copy link</span></div>
+                </div>
+              </div>
+              <span class="step__num">Step 01</span>
+              <h3>Join the program</h3>
+              <p>Create your affiliate account, get your affiliate link and customize it.</p>
+            </article>
+            <article class="step reveal reveal--up" style="--d:1">
+              <div class="step__art feature__visual feature__visual--d">
+                <div class="aui">
+                  <div class="aui__head"><strong>Link performance</strong><span class="aui__chip">Last 30 days</span></div>
+                  <ul class="aui__rows">
+                    <li><span class="aui__ico aui__ico--yt"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.5 5.6v4.8L10.6 8z" /></svg></span>YouTube<em>1,284 clicks</em></li>
+                    <li><span class="aui__ico aui__ico--in"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.6 6.4h1.8V12H4.6zM5.5 3.8a1 1 0 1 1 0 2.1 1 1 0 0 1 0-2.1zM7.5 6.4h1.7v.8c.3-.5 1-1 2-1 1.8 0 2.2 1.2 2.2 2.7V12h-1.8V9.3c0-.7 0-1.5-1-1.5s-1.2.7-1.2 1.5V12H7.5z" /></svg></span>LinkedIn<em>736 clicks</em></li>
+                    <li><span class="aui__ico aui__ico--nl"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="4.5" width="10" height="7" rx="1.5" /><path d="m3.5 5.5 4.5 3.2 4.5-3.2" /></svg></span>Newsletter<em>418 clicks</em></li>
+                  </ul>
+                  <div class="aui__foot"><span>New customers</span><strong>42</strong></div>
+                </div>
+              </div>
+              <span class="step__num">Step 02</span>
+              <h3>Share your affiliate link</h3>
+              <p>Share your custom affiliate link with your audience, your followers and your friends.</p>
+            </article>
+            <article class="step reveal reveal--up" style="--d:2">
+              <div class="step__art feature__visual feature__visual--c">
+                <div class="aui">
+                  <div class="aui__head"><strong>Payouts</strong><span class="aui__chip">Monthly</span></div>
+                  <ul class="aui__rows aui__rows--pay">
+                    <li>Nov 2026<b>894.00€</b><em class="is-paid">Paid</em></li>
+                    <li>Oct 2026<b>849.30€</b><em class="is-paid">Paid</em></li>
+                    <li>Sep 2026<b>782.25€</b><em class="is-paid">Paid</em></li>
+                  </ul>
+                  <div class="aui__foot"><span>Next payout</span><strong>Dec 1</strong></div>
+                </div>
+              </div>
+              <span class="step__num">Step 03</span>
+              <h3>Get paid for life</h3>
+              <p>You earn a 15% lifetime recurring commission for every new customer you bring.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="sec" id="faq">
+      <div class="wrap wrap--narrow cols cols--top">
+        <h2 class="reveal">Affiliate program FAQ</h2>
+        <div class="faq reveal">
+          <details open>
+            <summary>How does the Kanal affiliate program work?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Sign up for the affiliate program, get your unique referral link and share it with your audience. You earn a 15% recurring commission for every paying customer you refer.</p></div>
+          </details>
+          <details>
+            <summary>How much can I earn?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>You earn 15% of every payment made by the customers you refer, for as long as they remain paying customers. On Scale at 149€ per month, each referral pays you 22.35€ every month.</p></div>
+          </details>
+          <details>
+            <summary>When and how do I get paid?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Commissions are paid monthly by bank transfer or PayPal. Each commission has a 30-day pending period to account for refunds.</p></div>
+          </details>
+          <details>
+            <summary>Who can join the affiliate program?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Anyone can join. Content creators, agency owners, e-commerce consultants or anyone who loves Kanal: every affiliate is welcome.</p></div>
+          </details>
+          <details>
+            <summary>Is there a minimum payout?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Yes, the minimum payout is 50€. Once your available balance reaches 50€, it is included in the next monthly payout.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PARTNER PROGRAM ============ -->
+    <section class="sec" id="partners">
+      <div class="wrap">
+        <div class="partner reveal reveal--up">
+          <div class="partner__text">
+            <span class="ah__eyebrow">A different path</span>
+            <h2>Become a Kanal Partner.<span class="muted">Grow together.</span></h2>
+            <p>Agencies, integrations and technology partners: let's build a joint go-to-market strategy and unlock new opportunities together.</p>
+            <ul class="partner__list">
+              <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" /><path d="m6.2 10.2 2.5 2.5 5-5.2" /></svg>Co-marketing and joint webinars</li>
+              <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" /><path d="m6.2 10.2 2.5 2.5 5-5.2" /></svg>Featured spot in our partner directory</li>
+              <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" /><path d="m6.2 10.2 2.5 2.5 5-5.2" /></svg>Dedicated partnership manager</li>
+              <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" /><path d="m6.2 10.2 2.5 2.5 5-5.2" /></svg>Revenue share on qualified referrals</li>
+            </ul>
+            <p class="partner__note">Creator or influencer? The affiliate program above is for you. The partner program is for businesses building with or around Kanal.</p>
+            <div class="partner__ctas">
+              <a class="btn btn--dark btn--lg" href="https://app.cal.com/team/kanal/demo?utm_source=getkanal&amp;utm_medium=website&amp;utm_campaign=site-affiliate" target="_blank" rel="noopener">Book a partnership chat</a>
+              <a class="btn btn--outline btn--lg" href="https://getkanal.com/contact" target="_blank" rel="noopener">Contact us</a>
+            </div>
+          </div>
+          <div class="partner__media feature__visual feature__visual--d">
+            <div class="pdir">
+              <div class="pdir__head"><strong>Partner directory</strong><span class="pdir__chip">Kanal partners</span></div>
+              <ul class="pdir__list">
+                <li class="is-you"><span class="pdir__logo">YA</span><span class="pdir__name"><strong>Your agency</strong><small>WhatsApp marketing agency</small></span><em class="pdir__feat">Featured</em></li>
+                <li><img src="assets/integrations/round/klaviyo.png" alt="" width="32" height="32" /><span class="pdir__name"><strong>Klaviyo</strong><small>Email and SMS</small></span><em>Integration</em></li>
+                <li><img src="assets/integrations/round/gorgias.png" alt="" width="32" height="32" /><span class="pdir__name"><strong>Gorgias</strong><small>Helpdesk</small></span><em>Integration</em></li>
+                <li><img src="assets/integrations/round/recharge.png" alt="" width="32" height="32" /><span class="pdir__name"><strong>Recharge</strong><small>Subscriptions</small></span><em>Integration</em></li>
+              </ul>
+              <div class="pdir__foot"><span>Revenue share</span><strong>On qualified referrals</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>

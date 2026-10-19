@@ -1,0 +1,211 @@
+<!--page {"title": "Kanal MCP", "description": "Run your WhatsApp campaigns, segments and automations from Claude, Claude Code, Codex or Cursor with the Kanal MCP server. No campaign goes out without your confirmation.", "styles": ["pages.css", "mcp.css"], "scripts": ["mcp.js"], "current": null, "extra": ""} -->
+  <main class="mcp-page">
+    <!-- ============ HERO ============ -->
+    <section class="ah">
+      <div class="wrap">
+        <span class="ah__eyebrow reveal">Kanal MCP</span>
+        <h1 class="ah__title mcp-title reveal" style="--d:1">
+          <span class="mcp-title__line">Run Kanal from <span class="rotator" data-rotator><span class="rotator__word is-on"><span class="mcp-ai"><img src="assets/ai/claude.svg" alt="" /></span>Claude</span><span class="rotator__word" aria-hidden="true"><span class="mcp-ai"><img src="assets/ai/openai.svg" alt="" /></span>Codex</span><span class="rotator__word" aria-hidden="true"><span class="mcp-ai"><img src="assets/ai/cursor.svg" alt="" /></span>Cursor</span></span>.</span>
+          <span class="muted">Just ask, in plain language.</span>
+        </h1>
+        <p class="ah__sub reveal" style="--d:2">Run your WhatsApp campaigns, segments and automations from your AI assistant. Connect Kanal to Claude, Claude Code, Codex or Cursor: the assistant measures, prepares and builds in Kanal, and no campaign goes out without your confirmation.</p>
+        <div class="ah__ctas reveal" style="--d:3">
+          <a class="btn btn--dark btn--lg" href="demo.html">Book a demo</a>
+          <a class="btn btn--soft btn--lg" href="https://apps.shopify.com/kanal-marketing-ai" target="_blank" rel="noopener">Install on Shopify</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DÉMO : conversation avec l'assistant ============ -->
+    <section class="sec mcp-demo-sec">
+      <div class="wrap">
+        <div class="mcp-demo feature__visual feature__visual--b reveal reveal--up">
+          <div class="mwin" id="mcpDemo" data-ai="Claude">
+            <div class="mwin__bar">
+              <div class="mwin__tabs" role="tablist" aria-label="AI assistant">
+                <span class="mwin__glider" aria-hidden="true"></span>
+                <button type="button" role="tab" aria-selected="true" data-ai="Claude" data-logo="assets/ai/claude.svg"><img src="assets/ai/claude.svg" alt="" /><span>Claude</span></button>
+                <button type="button" role="tab" aria-selected="false" data-ai="Codex" data-logo="assets/ai/openai.svg"><img src="assets/ai/openai.svg" alt="" /><span>Codex</span></button>
+                <button type="button" role="tab" aria-selected="false" data-ai="Cursor" data-logo="assets/ai/cursor.svg"><img src="assets/ai/cursor.svg" alt="" /><span>Cursor</span></button>
+              </div>
+            </div>
+            <div class="mwin__body" aria-live="polite">
+              <p class="mmsg mmsg--user" data-step>Create a segment of customers who ordered at least twice, but not in the last 60 days. Then prepare a win-back campaign for Thursday at 10 am.</p>
+              <div class="mmsg mmsg--ai" data-step data-typing><span class="mmsg__avatar"><img src="assets/ai/claude.svg" alt="" data-ai-logo /></span><p>On it, in your Kanal account.</p></div>
+              <div class="mact" data-step>
+                <div class="mact__head"><svg aria-hidden="true"><use href="#logo-kanal-mark" /></svg>Actions in Kanal</div>
+                <ol class="mact__list">
+                  <li data-act><span class="mact__check"><svg viewBox="0 0 12 12"><path d="m2.5 6.2 2.3 2.3 4.7-4.9" /></svg></span>Segment created<b>1,240 contacts</b></li>
+                  <li data-act><span class="mact__check"><svg viewBox="0 0 12 12"><path d="m2.5 6.2 2.3 2.3 4.7-4.9" /></svg></span>Template selected<b>Approved by Meta</b></li>
+                  <li data-act><span class="mact__check"><svg viewBox="0 0 12 12"><path d="m2.5 6.2 2.3 2.3 4.7-4.9" /></svg></span>Campaign prepared<b>Thursday, 10 am</b></li>
+                  <li data-act><span class="mact__check"><svg viewBox="0 0 12 12"><path d="m2.5 6.2 2.3 2.3 4.7-4.9" /></svg></span>Estimated cost<b>74.40€</b></li>
+                </ol>
+                <div class="mact__wait" data-act><span class="mact__pulse"></span>Waiting for your confirmation</div>
+              </div>
+              <div class="mmsg mmsg--ai" data-step data-typing><span class="mmsg__avatar"><img src="assets/ai/claude.svg" alt="" data-ai-logo /></span><p>Everything is ready and nothing has been sent yet. Do you confirm the send to 1,240 contacts on Thursday at 10 am?</p></div>
+              <p class="mmsg mmsg--user" data-step>Yes, schedule it.</p>
+              <div class="mdone" data-step><span class="mact__check"><svg viewBox="0 0 12 12"><path d="m2.5 6.2 2.3 2.3 4.7-4.9" /></svg></span>Send confirmed<b>Scheduled Thursday, 10 am</b></div>
+              <div class="mmsg mmsg--ai" data-step data-typing><span class="mmsg__avatar"><img src="assets/ai/claude.svg" alt="" data-ai-logo /></span><p>The campaign is scheduled. You can still edit or pause it in Kanal.</p></div>
+            </div>
+            <div class="mcomp" aria-hidden="true">
+              <div class="mcomp__box">
+                <div class="mcomp__field"><span class="mcomp__text" id="mcompText"></span><span class="mcomp__caret"></span><span class="mcomp__ph" id="mcompPh">Reply to Claude…</span></div>
+                <div class="mcomp__row">
+                  <span class="mcomp__plus"><svg viewBox="0 0 16 16"><path d="M8 3.5v9M3.5 8h9" /></svg></span>
+                  <span class="mcomp__chip mcomp__chip--agent"><svg viewBox="0 0 16 16"><path d="M4.6 10.4c-1.4 0-2.4-1-2.4-2.4s1-2.4 2.4-2.4c2.6 0 4.2 4.8 6.8 4.8 1.4 0 2.4-1 2.4-2.4s-1-2.4-2.4-2.4c-2.6 0-4.2 4.8-6.8 4.8z" /></svg>Agent</span>
+                  <span class="mcomp__chip mcomp__chip--model">Auto</span>
+                  <span class="mcomp__send"><svg viewBox="0 0 16 16"><path d="M8 12.5v-9M4 7.5l4-4 4 4" /></svg></span>
+                </div>
+              </div>
+            </div>
+            <div class="mwin__foot">
+              <span>Demonstration, sample data</span>
+              <button type="button" class="mwin__replay" id="mcpReplay"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8a5 5 0 1 0 1.5-3.6M3 2.5v2.2h2.2" /></svg>Replay</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CE QUE VOUS POUVEZ DEMANDER ============ -->
+    <section class="sec" id="ask">
+      <div class="wrap">
+        <div class="asks">
+          <div class="asks__text reveal">
+            <h2 class="shead__title">Ask, and your assistant does it in Kanal.<span class="muted">No screen to open.</span></h2>
+            <p class="asks__lead">Seven ways to work with Kanal without opening a single screen. Here are requests the way a merchant types them, and what the assistant does each time.</p>
+            <div class="asks__list" role="tablist" aria-label="What you can ask" id="askTabs"></div>
+          </div>
+          <div class="asks__media feature__visual feature__visual--d reveal reveal--up" style="--d:1">
+            <div class="achat" id="askPanel" role="tabpanel" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COMMENT ÇA MARCHE ============ -->
+    <section class="sec" id="how">
+      <div class="wrap">
+        <div class="ahow">
+          <div class="shead">
+            <h2 class="shead__title reveal">From request to action in three steps.<span class="muted">Set it up once, then just ask.</span></h2>
+            <div class="shead__intro reveal" style="--d:1">
+              <p>Kanal MCP connects your assistant to your Kanal account through the Model Context Protocol, an open standard supported by Claude, Codex and Cursor.</p>
+              <a class="btn btn--light btn--nav" href="demo.html">Get connected with our team</a>
+            </div>
+          </div>
+          <div class="steps">
+            <article class="step reveal reveal--up">
+              <div class="step__art feature__visual feature__visual--b">
+                <div class="aui">
+                  <div class="aui__head"><strong>Connectors</strong><span class="aui__chip">MCP</span></div>
+                  <ul class="aui__rows">
+                    <li><span class="aui__ico aui__ico--mark"><svg aria-hidden="true"><use href="#logo-kanal-mark" /></svg></span><span class="mstep__name">Kanal<small>Campaigns and flows</small></span><em class="mstep__ok">Connected</em></li>
+                    <li><span class="aui__ico aui__ico--shop"><svg aria-hidden="true"><use href="#logo-shopify" /></svg></span><span class="mstep__name">Your store<small>Linked through Kanal</small></span><em class="mstep__ok">Synced</em></li>
+                  </ul>
+                  <div class="aui__btns"><span class="aui__btn">Manage</span><span class="aui__btn aui__btn--dark">Done</span></div>
+                </div>
+              </div>
+              <span class="step__num">Step 01</span>
+              <h3>Connect</h3>
+              <p>Add the Kanal MCP server to your assistant and link it to your Kanal account.</p>
+            </article>
+            <article class="step reveal reveal--up" style="--d:1">
+              <div class="step__art feature__visual feature__visual--d">
+                <div class="aui">
+                  <div class="aui__head"><strong><img class="mstep__ai" src="assets/ai/claude.svg" alt="" />New chat</strong><span class="aui__chip">Kanal MCP</span></div>
+                  <div class="mstep__prompt">How is my abandoned-cart automation performing this month?<i class="aui__caret"></i></div>
+                  <div class="mstep__chips"><span>Measure</span><span>Create a segment</span><span>Prepare a send</span><span class="mstep__send"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5" /></svg></span></div>
+                </div>
+              </div>
+              <span class="step__num">Step 02</span>
+              <h3>Ask</h3>
+              <p>Ask a question or give an instruction in plain language: measure a campaign, create a segment, prepare a send, build an automation.</p>
+            </article>
+            <article class="step reveal reveal--up" style="--d:2">
+              <div class="step__art feature__visual feature__visual--c">
+                <div class="aui">
+                  <div class="aui__head"><strong>Campaign ready</strong><span class="mstep__wait">Waiting for you</span></div>
+                  <ul class="aui__rows aui__rows--pay">
+                    <li>Audience<b>1,240 contacts</b></li>
+                    <li>Date<b>Thursday, 10 am</b></li>
+                    <li>Estimated cost<b>74.40€</b></li>
+                  </ul>
+                  <div class="aui__btns"><span class="aui__btn">Edit</span><span class="aui__btn aui__btn--dark">Confirm send</span></div>
+                </div>
+              </div>
+              <span class="step__num">Step 03</span>
+              <h3>Take action</h3>
+              <p>The assistant acts in your Kanal account. For a campaign, it shows you the audience, the date and the estimated cost, then waits for your confirmation.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTRÔLE ============ -->
+    <section class="sec" id="control">
+      <div class="wrap">
+        <div class="duo duo--rev mcp-ctrl reveal reveal--up">
+          <div class="duo__media feature__visual feature__visual--c">
+            <ul class="guard">
+              <li><span class="guard__ico"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" /><path d="m6.2 10.2 2.5 2.5 5-5.2" /></svg></span><span><strong>In your account, with your access</strong><small>The assistant acts with the access of the person who connected it. What it creates shows up in Kanal, where you can review and edit it.</small></span></li>
+              <li><span class="guard__ico"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" /><path d="m6.2 10.2 2.5 2.5 5-5.2" /></svg></span><span><strong>A campaign send takes two steps</strong><small>It prepares the send and shows the audience, the date and the estimated cost. Nothing goes out before your explicit confirmation.</small></span></li>
+              <li><span class="guard__ico"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" /><path d="m6.2 10.2 2.5 2.5 5-5.2" /></svg></span><span><strong>Templates go through Meta</strong><small>A template written by the assistant is submitted for Meta's review. Customers only receive it once it is approved.</small></span></li>
+              <li><span class="guard__ico"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" /><path d="m6.2 10.2 2.5 2.5 5-5.2" /></svg></span><span><strong>Automations are switched on in Kanal</strong><small>The assistant builds and validates the flow. You review it in the editor and activate it yourself.</small></span></li>
+              <li><span class="guard__ico"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" /><path d="m6.2 10.2 2.5 2.5 5-5.2" /></svg></span><span><strong>Analysis only, if you prefer</strong><small>Ask it to stick to looking things up: it reads your data without creating or sending anything.</small></span></li>
+            </ul>
+          </div>
+          <div class="duo__text">
+            <h2>You stay in control.<span class="muted">Your assistant acts, you decide.</span></h2>
+            <p>Your assistant acts in Kanal, but you make the calls. Everything it creates stays visible and editable in your account, and a campaign send always waits for your approval.</p>
+            <div class="mcp-ctrl__ctas">
+              <a class="btn btn--dark btn--lg" href="demo.html">Book a demo</a>
+              <a class="btn btn--outline btn--lg" href="pricing.html">See plans</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="sec" id="faq">
+      <div class="wrap wrap--narrow cols cols--top">
+        <h2 class="reveal">Kanal MCP, in detail</h2>
+        <div class="faq reveal">
+          <details open>
+            <summary>What is MCP?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>MCP (Model Context Protocol) is an open standard that lets AI assistants like Claude, Codex or Cursor connect to external tools and data sources. The Kanal MCP server uses it so your assistant can read your WhatsApp marketing data and act in your Kanal account.</p></div>
+          </details>
+          <details>
+            <summary>Which AI assistants work with Kanal?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Any MCP-compatible assistant: Claude, Claude Code, Codex and Cursor all connect to the Kanal MCP server. You write in plain language and the assistant works on your real campaigns and conversations.</p></div>
+          </details>
+          <details>
+            <summary>Can the assistant send a campaign without my approval?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>No. Sending a campaign takes two steps: the assistant prepares the send and shows you the audience, the date and the estimated cost, then the campaign only goes out after your explicit confirmation.</p></div>
+          </details>
+          <details>
+            <summary>Can the assistant create segments and automations?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Yes. It creates segments from orders, WhatsApp activity, country or a group, and tells you their size. It also builds automations step by step, then validates them. You then switch them on in Kanal.</p></div>
+          </details>
+          <details>
+            <summary>Does the assistant see my customers' data?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Yes, the data in your Kanal account that it needs to handle your request: contacts, conversations, campaigns and performance. It reaches it through your connection. How that data is then processed depends on the provider of the assistant you use.</p></div>
+          </details>
+          <details>
+            <summary>How do I connect Kanal to my assistant?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>You need a Kanal account with your store connected. Book a demo and we will walk you through connecting Kanal to Claude, Codex or Cursor, or install Kanal from the Shopify App Store first.</p></div>
+          </details>
+          <details>
+            <summary>Is Kanal MCP included in my plan?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Kanal MCP is included from the Scale plan, as well as on Business and Agency. See the <a href="pricing.html">pricing page</a> for every plan, or ask us during a demo.</p></div>
+          </details>
+          <details>
+            <summary>Can I limit the assistant to analysis?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Yes. Ask it to stick to looking things up: it reads your campaigns, conversations and performance without creating or sending anything.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>

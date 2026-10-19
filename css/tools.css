@@ -1,0 +1,250 @@
+/* =========================================================
+   Outils gratuits — contenu getkanal.com/tools
+   Liste : grille de cartes. Détail : outil dans un panneau peint,
+   exemple et conseils, Kanal, fonctionnement, FAQ, autres outils.
+   ========================================================= */
+
+:root {
+  --ok: #15803d; --ok-bg: rgba(22, 163, 74, .1);
+  --ko: #c81e25; --ko-bg: rgba(221, 34, 41, .08);
+  --chat-bg: #efeae2; --chat-bubble: #ffffff; --chat-link: #027eb5;
+}
+:root[data-theme="dark"] {
+  --ok: #4ade80; --ok-bg: rgba(74, 222, 128, .12);
+  --ko: #f87171; --ko-bg: rgba(248, 113, 113, .12);
+  --chat-bg: #0b141a; --chat-bubble: #202c33; --chat-link: #53bdeb;
+}
+
+/* ---------- Éléments communs ---------- */
+.tl-ico { display: grid; place-items: center; width: 44px; height: 44px; flex: none; border-radius: 12px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); }
+.tl-ico svg { width: 22px; height: 22px; }
+.tl-ico svg:has(use[href="#logo-shopify"]) { width: 20px; height: 23px; }
+.tl-tag { display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 9999px; box-shadow: inset 0 0 0 1px var(--line-2); font-size: 12px; font-weight: 500; color: var(--fg-70); white-space: nowrap; }
+.tl-pill { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 9999px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-2); font-size: 13px; font-weight: 500; color: var(--fg-70); }
+.tl-pill svg { width: 14px; height: 14px; fill: var(--fg); }
+.tl-h2 { font-size: 28px; line-height: 36px; letter-spacing: -0.28px; }
+
+.crumbs { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 6px; font-size: 13px; line-height: 20px; color: var(--muted); }
+.crumbs a { display: inline-flex; align-items: center; height: 28px; padding: 0 10px; border-radius: 9999px; transition: background-color .15s, color .15s; }
+.crumbs a:hover { background: var(--btn-light); color: var(--fg); }
+.crumbs svg { width: 10px; height: 10px; flex: none; fill: none; stroke: var(--fg-30); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.crumbs [aria-current] { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 9999px; background: var(--btn-light); color: var(--fg-70); font-weight: 500; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tl-title { max-width: 900px; margin: 20px auto 0; font-size: 56px; line-height: 60px; font-weight: 500; letter-spacing: -1px; text-wrap: balance; }
+
+/* ---------- Liste ---------- */
+.tl-logos { padding-top: 0; }
+.tl-logos .logos { margin-top: 0; }
+.tl-list { padding-top: 24px; }
+.tl-grid { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.tl-card { display: flex; flex-direction: column; padding: 24px 24px 22px; border-radius: 24px; background: var(--card); transition: box-shadow .25s, background-color .25s; }
+.tl-card:hover { background: var(--surface); box-shadow: 0 0 0 1px var(--line), 0 24px 48px -28px rgba(20, 20, 40, .35); }
+.tl-card__top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.tl-card h2 { margin-top: 20px; font-size: 18px; line-height: 26px; letter-spacing: -0.18px; text-wrap: balance; }
+.tl-card p { margin-top: 8px; font-size: 14.5px; line-height: 23px; color: var(--muted); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+.tl-card__go { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 20px; font-size: 14px; line-height: 20px; font-weight: 500; }
+.tl-card__go svg, .tl-other > svg { width: 10px; height: 10px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; transition: transform .25s var(--ease); }
+.tl-card:hover .tl-card__go svg, .tl-other:hover > svg { transform: translate(1px, -1px); }
+
+/* ---------- Outil : panneau peint + application ---------- */
+.tl-stage { padding-top: 0; }
+.tl-panel.feature__visual { max-width: 1080px; margin: 0 auto; min-height: 0; padding: 56px 32px; border-radius: 24px; grid-template-columns: minmax(0, 1fr); justify-items: center; }
+.tl-app { min-width: 0; width: 100%; max-width: 720px; padding: 6px; border-radius: 22px; background: var(--surface); box-shadow: 0 0 0 1px rgba(10, 10, 10, .04), 0 24px 48px -20px rgba(30, 30, 60, .35), 0 6px 14px -8px rgba(30, 30, 60, .2); }
+.tl-app__head { display: flex; align-items: center; gap: 12px; padding: 10px 12px 12px 10px; }
+.tl-app__head .tl-ico { width: 36px; height: 36px; border-radius: 10px; background: var(--card); }
+.tl-app__head .tl-ico svg { width: 19px; height: 19px; }
+.tl-app__title { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.tl-app__title strong { font-size: 14px; line-height: 20px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tl-app__title small { font-size: 12px; line-height: 16px; color: var(--muted); }
+.tl-app__body { padding: 20px; border-radius: 17px; background: var(--card); box-shadow: inset 0 0 0 1px var(--line); }
+
+.tl-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 16px; }
+.tl-span { grid-column: 1 / -1; }
+.tl-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.tl-field label { font-size: 13px; line-height: 18px; font-weight: 500; color: var(--fg-70); }
+.tl-input, .tl-select select { width: 100%; height: 44px; padding: 0 14px; border: 0; border-radius: 12px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-2); color: var(--fg); font: inherit; font-size: 15px; font-variant-numeric: tabular-nums; outline: none; transition: box-shadow .15s; -webkit-appearance: none; appearance: none; }
+.tl-input:focus, .tl-select select:focus { box-shadow: inset 0 0 0 1px var(--fg-40), 0 0 0 4px var(--tint-2); }
+.tl-input::placeholder { color: var(--fg-40); }
+.tl-input[type="number"] { -moz-appearance: textfield; }
+.tl-input::-webkit-inner-spin-button, .tl-input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.tl-select { position: relative; display: block; }
+.tl-select::after { content: ""; position: absolute; right: 16px; top: 50%; width: 7px; height: 7px; margin-top: -5px; border: solid var(--muted); border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); pointer-events: none; }
+.tl-select select { padding-right: 36px; cursor: pointer; }
+.tl-select option { background: var(--surface); color: var(--fg); }
+.tl-input--static { display: flex; align-items: center; color: var(--fg-40); }
+.tl-input--area { height: 76px; align-items: flex-start; padding-top: 11px; }
+.tl-hint { font-size: 12.5px; line-height: 18px; color: var(--muted); }
+
+.tl-opt { display: flex; flex-direction: column; gap: 12px; padding: 12px 14px; border-radius: 14px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); }
+.tl-switch { display: flex; align-items: center; gap: 10px; font-size: 14px; line-height: 20px; cursor: pointer; }
+.tl-switch input { position: absolute; opacity: 0; pointer-events: none; }
+.tl-switch__ui { position: relative; width: 34px; height: 20px; flex: none; border-radius: 9999px; background: var(--tint-2); box-shadow: inset 0 0 0 1px var(--line-2); transition: background-color .2s; }
+.tl-switch__ui::after { content: ""; position: absolute; top: 3px; left: 3px; width: 14px; height: 14px; border-radius: 9999px; background: var(--surface); box-shadow: 0 1px 3px rgba(0, 0, 0, .25); transition: transform .25s var(--ease); }
+.tl-switch input:checked + .tl-switch__ui { background: var(--btn-dark); box-shadow: none; }
+.tl-switch input:checked + .tl-switch__ui::after { transform: translateX(14px); background: var(--btn-dark-fg); }
+.tl-switch input:focus-visible + .tl-switch__ui { outline: 2px solid var(--teal); outline-offset: 2px; }
+.tl-sub { padding: 4px 0 2px; }
+.tl-go { width: 100%; margin-top: 16px; }
+
+/* ---------- Résultats ---------- */
+.tl-out { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+.tl-out:empty { display: none; }
+.tl-big { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 22px 18px; border-radius: 16px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); text-align: center; }
+.tl-big strong { font-size: 40px; line-height: 48px; font-weight: 500; letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+.tl-big span { font-size: 13px; line-height: 18px; color: var(--muted); text-wrap: balance; }
+.tl-big.is-good { background: var(--ok-bg); box-shadow: none; }
+.tl-big.is-good strong { color: var(--ok); }
+.tl-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.tl-metrics--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.tl-metric { display: flex; flex-direction: column; gap: 2px; padding: 16px; border-radius: 16px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); }
+.tl-metric strong { font-size: 24px; line-height: 32px; font-weight: 500; letter-spacing: -0.5px; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.tl-metric span { font-size: 12.5px; line-height: 17px; color: var(--muted); }
+.tl-metric.is-good { background: var(--ok-bg); box-shadow: none; }
+.tl-metric.is-good strong { color: var(--ok); }
+.tl-metric.is-bad strong { color: var(--ko); }
+
+.tl-note { padding: 14px 16px; border-radius: 14px; background: var(--tint); font-size: 14px; line-height: 22px; color: var(--fg-70); text-wrap: pretty; }
+.tl-note strong { color: var(--fg); font-weight: 600; }
+.tl-note a { color: var(--fg); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--fg-30); }
+.tl-note.is-good { background: var(--ok-bg); }
+.tl-note.is-warn { background: var(--amber-bg); }
+.tl-note.is-bad { background: var(--ko-bg); }
+.tl-note.is-good strong { color: var(--ok); }
+.tl-note.is-bad strong { color: var(--ko); }
+.tl-inline { width: 64px; height: 28px; margin: 0 2px; padding: 0 8px; border: 0; border-radius: 8px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-2); color: var(--fg); font: inherit; font-size: 14px; text-align: center; -moz-appearance: textfield; }
+.tl-inline::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+.tl-bar { position: relative; height: 26px; border-radius: 9999px; background: var(--tint-2); overflow: hidden; }
+.tl-bar i { font-style: normal; display: flex; align-items: center; justify-content: flex-end; height: 100%; min-width: 44px; padding-right: 10px; border-radius: 9999px; transition: width .35s var(--ease); }
+.tl-bar b { font-size: 11.5px; font-weight: 600; color: #fff; font-variant-numeric: tabular-nums; }
+.tl-bar.is-good i { background: #22c55e; }
+.tl-bar.is-warn i { background: #f59e0b; }
+.tl-bar.is-bad i { background: #ef4444; }
+
+.tl-foot { margin-top: 14px; font-size: 12.5px; line-height: 19px; color: var(--muted); }
+.tl-foot a { color: var(--fg); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--fg-30); }
+
+/* WhatsApp vs SMS */
+.tl-vs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.tl-vs__card { padding: 16px; border-radius: 16px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); }
+.tl-vs__card--wa { box-shadow: inset 0 0 0 1.5px rgba(37, 211, 102, .55); }
+.tl-vs__head { display: flex; align-items: center; gap: 10px; padding-bottom: 10px; }
+.tl-vs__ico { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 9px; background: var(--tint); }
+.tl-vs__ico svg { width: 18px; height: 18px; border-radius: 5px; }
+.tl-vs__head strong { font-size: 15px; font-weight: 600; }
+.tl-vs dl { margin: 0; }
+.tl-vs dl div { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-top: 1px solid var(--line); font-size: 14px; line-height: 20px; }
+.tl-vs dt { color: var(--muted); }
+.tl-vs dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+.tl-vs dd.is-good { color: var(--ok); }
+
+/* Livraison offerte */
+.tl-halves { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.tl-half { display: flex; flex-direction: column; gap: 2px; padding: 16px; border-radius: 16px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); }
+.tl-half span { font-size: 13px; line-height: 18px; font-weight: 500; color: var(--fg-70); }
+.tl-half strong { margin-top: 4px; font-size: 28px; line-height: 36px; font-weight: 500; letter-spacing: -0.5px; font-variant-numeric: tabular-nums; }
+.tl-half small { font-size: 12.5px; line-height: 17px; color: var(--muted); }
+
+/* Modèle WhatsApp */
+.tl-chat { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 20px 18px; border-radius: 16px; background-color: var(--chat-bg); }
+.tl-chat__bubble { position: relative; max-width: 420px; padding: 10px 12px 22px; border-radius: 4px 14px 14px 14px; background: var(--chat-bubble); box-shadow: 0 1px .5px rgba(11, 20, 26, .13); font-size: 14.5px; line-height: 21px; overflow-wrap: anywhere; }
+.tl-chat__time { position: absolute; right: 10px; bottom: 5px; font-size: 11px; line-height: 14px; color: var(--muted); }
+.tl-chat__btn { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; max-width: 420px; height: 40px; border-radius: 12px; background: var(--chat-bubble); box-shadow: 0 1px .5px rgba(11, 20, 26, .13); font-size: 14px; font-weight: 500; color: var(--chat-link); }
+.tl-chat__btn svg, .tl-actions svg, .tl-lines svg, .tl-check-out svg { width: 15px; height: 15px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.tl-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+.tl-actions .btn.is-done, .tl-mini.is-done { background: var(--ok-bg); color: var(--ok); }
+.tl-meta { font-size: 12.5px; line-height: 18px; color: var(--muted); }
+
+/* Codes promo */
+.tl-codes { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px; border-radius: 16px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); }
+.tl-code { display: inline-flex; align-items: center; height: 32px; padding: 0 14px; border-radius: 9999px; background: var(--card); box-shadow: inset 0 0 0 1px var(--line-2); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; font-weight: 600; letter-spacing: .4px; transition: background-color .15s, color .15s; }
+.tl-code:hover { background: var(--btn-soft); }
+.tl-code.is-done { background: var(--ok-bg); color: var(--ok); box-shadow: none; }
+
+/* Numéros WhatsApp */
+.tl-empty { padding: 18px 16px; border-radius: 14px; box-shadow: inset 0 0 0 1px var(--line-2); font-size: 14px; line-height: 20px; color: var(--muted); text-align: center; }
+.tl-lines { margin: 0; border-radius: 16px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); }
+.tl-lines div { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 52px; padding: 8px 16px; }
+.tl-lines div + div { border-top: 1px solid var(--line); }
+.tl-lines dt { font-size: 13px; line-height: 18px; color: var(--muted); }
+.tl-lines dd { display: flex; align-items: center; gap: 10px; margin: 0; font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; text-align: right; }
+.tl-lines a { display: inline-flex; align-items: center; gap: 6px; color: var(--chat-link); }
+.tl-mini { display: inline-flex; align-items: center; gap: 5px; height: 28px; padding: 0 10px; border-radius: 9999px; background: var(--btn-light); font-size: 12.5px; font-weight: 500; transition: background-color .15s; }
+.tl-mini:hover { background: var(--btn-hover); }
+.tl-mini svg { width: 13px; height: 13px; }
+.tl-check-out { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 22px 18px; border-radius: 16px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); text-align: center; }
+.tl-check-out > strong { font-size: 28px; line-height: 36px; font-weight: 500; letter-spacing: -0.5px; font-variant-numeric: tabular-nums; }
+.tl-check-out .btn svg { width: 17px; height: 17px; stroke: none; }
+.tl-check-out p { max-width: 460px; font-size: 13.5px; line-height: 21px; color: var(--muted); }
+
+/* QR code (aperçu) */
+.tl-qr { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 24px 18px; border-radius: 16px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); text-align: center; }
+.tl-qr__box { display: grid; place-items: center; width: 168px; height: 168px; border-radius: 18px; box-shadow: inset 0 0 0 1.5px var(--line-2); background-image: radial-gradient(var(--line-2) 1.2px, transparent 1.4px); background-size: 12px 12px; }
+.tl-qr__box svg { width: 44px; height: 44px; padding: 10px; border-radius: 14px; background: var(--surface); box-shadow: 0 0 0 1px var(--line), 0 8px 18px -10px rgba(20, 20, 40, .4); box-sizing: content-box; }
+.tl-qr p { font-size: 14px; line-height: 20px; color: var(--muted); }
+.btn.is-disabled { opacity: .5; cursor: not-allowed; }
+
+/* ---------- Exemple et conseils ---------- */
+.tl-guide { max-width: 1080px; margin: 0 auto; }
+.tl-guide__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; margin-top: 28px; }
+.tl-ex, .tl-tips { display: flex; flex-direction: column; align-items: flex-start; padding: 32px; border-radius: 24px; background: var(--card); }
+.tl-ex p { margin-top: 20px; font-size: 19px; line-height: 31px; letter-spacing: -0.15px; text-wrap: pretty; }
+.tl-tips ul { list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.tl-tips li { display: flex; align-items: flex-start; gap: 12px; font-size: 15.5px; line-height: 25px; color: var(--fg-70); }
+.tl-tick { display: grid; place-items: center; width: 22px; height: 22px; flex: none; margin-top: 2px; border-radius: 9999px; background: var(--ok-bg); }
+.tl-tick svg { width: 13px; height: 13px; fill: none; stroke: var(--ok); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- Kanal ---------- */
+.tl-kanal { min-height: 480px; }
+.tl-kanal .duo__text h2 { margin-top: 20px; }
+.tl-stats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.tl-stat { display: inline-flex; align-items: baseline; gap: 6px; height: 32px; padding: 0 12px; align-items: center; border-radius: 9999px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-2); font-size: 13px; color: var(--muted); }
+.tl-stat strong { font-size: 14px; font-weight: 600; color: var(--fg); font-variant-numeric: tabular-nums; }
+.tl-kanal .duo__text .btn { margin-top: 28px; }
+
+/* ---------- Comment ça marche ---------- */
+.tl-how__head h2 { text-wrap: balance; }
+.tl-how__head p { max-width: 412px; margin-top: 16px; font-size: 16px; line-height: 26px; color: var(--muted); }
+.tl-steps { list-style: none; margin: 0; padding: 0; counter-reset: none; }
+.tl-steps li { display: flex; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+.tl-steps li:first-child { padding-top: 6px; }
+.tl-step__n { display: grid; place-items: center; width: 28px; height: 28px; flex: none; border-radius: 9999px; background: var(--card); box-shadow: inset 0 0 0 1px var(--line-2); font-size: 13px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.tl-steps h3 { font-size: 16px; line-height: 28px; font-weight: 500; }
+.tl-steps p { margin-top: 2px; font-size: 15px; line-height: 24px; color: var(--muted); }
+
+/* ---------- Autres outils ---------- */
+.tl-more { max-width: 1080px; margin: 0 auto; }
+.tl-more__head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.tl-others { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 28px; }
+.tl-other { display: flex; align-items: center; gap: 12px; padding: 12px 18px 12px 12px; border-radius: 20px; background: var(--card); font-size: 14.5px; line-height: 21px; font-weight: 500; transition: background-color .2s, box-shadow .2s; }
+.tl-other:hover { background: var(--surface); box-shadow: 0 0 0 1px var(--line), 0 16px 32px -22px rgba(20, 20, 40, .35); }
+.tl-other > span:nth-child(2) { flex: 1; min-width: 0; }
+.tl-other .tl-ico { width: 40px; height: 40px; }
+.tl-other .tl-ico svg { width: 20px; height: 20px; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1000px) {
+  .tl-grid, .tl-others { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tl-guide__grid { grid-template-columns: minmax(0, 1fr); }
+  .tl-kanal .duo__media { min-height: 400px; }
+}
+@media (max-width: 640px) {
+  .tl-grid, .tl-others { grid-template-columns: minmax(0, 1fr); }
+  .tl-card { padding: 22px 20px 20px; }
+  .tl-h2 { font-size: 24px; line-height: 31px; }
+  .tl-title { font-size: 36px; line-height: 40px; letter-spacing: -0.6px; }
+  .tl-panel.feature__visual { padding: 24px 10px; border-radius: 20px; }
+  .tl-app { border-radius: 20px; }
+  .tl-app__body { padding: 14px; border-radius: 15px; }
+  .tl-app__head .tl-tag { display: none; }
+  .tl-fields { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .tl-metrics, .tl-metrics--2, .tl-vs, .tl-halves { grid-template-columns: minmax(0, 1fr); }
+  .tl-metric { flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; }
+  .tl-metric strong { order: 2; font-size: 20px; line-height: 28px; text-align: right; }
+  .tl-big strong { font-size: 34px; line-height: 42px; }
+  .tl-lines div { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 14px; }
+  .tl-lines dd { text-align: left; }
+  .tl-ex, .tl-tips { padding: 24px 20px; }
+  .tl-ex p { font-size: 17px; line-height: 28px; }
+  .tl-kanal .duo__media { min-height: 0; }
+  .tl-more__head { flex-direction: column; align-items: flex-start; }
+}
