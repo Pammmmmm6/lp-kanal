@@ -21,7 +21,7 @@ import re
 import urllib.parse
 import urllib.request
 
-from gen_features import fx_section, logos_block, related
+from gen_features import flow, fx_section, logos_block, related
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, 'build', 'data')
@@ -764,7 +764,14 @@ def instagram(site):
             <p>{e(s['description'])}</p>
           </article>''' for i, s in enumerate(st['items']))
     ea = c['earlyAccess']
-    ea_feats = ''.join(f'<li><span class="aui__tick" aria-hidden="true">{TICK}</span>{e(f)}</li>' for f in ea['features'])
+    ea_feats = ''.join(f'<li>{TICK}{e(f)}</li>' for f in ea['features'])
+    # mini-interface : une demande d'accès anticipé (boutique d'exemple Fincut, comme le reste du site)
+    ea_flow = flow('Instagram early access', 'Fincut · Kanal', 'logo-instagram', [
+        ('Store connected', 'fincut.fr · Shopify', 'Done'),
+        ('Instagram account linked', '@fincut · Business account', 'Done'),
+        ('WhatsApp suite', 'Included from day one', 'Active'),
+        ('Onboarding call', 'With the Kanal team', 'Booked'),
+        ('Early access', 'Comment to DM, auto-replies, AI answers', 'Approved')], 'Instagram features', 'Rolling out')
     demo = 'https://getkanal.com/demo'
     main = f'''  <main class="company-page ig-page">
     <!-- ============ HERO ============ -->
@@ -844,15 +851,15 @@ def instagram(site):
     <!-- ============ ACCÈS ANTICIPÉ ============ -->
     <section class="sec" id="early-access">
       <div class="wrap">
-        <div class="cplan cplan--solo">
-          <article class="cplan__card reveal reveal--up">
+        <article class="duo ea reveal reveal--up">
+          <div class="duo__text">
             <span class="ea-badge"><i aria-hidden="true"></i>{e(ea['badge'])}</span>
-            <h3>{e(ea['title'])}</h3>
-            <p class="cplan__tag">{e(ea['tagline'])}</p>
-            <a class="btn btn--dark btn--lg cplan__cta" href="{demo}">{e(ea['cta'])}</a>
-            <ul class="cplan__list">{ea_feats}</ul>
-          </article>
-        </div>
+            <h2>{e(ea['title'])}.<span class="muted">{e(ea['tagline'])}</span></h2>
+            <ul class="ea-list">{ea_feats}</ul>
+            <a class="btn btn--dark btn--lg" href="{demo}">{e(ea['cta'])}</a>
+          </div>
+          <div class="duo__media feature__visual feature__visual--d">{ea_flow}</div>
+        </article>
       </div>
     </section>
 {faq(c['faq']['title'], c['faq']['items'], c['faq']['subtitle'])}  </main>

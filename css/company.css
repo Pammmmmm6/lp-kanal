@@ -259,3 +259,10 @@
   .cmp__art { padding: 20px 12px; }
   .ig-ctas .btn { width: 100%; }
 }
+
+/* ---------- Instagram : accès anticipé (carte en deux moitiés) ---------- */
+.ea .ea-badge { margin-bottom: 20px; }
+.ea .duo__text h2 span { margin-top: 2px; }
+.ea-list { list-style: none; margin: 24px 0 28px; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.ea-list li { display: flex; gap: 10px; font-size: 15px; line-height: 22px; color: var(--fg-70); }
+.ea-list svg { flex: none; width: 18px; height: 18px; margin-top: 2px; padding: 3px; border-radius: 9999px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-2); fill: none; stroke: var(--fg); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
