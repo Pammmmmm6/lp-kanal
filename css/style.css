@@ -893,7 +893,6 @@ h2 { font-size: 36px; line-height: 40px; font-weight: 500; letter-spacing: -0.36
 .footer__badge-icon svg { width: 16px; height: 20px; }
 .footer__badge-icon img.fb-full { width: 28px; height: 28px; }
 .footer__badge-icon img.fb-rcs { width: auto; height: 16px; }
-.footer__badge-icon svg.fb-iso { width: 18px; height: 18px; fill: none; stroke: #0a0a0a; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 .footer__badge { min-width: 210px; }
 .footer__cols { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: 32px; }
 .footer__cols h4 { margin-bottom: 12px; font-size: 13px; line-height: 20px; font-weight: 400; color: var(--muted); }
