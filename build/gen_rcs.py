@@ -9,7 +9,7 @@ CTA band is left out (client rule: no bottom CTA band).
 import json
 import os
 
-from gen_features import a, e, live, logos_block
+from gen_features import a, e, fx_section, live, logos_block, menu_labels, related, ulist
 
 ARROW = '<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M3 7 7 3M4 3h3v3" /></svg>'
 VERIFIED = ('<svg class="rverified" viewBox="0 0 24 24" aria-hidden="true"><path fill="#1d5fd1" d="M12 1.5 14.6 4l3.5-.4.9 3.4 3.1 1.7-1.4 3.3 1.4 3.3-3.1 1.7-.9 3.4-3.5-.4L12 22.5 9.4 20l-3.5.4-.9-3.4L1.9 15.3 3.3 12 1.9 8.7 5 7l.9-3.4 3.5.4L12 1.5Z"/>'
@@ -151,10 +151,12 @@ def page(fp):
     </section>
 
     <!-- ============ CE QUE RCS CHANGE ============ -->
-    <section class="sec" id="difference">
+{fx_section('difference', shead(t['difference']['title'], t['difference']['subtitle']),
+            [dict(x, media=f'<div class="rdiff__art">{v}</div>', extra=sources(src, x.get('sources') or []))
+             for x, v in zip(t['difference']['items'], diff_visuals(labels, hero_thread))],
+            'RCS', '<svg aria-hidden="true"><use href="#logo-rcs" /></svg>')}
+    <section class="sec fx-after">
       <div class="wrap">
-        {shead(t['difference']['title'], t['difference']['subtitle'])}
-        <div class="rgap">{cards_with_sources(t['difference']['items'], src, diff_visuals(labels, hero_thread), 2)}</div>
         <div class="rnote">{sources(src, t['difference']['sources'])}</div>
       </div>
     </section>
@@ -189,7 +191,7 @@ def page(fp):
     <section class="sec" id="phones">
       <div class="wrap">
         {shead(t['phones']['title'], t['phones']['subtitle'])}
-        <div class="rgap">{cards_with_sources(t['phones']['items'], src, cols=3)}</div>
+        {ulist([dict(x, extra=sources(src, x.get('sources') or [])) for x in t['phones']['items']])}
         <p class="rnote reveal">{e(t['phones']['note'])}</p>
       </div>
     </section>
@@ -201,7 +203,7 @@ def page(fp):
     rows = ''.join('<tr><th scope="row">' + e(r['criterion']) + '</th>'
                    + ''.join(f'<td><span class="rcmp__ch">{g}{e(cmp[k])}</span>{e(r[k])}</td>' for k, g in chans) + '</tr>'
                    for r in cmp['rows'])
-    links = ''.join(f'<li><a href="{a(live(l["href"]))}">{e(l["label"])}{ARROW}</a></li>' for l in cmp['links'])
+    links = ', '.join(f'<a href="{a(live(l["href"]))}">{e(l["label"])}</a>' for l in cmp['links'])
     out.append(f'''
     <!-- ============ RCS, SMS OU WHATSAPP ============ -->
     <section class="sec" id="compare">
@@ -213,8 +215,7 @@ def page(fp):
             <tbody>{rows}</tbody>
           </table>
         </div>
-        <div class="rnote reveal"><p>{e(cmp['note'])}</p>{sources(src, cmp['sources'])}</div>
-        <div class="fmore rlinks reveal"><div class="fmore__col"><h3>{e(cmp['linksTitle'])}</h3><ul class="fres">{links}</ul></div></div>
+        <div class="rnote reveal"><p>{e(cmp['note'])}</p>{sources(src, cmp['sources'])}<p class="rsrc">{e(cmp['linksTitle'])}: {links}</p></div>
       </div>
     </section>
 
@@ -222,21 +223,19 @@ def page(fp):
     <section class="sec" id="rules">
       <div class="wrap">
         {shead(t['rules']['title'], t['rules']['subtitle'])}
-        <div class="rgap">{cards_with_sources(t['rules']['items'], src, cols=3)}</div>
+        {ulist([dict(x, extra=sources(src, x.get('sources') or [])) for x in t['rules']['items']])}
         <p class="rnote reveal">{e(t['rules']['note'])}</p>
       </div>
     </section>
 ''')
 
-    steps = ''.join(f'<article class="fcard reveal reveal--up" style="--d:{i}"><span class="rnum">{i + 1}</span><h3>{e(s["title"])}</h3><p>{e(s["description"])}</p></article>'
-                    for i, s in enumerate(t['steps']['items']))
     out.append(f'''
     <!-- ============ DÉMARRER ============ -->
     <section class="sec" id="start">
       <div class="wrap">
         <div class="shead"><h2 class="shead__title reveal">{e(t['steps']['title'])}</h2>
           <div class="shead__intro reveal" style="--d:1"><p>{e(t['steps']['subtitle'])}</p><a class="btn btn--light btn--nav" href="https://getkanal.com/demo">{e(common['ctaSecondary'])}</a></div></div>
-        <div class="rgap"><div class="fcards fcards--3">{steps}</div></div>
+        {ulist(t['steps']['items'], lambda i: f'Step {i + 1}')}
       </div>
     </section>
 ''')
@@ -246,8 +245,10 @@ def page(fp):
             <summary>{e(q['question'])}<span class="faq__icon"></span></summary>
             <div class="faq__body"><p>{e(q['answer'])}</p></div>
           </details>''' for i, q in enumerate(t['faq']))
-    more = ''.join(f'<li><a href="{a(live(m["href"]))}"><span><b>{e(m["label"])}</b><small>{e(m["description"])}</small></span>{ARROW}</a></li>'
-                   for m in t['more']['items'])
+    menu = menu_labels()
+    picks = ['sms', 'sms-campaigns', 'sms-automation', 'whatsapp-shopify', 'whatsapp-campaigns', 'instagram']
+    more = related(fp['common']['otherFeatures'], [(f'https://getkanal.com/{x}', menu.get(x, x), '') for x in picks],
+                   t['more']['items'], t['more']['title'])
     out.append(f'''
     <!-- ============ FAQ ============ -->
     <section class="sec" id="faq">
@@ -257,14 +258,7 @@ def page(fp):
         </div>
       </div>
     </section>
-
-    <!-- ============ ALLER PLUS LOIN ============ -->
-    <section class="sec">
-      <div class="wrap">
-        <div class="fmore reveal"><div class="fmore__col"><h3>{e(t['more']['title'])}</h3><ul class="fres rmore">{more}</ul></div></div>
-      </div>
-    </section>
-  </main>
+{more}  </main>
 ''')
     meta = t['metadata']
     return {'out': 'rcs.html', 'title': f"{meta['title']} | Kanal", 'description': meta['description'],

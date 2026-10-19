@@ -918,4 +918,16 @@
     root.setAttribute('data-theme', next);
     try { localStorage.setItem('kanal-theme', next); } catch (e) {}
   });
+  // Défilement de fonctionnalités : le titre de la carte au centre de l'écran passe en noir
+  $$('[data-fx]').forEach((fx) => {
+    const links = $$('.fx__nav a', fx);
+    const byId = new Map(links.map((a) => [a.getAttribute('href').slice(1), a]));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        links.forEach((a) => a.classList.toggle('is-on', a === byId.get(en.target.id)));
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    $$('.fx__card', fx).forEach((card) => io.observe(card));
+  });
 })();

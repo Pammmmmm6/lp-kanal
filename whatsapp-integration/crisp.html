@@ -9,10 +9,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css?v=202610190947" />
-  <link rel="stylesheet" href="../css/pages.css?v=202610190947" />
-  <link rel="stylesheet" href="../css/feature.css?v=202610190947" />
-  <link rel="stylesheet" href="../css/integrations.css?v=202610190947" />
+  <link rel="stylesheet" href="../css/style.css?v=202610191014" />
+  <link rel="stylesheet" href="../css/pages.css?v=202610191014" />
+  <link rel="stylesheet" href="../css/feature.css?v=202610191014" />
+  <link rel="stylesheet" href="../css/integrations.css?v=202610191014" />
   <script>
     var t = null; try { t = localStorage.getItem('kanal-theme'); } catch (e) {}
     if (t) document.documentElement.setAttribute('data-theme', t);
@@ -160,14 +160,30 @@
       </div>
     </section>
 
-    <!-- ============ FONCTIONNALITÉS ============ -->
-    <section class="sec">
+    <section class="sec" id="features">
       <div class="wrap">
-        <div class="shead">
-          <h2 class="shead__title reveal">Key features.<span class="muted">Crisp and WhatsApp, connected.</span></h2>
-          <div class="shead__intro reveal" style="--d:1"><p>Connect Crisp to Kanal in a few clicks, then compare the plans to see what each one includes.</p><a class="btn btn--light btn--nav" href="../pricing.html">See pricing</a></div>
+        <div class="shead"><h2 class="shead__title reveal">Key features.<span class="muted">Crisp and WhatsApp, connected.</span></h2><div class="shead__intro reveal" style="--d:1"><p>Connect Crisp to Kanal in a few clicks, then compare the plans to see what each one includes.</p><a class="btn btn--light btn--nav" href="../pricing.html">See pricing</a></div></div>
+        <div class="fx" data-fx>
+          <nav class="fx__nav" aria-label="Crisp × WhatsApp"><a href="#features-1" class="is-on">Unified inbox</a><a href="#features-2">Shopify context</a><a href="#features-3">Shortcuts &amp; rules</a><a href="#features-4">Two-way messaging</a></nav>
+          <div class="fx__list">
+          <article class="fx__card reveal reveal--up" id="features-1">
+            <div class="fx__text"><p class="fx__eyebrow"><img src="../assets/integrations/crisp.webp" alt="" width="22" height="22" />Crisp × WhatsApp · 01</p><h3>Unified inbox</h3><p class="fx__desc">WhatsApp threads appear in Crisp next to live chat, email, and social. No more app-switching or missed messages.</p></div>
+            <div class="fx__media feature__visual feature__visual--b"><div class="fxui" aria-hidden="true"><div class="flow__head"><span class="flow__icon"><img src="../assets/integrations/crisp.webp" alt="" width="22" height="22" /></span><span class="flow__title"><strong>Crisp × WhatsApp</strong><small>Fincut · Kanal</small></span><span class="flow__live">Live</span></div><ul class="fxui__rows"><li class="fxui__row is-on"><span class="fxui__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span><b>Unified inbox</b><i class="fxui__sw" aria-hidden="true"></i></li><li class="fxui__row"><span class="fxui__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><b>Shopify context</b><i class="fxui__sw" aria-hidden="true"></i></li><li class="fxui__row"><span class="fxui__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><b>Shortcuts &amp; rules</b><i class="fxui__sw" aria-hidden="true"></i></li><li class="fxui__row"><span class="fxui__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></span><b>Two-way messaging</b><i class="fxui__sw" aria-hidden="true"></i></li></ul></div></div>
+          </article>
+          <article class="fx__card reveal reveal--up" id="features-2">
+            <div class="fx__text"><p class="fx__eyebrow"><img src="../assets/integrations/crisp.webp" alt="" width="22" height="22" />Crisp × WhatsApp · 02</p><h3>Shopify context</h3><p class="fx__desc">Each WhatsApp conversation carries the customer's Shopify profile: orders, LTV, tags, so agents help faster and better.</p></div>
+            <div class="fx__media feature__visual feature__visual--c"><div class="fxui" aria-hidden="true"><div class="flow__head"><span class="flow__icon"><img src="../assets/integrations/crisp.webp" alt="" width="22" height="22" /></span><span class="flow__title"><strong>Crisp × WhatsApp</strong><small>Fincut · Kanal</small></span><span class="flow__live">Live</span></div><ul class="fxui__rows"><li class="fxui__row is-done"><span class="fxui__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span><b>Unified inbox</b><i class="fxui__sw" aria-hidden="true"></i></li><li class="fxui__row is-on"><span class="fxui__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><b>Shopify context</b><i class="fxui__sw" aria-hidden="true"></i></li><li class="fxui__row"><span class="fxui__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><b>Shortcuts &amp; rules</b><i class="fxui__sw" aria-hidden="true"></i></li><li class="fxui__row"><span class="fxui__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></span><b>Two-way messaging</b><i class="fxui__sw" aria-hidden="true"></i></li></ul></div></div>
+          </article>
+          <article class="fx__card reveal reveal--up" id="features-3">
+            <div class="fx__text"><p class="fx__eyebrow"><img src="../assets/integrations/crisp.webp" alt="" width="22" height="22" />Crisp × WhatsApp · 03</p><h3>Shortcuts &amp; rules</h3><p class="fx__desc">Your existing Crisp macros, canned answers, and routing rules work on WhatsApp threads. Automate what you already automate.</p></div>
+            <div class="fx__media feature__visual feature__visual--d"><div class="fxui" aria-hidden="true"><div class="flow__head"><span class="flow__icon"><img src="../assets/integrations/crisp.webp" alt="" width="22" height="22" /></span><span class="flow__title"><strong>Crisp × WhatsApp</strong><small>Fincut · Kanal</small></span><span class="flow__live">Live</span></div><ul class="fxui__rows"><li class="fxui__row is-done"><span class="fxui__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span><b>Unified inbox</b><i class="fxui__sw" aria-hidden="true"></i></li><li class="fxui__row is-done"><span class="fxui__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><b>Shopify context</b><i class="fxui__sw" aria-hidden="true"></i></li><li class="fxui__row is-on"><span class="fxui__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><b>Shortcuts &amp; rules</b><i class="fxui__sw" aria-hidden="true"></i></li><li class="fxui__row"><span class="fxui__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></span><b>Two-way messaging</b><i class="fxui__sw" aria-hidden="true"></i></li></ul></div></div>
+          </article>
+          <article class="fx__card reveal reveal--up" id="features-4">
+            <div class="fx__text"><p class="fx__eyebrow"><img src="../assets/integrations/crisp.webp" alt="" width="22" height="22" />Crisp × WhatsApp · 04</p><h3>Two-way messaging</h3><p class="fx__desc">Agents send and receive WhatsApp messages from Crisp. Media, buttons, and quick replies work end-to-end.</p></div>
+            <div class="fx__media feature__visual feature__visual--b"><div class="fxui" aria-hidden="true"><div class="flow__head"><span class="flow__icon"><img src="../assets/integrations/crisp.webp" alt="" width="22" height="22" /></span><span class="flow__title"><strong>Crisp × WhatsApp</strong><small>Fincut · Kanal</small></span><span class="flow__live">Live</span></div><ul class="fxui__rows"><li class="fxui__row is-done"><span class="fxui__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span><b>Unified inbox</b><i class="fxui__sw" aria-hidden="true"></i></li><li class="fxui__row is-done"><span class="fxui__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><b>Shopify context</b><i class="fxui__sw" aria-hidden="true"></i></li><li class="fxui__row is-done"><span class="fxui__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><b>Shortcuts &amp; rules</b><i class="fxui__sw" aria-hidden="true"></i></li><li class="fxui__row is-on"><span class="fxui__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></span><b>Two-way messaging</b><i class="fxui__sw" aria-hidden="true"></i></li></ul></div></div>
+          </article>
+          </div>
         </div>
-        <div class="fcards fcards--2"><article class="fcard reveal reveal--up" style="--d:0"><span class="fcard__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span><h3>Unified inbox</h3><p>WhatsApp threads appear in Crisp next to live chat, email, and social. No more app-switching or missed messages.</p></article><article class="fcard reveal reveal--up" style="--d:1"><span class="fcard__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><h3>Shopify context</h3><p>Each WhatsApp conversation carries the customer's Shopify profile: orders, LTV, tags, so agents help faster and better.</p></article><article class="fcard reveal reveal--up" style="--d:0"><span class="fcard__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><h3>Shortcuts &amp; rules</h3><p>Your existing Crisp macros, canned answers, and routing rules work on WhatsApp threads. Automate what you already automate.</p></article><article class="fcard reveal reveal--up" style="--d:1"><span class="fcard__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></span><h3>Two-way messaging</h3><p>Agents send and receive WhatsApp messages from Crisp. Media, buttons, and quick replies work end-to-end.</p></article></div>
       </div>
     </section>
 
@@ -177,7 +193,7 @@
         <div class="shead">
           <h2 class="shead__title reveal">What you can do.<span class="muted">Use cases with Crisp.</span></h2>
         </div>
-        <div class="fcards fcards--3"><article class="fcard ucard reveal reveal--up" style="--d:0"><span class="ucard__num">01</span><h3>Pre-sale questions</h3><p>Answer product questions on WhatsApp and turn browsers into buyers, with everything tracked in Crisp.</p></article><article class="fcard ucard reveal reveal--up" style="--d:1"><span class="ucard__num">02</span><h3>Order support</h3><p>Handle 'Where is my order?' and refund requests on WhatsApp, resolved without leaving Crisp.</p></article><article class="fcard ucard reveal reveal--up" style="--d:2"><span class="ucard__num">03</span><h3>Proactive outreach</h3><p>Send delivery updates or issue apologies on WhatsApp, all threaded in the customer's Crisp conversation.</p></article></div>
+        <div class="ulist reveal reveal--up" style="--n:3"><article class="ulist__item"><span class="ulist__num">01</span><h3>Pre-sale questions</h3><p>Answer product questions on WhatsApp and turn browsers into buyers, with everything tracked in Crisp.</p></article><article class="ulist__item"><span class="ulist__num">02</span><h3>Order support</h3><p>Handle 'Where is my order?' and refund requests on WhatsApp, resolved without leaving Crisp.</p></article><article class="ulist__item"><span class="ulist__num">03</span><h3>Proactive outreach</h3><p>Send delivery updates or issue apologies on WhatsApp, all threaded in the customer's Crisp conversation.</p></article></div>
       </div>
     </section>
 
@@ -206,12 +222,11 @@
       </div>
     </section>
 
-    <!-- ============ ALLER PLUS LOIN ============ -->
     <section class="sec">
       <div class="wrap">
-        <div class="fmore reveal">
-          
-          <div class="fmore__col"><h3>Explore more integrations</h3><nav class="fpills ipills" aria-label="Explore more integrations"><a href="../whatsapp-shopify.html"><svg aria-hidden="true"><use href="#logo-shopify" /></svg>Shopify</a><a href="../whatsapp-integration/klaviyo.html"><img src="../assets/integrations/klaviyo.webp" alt="" width="18" height="18" />Klaviyo</a><a href="../whatsapp-integration/gorgias.html"><img src="../assets/integrations/gorgias.webp" alt="" width="18" height="18" />Gorgias</a><a href="../whatsapp-integration/loyoly.html"><img src="../assets/integrations/loyoly.webp" alt="" width="18" height="18" />Loyoly</a><a href="../whatsapp-integration/splio.html"><img src="../assets/integrations/splio.webp" alt="" width="18" height="18" />Splio</a><a href="../whatsapp-integration/zendesk.html"><img src="../assets/integrations/zendesk.webp" alt="" width="18" height="18" />Zendesk</a><a href="../whatsapp-integration/recharge.html"><img src="../assets/integrations/recharge.webp" alt="" width="18" height="18" />Recharge</a><a href="../whatsapp-integration/prestashop.html"><img src="../assets/integrations/prestashop.webp" alt="" width="18" height="18" />PrestaShop</a></nav></div>
+        <div class="rel reveal reveal--up">
+          <div class="rel__main"><p class="rel__label">Explore more integrations</p><nav class="rel__big" aria-label="Explore more integrations"><a href="../whatsapp-shopify.html"><svg aria-hidden="true"><use href="#logo-shopify" /></svg>Shopify</a><a href="../whatsapp-integration/klaviyo.html"><img src="../assets/integrations/klaviyo.webp" alt="" width="26" height="26" />Klaviyo</a><a href="../whatsapp-integration/gorgias.html"><img src="../assets/integrations/gorgias.webp" alt="" width="26" height="26" />Gorgias</a><a href="../whatsapp-integration/loyoly.html"><img src="../assets/integrations/loyoly.webp" alt="" width="26" height="26" />Loyoly</a><a href="../whatsapp-integration/splio.html"><img src="../assets/integrations/splio.webp" alt="" width="26" height="26" />Splio</a><a href="../whatsapp-integration/zendesk.html"><img src="../assets/integrations/zendesk.webp" alt="" width="26" height="26" />Zendesk</a><a href="../whatsapp-integration/recharge.html"><img src="../assets/integrations/recharge.webp" alt="" width="26" height="26" />Recharge</a><a href="../whatsapp-integration/prestashop.html"><img src="../assets/integrations/prestashop.webp" alt="" width="26" height="26" />PrestaShop</a></nav></div>
+          <a class="mega__card mega__card--a" href="../case-studies.html"><span class="mega__card-text"><strong>Case studies</strong><span>See how Shopify brands grow their sales with Kanal.</span></span><span class="mega__card-btn">Read stories</span></a>
         </div>
       </div>
     </section>
@@ -260,6 +275,6 @@
   </footer>
 
 
-  <script src="../js/main.js?v=202610190947"></script>
+  <script src="../js/main.js?v=202610191014"></script>
 </body>
 </html>

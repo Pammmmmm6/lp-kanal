@@ -8,7 +8,7 @@ so the list links to that feature page instead.
 import json
 import os
 
-from gen_features import ICONS, a, e, flow, live, logos_block
+from gen_features import a, e, flow, fx_section, live, logos_block, related, ulist
 
 # ordre de src/lib/integrations.ts
 SLUGS = ['klaviyo', 'gorgias', 'loyoly', 'splio', 'zendesk', 'crisp', 'recharge', 'prestashop']
@@ -162,33 +162,18 @@ def integration(slug, d, logos):
 
     feats = t.get('keyFeatures') or []
     if feats:
-        cards = ''.join(
-            f'<article class="fcard reveal reveal--up" style="--d:{i % 2}"><span class="fcard__ico"><svg viewBox="0 0 24 24" aria-hidden="true">{ICONS[i % len(ICONS)]}</svg></span>'
-            f'<h3>{e(f["title"])}</h3><p>{e(f["description"])}</p></article>' for i, f in enumerate(feats))
         if demo_only:
             intro = ('<p>Kanal connects to your store through its documented API. A Kanal expert sets it up with you.</p>'
                      f'<a class="btn btn--light btn--nav" href="https://getkanal.com/demo">{e(common["ctaSecondary"])}</a>')
         else:
             intro = (f'<p>Connect {e(nm)} to Kanal in a few clicks, then compare the plans to see what each one includes.</p>'
                      '<a class="btn btn--light btn--nav" href="https://getkanal.com/pricing">See pricing</a>')
-        out.append(f'''
-    <!-- ============ FONCTIONNALITÉS ============ -->
-    <section class="sec">
-      <div class="wrap">
-        <div class="shead">
-          <h2 class="shead__title reveal">{e(common['keyFeaturesTitle'].capitalize())}.<span class="muted">{e(nm)} and WhatsApp, connected.</span></h2>
-          <div class="shead__intro reveal" style="--d:1">{intro}</div>
-        </div>
-        <div class="fcards fcards--2">{cards}</div>
-      </div>
-    </section>
-''')
+        head = (f'<div class="shead"><h2 class="shead__title reveal">{e(common["keyFeaturesTitle"].capitalize())}.'
+                f'<span class="muted">{e(nm)} and WhatsApp, connected.</span></h2><div class="shead__intro reveal" style="--d:1">{intro}</div></div>')
+        out.append(fx_section('features', head, feats, f'{nm} × WhatsApp', f'<img src="{logo(slug)}" alt="" width="22" height="22" />'))
 
     uses = t.get('useCases') or []
     if uses:
-        cards = ''.join(
-            f'<article class="fcard ucard reveal reveal--up" style="--d:{i}"><span class="ucard__num">{i + 1:02d}</span>'
-            f'<h3>{e(u["title"])}</h3><p>{e(u["description"])}</p></article>' for i, u in enumerate(uses))
         out.append(f'''
     <!-- ============ CAS D'USAGE ============ -->
     <section class="sec">
@@ -196,7 +181,7 @@ def integration(slug, d, logos):
         <div class="shead">
           <h2 class="shead__title reveal">{e(common['useCasesTitle'])}.<span class="muted">{e(common['useCasesPreheader'].capitalize())} with {e(nm)}.</span></h2>
         </div>
-        <div class="fcards fcards--{3 if len(uses) % 3 == 0 else 2}">{cards}</div>
+        {ulist(uses)}
       </div>
     </section>
 ''')
@@ -204,27 +189,11 @@ def integration(slug, d, logos):
     if t.get('faq'):
         out.append(faq_block(f'{nm} FAQ', t['faq']))
 
-    res = t.get('resources') or []
-    others = ''.join(f'<a href="https://getkanal.com/whatsapp-integration/{s}"><img src="{logo(s)}" alt="" width="18" height="18" />{e(name(d[s]))}</a>'
-                     for s in SLUGS if s != slug)
-    others = (f'<a href="https://getkanal.com/whatsapp-shopify"><svg aria-hidden="true"><use href="#logo-shopify" /></svg>Shopify</a>' + others)
-    res_html = ''
-    if res:
-        res_html = ('<div class="fmore__col"><h3>' + e(common['resources']) + '</h3><ul class="fres">'
-                    + ''.join(f'<li><a href="{a(live(r["href"]))}">{e(r["label"])}{ARROW}</a></li>' for r in res)
-                    + '</ul></div>')
-    out.append(f'''
-    <!-- ============ ALLER PLUS LOIN ============ -->
-    <section class="sec">
-      <div class="wrap">
-        <div class="fmore{' fmore--two' if res else ''} reveal">
-          {res_html}
-          <div class="fmore__col"><h3>{e(common['otherIntegrations'])}</h3><nav class="fpills ipills" aria-label="{a(common['otherIntegrations'])}">{others}</nav></div>
-        </div>
-      </div>
-    </section>
-  </main>
-''')
+    links = [('https://getkanal.com/whatsapp-shopify', 'Shopify', '<svg aria-hidden="true"><use href="#logo-shopify" /></svg>')]
+    links += [(f'https://getkanal.com/whatsapp-integration/{x}', name(d[x]), f'<img src="{logo(x)}" alt="" width="26" height="26" />')
+              for x in SLUGS if x != slug]
+    out.append(related(common['otherIntegrations'], links, t.get('resources'), common['resources']))
+    out.append('  </main>\n')
     meta = t['metadata']
     return {'out': f'whatsapp-integration/{slug}.html', 'title': f"{meta['title']} | Kanal", 'description': meta['description'],
             'styles': ['pages.css', 'feature.css', 'integrations.css'], 'scripts': [], 'current': None, 'extra': '',

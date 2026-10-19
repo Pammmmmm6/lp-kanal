@@ -14,7 +14,7 @@ import json
 import os
 import re
 
-from gen_features import ICONS, a, e, live, logos_block
+from gen_features import ICONS, a, e, fx_section, live, logos_block, related
 
 ARROW = '<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M3 7 7 3M4 3h3v3" /></svg>'
 GLYPH = ('<svg class="sglyph" viewBox="0 0 24 24" aria-hidden="true">'
@@ -200,21 +200,8 @@ def statement(s):
 
 
 def more_links(m):
-    cards = ''.join(
-        f'<a class="smore__item reveal reveal--up" style="--d:{i}" href="{a(live(l["href"]))}">'
-        f'<span class="smore__label">{e(l["label"])}{ARROW}</span><span class="smore__desc">{e(l["description"])}</span></a>'
-        for i, l in enumerate(m['items']))
-    return f'''
-    <!-- ============ ALLER PLUS LOIN ============ -->
-    <section class="sec">
-      <div class="wrap">
-        <div class="smore">
-          <h2 class="smore__title reveal">{e(m['title'])}</h2>
-          <div class="smore__grid">{cards}</div>
-        </div>
-      </div>
-    </section>
-'''
+    """Les pages voisines en grands liens (comme le menu Produit), études de cas à droite."""
+    return related(m['title'], [(live(l['href']), l['label'], '') for l in m['items']])
 
 
 def rating_from_site(site):
@@ -266,23 +253,8 @@ def sms_page(d, logos, rating):
 
     # Bulk SMS
     b = t['bulk']
-    bulk_icons = [
-        '<circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2A4.5 4.5 0 0 1 21 18.5"/>',
-        ICONS[4],
-        ICONS[3],
-    ]
-    cards = ''.join(
-        f'<article class="fcard reveal reveal--up" style="--d:{i}"><span class="fcard__ico"><svg viewBox="0 0 24 24" aria-hidden="true">{bulk_icons[i % 3]}</svg></span>'
-        f'<h3>{e(it["title"])}</h3><p>{e(it["description"])}</p></article>' for i, it in enumerate(b['items']))
-    out.append(f'''
-    <!-- ============ BULK SMS ============ -->
-    <section class="sec">
-      <div class="wrap">
-        {shead(b['title'], b['subtitle'])}
-        <div class="fcards fcards--3">{cards}</div>
-      </div>
-    </section>
-''')
+    out.append(fx_section('bulk', shead(b['title'], b['subtitle']), b['items'], b['preheader'],
+                          '<svg aria-hidden="true"><use href="#logo-sms" /></svg>'))
 
     # Campaigns: three formats
     c = t['campaigns']
@@ -409,7 +381,6 @@ def sms_page(d, logos, rating):
                 <td><span class="scmp__lab" aria-hidden="true">{sms_h}</span><p>{e(row['sms'])}</p>{sources(src, row['smsSources'])}</td>
                 <td><span class="scmp__lab" aria-hidden="true">{wa_h}</span><p>{e(row['whatsapp'])}</p>{sources(src, row['whatsappSources'])}</td>
               </tr>''' for row in w['rows'])
-    links = ''.join(f'<li><a href="{a(live(l["href"]))}">{e(l["label"])}{ARROW}</a></li>' for l in w['links'])
     out.append(f'''
     <!-- ============ WHATSAPP ============ -->
     <section class="sec">
@@ -430,11 +401,11 @@ def sms_page(d, logos, rating):
               <p>{e(w['takeaway'])}</p>
             </div>
           </div>
-          <div class="fmore__col reveal reveal--up" style="--d:1"><h3>{e(w['linksTitle'])}</h3><ul class="fres">{links}</ul></div>
         </div>
       </div>
     </section>
 ''')
+    out.append(related(w['linksTitle'], [(live(l['href']), l['label'], '') for l in w['links']]))
 
     out.append(faq_block(t['faqTitle'], t['faq']))
     out.append('  </main>\n')

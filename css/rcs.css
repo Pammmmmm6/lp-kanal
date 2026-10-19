@@ -161,3 +161,12 @@
   .rspec div { grid-template-columns: 100px minmax(0, 1fr); }
   .rmini--car { transform: translateX(24px); }
 }
+
+/* ce que RCS change : les mini-visuels dans le panneau peint du défilement */
+.fx-after { padding-top: 0; }
+.fx__media .rdiff__art { width: 100%; height: auto; margin: 0; background: none; box-shadow: none; overflow: visible; }
+.fx__media .rmini { transform: scale(1.35); }
+.fx__media .rmini--car { transform: scale(1.15); }
+.fx__media .rmini--card, .fx__media .rmini--car > div, .fx__media .rmini--chips span { background: var(--surface); box-shadow: 0 18px 36px -18px rgba(30, 30, 60, .45); }
+@media (max-width: 640px) { .fx__media .rmini, .fx__media .rmini--car { transform: none; } }
+.fx__text .rsrc { margin-top: auto !important; padding-top: 20px; }

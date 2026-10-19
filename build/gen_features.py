@@ -178,6 +178,87 @@ def logos_block():
     return s[i:j]
 
 
+# ---------- Composants partagés : défilement de fonctionnalités et bloc « pour aller plus loin » ----------
+KEEP = {'whatsapp': 'WhatsApp', 'instagram': 'Instagram', 'shopify': 'Shopify', 'ai': 'AI', 'sms': 'SMS', 'rcs': 'RCS',
+        'ugc': 'UGC', 'api': 'API', 'crm': 'CRM', 'dm': 'DM', 'klaviyo': 'Klaviyo', 'kanal': 'Kanal', 'mcp': 'MCP'}
+
+
+def sc(text):
+    """Title Case → sentence case, en gardant les noms propres et sigles."""
+    out = []
+    for i, w in enumerate(text.split(' ')):
+        core = w.strip('&,.:()')
+        if core.lower() in KEEP:
+            out.append(w.replace(core, KEEP[core.lower()]))
+        elif i == 0:
+            out.append(w[:1].upper() + w[1:])
+        else:
+            out.append(w if (core.isupper() and len(core) > 1) else w.lower())
+    return ' '.join(out).replace('WhatsApp business', 'WhatsApp Business')
+
+
+def menu_labels():
+    """Libellés du menu Produit validé : slug → texte."""
+    top = open(os.path.join(ROOT, 'src/partials/top.html'), encoding='utf-8').read()
+    return {m.group(1): html.unescape(m.group(2)) for m in re.finditer(r'<a href="https://getkanal\.com/([^"]+)">([^<]+)</a>', top)}
+
+
+def fx_ui(name, icon, titles, active):
+    rows = ''.join(
+        f'<li class="fxui__row{" is-on" if i == active else (" is-done" if i < active else "")}">'
+        f'<span class="fxui__ico"><svg viewBox="0 0 24 24" aria-hidden="true">{ICONS[i % len(ICONS)]}</svg></span>'
+        f'<b>{e(t)}</b><i class="fxui__sw" aria-hidden="true"></i></li>' for i, t in enumerate(titles))
+    return (f'<div class="fxui" aria-hidden="true"><div class="flow__head"><span class="flow__icon">{icon}</span>'
+            f'<span class="flow__title"><strong>{e(name)}</strong><small>Fincut · Kanal</small></span><span class="flow__live">Live</span></div>'
+            f'<ul class="fxui__rows">{rows}</ul></div>')
+
+
+def fx_section(uid, head_html, items, name, icon, grads='bcd'):
+    """Titres collants à gauche, une grande carte par élément (texte + panneau peint avec la liste)."""
+    titles = [it['title'] for it in items]
+    nav = ''.join(f'<a href="#{uid}-{i + 1}"{" class=\"is-on\"" if i == 0 else ""}>{e(t)}</a>' for i, t in enumerate(titles))
+    cards = ''.join(
+        f'\n          <article class="fx__card reveal reveal--up" id="{uid}-{i + 1}">'
+        f'\n            <div class="fx__text"><p class="fx__eyebrow">{icon}{e(name)} · {i + 1:02d}</p><h3>{e(it["title"])}</h3>'
+        f'<p class="fx__desc">{e(it["description"])}</p>{it.get("extra", "")}</div>'
+        f'\n            <div class="fx__media feature__visual feature__visual--{grads[i % len(grads)]}">{it.get("media") or fx_ui(name, icon, titles, i)}</div>'
+        f'\n          </article>' for i, it in enumerate(items))
+    return (f'\n    <section class="sec" id="{uid}">\n      <div class="wrap">\n        {head_html}'
+            f'\n        <div class="fx" data-fx>\n          <nav class="fx__nav" aria-label="{a(name)}">{nav}</nav>'
+            f'\n          <div class="fx__list">{cards}\n          </div>\n        </div>\n      </div>\n    </section>\n')
+
+
+def ulist(items, label=None):
+    """Cas d'usage ou étapes : une seule surface, colonnes séparées par un filet."""
+    cells = ''.join(f'<article class="ulist__item"><span class="ulist__num">{e(label(i)) if label else f"{i + 1:02d}"}</span>'
+                    f'<h3>{e(it["title"])}</h3><p>{e(it["description"])}</p>{it.get("extra", "")}</article>' for i, it in enumerate(items))
+    return f'<div class="ulist reveal reveal--up" style="--n:{len(items)}">{cells}</div>'
+
+
+EXT = ('<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M3 7 7 3M4 3h3v3" fill="none" stroke="currentColor" '
+       'stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" /></svg>')
+
+
+def related(label, links, resources=None, res_label='Go further'):
+    """Grands liens à gauche (comme le menu Produit), carte peinte à droite : guides, sinon études de cas."""
+    big = ''.join(f'<a href="{a(h)}">{ic}{e(t)}</a>' for h, t, ic in links)
+    resources = resources or []
+    if len(resources) == 1:
+        r = resources[0]
+        card = (f'<a class="mega__card mega__card--a" href="{a(live(r["href"]))}"><span class="mega__card-text"><strong>{e(res_label)}</strong>'
+                f'<span>{e(r["label"])}</span></span><span class="mega__card-btn">Read the guide</span></a>')
+    elif resources:
+        items = ''.join(f'<a href="{a(live(r["href"]))}">{e(r["label"])}{EXT}</a>' for r in resources)
+        card = (f'<div class="mega__card mega__card--a"><span class="mega__card-text"><strong>{e(res_label)}</strong></span>'
+                f'<div class="rel__links">{items}</div></div>')
+    else:
+        card = ('<a class="mega__card mega__card--a" href="https://getkanal.com/case-studies"><span class="mega__card-text"><strong>Case studies</strong>'
+                '<span>See how Shopify brands grow their sales with Kanal.</span></span><span class="mega__card-btn">Read stories</span></a>')
+    return (f'\n    <section class="sec">\n      <div class="wrap">\n        <div class="rel reveal reveal--up">'
+            f'\n          <div class="rel__main"><p class="rel__label">{e(label)}</p><nav class="rel__big" aria-label="{a(label)}">{big}</nav></div>'
+            f'\n          {card}\n        </div>\n      </div>\n    </section>\n')
+
+
 def page(slug, key, d, labels, logos):
     t = d[key]
     hero, common = t['hero'], d['common']
@@ -242,22 +323,11 @@ def page(slug, key, d, labels, logos):
 
     feats = t.get('keyFeatures') or []
     if feats:
-        cols = 3 if len(feats) % 3 == 0 and len(feats) > 4 else 2
-        cards = ''.join(
-            f'<article class="fcard reveal reveal--up" style="--d:{i % cols}"><span class="fcard__ico"><svg viewBox="0 0 24 24" aria-hidden="true">{ICONS[i % len(ICONS)]}</svg></span>'
-            f'<h3>{e(f["title"])}</h3><p>{e(f["description"])}</p></article>' for i, f in enumerate(feats))
-        out.append(f'''
-    <!-- ============ FONCTIONNALITÉS ============ -->
-    <section class="sec">
-      <div class="wrap">
-        <div class="shead">
-          <h2 class="shead__title reveal">What you get with Kanal.<span class="muted">Built for Shopify stores.</span></h2>
-          <div class="shead__intro reveal" style="--d:1"><p>Connect your store in a few clicks, then compare the plans to see what each one includes.</p><a class="btn btn--light btn--nav" href="https://getkanal.com/pricing">See pricing</a></div>
-        </div>
-        <div class="fcards fcards--{cols}">{cards}</div>
-      </div>
-    </section>
-''')
+        head = ('<div class="shead"><h2 class="shead__title reveal">What you get with Kanal.<span class="muted">Built for Shopify stores.</span></h2>'
+                '<div class="shead__intro reveal" style="--d:1"><p>Connect your store in a few clicks, then compare the plans to see what each one includes.</p>'
+                '<a class="btn btn--light btn--nav" href="https://getkanal.com/pricing">See pricing</a></div></div>')
+        icon = f'<svg aria-hidden="true"><use href="#{"logo-instagram" if slug.startswith("instagram") else "logo-whatsapp"}" /></svg>'
+        out.append(fx_section('features', head, feats, sc(hero['preheader']), icon))
 
     shot = t.get('screenshot')
     if shot:
@@ -290,26 +360,13 @@ def page(slug, key, d, labels, logos):
     </section>
 ''')
 
-    res = t.get('resources') or []
-    others = ''.join(f'<a href="https://getkanal.com/{s}">{e(labels[s])}</a>' for s in labels if s != slug)
-    res_html = ''
-    if res:
-        res_html = ('<div class="fmore__col"><h3>' + e(common['resources']) + '</h3><ul class="fres">'
-                    + ''.join(f'<li><a href="{a(live(r["href"]))}"{" target=\"_blank\" rel=\"noopener\"" if r["href"].startswith("http") else ""}>{e(r["label"])}'
-                              '<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M3 7 7 3M4 3h3v3" /></svg></a></li>' for r in res)
-                    + '</ul></div>')
-    out.append(f'''
-    <!-- ============ ALLER PLUS LOIN ============ -->
-    <section class="sec">
-      <div class="wrap">
-        <div class="fmore{' fmore--two' if res else ''} reveal">
-          {res_html}
-          <div class="fmore__col"><h3>{e(common['otherFeatures'])}</h3><nav class="fpills" aria-label="{a(common['otherFeatures'])}">{others}</nav></div>
-        </div>
-      </div>
-    </section>
-  </main>
-''')
+    order = [x for x in labels if x != slug]
+    k = list(labels).index(slug) if slug in labels else 0
+    picks = (order[k:] + order[:k])[:6]
+    menu = menu_labels()
+    links = [(f'https://getkanal.com/{x}', menu.get(x) or sc(labels[x]), '') for x in picks]
+    out.append(related(common['otherFeatures'], links, t.get('resources'), common['resources']))
+    out.append('  </main>\n')
     meta = t['metadata']
     return {'out': f'{slug}.html', 'title': f"{meta['title']} | Kanal", 'description': meta['description'],
             'styles': ['pages.css', 'feature.css'], 'scripts': [], 'current': None, 'extra': '',

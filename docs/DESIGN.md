@@ -46,6 +46,12 @@ always use tokens so dark mode works. Font: Geist (already loaded).
 - FAQ: `<div class="faq reveal"><details open><summary>Q<span class="faq__icon"></span></summary>
   <div class="faq__body"><p>A</p></div></details>…` (main.js animates it).
 - Logos strip: copy the `<div class="logos reveal">…` block from `src/pages/case-studies.html`.
+- Feature lists (key features, services, use cases with long copy): `fx_section()` in
+  `build/gen_features.py` — sticky titles on the left, one large card per item (eyebrow, 30px title,
+  text, painted panel with a white mini-UI). Never a grid of small icon + title + text tiles.
+- Short lists (3–4 use cases, steps, rules): `ulist()` — one surface, columns split by a hairline.
+- End of page links: `related()` — big links on the left like the Product menu, painted card on the
+  right (guides, or case studies). Never boxes of link pills.
 - Reveal on scroll: add `reveal` (and `reveal--up` for cards), stagger with `style="--d:1"`.
 
 ## Rules the client gave us (don't break them)
@@ -57,6 +63,9 @@ always use tokens so dark mode works. Font: Geist (already loaded).
   in content, 40px (`btn--nav`) in compact spots.
 - Currency in euros for Kanal prices; quotes from customers stay verbatim.
 - Everything must work in light and dark mode, and at 390px wide with no horizontal scroll.
+
+- New sections outside these validated components must be designed with the same care: painted
+  panels with white UI cards, generous type, no filler boxes that take space for little content.
 
 ## Verifying
 

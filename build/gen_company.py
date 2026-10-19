@@ -21,7 +21,7 @@ import re
 import urllib.parse
 import urllib.request
 
-from gen_features import logos_block
+from gen_features import fx_section, logos_block, related
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, 'build', 'data')
@@ -439,11 +439,9 @@ def agency(d):
     t = d['agency']
     stats = ''.join(f'<div class="fstats__cell"><strong>{e(s["value"])}</strong><span>{e(sc(s["label"]))}</span></div>' for s in t['stats'])
     sv = t['services']
-    services = ''.join(
-        f'''<article class="fcard reveal reveal--up" style="--d:{i % 3}"><span class="fcard__ico fcard__ico--wa">{logo('whatsapp')}</span>'''
-        f'''<h3>{e(sc(s['title']))}</h3><p>{e(s['description'])}</p>'''
-        f'''<a class="btn btn--light btn--nav fcard__more" href="{a(live(s['href']))}">{e(sv['learnMore'])}{ARROW}</a></article>'''
-        for i, s in enumerate(sv['items']))
+    services = [dict(title=sc(x['title']), description=x['description'],
+                     extra=f'<a class="btn btn--light btn--nav" href="{a(live(x["href"]))}">{e(sv["learnMore"])}</a>')
+                for x in sv['items']]
     wk = t['whyKanal']
     why = ''.join(f'''<article class="why__card"><span class="why__tick" aria-hidden="true">{TICK}</span><h3>{e(sc(w['title']))}</h3><p>{e(w['description'])}</p></article>'''
                   for w in wk['items'])
@@ -468,9 +466,9 @@ def agency(d):
             <p>{e(s['description'])}</p>
           </article>''' for i, s in enumerate(pr['steps']))
     ex = t['explore']
-    explore = ''.join(f'<a href="{a(h)}">{e(sc(l))}</a>' for l, h in [
+    explore = related(sc(ex['title']), [(h, sc(l), '') for l, h in [
         (ex['pricing'], 'https://getkanal.com/pricing'), (ex['tools'], 'https://getkanal.com/tools'),
-        (ex['caseStudies'], 'https://getkanal.com/case-studies'), (ex['blog'], 'https://getkanal.com/blog')])
+        (ex['blog'], 'https://getkanal.com/blog'), ('Integrations', 'https://getkanal.com/whatsapp-integration')]])
     main = f'''  <main class="company-page">
     <!-- ============ HERO ============ -->
     <section class="ah">
@@ -491,13 +489,7 @@ def agency(d):
         <div class="fstats fstats--4 reveal reveal--up">{stats}</div>
       </div>
     </section>
-
-    <!-- ============ SERVICES ============ -->
-    <section class="sec" id="services">
-      <div class="wrap">
-{shead(sc(sv['title']), sv['subtitle'])}        <div class="fcards fcards--3">{services}</div>
-      </div>
-    </section>
+{fx_section('services', shead(sc(sv['title']), sv['subtitle']), services, sc(t['preheader']), logo('whatsapp'))}
 
     <!-- ============ POURQUOI KANAL ============ -->
     <section class="sec" id="why">
@@ -519,17 +511,7 @@ def agency(d):
         </div>
       </div>
     </section>
-
-    <!-- ============ EXPLORER ============ -->
-    <section class="sec">
-      <div class="wrap">
-        <div class="cexplore reveal">
-          <div><h2>{e(sc(ex['title']))}</h2><p>{e(ex['subtitle'])}</p></div>
-          <nav class="fpills" aria-label="{a(sc(ex['title']))}">{explore}</nav>
-        </div>
-      </div>
-    </section>
-{faq(sc(t['faq']['title']), t['faq']['items'], t['faq']['subtitle'])}  </main>
+{explore}{faq(sc(t['faq']['title']), t['faq']['items'], t['faq']['subtitle'])}  </main>
 '''
     return {'out': 'whatsapp-marketing-agency.html', 'title': page_title(t['metadata']['title']), 'description': t['metadata']['description'],
             'styles': ['pages.css', 'feature.css', 'company.css'], 'scripts': [], 'current': None, 'extra': '', 'main': main}
@@ -768,8 +750,6 @@ def instagram(site):
           </article>''' for i, p in enumerate(pil['items']))
     uc = c['useCases']
     uc_icons = ['clock', 'chat', 'story', 'filter', 'cart', 'help']
-    usecases = ''.join(f'''<article class="fcard reveal reveal--up" style="--d:{i % 3}"><span class="fcard__ico">{ico(uc_icons[i % 6], '')}</span><h3>{e(x['title'])}</h3><p>{e(x['description'])}</p></article>'''
-                       for i, x in enumerate(uc['items']))
     br = c['bridge']
     node_icons = ['logo-instagram', 'logo-kanal-mark', 'logo-whatsapp']
     nodes = ''.join(f'''<li class="flow__step{' flow__step--win' if i == len(br['nodes']) - 1 else ''} is-done" style="--i:{i}"><span class="flow__check" aria-hidden="true">{TICK}</span>'''
@@ -825,13 +805,7 @@ def instagram(site):
         </div>
       </div>
     </section>
-
-    <!-- ============ CAS D'USAGE ============ -->
-    <section class="sec" id="use-cases">
-      <div class="wrap">
-{shead(uc['title'], uc['subtitle'])}        <div class="fcards fcards--3">{usecases}</div>
-      </div>
-    </section>
+{fx_section('use-cases', shead(uc['title'], uc['subtitle']), uc['items'], 'Instagram', '<svg aria-hidden="true"><use href="#logo-instagram" /></svg>')}
 
     <!-- ============ INSTAGRAM → WHATSAPP ============ -->
     <section class="sec" id="bridge">

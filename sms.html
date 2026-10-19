@@ -9,10 +9,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=202610190947" />
-  <link rel="stylesheet" href="css/pages.css?v=202610190947" />
-  <link rel="stylesheet" href="css/feature.css?v=202610190947" />
-  <link rel="stylesheet" href="css/sms.css?v=202610190947" />
+  <link rel="stylesheet" href="css/style.css?v=202610191014" />
+  <link rel="stylesheet" href="css/pages.css?v=202610191014" />
+  <link rel="stylesheet" href="css/feature.css?v=202610191014" />
+  <link rel="stylesheet" href="css/sms.css?v=202610191014" />
   <script>
     var t = null; try { t = localStorage.getItem('kanal-theme'); } catch (e) {}
     if (t) document.documentElement.setAttribute('data-theme', t);
@@ -142,11 +142,26 @@
       </div>
     </section>
 
-    <!-- ============ BULK SMS ============ -->
-    <section class="sec">
+    <section class="sec" id="bulk">
       <div class="wrap">
         <div class="shead"><h2 class="shead__title reveal">Bulk SMS to your customers,<span class="muted">with no file to export</span></h2><div class="shead__intro reveal" style="--d:1"><p>A bulk SMS send starts with a clean list. Kanal starts from your store: your customers, their orders and their consent are already there.</p></div></div>
-        <div class="fcards fcards--3"><article class="fcard reveal reveal--up" style="--d:0"><span class="fcard__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2A4.5 4.5 0 0 1 21 18.5"/></svg></span><h3>Your segments are your send lists</h3><p>Loyal customers, first-time buyers, people who have not ordered in two months: pick a segment from your store and the SMS campaign goes to it, with no import and no file to clean.</p></article><article class="fcard reveal reveal--up" style="--d:1"><span class="fcard__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.4 8 8 9 4.6-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span><h3>Consent, contact by contact</h3><p>Opt-ins and opt-outs sit on each customer’s profile. You send to the people who said yes, and an opt-out stays recorded.</p></article><article class="fcard reveal reveal--up" style="--d:2"><span class="fcard__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></span><h3>The sales behind each send</h3><p>Orders and revenue are attributed to each SMS campaign. You know what a send brought in, not only how many texts went out.</p></article></div>
+        <div class="fx" data-fx>
+          <nav class="fx__nav" aria-label="Bulk SMS"><a href="#bulk-1" class="is-on">Your segments are your send lists</a><a href="#bulk-2">Consent, contact by contact</a><a href="#bulk-3">The sales behind each send</a></nav>
+          <div class="fx__list">
+          <article class="fx__card reveal reveal--up" id="bulk-1">
+            <div class="fx__text"><p class="fx__eyebrow"><svg aria-hidden="true"><use href="#logo-sms" /></svg>Bulk SMS · 01</p><h3>Your segments are your send lists</h3><p class="fx__desc">Loyal customers, first-time buyers, people who have not ordered in two months: pick a segment from your store and the SMS campaign goes to it, with no import and no file to clean.</p></div>
+            <div class="fx__media feature__visual feature__visual--b"><div class="fxui" aria-hidden="true"><div class="flow__head"><span class="flow__icon"><svg aria-hidden="true"><use href="#logo-sms" /></svg></span><span class="flow__title"><strong>Bulk SMS</strong><small>Fincut · Kanal</small></span><span class="flow__live">Live</span></div><ul class="fxui__rows"><li class="fxui__row is-on"><span class="fxui__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span><b>Your segments are your send lists</b><i class="fxui__sw" aria-hidden="true"></i></li><li class="fxui__row"><span class="fxui__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><b>Consent, contact by contact</b><i class="fxui__sw" aria-hidden="true"></i></li><li class="fxui__row"><span class="fxui__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><b>The sales behind each send</b><i class="fxui__sw" aria-hidden="true"></i></li></ul></div></div>
+          </article>
+          <article class="fx__card reveal reveal--up" id="bulk-2">
+            <div class="fx__text"><p class="fx__eyebrow"><svg aria-hidden="true"><use href="#logo-sms" /></svg>Bulk SMS · 02</p><h3>Consent, contact by contact</h3><p class="fx__desc">Opt-ins and opt-outs sit on each customer’s profile. You send to the people who said yes, and an opt-out stays recorded.</p></div>
+            <div class="fx__media feature__visual feature__visual--c"><div class="fxui" aria-hidden="true"><div class="flow__head"><span class="flow__icon"><svg aria-hidden="true"><use href="#logo-sms" /></svg></span><span class="flow__title"><strong>Bulk SMS</strong><small>Fincut · Kanal</small></span><span class="flow__live">Live</span></div><ul class="fxui__rows"><li class="fxui__row is-done"><span class="fxui__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span><b>Your segments are your send lists</b><i class="fxui__sw" aria-hidden="true"></i></li><li class="fxui__row is-on"><span class="fxui__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><b>Consent, contact by contact</b><i class="fxui__sw" aria-hidden="true"></i></li><li class="fxui__row"><span class="fxui__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><b>The sales behind each send</b><i class="fxui__sw" aria-hidden="true"></i></li></ul></div></div>
+          </article>
+          <article class="fx__card reveal reveal--up" id="bulk-3">
+            <div class="fx__text"><p class="fx__eyebrow"><svg aria-hidden="true"><use href="#logo-sms" /></svg>Bulk SMS · 03</p><h3>The sales behind each send</h3><p class="fx__desc">Orders and revenue are attributed to each SMS campaign. You know what a send brought in, not only how many texts went out.</p></div>
+            <div class="fx__media feature__visual feature__visual--d"><div class="fxui" aria-hidden="true"><div class="flow__head"><span class="flow__icon"><svg aria-hidden="true"><use href="#logo-sms" /></svg></span><span class="flow__title"><strong>Bulk SMS</strong><small>Fincut · Kanal</small></span><span class="flow__live">Live</span></div><ul class="fxui__rows"><li class="fxui__row is-done"><span class="fxui__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span><b>Your segments are your send lists</b><i class="fxui__sw" aria-hidden="true"></i></li><li class="fxui__row is-done"><span class="fxui__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><b>Consent, contact by contact</b><i class="fxui__sw" aria-hidden="true"></i></li><li class="fxui__row is-on"><span class="fxui__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><b>The sales behind each send</b><i class="fxui__sw" aria-hidden="true"></i></li></ul></div></div>
+          </article>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -309,7 +324,15 @@
               <p>SMS for the short, urgent message and to reach every customer. WhatsApp when the message deserves an image or an answer. Both go out from the same app.</p>
             </div>
           </div>
-          <div class="fmore__col reveal reveal--up" style="--d:1"><h3>Go further</h3><ul class="fres"><li><a href="blog/business-sms-ecommerce-guide.html">Business SMS for e-commerce: the guide<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M3 7 7 3M4 3h3v3" /></svg></a></li><li><a href="blog/whatsapp-vs-sms-pricing-by-country.html">WhatsApp vs SMS pricing by country<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M3 7 7 3M4 3h3v3" /></svg></a></li><li><a href="blog/sms-vs-mms-vs-rcs-vs-whatsapp.html">SMS vs MMS vs RCS vs WhatsApp<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M3 7 7 3M4 3h3v3" /></svg></a></li><li><a href="blog/what-does-sms-mean.html">What does SMS mean?<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M3 7 7 3M4 3h3v3" /></svg></a></li><li><a href="blog/sms-vs-mms.html">SMS vs MMS: the difference<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M3 7 7 3M4 3h3v3" /></svg></a></li><li><a href="best-shopify-apps/best-shopify-sms-apps.html">Shopify SMS apps compared<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M3 7 7 3M4 3h3v3" /></svg></a></li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap">
+        <div class="rel reveal reveal--up">
+          <div class="rel__main"><p class="rel__label">Go further</p><nav class="rel__big" aria-label="Go further"><a href="blog/business-sms-ecommerce-guide.html">Business SMS for e-commerce: the guide</a><a href="blog/whatsapp-vs-sms-pricing-by-country.html">WhatsApp vs SMS pricing by country</a><a href="blog/sms-vs-mms-vs-rcs-vs-whatsapp.html">SMS vs MMS vs RCS vs WhatsApp</a><a href="blog/what-does-sms-mean.html">What does SMS mean?</a><a href="blog/sms-vs-mms.html">SMS vs MMS: the difference</a><a href="best-shopify-apps/best-shopify-sms-apps.html">Shopify SMS apps compared</a></nav></div>
+          <a class="mega__card mega__card--a" href="case-studies.html"><span class="mega__card-text"><strong>Case studies</strong><span>See how Shopify brands grow their sales with Kanal.</span></span><span class="mega__card-btn">Read stories</span></a>
         </div>
       </div>
     </section>
@@ -399,7 +422,7 @@
   </footer>
 
 
-  <script src="js/main.js?v=202610190947"></script>
-  <script src="js/sms.js?v=202610190947"></script>
+  <script src="js/main.js?v=202610191014"></script>
+  <script src="js/sms.js?v=202610191014"></script>
 </body>
 </html>

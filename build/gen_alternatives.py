@@ -19,6 +19,7 @@ import re
 import shutil
 import subprocess
 import tempfile
+from gen_features import related as related_block, ulist
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LIVE = 'https://getkanal.com'
@@ -156,15 +157,14 @@ def detail(slug, d, ui, slugs, data, logos, quotes, year):
     fill = lambda s: s.replace('{name}', name)
     shot = f'{LIVE}/images/screenshots/{slug}.webp'
     i = slugs.index(slug)
-    related = [slugs[(i + k) % len(slugs)] for k in (1, 2, 3)]
-    reasons = ''.join(
-        f'<article class="alt-reason reveal reveal--up" style="--d:{k}"><span class="alt-num">{k + 1}</span>'
-        f'<h3>{e(r["title"])}</h3><p>{e(r["description"])}</p></article>' for k, r in enumerate(d['reasons']))
+    related_slugs = [slugs[(i + k) % len(slugs)] for k in (1, 2, 3)]
+    reasons = ulist(d['reasons'])
     quote_html = ''.join(
         f'<figure class="aq reveal reveal--up" style="--d:{k}"><span class="aq__stars" aria-label="5 out of 5">★★★★★</span>'
         f'<blockquote>“{e(q["text"])}”</blockquote><figcaption><img src="{a(LIVE + q["avatar"])}" alt="" width="40" height="40" loading="lazy" />'
         f'<span><strong>{e(q["name"])}</strong><small>{e(q["role"])}</small></span></figcaption></figure>' for k, q in enumerate(quotes))
-    pills = ''.join(f'<a href="{LIVE}/alternatives/{s}">Kanal vs {e(data[s]["name"])}</a>' for s in related)
+    more = related_block(ui['relatedTitle'], [(f'{LIVE}/alternatives/{x}', f'Kanal vs {data[x]["name"]}', '') for x in related_slugs]
+                         + [(f'{LIVE}/alternatives', ui['relatedAll'], '')])
 
     main = f'''  <main class="alt-page">
     <!-- ============ HERO ============ -->
@@ -223,7 +223,7 @@ def detail(slug, d, ui, slugs, data, logos, quotes, year):
         <div class="shead shead--solo">
           <h2 class="shead__title reveal">{e(ui['reasonsTitle'])}.<span class="muted">Instead of {e(name)}.</span></h2>
         </div>
-        <div class="alt-reasons">{reasons}</div>
+        {reasons}
       </div>
     </section>
 
@@ -259,17 +259,7 @@ def detail(slug, d, ui, slugs, data, logos, quotes, year):
         </div>
       </div>
     </section>
-{faq_block(d['faq'], ui['faqTitle'])}
-    <!-- ============ AUTRES COMPARATIFS ============ -->
-    <section class="sec">
-      <div class="wrap">
-        <div class="alt-more reveal">
-          <h3>{e(ui['relatedTitle'])}</h3>
-          <nav class="fpills" aria-label="{a(ui['relatedTitle'])}">{pills}<a class="fpills__all" href="{LIVE}/alternatives">{e(ui['relatedAll'])}{ARROW}</a></nav>
-        </div>
-      </div>
-    </section>
-  </main>
+{faq_block(d['faq'], ui['faqTitle'])}{more}  </main>
 '''
     return {'out': f'alternatives/{slug}.html', 'title': comparison_title(slug, name, year),
             'description': d.get('metaDescription') or d['tagline'],

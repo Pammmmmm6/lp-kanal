@@ -75,6 +75,63 @@
 .aui__foot { display: flex; justify-content: space-between; margin-top: 4px; padding-top: 8px; border-top: 1px solid var(--line); color: var(--muted); }
 .aui__foot strong { color: var(--fg); font-weight: 600; }
 
+/* ---------- Défilement de fonctionnalités (façon Gleap) : titres collants à gauche, grandes cartes à droite ---------- */
+.fx { max-width: 1080px; margin: 40px auto 0; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; align-items: start; }
+.fx__nav { position: sticky; top: 112px; display: flex; flex-direction: column; gap: 4px; padding-top: 28px; }
+.fx__nav a { font-size: 18px; line-height: 26px; letter-spacing: -0.2px; color: var(--fg-40); transition: color .25s var(--ease); text-wrap: balance; }
+.fx__nav a:hover { color: var(--fg-70); }
+.fx__nav a.is-on { color: var(--fg); }
+.fx__list { display: flex; flex-direction: column; gap: 16px; }
+.fx__card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 24px; min-height: 400px; padding: 8px 8px 8px 32px; border-radius: 28px; background: var(--card); scroll-margin-top: 96px; }
+.fx__text { display: flex; flex-direction: column; align-items: flex-start; padding: 28px 0; }
+.fx__eyebrow { display: flex; align-items: center; gap: 8px; font-size: 14px; line-height: 20px; color: var(--muted); }
+.fx__eyebrow svg, .fx__eyebrow img { width: 22px; height: 22px; border-radius: 7px; flex: none; }
+.fx__text h3 { margin-top: 18px; font-size: 30px; line-height: 36px; font-weight: 500; letter-spacing: -0.6px; text-wrap: balance; }
+.fx__desc { margin-top: 14px; font-size: 16px; line-height: 26px; color: var(--muted); text-wrap: pretty; }
+.fx__text .btn { margin-top: auto; }
+.fx__text .fx__desc + .btn { margin-top: 24px; }
+.fx__media.feature__visual { min-height: 0; padding: 32px 24px; border-radius: 22px; }
+
+/* mini-interface : la liste des fonctionnalités, celle de la carte mise en avant */
+.fxui { width: 100%; max-width: 330px; padding: 5px; border-radius: 18px; background: var(--surface); box-shadow: 0 0 0 1px rgba(10, 10, 10, .04), 0 24px 48px -20px rgba(30, 30, 60, .35), 0 6px 14px -8px rgba(30, 30, 60, .2); text-align: left; }
+.fxui__rows { list-style: none; margin: 0; padding: 3px; border-radius: 13px; background: var(--card); box-shadow: inset 0 0 0 1px var(--line); }
+.fxui__row { display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 10px; opacity: .5; }
+.fxui__row b { font-size: 13px; line-height: 18px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fxui__ico { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 8px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-2); color: var(--fg); }
+.fxui__ico svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.fxui__sw { position: relative; width: 28px; height: 16px; border-radius: 9999px; background: var(--line-2); transition: background-color .35s var(--ease) .5s; }
+.fxui__sw::after { content: ""; position: absolute; top: 2px; left: 2px; width: 12px; height: 12px; border-radius: 9999px; background: #fff; box-shadow: 0 1px 2px rgba(0, 0, 0, .25); transition: transform .35s var(--ease) .5s; }
+.fxui__row.is-on { opacity: 1; background: var(--surface); box-shadow: 0 0 0 1px var(--line), 0 8px 18px -12px rgba(10, 10, 10, .35); }
+.fxui__row.is-on .fxui__ico { background: var(--ink); color: var(--bg); box-shadow: none; }
+.fxui__row.is-on .fxui__sw, .fxui__row.is-done .fxui__sw { background: #22c55e; }
+.fxui__row.is-on .fxui__sw::after, .fxui__row.is-done .fxui__sw::after { transform: translateX(12px); }
+.reveal:not(.is-visible) .fxui__row.is-on .fxui__sw { background: var(--line-2); }
+.reveal:not(.is-visible) .fxui__row.is-on .fxui__sw::after { transform: none; }
+
+/* ---------- Liste en une seule surface (cas d'usage, étapes) ---------- */
+.ulist { max-width: 1080px; margin: 40px auto 0; display: grid; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); border-radius: 24px; background: var(--card); }
+.ulist__item { padding: 32px; }
+.ulist__item + .ulist__item { box-shadow: inset 1px 0 0 var(--line-2); }
+.ulist__num { display: inline-flex; align-items: center; height: 26px; padding: 0 11px; border-radius: 9999px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-2); font-size: 12.5px; font-weight: 500; color: var(--fg-70); font-variant-numeric: tabular-nums; }
+.ulist__item h3 { margin-top: 18px; font-size: 18px; line-height: 26px; font-weight: 500; letter-spacing: -0.18px; text-wrap: balance; }
+.ulist__item p { margin-top: 8px; font-size: 15px; line-height: 24px; color: var(--muted); text-wrap: pretty; }
+
+/* ---------- Pour aller plus loin : même composition que le menu Produit ---------- */
+.rel { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; padding: 8px; border-radius: 28px; background: var(--card); }
+.rel__main { display: flex; flex-direction: column; gap: 16px; padding: 24px 16px 24px 28px; }
+.rel__label { font-size: 14px; line-height: 20px; color: var(--muted); }
+.rel__big { display: flex; flex-direction: column; align-items: flex-start; }
+.rel__big a { display: inline-flex; align-items: center; gap: 12px; font-size: 26px; line-height: 40px; letter-spacing: -0.4px; color: var(--fg); transition: opacity .15s; }
+.rel__big a img, .rel__big a svg { width: 26px; height: 26px; border-radius: 8px; flex: none; }
+.rel__big:hover a { opacity: .45; }
+.rel__big a:hover, .rel__big a:focus-visible { opacity: 1; }
+.rel__all { margin-top: auto; align-self: flex-start; }
+.rel .mega__card { min-height: 380px; }
+.rel__links { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+.rel__links a { display: inline-flex; align-items: flex-start; gap: 8px; max-width: 420px; font-size: 20px; line-height: 28px; color: #fff; transition: opacity .15s; }
+.rel__links a:hover { opacity: .75; }
+.rel__links svg { width: 12px; height: 12px; flex: none; margin-top: 9px; }
+
 
 @media (max-width: 1000px) {
   .ahow__head, .shead { grid-template-columns: 1fr; gap: 20px; }
@@ -82,6 +139,11 @@
   .duo { grid-template-columns: 1fr; min-height: 0; }
   .duo--rev .duo__media { order: 0; }
   .duo__media.feature__visual { min-height: 360px; }
+  .fx { grid-template-columns: minmax(0, 1fr); }
+  .fx__nav { display: none; }
+  .rel { grid-template-columns: minmax(0, 1fr); }
+  .ulist { grid-template-columns: minmax(0, 1fr); }
+  .ulist__item + .ulist__item { box-shadow: inset 0 1px 0 var(--line-2); }
 }
 @media (max-width: 640px) {
   .ah { padding-top: 48px; }
@@ -91,4 +153,15 @@
   .duo__text { padding: 32px 24px 24px; }
   .duo__text h2 { font-size: 24px; line-height: 31px; }
   .duo__media.feature__visual { min-height: 0; padding: 28px 16px; }
+  .fx__card { grid-template-columns: minmax(0, 1fr); gap: 0; min-height: 0; padding: 8px; border-radius: 24px; }
+  .fx__text { padding: 20px 16px 24px; }
+  .fx__text h3 { font-size: 24px; line-height: 30px; letter-spacing: -0.4px; }
+  .fx__media.feature__visual { padding: 28px 14px; border-radius: 18px; }
+  .ulist__item { padding: 24px 22px; }
+  .rel__main { padding: 20px 16px; }
+  .rel__big a { font-size: 21px; line-height: 34px; }
+  .rel .mega__card { min-height: 300px; }
 }
+
+/* titres de guides lisibles sur le panneau peint */
+.rel .mega__card-text span { color: #fff; }
