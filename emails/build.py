@@ -18,12 +18,17 @@ import os
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE = 'https://getkanal.com'
 
-# ---------- Jetons (css/style.css, adaptés au mail : contraste un peu plus fort) ----------
+# ---------- Jetons : mêmes valeurs que css/style.css (:root), calculées sur fond blanc ----------
+# --fg #0a0a0a · --fg-70 rgba(10,10,10,.7) → #545454 · --muted #7d8187 · --card #f9f8f6
+# --line rgba(37,37,37,.08) → #ededed · --line-2 rgba(0,0,0,.1) → #e6e6e6
+# --btn-soft #edecea (bouton 44 px) · --btn-light #f2f1ef (pastilles, bouton 40 px)
 C = {
-    'page': '#f4f3f0', 'card': '#ffffff', 'soft': '#f9f8f6', 'fg': '#0a0a0a', 'fg70': '#3d3f43',
-    'muted': '#6f737a', 'line': '#ebe9e6', 'pill': '#f2f1ef', 'btn_soft': '#edecea', 'green': '#15803d',
+    'page': '#f4f3f0', 'card': '#ffffff', 'soft': '#f9f8f6', 'fg': '#0a0a0a', 'fg70': '#545454',
+    'muted': '#7d8187', 'line': '#ededed', 'line2': '#e6e6e6', 'pill': '#f2f1ef', 'btn_soft': '#edecea',
+    'btn_light': '#f2f1ef',
+    'fg70_on_pill': '#504f4f',  # --fg-70 fondu sur --btn-light, comme sur le site
 }
-FONT = "'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+FONT = "'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
 e = lambda s: html.escape(s, quote=False)
 a = lambda s: html.escape(s, quote=True)
 
@@ -45,117 +50,134 @@ class Mail:
     def link(self, url):
         return utm(url if url.startswith('http') else SITE + url, self.campaign)
 
-    # ---- briques ----
+    # ---- briques : chaque composant reprend les mesures de son équivalent sur le site ----
     def row(self, inner, pad='0 32px', cls=''):
         return f'<tr><td class="px {cls}" style="padding:{pad};">{inner}</td></tr>\n'
 
     def pill(self, text, dot=False):
+        """.ah__eyebrow : 28 px, 0 12 px, --btn-light, 13/20 medium, --fg-70."""
         d = (f'<span style="display:inline-block;width:6px;height:6px;border-radius:9999px;background:#22c55e;'
-             f'vertical-align:middle;margin:0 7px 2px 0;"></span>') if dot else ''
-        return (f'<span class="pill" style="display:inline-block;padding:5px 12px;border-radius:9999px;background:{C["pill"]};'
-                f'font-family:{FONT};font-size:13px;line-height:18px;font-weight:500;color:{C["fg70"]};">{d}{e(text)}</span>')
+             f'vertical-align:middle;margin:0 8px 2px 0;"></span>') if dot else ''
+        return (f'<span class="pill" style="display:inline-block;padding:4px 12px;border-radius:9999px;background:{C["pill"]};'
+                f'font-family:{FONT};font-size:13px;line-height:20px;font-weight:500;color:{C["fg70_on_pill"]};white-space:nowrap;">{d}{e(text)}</span>')
 
-    def title(self, main, muted=None, size=32):
-        lh = round(size * 1.18)
+    def outline_pill(self, text):
+        """.ulist__num / .step__num : blanc, filet --line-2, 12,5 px medium, 26 px de haut."""
+        return (f'<span class="pill-card" style="display:inline-block;padding:0 11px;border-radius:9999px;background:#ffffff;'
+                f'border:1px solid {C["line2"]};font-family:{FONT};font-size:12.5px;line-height:24px;font-weight:500;'
+                f'color:{C["fg70"]};white-space:nowrap;">{e(text)}</span>')
+
+    def title(self, main, muted=None):
+        """Titre de hero, à l'échelle mobile du site (.fh__title : 36/40, -0.6 px), seconde ligne en --muted."""
         sub = f'<br /><span class="muted" style="color:{C["muted"]};">{e(muted)}</span>' if muted else ''
-        return (f'<h1 class="fg" style="margin:0;font-family:{FONT};font-size:{size}px;line-height:{lh}px;font-weight:500;'
+        return (f'<h1 class="fg h1" style="margin:0;font-family:{FONT};font-size:36px;line-height:40px;font-weight:500;'
                 f'letter-spacing:-0.6px;color:{C["fg"]};">{e(main)}{sub}</h1>')
 
     def h2(self, main, muted=None):
+        """.shead__title : 28/36, -0.28 px, seconde ligne --muted."""
         sub = f'<br /><span class="muted" style="color:{C["muted"]};">{e(muted)}</span>' if muted else ''
-        return (f'<h2 class="fg" style="margin:0;font-family:{FONT};font-size:22px;line-height:28px;font-weight:500;'
-                f'letter-spacing:-0.3px;color:{C["fg"]};">{e(main)}{sub}</h2>')
+        return (f'<h2 class="fg h2" style="margin:0;font-family:{FONT};font-size:28px;line-height:36px;font-weight:500;'
+                f'letter-spacing:-0.28px;color:{C["fg"]};">{e(main)}{sub}</h2>')
 
     def p(self, text, size=16, color=None, raw=False):
+        """Texte courant du site : 16/26 en --muted (.shead__intro p, .fx__desc)."""
         body = text if raw else e(text)
-        return (f'<p class="txt" style="margin:0;font-family:{FONT};font-size:{size}px;line-height:{round(size * 1.6)}px;'
-                f'color:{color or C["fg70"]};">{body}</p>')
+        lh = {18: 29, 16: 26, 15: 24, 14: 22}.get(size, round(size * 1.6))
+        return (f'<p class="txt" style="margin:0;font-family:{FONT};font-size:{size}px;line-height:{lh}px;'
+                f'color:{color or C["muted"]};">{body}</p>')
 
-    def image(self, name, alt, href=None, width=552, radius=20):
+    def image(self, name, alt, href=None, width=536, radius=24):
+        """Panneau peint exporté du site (rayon 24 px comme .fh__panel)."""
         tag = (f'<img src="{a(self.img(name))}" width="{width}" alt="{a(alt)}" '
                f'style="display:block;width:100%;max-width:{width}px;height:auto;border:0;border-radius:{radius}px;" />')
         return f'<a href="{a(self.link(href))}" target="_blank">{tag}</a>' if href else tag
 
     def button(self, text, href, kind='dark'):
-        bg, fg = (C['fg'], '#ffffff') if kind == 'dark' else (C['btn_soft'], C['fg'])
-        cls = 'btn-dark' if kind == 'dark' else 'btn-soft'
+        """.btn--lg : 44 px, 0 24 px, pilule, 16/24 regular. dark = --btn-dark, soft = --btn-soft,
+        light = .btn--light.btn--nav (40 px, 0 18 px, 14/20 medium)."""
+        bg, fg = {'dark': (C['fg'], '#ffffff'), 'soft': (C['btn_soft'], C['fg']), 'light': (C['btn_light'], C['fg'])}[kind]
+        pad, size, lh, weight = ('10px 18px', 14, 20, 500) if kind == 'light' else ('10px 24px', 16, 24, 400)
         return (f'<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="display:inline-table;"><tr>'
-                f'<td class="{cls}" bgcolor="{bg}" style="border-radius:9999px;background:{bg};">'
-                f'<a class="{cls}-a" href="{a(self.link(href))}" target="_blank" style="display:inline-block;padding:12px 22px;'
-                f'font-family:{FONT};font-size:15px;line-height:20px;font-weight:500;color:{fg};text-decoration:none;'
-                f'border-radius:9999px;">{e(text)}</a></td></tr></table>')
+                f'<td class="btn-{kind}" bgcolor="{bg}" style="border-radius:9999px;background:{bg};">'
+                f'<a class="btn-{kind}-a" href="{a(self.link(href))}" target="_blank" style="display:inline-block;padding:{pad};'
+                f'font-family:{FONT};font-size:{size}px;line-height:{lh}px;font-weight:{weight};color:{fg};text-decoration:none;'
+                f'border-radius:9999px;white-space:nowrap;">{e(text)}</a></td></tr></table>')
 
     def buttons(self, *btns):
-        cells = ''.join(f'<td style="padding:0 8px 8px 0;">{b}</td>' for b in btns)
+        """.ah__ctas : 12 px entre les boutons."""
+        cells = ''.join(f'<td class="bcell" style="padding:0 12px 12px 0;">{b}</td>' for b in btns)
         return f'<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>{cells}</tr></table>'
 
     def text_link(self, text, href):
-        return (f'<a class="fg" href="{a(self.link(href))}" target="_blank" style="font-family:{FONT};font-size:15px;'
-                f'line-height:22px;font-weight:500;color:{C["fg"]};text-decoration:none;">{e(text)} &rarr;</a>')
+        """Action secondaire dans un contenu : bouton clair 40 px, comme « See pricing » sur le site."""
+        return self.button(text, href, 'light')
 
     def spacer(self, h):
         return f'<tr><td style="height:{h}px;line-height:{h}px;font-size:0;">&nbsp;</td></tr>\n'
 
     def numbered(self, items, label=lambda i: f'{i + 1:02d}'):
-        """Liste à une seule surface (composant .ulist du site) : pastille, titre, texte, filet entre les lignes."""
+        """.ulist : une seule surface --card (rayon 24), filet --line-2 entre les éléments,
+        pastille contour au-dessus du titre (18/26 medium, -0.18 px) et du texte (15/24 --muted)."""
         rows = []
         for i, (t, d) in enumerate(items):
-            border = f'border-top:1px solid {C["line"]};' if i else ''
+            border = f'border-top:1px solid {C["line2"]};' if i else ''
             rows.append(
-                f'<tr><td class="line" style="{border}padding:18px 22px;">'
-                f'<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%"><tr>'
-                f'<td valign="top" width="78" style="padding-top:1px;"><span class="pill-card" style="display:inline-block;padding:3px 10px;'
-                f'border-radius:9999px;background:#ffffff;border:1px solid {C["line"]};font-family:{FONT};font-size:12px;line-height:16px;'
-                f'font-weight:500;color:{C["fg70"]};white-space:nowrap;">{e(label(i))}</span></td>'
-                f'<td valign="top"><p class="fg" style="margin:0;font-family:{FONT};font-size:16px;line-height:22px;font-weight:500;color:{C["fg"]};">{e(t)}</p>'
-                f'<p class="txt" style="margin:4px 0 0;font-family:{FONT};font-size:14px;line-height:22px;color:{C["muted"]};">{e(d)}</p></td>'
-                f'</tr></table></td></tr>')
+                f'<tr><td class="line2" style="{border}padding:24px 28px;">'
+                f'{self.outline_pill(label(i))}'
+                f'<p class="fg" style="margin:16px 0 0;font-family:{FONT};font-size:18px;line-height:26px;font-weight:500;'
+                f'letter-spacing:-0.18px;color:{C["fg"]};">{e(t)}</p>'
+                f'<p class="txt" style="margin:6px 0 0;font-family:{FONT};font-size:15px;line-height:24px;color:{C["muted"]};">{e(d)}</p>'
+                f'</td></tr>')
         return (f'<table role="presentation" class="soft" width="100%" cellpadding="0" cellspacing="0" border="0" '
-                f'style="background:{C["soft"]};border-radius:20px;">{"".join(rows)}</table>')
+                f'style="background:{C["soft"]};border-radius:24px;">{"".join(rows)}</table>')
 
     def checks(self, items):
+        """.ea-list : coche dans un cercle blanc 18 px à filet --line-2, texte 15/22 --fg-70."""
         rows = ''.join(
-            f'<tr><td valign="top" width="28" style="padding:6px 0;"><span style="display:inline-block;width:18px;height:18px;border-radius:9999px;'
-            f'background:{C["fg"]};color:#ffffff;font-family:{FONT};font-size:11px;line-height:18px;text-align:center;">&#10003;</span></td>'
-            f'<td class="txt" style="padding:6px 0;font-family:{FONT};font-size:15px;line-height:22px;color:{C["fg70"]};">'
-            f'<strong class="fg" style="color:{C["fg"]};font-weight:500;">{e(t)}</strong> {e(d)}</td></tr>' for t, d in items)
+            f'<tr><td valign="top" width="28" style="padding:5px 0;"><span class="pill-card" style="display:inline-block;width:16px;height:16px;'
+            f'border-radius:9999px;background:#ffffff;border:1px solid {C["line2"]};color:{C["fg"]};font-family:Arial,sans-serif;'
+            f'font-size:10px;line-height:16px;font-weight:700;text-align:center;">&#10003;</span></td>'
+            f'<td class="txt2" style="padding:5px 0;font-family:{FONT};font-size:15px;line-height:22px;color:{C["fg70"]};">'
+            f'<span class="fg" style="color:{C["fg"]};font-weight:500;">{e(t)}</span> {e(d)}</td></tr>' for t, d in items)
         return f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">{rows}</table>'
 
     def quote_card(self, label, text):
-        """Une demande telle qu'un marchand la tape (bulle grise + pastille)."""
+        """Une demande telle qu'un marchand la tape : carte --card rayon 24, pastille, texte --fg."""
         return (f'<table role="presentation" class="soft" width="100%" cellpadding="0" cellspacing="0" border="0" '
-                f'style="background:{C["soft"]};border-radius:18px;"><tr><td style="padding:16px 18px;">'
+                f'style="background:{C["soft"]};border-radius:24px;"><tr><td style="padding:20px 24px;">'
                 f'{self.pill(label)}'
-                f'<p class="fg" style="margin:10px 0 0;font-family:{FONT};font-size:16px;line-height:24px;color:{C["fg"]};">&ldquo;{e(text)}&rdquo;</p>'
+                f'<p class="fg" style="margin:12px 0 0;font-family:{FONT};font-size:16px;line-height:24px;color:{C["fg"]};">&ldquo;{e(text)}&rdquo;</p>'
                 f'</td></tr></table>')
 
     def article(self, img, label, title, desc, href):
+        """Article à la une : image, pastille, titre 20/28 (.icard h2), texte 15/24 --muted."""
         return (f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td>'
-                f'{self.image(img, title, href, radius=16)}</td></tr>'
-                f'<tr><td style="padding-top:16px;">{self.pill(label)}</td></tr>'
+                f'{self.image(img, title, href)}</td></tr>'
+                f'<tr><td style="padding-top:20px;">{self.pill(label)}</td></tr>'
                 f'<tr><td style="padding-top:12px;"><a class="fg" href="{a(self.link(href))}" target="_blank" style="font-family:{FONT};'
-                f'font-size:20px;line-height:27px;font-weight:500;letter-spacing:-0.2px;color:{C["fg"]};text-decoration:none;">{e(title)}</a></td></tr>'
-                f'<tr><td style="padding-top:6px;">{self.p(desc, 15, C["muted"])}</td></tr></table>')
+                f'font-size:20px;line-height:28px;font-weight:500;letter-spacing:-0.2px;color:{C["fg"]};text-decoration:none;">{e(title)}</a></td></tr>'
+                f'<tr><td style="padding-top:6px;">{self.p(desc, 15)}</td></tr></table>')
 
     def article_row(self, img, title, desc, href):
+        """Article en ligne : vignette rayon 16, titre 16/24 medium, texte 15/24 --muted."""
         return (f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>'
-                f'<td class="stack" valign="top" width="168" style="padding-right:18px;">'
+                f'<td class="stack" valign="top" width="168" style="padding-right:20px;">'
                 f'<a href="{a(self.link(href))}" target="_blank"><img src="{a(self.img(img))}" width="168" alt="{a(title)}" '
-                f'style="display:block;width:168px;max-width:100%;height:auto;border:0;border-radius:12px;" /></a></td>'
+                f'style="display:block;width:168px;max-width:100%;height:auto;border:0;border-radius:16px;" /></a></td>'
                 f'<td class="stack" valign="top"><a class="fg" href="{a(self.link(href))}" target="_blank" style="font-family:{FONT};font-size:16px;'
-                f'line-height:22px;font-weight:500;color:{C["fg"]};text-decoration:none;">{e(title)}</a>'
-                f'<p class="txt" style="margin:6px 0 0;font-family:{FONT};font-size:14px;line-height:21px;color:{C["muted"]};">{e(desc)}</p></td>'
+                f'line-height:24px;font-weight:500;color:{C["fg"]};text-decoration:none;">{e(title)}</a>'
+                f'<p class="txt" style="margin:4px 0 0;font-family:{FONT};font-size:15px;line-height:24px;color:{C["muted"]};">{e(desc)}</p></td>'
                 f'</tr></table>')
 
     def signoff(self, text):
         return (f'<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>'
                 f'<td valign="middle" width="52"><img src="{a(self.img("nicolas.jpg"))}" width="40" height="40" alt="Nicolas" '
                 f'style="display:block;width:40px;height:40px;border-radius:9999px;border:0;" /></td>'
-                f'<td valign="middle" style="font-family:{FONT};font-size:15px;line-height:21px;color:{C["fg70"]};" class="txt">'
+                f'<td valign="middle" style="font-family:{FONT};font-size:15px;line-height:22px;color:{C["fg70"]};" class="txt2">'
                 f'{e(text)}<br /><span class="fg" style="color:{C["fg"]};font-weight:500;">Nicolas, Kanal</span></td></tr></table>')
 
     def hr(self):
-        return self.row(f'<div class="line" style="border-top:1px solid {C["line"]};font-size:0;line-height:0;">&nbsp;</div>')
+        return self.row(f'<div class="line" style="border-top:1px solid {C["line"]};font-size:0;line-height:0;">&nbsp;</div>')  # --line
 
     # ---- document ----
     def document(self, subject, preheader, body):
@@ -185,19 +207,27 @@ class Mail:
     .card {{ width:100% !important; border-radius:0 !important; }}
     .px {{ padding-left:20px !important; padding-right:20px !important; }}
     .stack {{ display:block !important; width:100% !important; padding:0 0 12px !important; }}
-    h1 {{ font-size:28px !important; line-height:33px !important; }}
+    .bcell {{ display:inline-block !important; }}
+    .h1 {{ font-size:32px !important; line-height:36px !important; }}
+    .h2 {{ font-size:24px !important; line-height:31px !important; }}
   }}
   @media (prefers-color-scheme: dark) {{
+    /* [data-theme="dark"] du site : --bg #0a0a0a, --card #141414, --surface #191919, --fg #f4f4f2,
+       --fg-70 rgba(244,244,242,.7), --muted #8b8f95, --line .08, --line-2 .12, --btn-light #222, --btn-soft #252525 */
     .page {{ background:#0a0a0a !important; }}
     .card {{ background:#141414 !important; }}
-    .soft {{ background:#1c1c1c !important; }}
+    .soft {{ background:#191919 !important; }}
     .fg {{ color:#f4f4f2 !important; }}
-    .txt {{ color:#b9bcc1 !important; }}
+    .txt {{ color:#8b8f95 !important; }}
+    .txt2 {{ color:#b2b2b0 !important; }}
     .muted {{ color:#8b8f95 !important; }}
-    .pill, .pill-card {{ background:#252525 !important; color:#d6d7d9 !important; border-color:#2e2e2e !important; }}
+    .pill {{ background:#222222 !important; color:#b2b2b0 !important; }}
+    .pill-card {{ background:#191919 !important; color:#b2b2b0 !important; border-color:#333333 !important; }}
     .line {{ border-color:#262626 !important; }}
+    .line2 {{ border-color:#2e2e2e !important; }}
     .btn-dark {{ background:#f4f4f2 !important; }} .btn-dark-a {{ color:#0a0a0a !important; }}
     .btn-soft {{ background:#252525 !important; }} .btn-soft-a {{ color:#f4f4f2 !important; }}
+    .btn-light {{ background:#222222 !important; }} .btn-light-a {{ color:#f4f4f2 !important; }}
     .logo-light {{ display:none !important; }}
     .logo-dark {{ display:block !important; max-height:none !important; }}
   }}
@@ -240,7 +270,7 @@ def mcp_launch(m):
     b += m.spacer(18)
     b += m.row(m.title('Run Kanal from your AI assistant.', 'Just ask, in plain language.'))
     b += m.spacer(18)
-    b += m.row(m.p('Hi {{first_name}},', raw=True))
+    b += m.row(m.p('Hi {{first_name}},', color=C['fg70'], raw=True))
     b += m.spacer(12)
     b += m.row(m.p('You can now connect Kanal to Claude, Claude Code, Codex or Cursor. Your assistant measures, prepares '
                    'and builds in your Kanal account: WhatsApp campaigns, segments and automations. And no campaign goes out '
@@ -319,8 +349,8 @@ def product_update(m):
         b += m.spacer(16)
         b += m.row(m.text_link('Learn more', href))
     b += m.spacer(44)
-    b += m.row(f'<table role="presentation" class="soft" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:{C["soft"]};border-radius:20px;">'
-               f'<tr><td style="padding:24px 24px 18px;">{m.h2("Want a walkthrough?", "15 minutes, on your own store.")}'
+    b += m.row(f'<table role="presentation" class="soft" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:{C["soft"]};border-radius:24px;">'
+               f'<tr><td style="padding:28px 28px 16px;">{m.h2("Want a walkthrough?", "15 minutes, on your own store.")}'
                f'<div style="height:16px;line-height:16px;font-size:0;">&nbsp;</div>{m.buttons(m.button("Book a demo", "/demo"))}</td></tr></table>')
     b += m.spacer(32)
     b += m.row(m.signoff('Questions or ideas? Just reply, it comes straight to us.'))
