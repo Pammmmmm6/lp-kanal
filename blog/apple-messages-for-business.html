@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Apple Messages for Business: how it works in 2026 | Kanal</title>
+  <meta name="description" content="Apple Messages for Business lets customers message a company from the Messages app. Requirements, approved providers, cost, rules and how it compares." />
+  <link rel="icon" href="../assets/mark.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css?v=202610190940" />
+  <link rel="stylesheet" href="../css/pages.css?v=202610190940" />
+  <link rel="stylesheet" href="../css/blog.css?v=202610190940" />
+  <script>
+    var t = null; try { t = localStorage.getItem('kanal-theme'); } catch (e) {}
+    if (t) document.documentElement.setAttribute('data-theme', t);
+  </script>
+</head>
+<body>
+
+  <!-- Mascot (reusable shape) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <path id="bubble" d="M100 14C52 14 13 50 13 95c0 23 10 44 27 59L28 190l42-18c9.4 3 19.6 4.6 30 4.6 48 0 87-36 87-81S148 14 100 14z" />
+      <symbol id="logo-whatsapp" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="#25D366" /><g transform="translate(16 16) scale(.94) translate(-16 -16)"><path d="M16 6.6a9.4 9.4 0 0 0-8.1 14.2L6.7 25.3l4.6-1.2A9.4 9.4 0 1 0 16 6.6z" fill="none" stroke="#fff" stroke-width="1.9" stroke-linejoin="round" /><path d="M12.7 11.3c.3-.3.8-.3 1 .1l.9 1.8c.2.3.1.7-.1 1l-.6.6c.5 1.2 1.5 2.2 2.7 2.7l.6-.6c.3-.3.7-.3 1-.1l1.8.9c.4.2.4.7.1 1l-.7.8c-.6.6-1.4.8-2.2.5-2.4-.9-4.3-2.8-5.2-5.2-.3-.8-.1-1.6.5-2.2z" fill="#fff" /></g></symbol>
+      <symbol id="logo-instagram" viewBox="0 0 32 32"><defs><radialGradient id="igGrad" cx="28%" cy="108%" r="140%"><stop offset="0" stop-color="#fdf497" /><stop offset=".08" stop-color="#fdf497" /><stop offset=".42" stop-color="#fd5949" /><stop offset=".62" stop-color="#d6249f" /><stop offset=".95" stop-color="#285aeb" /></radialGradient></defs><rect width="32" height="32" rx="9" fill="url(#igGrad)" /><rect x="7.4" y="7.4" width="17.2" height="17.2" rx="5" fill="none" stroke="#fff" stroke-width="2" /><circle cx="16" cy="16" r="4.1" fill="none" stroke="#fff" stroke-width="2" /><circle cx="21.4" cy="10.6" r="1.25" fill="#fff" /></symbol>
+      <symbol id="logo-imessage" viewBox="0 0 32 32"><defs><linearGradient id="imGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5df876" /><stop offset="1" stop-color="#0ac12b" /></linearGradient></defs><rect width="32" height="32" rx="9" fill="url(#imGrad)" /><path d="M16 8.4c-5.2 0-9.4 3.4-9.4 7.6 0 2.4 1.4 4.6 3.6 6-.2 1.3-.9 2.5-1.9 3.3 2-.1 3.7-.9 4.9-2 .9.2 1.8.3 2.8.3 5.2 0 9.4-3.4 9.4-7.6S21.2 8.4 16 8.4z" fill="#fff" /></symbol>
+      <symbol id="logo-rcs" viewBox="0 0 32 32"><defs><linearGradient id="rcsGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f8df9" /><stop offset="1" stop-color="#1a5fe0" /></linearGradient></defs><rect width="32" height="32" rx="9" fill="url(#rcsGrad)" /><path d="M9.5 8.5h13a3 3 0 0 1 3 3v7.4a3 3 0 0 1-3 3h-7.2l-4.4 3.4v-3.4H9.5a3 3 0 0 1-3-3v-7.4a3 3 0 0 1 3-3z" fill="#fff" /><text x="16" y="18.6" text-anchor="middle" font-family="Geist, Arial, sans-serif" font-size="6.6" font-weight="700" letter-spacing=".2" fill="#1a5fe0">RCS</text></symbol>
+      <symbol id="logo-fincut" viewBox="0 0 256 256"><rect width="256" height="256" fill="#FFF647" /><path d="M132.507 41.7793C72.3543 41.7793 44 70.09 44 129.674V214.189H89.6077V171.509H175.401V150.803H89.6077V129.674C89.6077 83.6143 103.417 61.8546 132.507 61.8546C161.598 61.8546 175.65 83.6143 175.65 129.674H222C222 70.09 193.153 41.7793 132.507 41.7793Z" fill="#1B1B1B" /></symbol>
+      <symbol id="logo-shopify" viewBox="0 0 51 57"><path fill="#00CA43" d="M34.21 56.11C32.80 55.99 31.17 55.74 28.96 55.29C28.41 55.18 27.51 55.05 26.96 55.00C26.41 54.95 25.70 54.85 25.38 54.79C22.96 54.27 21.87 54.07 20.98 54.00C19.83 53.90 19.09 53.75 18.14 53.45C17.78 53.34 17.12 53.21 16.68 53.17C15.10 53.00 13.44 52.74 12.53 52.50C11.96 52.35 10.81 52.16 9.53 52.00C8.21 51.84 7.12 51.66 6.52 51.50C5.94 51.34 4.89 51.16 3.81 51.04C1.76 50.79 1.48 50.72 1.21 50.40C0.84 49.96 0.80 49.61 0.95 48.04C1.02 47.26 1.10 46.32 1.13 45.96C1.20 45.00 1.39 43.62 1.62 42.38C1.73 41.78 1.86 40.75 1.92 40.08C2.08 37.94 2.26 36.48 2.46 35.58C2.70 34.52 2.86 33.30 3.04 31.21C3.12 30.34 3.31 28.89 3.47 28.00C3.74 26.50 3.91 25.13 4.04 23.46C4.13 22.29 4.34 20.82 4.55 19.82C4.66 19.28 4.81 18.40 4.87 17.85C5.00 16.75 5.11 16.45 5.53 16.13C6.08 15.71 7.24 15.25 8.26 15.04C8.81 14.93 9.70 14.67 10.23 14.46C10.77 14.25 11.31 14.03 11.44 13.99C11.76 13.86 12.06 13.48 12.17 13.06C12.47 11.97 13.23 9.72 13.46 9.25C13.61 8.95 13.83 8.46 13.95 8.17C14.07 7.87 14.35 7.35 14.57 7.00C14.79 6.66 15.27 5.89 15.63 5.31C16.46 3.96 18.00 2.40 19.17 1.71C20.10 1.16 21.82 0.58 22.67 0.52C23.63 0.46 25.25 0.97 26.17 1.64C26.44 1.83 26.73 1.95 27.06 2.01C27.32 2.06 27.73 2.13 27.96 2.18C28.44 2.27 29.82 3.00 30.39 3.46C30.96 3.94 31.62 4.78 31.96 5.49C32.69 6.99 32.85 7.10 34.27 7.07C35.56 7.05 35.46 6.99 37.25 8.69C39.62 10.93 39.42 10.83 41.55 10.83C44.08 10.83 43.99 10.75 44.54 13.75C44.87 15.52 44.95 16.15 45.08 17.79C45.13 18.42 45.25 19.21 45.37 19.68C45.66 20.79 45.89 22.16 46.00 23.52C46.05 24.16 46.19 25.21 46.30 25.86C46.41 26.51 46.59 27.57 46.71 28.21C46.82 28.85 46.95 29.79 47.00 30.29C47.15 31.72 47.48 33.81 47.66 34.53C47.76 34.89 47.87 35.63 47.92 36.16C47.97 36.69 48.04 37.51 48.09 37.98C48.13 38.45 48.24 39.13 48.33 39.48C48.42 39.84 48.55 40.50 48.63 40.96C48.70 41.42 48.80 41.95 48.84 42.15C48.88 42.35 48.96 42.96 49.00 43.51C49.05 44.07 49.18 45.07 49.29 45.74C49.78 48.67 49.94 49.86 49.98 51.06L50.02 52.33L49.74 52.61C49.51 52.84 49.33 52.92 48.79 53.04C48.42 53.12 47.66 53.33 47.08 53.51C46.51 53.69 45.63 53.91 45.12 53.99C44.62 54.08 43.72 54.31 43.12 54.50C42.53 54.68 41.54 54.93 40.92 55.04C40.30 55.15 39.42 55.35 38.96 55.50C37.39 55.99 35.54 56.22 34.21 56.11ZM16.35 12.60C16.78 12.42 17.31 12.23 17.54 12.17C18.67 11.87 18.83 11.67 19.20 10.11C19.38 9.36 20.10 7.73 20.60 6.96C22.02 4.74 22.22 4.46 22.83 3.90C23.70 3.10 23.85 2.77 23.50 2.42C23.02 1.93 21.03 2.58 19.50 3.71C18.46 4.49 17.99 5.03 16.78 6.83C16.29 7.57 14.97 10.21 14.83 10.75C14.78 10.95 14.65 11.29 14.54 11.50C14.29 12.01 14.23 12.33 14.36 12.58C14.62 13.09 15.16 13.10 16.35 12.60ZM23.06 10.55C23.51 10.35 24.18 10.12 24.54 10.04C26.52 9.61 26.86 8.89 26.29 6.38C25.80 4.18 25.33 4.04 23.81 5.61C22.63 6.84 21.16 9.37 21.14 10.24C21.11 11.02 21.78 11.13 23.06 10.55ZM29.92 8.40C31.05 7.91 31.08 7.35 30.04 5.78C29.30 4.67 28.66 4.24 28.20 4.54C27.94 4.71 27.93 5.15 28.17 6.50C28.26 7.03 28.33 7.57 28.33 7.70C28.33 8.55 28.94 8.83 29.92 8.40Z"/><path fill="#009932" d="M35.56 55.96C35.45 55.85 35.43 55.73 35.47 55.38C35.51 55.05 35.48 54.83 35.34 54.45L35.16 53.95L35.19 38.08C35.21 29.35 35.20 19.28 35.16 15.69C35.07 7.43 35.11 7.10 35.96 7.58C36.16 7.70 36.96 8.40 37.74 9.13C38.52 9.87 39.30 10.55 39.47 10.63C39.75 10.77 40.05 10.80 41.58 10.83C44.15 10.89 43.99 10.74 44.54 13.75C44.87 15.52 44.95 16.15 45.08 17.79C45.13 18.42 45.25 19.21 45.37 19.68C45.66 20.79 45.89 22.16 46.00 23.52C46.05 24.16 46.19 25.21 46.30 25.86C46.41 26.51 46.59 27.57 46.71 28.21C46.82 28.85 46.95 29.79 47.00 30.29C47.15 31.72 47.48 33.81 47.66 34.53C47.76 34.89 47.87 35.63 47.92 36.16C47.97 36.69 48.04 37.51 48.09 37.98C48.13 38.45 48.24 39.13 48.33 39.48C48.42 39.84 48.55 40.50 48.63 40.96C48.70 41.42 48.80 41.95 48.84 42.15C48.88 42.35 48.96 42.96 49.00 43.51C49.05 44.07 49.18 45.07 49.29 45.74C49.98 49.84 50.16 51.86 49.88 52.40C49.73 52.70 49.30 52.95 48.79 53.03C48.61 53.07 47.91 53.26 47.24 53.47C46.57 53.67 45.61 53.91 45.11 54.00C44.62 54.08 43.72 54.31 43.12 54.50C42.53 54.68 41.59 54.91 41.04 55.01C40.49 55.10 39.61 55.30 39.08 55.46C37.44 55.96 35.79 56.20 35.56 55.96Z"/><path fill="#fff" d="M15.96 46.37C15.73 46.31 15.00 46.16 14.33 46.04C13.00 45.81 12.78 45.72 11.52 44.89C10.51 44.22 10.23 43.87 10.18 43.16C10.14 42.53 10.27 41.82 10.63 40.89C11.13 39.54 11.31 39.50 13.04 40.33C14.28 40.92 14.72 41.05 15.69 41.13C17.11 41.25 17.76 40.90 18.40 39.70C19.01 38.54 18.45 37.01 17.02 35.95C16.66 35.69 16.14 35.26 15.85 35.01C15.56 34.75 15.00 34.28 14.60 33.96C13.41 32.99 12.34 31.60 12.15 30.77C12.00 30.10 12.00 26.25 12.16 25.48C12.28 24.88 12.79 23.91 13.86 22.27C14.82 20.81 16.37 19.69 18.33 19.04C18.72 18.91 19.27 18.70 19.55 18.58C20.79 18.02 24.12 17.85 25.51 18.26C26.25 18.49 26.50 19.16 26.21 20.13C26.14 20.36 26.01 20.99 25.91 21.54C25.54 23.72 25.04 24.32 23.77 24.08C23.17 23.97 21.03 24.02 20.29 24.17C19.75 24.27 18.80 24.74 18.37 25.12C17.68 25.71 17.44 26.84 17.82 27.71C18.09 28.30 19.42 29.59 20.34 30.12C20.72 30.35 21.30 30.76 21.62 31.04C21.95 31.32 22.48 31.76 22.82 32.03C23.93 32.92 25.25 35.01 25.64 36.52C26.11 38.34 25.11 42.19 23.71 43.95C23.42 44.31 22.23 45.33 21.80 45.59C21.64 45.68 21.01 45.91 20.40 46.10C19.30 46.44 19.28 46.45 17.83 46.47C16.74 46.49 16.27 46.47 15.96 46.37Z"/></symbol>
+      <symbol id="logo-kanal" viewBox="0 0 96 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.8489 19.5168L8.57724 21.7999C7.18839 23.1957 6.49477 23.8928 5.64432 23.9854C5.46971 24.0049 5.29509 24.0049 5.12047 23.9854C4.27164 23.8928 3.57641 23.1957 2.18918 21.7999C0.800328 20.404 0.10671 19.707 0.0145514 18.8539C-0.00485046 18.6784 -0.00485046 18.5029 0.0145514 18.3274C0.10671 17.4743 0.800328 16.7756 2.18918 15.3814L4.46081 13.0984C5.02993 12.5264 5.02993 11.5986 4.46081 11.0282L2.18918 8.74522C0.800328 7.34941 0.10671 6.65232 0.0145514 5.79923C-0.00485046 5.62374 -0.00485046 5.44825 0.0145514 5.27276C0.10671 4.41967 0.800328 3.72096 2.18918 2.32515C3.57803 0.929337 4.27164 0.232245 5.12047 0.139624C5.29509 0.120125 5.46971 0.120125 5.64432 0.139624C6.49315 0.232245 7.18839 0.929337 8.57724 2.32515L10.8489 4.60816C14.9459 8.72572 14.9459 15.4009 10.8489 19.5185V19.5168Z" fill="currentColor"/> <path fill-rule="evenodd" clip-rule="evenodd" d="M15.3337 19.3918L16.4695 21.6749C17.164 23.0707 17.5108 23.7678 17.936 23.8604C18.0233 23.8799 18.1106 23.8799 18.1979 23.8604C18.6223 23.7678 18.9699 23.0707 19.6636 21.6749C20.358 20.279 20.7048 19.582 20.7509 18.7289C20.7606 18.5534 20.7606 18.3779 20.7509 18.2024C20.7048 17.3493 20.358 16.6506 19.6636 15.2564L18.5278 12.9734C18.2432 12.4014 18.2432 11.4736 18.5278 10.9032L19.6636 8.62022C20.358 7.22441 20.7048 6.52732 20.7509 5.67423C20.7606 5.49874 20.7606 5.32325 20.7509 5.14776C20.7048 4.29467 20.358 3.59596 19.6636 2.20015C18.9691 0.804337 18.6223 0.107245 18.1979 0.0146243C18.1106 -0.00487477 18.0233 -0.00487477 17.936 0.0146243C17.5116 0.107245 17.164 0.804337 16.4695 2.20015L15.3337 4.48316C13.2852 8.60072 13.2852 15.2759 15.3337 19.3935V19.3918Z" fill="currentColor"/> <path d="M40.0654 21.9814L33.3463 13.3782V21.9814H29.4592V2.49188H33.3463V10.5383L39.3991 2.49188H44.4801L36.9558 11.6241L45.0354 21.9814H40.0654Z" fill="currentColor"/> <path d="M50.5804 22.3434C46.61 22.3434 43.4448 18.9745 43.4448 14.7981C43.4448 10.6218 46.61 7.19722 50.5804 7.19722C53.0793 7.19722 54.3842 8.22738 55.1616 9.78654V7.50348H58.8822V21.9814H55.2449V19.6148C54.4675 21.2575 53.1626 22.3434 50.5804 22.3434ZM47.1931 14.7703C47.1931 16.9698 48.8034 18.9466 51.1912 18.9466C53.6623 18.9466 55.2449 17.0534 55.2449 14.7981C55.2449 12.5429 53.6623 10.594 51.1912 10.594C48.8034 10.594 47.1931 12.5151 47.1931 14.7703Z" fill="currentColor"/> <path d="M60.5539 21.9814V7.50348H64.2467V9.61949C64.9963 8.00464 66.4401 7.16937 68.6613 7.16937C71.771 7.16937 74.1588 9.48028 74.1588 13.1276V21.9814H70.4105V14.0464C70.4105 11.5406 69.1611 10.4548 67.3008 10.4548C65.7182 10.4548 64.3022 11.5406 64.3022 14.0464V21.9814H60.5539Z" fill="currentColor"/> <path d="M82.2782 22.3434C78.3078 22.3434 75.1425 18.9745 75.1425 14.7981C75.1425 10.6218 78.3078 7.19722 82.2782 7.19722C84.777 7.19722 86.082 8.22738 86.8594 9.78654V7.50348H90.5799V21.9814H86.9427V19.6148C86.1653 21.2575 84.8603 22.3434 82.2782 22.3434ZM78.8908 14.7703C78.8908 16.9698 80.5012 18.9466 82.889 18.9466C85.3601 18.9466 86.9427 17.0534 86.9427 14.7981C86.9427 12.5429 85.3601 10.594 82.889 10.594C80.5012 10.594 78.8908 12.5151 78.8908 14.7703Z" fill="currentColor"/> <path d="M92.2517 21.9814V1.65661H96V21.9814H92.2517Z" fill="currentColor"/></symbol>
+      <symbol id="logo-meta" viewBox="0 0 32 32"><defs><linearGradient id="metaGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0064E1" /><stop offset=".5" stop-color="#0082FB" /><stop offset="1" stop-color="#0064E1" /></linearGradient></defs><path d="M5 19.2c0-5 2.6-9.2 5.6-9.2 3.4 0 5.2 4.6 7.9 9 1.7 2.8 3 3.8 4.4 3.8 1.9 0 3.1-1.7 3.1-4.4 0-4.9-2.6-8.4-5.5-8.4-3 0-4.8 3.6-7.4 8.2-1.8 3.2-3.2 4.6-4.9 4.6C6.4 22.8 5 21.4 5 19.2z" fill="none" stroke="url(#metaGrad)" stroke-width="3.4" stroke-linejoin="round" /></symbol>
+      <symbol id="logo-gads" viewBox="0 0 32 32"><path d="M16.4 6 7 22.4" stroke="#FBBC04" stroke-width="7.2" stroke-linecap="round" /><path d="M15.6 6 25 22.4" stroke="#4285F4" stroke-width="7.2" stroke-linecap="round" /><circle cx="7" cy="22.4" r="3.9" fill="#34A853" /></symbol>
+      <symbol id="logo-sms" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="#1F2937" /><path d="M16 8.5c-5 0-9 3.2-9 7.2 0 2.3 1.3 4.3 3.4 5.6l-.7 3.2 3.5-2c.9.2 1.8.3 2.8.3 5 0 9-3.2 9-7.1s-4-7.2-9-7.2z" fill="#fff" /><text x="16" y="17.9" text-anchor="middle" font-family="Geist, system-ui, sans-serif" font-size="5.6" font-weight="700" fill="#1F2937">SMS</text></symbol>
+      <symbol id="logo-kanal-mark" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="#111110" /><svg x="5.5" y="5" width="21" height="22" viewBox="-1.5 -1 24 26" color="#fff"><use href="#logo-kanal" width="96" height="24" /></svg></symbol>
+      <symbol id="ext" viewBox="0 0 10 10"><path d="M3 7 7 3M4 3h3v3" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" /></symbol>
+      <symbol id="chev" viewBox="0 0 12 12"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></symbol>
+    </defs>
+  </svg>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="../index.html" class="logo" aria-label="Kanal home"><svg class="logo__kanal" viewBox="0 0 96 24" role="img" aria-label="Kanal"><use href="#logo-kanal" /></svg></a>
+      <nav class="nav__links" aria-label="Main navigation">
+        <div class="nav__item has-menu has-mega">
+          <button class="nav__link" aria-expanded="false">Product <svg class="chev"><use href="#chev" /></svg></button>
+          <div class="mega">
+            <div class="mega__main">
+              <nav class="mega__big"><a href="../whatsapp-shopify.html">WhatsApp for Shopify</a><a href="../abandoned-cart-recovery.html">Cart recovery</a><a href="../whatsapp-campaigns.html">WhatsApp campaigns</a><a href="../whatsapp-ai-agent.html">AI agent</a><a href="../order-notifications.html">Order notifications</a><a href="../back-in-stock.html">Back in stock</a><a href="../post-purchase-upsell.html">Post-purchase upsell</a><a href="../review-collection.html">Review collection</a><a href="../automations.html">Automations</a></nav>
+              <div class="mega__groups"><div class="mega__group"><div class="mega__label">Connect</div><a href="../mcp.html">Kanal MCP</a><a href="../whatsapp-integration.html">Integrations</a><a href="https://developers.getkanal.com/">Developer API</a></div><div class="mega__group"><div class="mega__label">Channels</div><a href="https://getkanal.com/instagram">Instagram</a><a href="https://getkanal.com/sms">SMS</a><a href="../rcs.html">RCS</a></div></div>
+            </div>
+            <a class="mega__card mega__card--a" href="../case-studies.html">
+              <span class="mega__card-text"><strong>Case studies</strong><span>See how Shopify brands grow their sales with Kanal.</span></span>
+              <span class="mega__card-btn">Read stories</span>
+            </a>
+          </div>
+        </div>
+        <a class="nav__link" href="../case-studies.html">Case Studies</a>
+        <div class="nav__item has-menu has-mega">
+          <button class="nav__link" aria-expanded="false">Resources <svg class="chev"><use href="#chev" /></svg></button>
+          <div class="mega">
+            <div class="mega__main">
+              <nav class="mega__big"><a href="../blog.html">Blog</a><a href="https://getkanal.com/tools">Free tools</a><a href="https://getkanal.com/whatsapp-marketing-glossary">WhatsApp glossary</a><a href="https://getkanal.com/alternatives">Comparisons</a><a href="https://getkanal.com/best-shopify-apps">Best Shopify apps</a><a href="https://help.getkanal.com/">Help center</a></nav>
+              <div class="mega__groups"><div class="mega__group"><div class="mega__label">Learn</div><a href="https://developers.getkanal.com/">Developer API</a><span class="mega__soon">Playbooks <em>Soon</em></span></div><div class="mega__group"><div class="mega__label">Company</div><a href="../affiliate.html">Affiliate program</a><a href="https://getkanal.com/careers">Careers</a><a href="https://getkanal.com/contact">Contact</a><a href="../demo.html">Book a demo</a></div></div>
+            </div>
+            <a class="mega__card mega__card--b" href="../mcp.html">
+              <span class="mega__card-text"><strong>Kanal MCP</strong><span>Plug Kanal into Claude, Codex or Cursor.</span></span>
+              <span class="mega__card-btn">Discover MCP</span>
+            </a>
+          </div>
+        </div>
+        <a class="nav__link" href="../affiliate.html">Affiliate</a>
+        <a class="nav__link" href="../pricing.html">Pricing</a>
+      </nav>
+      <div class="nav__cta">
+        <a href="../demo.html" class="btn btn--light btn--nav hide-sm">Book a demo</a>
+        <div class="split">
+          <a href="https://apps.shopify.com/kanal-marketing-ai" class="split__main">Install Kanal</a>
+          <button class="split__more" aria-label="More options" aria-expanded="false"><svg><use href="#chev" /></svg></button>
+          <div class="menu menu--right">
+            <a href="https://apps.shopify.com/kanal-marketing-ai" class="menu__item"><span class="menu__ico"><svg aria-hidden="true"><use href="#logo-shopify" /></svg></span><span class="menu__txt"><strong>Install with Shopify</strong><small>Set up in 5 minutes from Shopify</small></span><svg class="menu__ext" aria-hidden="true"><use href="#ext" /></svg></a>
+            <a href="../demo.html" class="menu__item"><span class="menu__ico"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3.5" y="4.5" width="13" height="12" rx="3" /><path d="M3.5 8.5h13M7 2.8v3.4M13 2.8v3.4" /></svg></span><span class="menu__txt"><strong>Book a demo</strong><small>See Kanal on your own store</small></span></a>
+            <span class="menu__sep" aria-hidden="true"></span>
+            <a href="https://app.getkanal.com/login" class="menu__item"><span class="menu__ico"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="7.5" r="3" /><path d="M4.5 16.5c.8-2.6 3-4 5.5-4s4.7 1.4 5.5 4" /></svg></span><span class="menu__txt"><strong>Log in</strong><small>Access your Kanal account</small></span><svg class="menu__ext" aria-hidden="true"><use href="#ext" /></svg></a>
+          </div>
+        </div>
+        <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+      </div>
+    </div>
+    <div class="mobile-menu">
+      <a href="../whatsapp-shopify.html">Product</a><a href="../case-studies.html">Case Studies</a><a href="../blog.html">Resources</a><a href="../affiliate.html">Affiliate</a><a href="../pricing.html">Pricing</a><a href="https://app.getkanal.com/login">Log in</a>
+      <a href="https://apps.shopify.com/kanal-marketing-ai" class="btn btn--dark">Install Kanal</a>
+    </div>
+  </header>
+
+  <main class="post-page">
+    <article class="post">
+      <div class="wrap">
+        <header class="post__head">
+          <nav class="post__crumbs reveal" aria-label="Breadcrumb"><a href="../blog.html">Blog</a><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5" /></svg><a href="../blog.html#tag-shopify">Shopify</a></nav>
+          <h1 class="post__title reveal" style="--d:1">Apple Messages for Business: how it works in 2026</h1>
+          <p class="post__lead reveal" style="--d:2">Apple Messages for Business lets customers message a company from the Messages app. Requirements, approved providers, cost, rules and how it compares.</p>
+          <div class="bmeta post__meta reveal" style="--d:3"><img class="bmeta__av" src="../assets/blog/nicolas-provost.jpg" alt="" width="24" height="24" /><span><strong>Nicolas Provost</strong>Oct 7, 2026 · 11 min read</span></div>
+        </header>
+        <figure class="post__cover reveal reveal--up"><img src="https://getkanal.com/images/blog/apple-messages-business-hero.webp" alt="Apple Messages for Business: how it works in 2026" width="1200" height="675" fetchpriority="high" /></figure>
+        <div class="post__col">
+          <section class="post__takeaways reveal" aria-labelledby="key-takeaways">
+            <h2 id="key-takeaways">Key takeaways</h2>
+            <ul><li>Apple Messages for Business lets customers open a conversation with a registered company in the Messages app, and the customer always writes first.</li><li>Apple does not charge for the channel, but you must connect through an Apple-approved Messaging Service Provider, which may charge for its services.</li><li>Live agents are mandatory during business hours, and marketing messages are allowed only after the customer has sent the word subscribe.</li><li>It only works on Apple devices, so treat it as a support channel for iPhone customers, not as a marketing channel.</li></ul>
+          </section>
+          <div class="prose">
+<p>Apple Messages for Business is Apple's channel for conversations between customers and companies inside the Messages app on iPhone, iPad and Mac. The customer always starts the conversation, the company answers through an Apple-approved Messaging Service Provider, and Apple itself does not charge for the channel.</p>
+<p>This guide is for online merchants and support teams weighing it up: what customers see, what you need to launch, the rules Apple enforces, what it costs, and how it compares with iMessage, SMS, RCS and WhatsApp. The facts come from <a href="https://register.apple.com/resources/messages/messaging-documentation/" target="_blank" rel="noopener">Apple's documentation</a> (version 3.1, last updated July 21, 2026), read on October 7, 2026.</p>
+<h2 id="what-is-apple-messages-for-business">What is Apple Messages for Business?</h2>
+<p>It is a business channel that lives in the same Messages app people use for iMessage and texts. A customer taps a button or a link, a conversation with your brand opens in Messages, and your team (or your bot, then your team) answers from a support console.</p>
+<p>Three points to keep in mind from the start:</p>
+<ul>
+<li><strong>It only works on Apple devices.</strong> Apple's <a href="https://register.apple.com/resources/messages/messaging-documentation/faq" target="_blank" rel="noopener">FAQ</a> says "Apple devices running iOS 11.3 or later or macOS 10.13.4 or later support Apple Messages for Business". A customer on Android cannot use it.</li>
+<li><strong>It used to be called Business Chat.</strong> Apple's <a href="https://register.apple.com/resources/messages/messaging-documentation/doc-rev-history" target="_blank" rel="noopener">revision history</a> records the change in version 2.0.0, dated September 20, 2021: "Rebranded Business Chat to Messages for Business".</li>
+<li><strong>It is not iMessage.</strong> Apple lists the differences: the purpose is business-to-customer, it requires a business account registered with Apple, it adds business features, and its messages "are encrypted, but with a different mechanism than personal iMessage". Apple's naming rules ask companies to say "Apple Messages", never "iMessage". If you were looking for "iMessage for business", this is the product. For the consumer service, see <a href="../blog/what-is-imessage.html">what iMessage is</a>.</li>
+</ul>
+<h2 id="how-do-customers-start-a-conversation">How do customers start a conversation?</h2>
+<figure><img src="https://getkanal.com/images/screenshots/apple-messages-docs-customer-journey.webp" alt="Apple Messages for Business documentation page on planning the customer journey and channel goals" loading="lazy" decoding="async" /></figure>
+<p>The customer always writes first. Apple calls the places where a conversation can begin entry points. Its FAQ lists them:</p>
+<ul>
+<li>a Messages button on your website or mobile site</li>
+<li>your iOS or iPadOS app</li>
+<li>email marketing</li>
+<li>QR codes and NFC tags</li>
+<li>your Apple Maps listing</li>
+<li>a registered business phone number, through Message Suggest</li>
+<li>Wallet passes</li>
+</ul>
+<p>Message Suggest deserves a note. When a customer taps one of your registered phone numbers, the iPhone offers to message you instead of calling. Apple presents it as a way to deflect calls toward messaging.</p>
+<p>What makes the channel different from a phone number based one:</p>
+<ul>
+<li><strong>No phone number, on either side.</strong> Apple states that the channel "doesn't use a phone number for your business account". Your business is identified by a Business ID, and each customer by an anonymous identifier called an Opaque ID. Your team does not see the customer's phone number unless the customer chooses to share it.</li>
+<li><strong>One-to-one only.</strong> "Group chat with a business is not supported."</li>
+<li><strong>The customer can end it.</strong> Apple's <a href="https://support.apple.com/en-us/102053" target="_blank" rel="noopener">customer help page</a> shows people how to delete a conversation and tap Leave Conversation to stop receiving messages from a business.</li>
+</ul>
+<h2 id="what-can-a-conversation-include">What can a conversation include?</h2>
+<p>Plain text works, but Apple pushes brands toward interactive features. Its page on <a href="https://register.apple.com/resources/messages/messaging-documentation/customer-journey" target="_blank" rel="noopener">planning the customer journey</a> describes them:</p>
+<div class="post__table"><table><thead><tr><th>Feature</th><th>What it does</th></tr></thead><tbody><tr><td>Quick Reply</td><td>Lets the customer answer with a single tap, from two to five options</td></tr><tr><td>List Picker</td><td>Presents options in a scrollable sheet, with an image, a title and a short description</td></tr><tr><td>Time Picker</td><td>Shows available time slots and flags conflicts with the customer's calendar</td></tr><tr><td>Apple Pay</td><td>Lets the customer pay with Face ID or Touch ID without leaving Messages</td></tr><tr><td>Forms</td><td>Multi-page flows with text fields, dropdowns, checkboxes and date pickers</td></tr><tr><td>Authentication</td><td>Lets the customer sign in to their account in the conversation, using OAuth2</td></tr><tr><td>Rich Links</td><td>Shows a link with a preview image, a title and the source URL</td></tr><tr><td>App Extension</td><td>Embeds part of your app in the conversation</td></tr></tbody></table></div>
+<p>For an online store, Apple's own examples are order support (track an order, change a delivery window), purchases completed with Apple Pay inside the conversation, and account help.</p>
+<h2 id="what-do-you-need-to-get-started">What do you need to get started?</h2>
+<figure><img src="https://getkanal.com/images/screenshots/apple-messages-docs-register.webp" alt="Apple Messages for Business documentation with the step by step guide to register an account" loading="lazy" decoding="async" /></figure>
+<p>You cannot switch the channel on by yourself. Apple's documentation describes a path with several gates:</p>
+<ol>
+<li><strong>Select a Messaging Service Provider.</strong> Apple writes: "To qualify for an Apple Messages for Business account, your company needs to select an Apple-approved Messaging Service Provider (MSP)."</li>
+<li><strong>Register on Apple Business Register.</strong> Following Apple's <a href="https://register.apple.com/resources/messages/messaging-documentation/register-your-acct" target="_blank" rel="noopener">registration guide</a>, you create an internal test account with a business Apple Account that uses your corporate email. Personal accounts are not accepted.</li>
+<li><strong>Build and test the experience</strong> with your provider: automation, hand-off to live agents, interactive features, entry points.</li>
+<li><strong>Pass the Experience Review.</strong> Every account must pass <a href="https://register.apple.com/resources/messages/messaging-documentation/xp-review" target="_blank" rel="noopener">this review</a> before going live. Your provider submits a screen recording of the full customer journey, and Apple says most accounts need one to three rounds of review.</li>
+<li><strong>Go live.</strong> Apple turns the test account into a commercial account, reviews your brand name and logo (it says this typically takes 1 to 3 business days), and you enable your entry points.</li>
+</ol>
+<p>The conditions that weigh most on a small team, from Apple's <a href="https://register.apple.com/resources/messages/messaging-documentation/policies" target="_blank" rel="noopener">policies</a>, FAQ and <a href="https://register.apple.com/resources/messages/messaging-documentation/conversation-best-practices" target="_blank" rel="noopener">conversation design standards</a>:</p>
+<ul>
+<li><strong>Live agents are mandatory.</strong> "The business must provide access to a live agent in this channel during its regular business hours. A business must not provide a limited or bot-only solution."</li>
+<li><strong>Bots must identify themselves, fast.</strong> An automated agent has to disclose that it is automated and send a welcome within 5 seconds of the first message.</li>
+<li><strong>One commercial account per business</strong>, for all use cases, business lines and territories.</li>
+<li><strong>Some businesses are excluded.</strong> The policies list prohibited categories (tobacco, vaping, firearms and gambling among them) and add: "At this time, Apple is not onboarding businesses that primarily offer medical or health-related services or products."</li>
+</ul>
+<h2 id="which-providers-can-connect-you">Which providers can connect you?</h2>
+<p>Only those on Apple's list. A bot or a helpdesk cannot plug into the channel directly: Apple's FAQ says automation must connect through an approved provider.</p>
+<p>As of October 7, 2026, the list published on <a href="https://register.apple.com/messages" target="_blank" rel="noopener">Apple Business Register</a> includes, among others, Zendesk, Salesforce, Freshworks, Genesys, LivePerson, Infobip, Sprinklr, Microsoft Dynamics, Amazon Web Services, LiveChat, Khoros, NICE and Webex by Cisco.</p>
+<p>Each provider adds its own conditions on top of Apple's. Zendesk, for instance, says in its <a href="https://support.zendesk.com/hc/en-us/articles/8030634178458-Adding-and-configuring-the-Apple-Messages-for-Business-channel" target="_blank" rel="noopener">help center</a> (read October 7, 2026) that it is certified by Apple as a Messaging Service Provider, and that a Zendesk account needs a Professional, Enterprise or Enterprise+ subscription with messaging or Chat activated, an active AI agent or third-party bot, and a Professional Services package.</p>
+<p>The practical first step: check whether the support tool you already use is on Apple's list.</p>
+<h2 id="is-apple-messages-for-business-available-on-shopify">Is Apple Messages for Business available on Shopify?</h2>
+<p>Not through Shopify itself, as far as its App Store shows. The listing for <a href="https://apps.shopify.com/apple-business-chat" target="_blank" rel="noopener">Apple Business Chat for Inbox</a>, an app developed by Shopify, reads as of October 7, 2026: "This app is not currently available on the Shopify App Store."</p>
+<p>A Shopify store that wants the channel therefore goes through an Apple-approved provider, typically the helpdesk that already handles its support tickets.</p>
+<h2 id="how-much-does-apple-messages-for-business-cost">How much does Apple Messages for Business cost?</h2>
+<p>Apple does not charge for it. The FAQ is explicit: "while Apple provides Apple Messages for Business for free, an MSP may charge for their services." On the question of the total, Apple's answer is: "Cost depends on your deployment scope and Messaging Service Provider (MSP) selection." It sends you to your provider for pricing.</p>
+<figure><img src="https://getkanal.com/images/screenshots/apple-messages-docs-faq.webp" alt="Apple Messages for Business FAQ, including the question about the business cost of deploying it" loading="lazy" decoding="async" /></figure>
+<p>Budget for three things, then: your provider's plan, the setup work needed to pass the review, and the people who answer, since the channel cannot run on a bot alone.</p>
+<h2 id="what-are-the-rules-for-messaging-customers">What are the rules for messaging customers?</h2>
+<p>This is where the channel differs most from a marketing channel. Apple's <a href="https://register.apple.com/resources/messages/messaging-documentation/policies" target="_blank" rel="noopener">policies</a> set the limits:</p>
+<ul>
+<li><strong>No unsolicited messages.</strong> "Your business may only send a message in response to an active conversation", with the exceptions below.</li>
+<li><strong>Transactional notifications are allowed.</strong> You may send important notifications about a customer's account status or previous transactions, provided you tell them so and let them send "Unsubscribe".</li>
+<li><strong>Marketing needs an explicit request.</strong> "At no time may your business send marketing information, promotional offers, or information related to products or services that the customer has not purchased unless the customer has expressly sent 'subscribe' and provided their permission."</li>
+<li><strong>A deleted conversation is closed.</strong> When a customer deletes the conversation, you must stop messaging them until they write again.</li>
+<li><strong>Standard trigger words.</strong> Customers must be able to type "agent" (or "support", "help") to reach a person, and "unsubscribe" (or "spam", "stop", "end") to manage their preferences.</li>
+<li><strong>Personal data comes last.</strong> You may not ask for personal information before it is necessary to handle the request.</li>
+</ul>
+<h2 id="how-does-it-compare-with-imessage-sms-rcs-and-whatsapp">How does it compare with iMessage, SMS, RCS and WhatsApp?</h2>
+<div class="post__table"><table><thead><tr><th></th><th>Apple Messages for Business</th><th>iMessage</th><th>WhatsApp Business Platform</th></tr></thead><tbody><tr><td>Purpose</td><td>Business to customer</td><td>Person to person</td><td>Business to customer</td></tr><tr><td>Who writes first</td><td>The customer</td><td>Either person</td><td>The customer, or the business with an approved template and the customer's opt-in</td></tr><tr><td>Customer devices</td><td>Apple devices</td><td>Apple devices</td><td>Android phones and iPhones</td></tr><tr><td>Marketing messages</td><td>Only after the customer sends "subscribe"</td><td>Not a business channel</td><td>To customers who opted in, through approved templates</td></tr><tr><td>How a business connects</td><td>An Apple-approved provider, then Apple's Experience Review</td><td>Not applicable</td><td>The WhatsApp Business Platform</td></tr><tr><td>Fee charged by the platform owner</td><td>None from Apple, the provider may charge</td><td>None</td><td>Messages are priced under WhatsApp's pricing policy</td></tr></tbody></table></div>
+<p>Sources, read on October 7, 2026: Apple's <a href="https://register.apple.com/resources/messages/messaging-documentation/faq" target="_blank" rel="noopener">documentation</a> and the <a href="https://business.whatsapp.com/policy" target="_blank" rel="noopener">WhatsApp Business Messaging Policy</a> (last updated September 23, 2026), which states: "You may only initiate conversations using an approved Message Template."</p>
+<p>Two more channels reach the same Messages app through carriers instead of Apple:</p>
+<ul>
+<li><strong>SMS.</strong> It reaches mobile numbers without any app. Consent rules and costs are covered in our <a href="../blog/business-sms-ecommerce-guide.html">business SMS guide</a>.</li>
+<li><strong>RCS business messages.</strong> Apple's <a href="https://support.apple.com/en-us/122195" target="_blank" rel="noopener">RCS page</a> notes that some businesses can send alerts and updates on orders through RCS messaging, and that iPhone users can turn RCS Business Messages off. See the <a href="../blog/rcs-message-complete-guide.html">RCS guide</a> and, for a store, Kanal's page on <a href="../rcs.html">RCS, the rich SMS</a>.</li>
+</ul>
+<p>For a side-by-side view of the carrier channels and WhatsApp, read <a href="../blog/sms-vs-mms-vs-rcs-vs-whatsapp.html">SMS vs MMS vs RCS vs WhatsApp</a>. For the personal apps, see <a href="../blog/imessage-vs-whatsapp.html">iMessage vs WhatsApp</a>.</p>
+<h2 id="is-apple-messages-for-business-worth-it-for-an-online-store">Is Apple Messages for Business worth it for an online store?</h2>
+<p>It depends on what you want the channel to do.</p>
+<p>It makes sense when:</p>
+<ul>
+<li>a large share of your customers use an iPhone</li>
+<li>you already run a staffed support desk on a tool that appears on Apple's list</li>
+<li>your use case is service: order questions, returns, appointments, payments inside the conversation</li>
+</ul>
+<p>It fits poorly when:</p>
+<ul>
+<li>you want to send campaigns, since promotional messages require the customer to have sent "subscribe" first</li>
+<li>your customers are split between iPhone and Android, since the channel leaves Android out</li>
+<li>you have no one to answer during business hours, since a bot-only setup is not accepted</li>
+</ul>
+<p>In short, treat it as a support channel for iPhone customers, not as a marketing channel.</p>
+<h2 id="where-kanal-fits">Where Kanal fits</h2>
+<p>Kanal does not offer Apple Messages for Business and is not one of Apple's Messaging Service Providers. Kanal is a WhatsApp marketing and sales app for Shopify stores: campaigns and broadcasts, abandoned cart recovery, order notifications, an AI agent and a team inbox. It sends WhatsApp and SMS messages, not iMessage.</p>
+<figure><img src="https://getkanal.com/images/screenshots/kanal-whatsapp-shopify.webp" alt="Kanal page presenting its WhatsApp app for Shopify stores, with install and demo buttons" loading="lazy" decoding="async" /></figure>
+<p>The two channels answer different needs. Apple Messages for Business waits for the customer to write. On WhatsApp, a store can also write first to customers who opted in, which is what <a href="../whatsapp-campaigns.html">WhatsApp campaigns</a> and cart reminders rely on. If that is the job you have in mind, see how <a href="../whatsapp-shopify.html">Kanal works with Shopify</a>.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ============ FAQ ============ -->
+    <section class="sec post-faq" id="faq">
+      <div class="wrap wrap--narrow cols cols--top">
+        <h2 class="reveal">Frequently asked questions</h2>
+        <div class="faq reveal">
+          <details open>
+            <summary>What is Apple Messages for Business?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Apple Messages for Business is Apple's channel for conversations between customers and registered companies inside the Messages app on Apple devices. The customer starts the conversation from an entry point such as a website button, Apple Maps or a tapped phone number, and the company answers through an Apple-approved Messaging Service Provider. It was called Business Chat until Apple renamed it in 2021.</p></div>
+          </details>
+          <details>
+            <summary>Is Apple Messages for Business free?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Apple does not charge for the channel. Its documentation, read on October 7, 2026, says that Apple provides Apple Messages for Business for free, but that a Messaging Service Provider may charge for its services, and that the cost depends on your deployment scope and on the provider you select. You also need live agents during business hours.</p></div>
+          </details>
+          <details>
+            <summary>Is Apple Messages for Business the same as iMessage?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>No. Apple lists the differences: Apple Messages for Business is business-to-customer rather than person-to-person, it requires a business account registered with Apple, it has business features such as List Pickers, Time Pickers and Apple Pay, and its messages are encrypted with a different mechanism than personal iMessage. Apple asks companies never to call it iMessage.</p></div>
+          </details>
+          <details>
+            <summary>Can a business send marketing messages with Apple Messages for Business?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Only with the customer's explicit request. Apple's policies prohibit unsolicited messages and state that a business may not send marketing information or promotional offers unless the customer has expressly sent the word subscribe and given permission. Notifications about an account or a past transaction are allowed, with an unsubscribe notice. The customer always writes first.</p></div>
+          </details>
+          <details>
+            <summary>Do I need a provider to use Apple Messages for Business?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Yes. Apple's documentation states that a company needs the services of an Apple-approved Messaging Service Provider, and that bots cannot connect through a direct technical connection. The provider supplies the agent console, automation and integrations. Apple publishes the list of approved providers on its Apple Business Register site, where Zendesk, Salesforce and Genesys appear, among others.</p></div>
+          </details>
+          <details>
+            <summary>Does Kanal offer Apple Messages for Business?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>No. Kanal does not offer Apple Messages for Business and is not one of Apple's Messaging Service Providers. Kanal is a WhatsApp marketing and sales app for Shopify stores, and it does not send iMessage. A store that wants Apple Messages for Business needs one of the providers on Apple's list.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ARTICLES SUGGÉRÉS ============ -->
+    <section class="sec post-related">
+      <div class="wrap">
+        <div class="bhead reveal">
+          <h2>Suggested articles</h2>
+          <a class="btn btn--light btn--nav" href="../blog.html">All articles</a>
+        </div>
+        <div class="bgrid bgrid--related"><a class="bcard reveal reveal--up" style="--d:0" href="../blog/shopify-return-policy.html" data-tags="shopify-returns shopify return-policy customer-service"><div class="bcard__media"><img src="https://getkanal.com/images/blog/shopify-return-policy-hero.webp" alt="" width="1200" height="675" loading="lazy" decoding="async" /></div><div class="bcard__body"><span class="btag">Shopify</span><h3 class="bcard__title">Shopify Return Policy: How to Create One and Set Rules</h3><p class="bcard__desc">How to create a return policy on Shopify: the written policy page, return rules, self-serve returns, return labels, restocking fees and documented limits.</p><span class="bcard__meta">Oct 7, 2026 · 11 min read</span></div></a><a class="bcard reveal reveal--up" style="--d:1" href="../blog/shopify-inbox.html" data-tags="shopify-inbox shopify live-chat customer-service ai-agent"><div class="bcard__media"><img src="https://getkanal.com/images/blog/shopify-inbox-hero.webp" alt="" width="1200" height="675" loading="lazy" decoding="async" /></div><div class="bcard__body"><span class="btag">Shopify</span><h3 class="bcard__title">Shopify Inbox: What It Is, What It Does and Its Limits</h3><p class="bcard__desc">Shopify Inbox explained: the chat app built by Shopify for online stores, its AI Inbox agent, instant answers, quick replies, requirements and limits.</p><span class="bcard__meta">Oct 7, 2026 · 10 min read</span></div></a><a class="bcard reveal reveal--up" style="--d:2" href="../blog/tidio-alternatives.html" data-tags="tidio-alternatives tidio live-chat ai-chatbot customer-service whatsapp shopify"><div class="bcard__media"><img src="https://getkanal.com/images/blog/tidio-alternatives-hero.webp" alt="" width="1200" height="675" loading="lazy" decoding="async" /></div><div class="bcard__body"><span class="btag">WhatsApp</span><h3 class="bcard__title">Tidio Alternatives: 10 Live Chat and AI Agent Tools (2026)</h3><p class="bcard__desc">Tidio alternatives compared: AI agents, live chat, WhatsApp and Shopify fit, with starting prices for Kanal, Gorgias, Zendesk, Intercom, Crisp and more.</p><span class="bcard__meta">Sep 11, 2026 · 15 min read</span></div></a></div>
+      </div>
+    </section>
+  </main>
+
+
+
+  <!-- ============ FOOTER (structure Gleap, contenu getkanal.com) ============ -->
+  <footer class="footer">
+    <div class="footer__wrap">
+      <div class="footer__card">
+        <div class="footer__brand">
+          <a href="../index.html" class="footer__logo" aria-label="Kanal home"><svg viewBox="0 0 96 24" role="img" aria-label="Kanal"><use href="#logo-kanal" /></svg></a>
+          <p>The easiest way to boost your Shopify sales with Kanal &amp; WhatsApp marketing.</p>
+          <div class="footer__badges"><div class="footer__badge"><span class="footer__badge-icon"><img src="../assets/certs/meta-mark.svg" alt="" width="24" height="15" /></span><span><small>Official</small>Meta Business Partner</span></div><div class="footer__badge"><span class="footer__badge-icon"><svg aria-hidden="true"><use href="#logo-shopify" /></svg></span><span><small>Official</small>Shopify Partner</span></div><div class="footer__badge"><span class="footer__badge-icon"><img class="fb-full" src="../assets/certs/trust-rgpd.svg" alt="" width="36" height="36" /></span><span><small>Compliant</small>GDPR</span></div><div class="footer__badge"><span class="footer__badge-icon"><img class="fb-full" src="../assets/certs/cert-eu.svg" alt="" width="36" height="36" /></span><span><small>Data hosting</small>European Union</span></div><div class="footer__badge"><span class="footer__badge-icon"><img class="fb-rcs" src="../assets/certs/cert-rcs.svg" alt="" width="21" height="20" /></span><span><small>Google</small>RCS Business Messaging</span></div></div>
+        </div>
+        <nav class="footer__cols" aria-label="Footer">
+          <div><h4>Product</h4><a href="../abandoned-cart-recovery.html">Cart Recovery</a><a href="../post-purchase-upsell.html">Post-Purchase Upsell</a><a href="../review-collection.html">Review Collection</a><a href="../whatsapp-campaigns.html">Campaigns</a><a href="https://getkanal.com/sms">SMS</a><a href="https://getkanal.com/sms-campaigns">SMS Campaigns</a><a href="https://getkanal.com/sms-automation">SMS Automation</a><a href="../rcs.html">RCS marketing</a><a href="../whatsapp-newsletter.html">WhatsApp Newsletter</a><a href="../whatsapp-broadcast.html">WhatsApp Broadcast</a><a href="../whatsapp-marketing.html">WhatsApp Marketing</a><a href="../whatsapp-crm.html">WhatsApp CRM</a><a href="../whatsapp-business-api.html">WhatsApp Business API</a><a href="../whatsapp-ai-agent.html">AI Agent</a><a href="../automations.html">Automations</a><a href="../mcp.html">Kanal MCP</a><a href="../pricing.html">Pricing</a></div>
+          <div><h4>Instagram</h4><a href="https://getkanal.com/instagram">Instagram for Shopify</a><a href="../instagram-auto-reply.html">Auto Reply</a><a href="../instagram-dm-automation.html">DM Automation</a><a href="../instagram-chatbot.html">AI Chatbot</a><a href="../instagram-automation.html">Automation Tool</a><a href="https://getkanal.com/alternatives/manychat">ManyChat Alternative</a></div>
+          <div><h4>Integrations</h4><a href="../whatsapp-integration.html">All Integrations</a><a href="../whatsapp-shopify.html">WhatsApp Shopify</a><a href="../whatsapp-integration/prestashop.html">PrestaShop</a><a href="../whatsapp-integration/klaviyo.html">Klaviyo</a><a href="../whatsapp-integration/gorgias.html">Gorgias</a><a href="../whatsapp-integration/loyoly.html">Loyoly</a><a href="../whatsapp-integration/splio.html">Splio</a><a href="../whatsapp-integration/zendesk.html">Zendesk</a><a href="../whatsapp-integration/crisp.html">Crisp</a><a href="../whatsapp-integration/recharge.html">Recharge</a></div>
+          <div><h4>Resources</h4><a href="../blog.html">Blog</a><a href="../case-studies.html">Case Studies</a><a href="https://getkanal.com/best-shopify-apps">Best Shopify Apps</a><a href="https://getkanal.com/alternatives">Alternatives</a><a href="https://getkanal.com/tools">Tools</a><a href="https://getkanal.com/whatsapp-marketing-glossary">Glossary</a><a href="https://help.getkanal.com/">Help Center</a><a href="https://developers.getkanal.com/">Developer API</a></div>
+          <div><h4>Company</h4><a href="../affiliate.html">Affiliate Program</a><a href="https://getkanal.com/contact">Contact</a><a href="../affiliate.html#partners">Partners</a><a href="https://getkanal.com/whatsapp-marketing-agency">WhatsApp Agency</a><a href="https://getkanal.com/premium-setup">Premium Offer</a><a href="https://getkanal.com/careers">Careers</a><h4 class="footer__sub">Legal</h4><a href="https://getkanal.com/legal/privacy">Privacy Policy</a><a href="https://getkanal.com/legal/terms">Terms of Service</a><a href="https://getkanal.com/legal/sub-processors">Sub-processors</a></div>
+        </nav>
+      </div>
+      <div class="footer__bar">
+        <small>© 2026 Kanal. All rights reserved.</small>
+        <div class="footer__pills">
+          <div class="footer__lang" role="group" aria-label="Language">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" /><path d="M2 8h12M8 2c1.8 1.7 2.6 3.7 2.6 6S9.8 12.3 8 14M8 2C6.2 3.7 5.4 5.7 5.4 8s.8 4.3 2.6 6" /></svg>
+            <a href="#" aria-current="true">English</a>
+            <a href="https://getkanal.com/fr" hreflang="fr" lang="fr">Français</a>
+          </div>
+          <a class="footer__pill" href="https://apps.shopify.com/kanal-marketing-ai/reviews" target="_blank" rel="noopener"><span class="footer__stars">★★★★★</span>5/5 on Shopify</a>
+          <a class="footer__pill" href="https://apps.apple.com/app/kanal-ecommerce-marketing/id6794675748" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.37 12.62c-.02-2.33 1.9-3.45 1.99-3.5-1.08-1.59-2.77-1.8-3.37-1.83-1.43-.15-2.8.85-3.53.85-.73 0-1.85-.83-3.04-.81-1.56.02-3 .91-3.81 2.31-1.63 2.82-.42 6.99 1.17 9.28.78 1.12 1.7 2.37 2.91 2.33 1.17-.05 1.61-.75 3.02-.75 1.41 0 1.81.75 3.04.73 1.26-.02 2.05-1.14 2.82-2.27.89-1.3 1.250-2.56 1.27-2.62-.03-.01-2.44-.94-2.47-3.72zM14.06 5.77c.64-.78 1.08-1.86.96-2.94-.93.04-2.05.62-2.72 1.39-.6.69-1.12 1.79-.98 2.85 1.04.08 2.1-.53 2.74-1.3z" /></svg>App Store</a>
+        </div>
+        <div class="footer__social">
+          <a href="https://www.facebook.com/kanalcom/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3a21 21 0 0 0-2.3-.1c-2.3 0-3.8 1.4-3.8 3.9v2.3H8v3h2.5V21z" fill="currentColor" stroke="none" /></svg></a><a href="https://www.instagram.com/getkanal/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5" /><circle cx="12" cy="12" r="4" /><path d="M17.2 6.8h.01" /></svg></a><a href="https://www.youtube.com/@getkanal" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="4" /><path d="m10 9.2 5 2.8-5 2.8z" fill="currentColor" /></svg></a><a href="https://www.linkedin.com/company/getkanal/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="3" /><path d="M8 10.5V16M8 7.8h.01M11.5 16v-5.5M11.5 13a2.5 2.5 0 0 1 5 0v3" /></svg></a>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="i-moon" viewBox="0 0 16 16"><path d="M13 9.5A5.5 5.5 0 0 1 6.5 3a5.5 5.5 0 1 0 6.5 6.5z" /></svg>
+            <svg class="i-sun" viewBox="0 0 16 16"><circle cx="8" cy="8" r="3" /><path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3 3l1 1M12 12l1 1M3 13l1-1M12 4l1-1" /></svg>
+          </button>
+        </div>
+      </div>
+      <p class="footer__fine">Kanal is the WhatsApp, Instagram, SMS and RCS marketing platform for Shopify brands: cart recovery, campaigns, automations and an AI agent. Hosted in the EU · GDPR compliant · Official Meta Business Partner.</p>
+    </div>
+  </footer>
+
+
+  <script src="../js/main.js?v=202610190940"></script>
+</body>
+</html>

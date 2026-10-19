@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WhatsApp Broadcast: Send Bulk Messages Past 256 Limit | Kanal</title>
+  <meta name="description" content="WhatsApp broadcast explained: create a list, the 256-contact limit and the monthly cap, broadcast message samples to copy, and when to use the Business API." />
+  <link rel="icon" href="../assets/mark.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css?v=202610190940" />
+  <link rel="stylesheet" href="../css/pages.css?v=202610190940" />
+  <link rel="stylesheet" href="../css/blog.css?v=202610190940" />
+  <script>
+    var t = null; try { t = localStorage.getItem('kanal-theme'); } catch (e) {}
+    if (t) document.documentElement.setAttribute('data-theme', t);
+  </script>
+</head>
+<body>
+
+  <!-- Mascot (reusable shape) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <path id="bubble" d="M100 14C52 14 13 50 13 95c0 23 10 44 27 59L28 190l42-18c9.4 3 19.6 4.6 30 4.6 48 0 87-36 87-81S148 14 100 14z" />
+      <symbol id="logo-whatsapp" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="#25D366" /><g transform="translate(16 16) scale(.94) translate(-16 -16)"><path d="M16 6.6a9.4 9.4 0 0 0-8.1 14.2L6.7 25.3l4.6-1.2A9.4 9.4 0 1 0 16 6.6z" fill="none" stroke="#fff" stroke-width="1.9" stroke-linejoin="round" /><path d="M12.7 11.3c.3-.3.8-.3 1 .1l.9 1.8c.2.3.1.7-.1 1l-.6.6c.5 1.2 1.5 2.2 2.7 2.7l.6-.6c.3-.3.7-.3 1-.1l1.8.9c.4.2.4.7.1 1l-.7.8c-.6.6-1.4.8-2.2.5-2.4-.9-4.3-2.8-5.2-5.2-.3-.8-.1-1.6.5-2.2z" fill="#fff" /></g></symbol>
+      <symbol id="logo-instagram" viewBox="0 0 32 32"><defs><radialGradient id="igGrad" cx="28%" cy="108%" r="140%"><stop offset="0" stop-color="#fdf497" /><stop offset=".08" stop-color="#fdf497" /><stop offset=".42" stop-color="#fd5949" /><stop offset=".62" stop-color="#d6249f" /><stop offset=".95" stop-color="#285aeb" /></radialGradient></defs><rect width="32" height="32" rx="9" fill="url(#igGrad)" /><rect x="7.4" y="7.4" width="17.2" height="17.2" rx="5" fill="none" stroke="#fff" stroke-width="2" /><circle cx="16" cy="16" r="4.1" fill="none" stroke="#fff" stroke-width="2" /><circle cx="21.4" cy="10.6" r="1.25" fill="#fff" /></symbol>
+      <symbol id="logo-imessage" viewBox="0 0 32 32"><defs><linearGradient id="imGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5df876" /><stop offset="1" stop-color="#0ac12b" /></linearGradient></defs><rect width="32" height="32" rx="9" fill="url(#imGrad)" /><path d="M16 8.4c-5.2 0-9.4 3.4-9.4 7.6 0 2.4 1.4 4.6 3.6 6-.2 1.3-.9 2.5-1.9 3.3 2-.1 3.7-.9 4.9-2 .9.2 1.8.3 2.8.3 5.2 0 9.4-3.4 9.4-7.6S21.2 8.4 16 8.4z" fill="#fff" /></symbol>
+      <symbol id="logo-rcs" viewBox="0 0 32 32"><defs><linearGradient id="rcsGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f8df9" /><stop offset="1" stop-color="#1a5fe0" /></linearGradient></defs><rect width="32" height="32" rx="9" fill="url(#rcsGrad)" /><path d="M9.5 8.5h13a3 3 0 0 1 3 3v7.4a3 3 0 0 1-3 3h-7.2l-4.4 3.4v-3.4H9.5a3 3 0 0 1-3-3v-7.4a3 3 0 0 1 3-3z" fill="#fff" /><text x="16" y="18.6" text-anchor="middle" font-family="Geist, Arial, sans-serif" font-size="6.6" font-weight="700" letter-spacing=".2" fill="#1a5fe0">RCS</text></symbol>
+      <symbol id="logo-fincut" viewBox="0 0 256 256"><rect width="256" height="256" fill="#FFF647" /><path d="M132.507 41.7793C72.3543 41.7793 44 70.09 44 129.674V214.189H89.6077V171.509H175.401V150.803H89.6077V129.674C89.6077 83.6143 103.417 61.8546 132.507 61.8546C161.598 61.8546 175.65 83.6143 175.65 129.674H222C222 70.09 193.153 41.7793 132.507 41.7793Z" fill="#1B1B1B" /></symbol>
+      <symbol id="logo-shopify" viewBox="0 0 51 57"><path fill="#00CA43" d="M34.21 56.11C32.80 55.99 31.17 55.74 28.96 55.29C28.41 55.18 27.51 55.05 26.96 55.00C26.41 54.95 25.70 54.85 25.38 54.79C22.96 54.27 21.87 54.07 20.98 54.00C19.83 53.90 19.09 53.75 18.14 53.45C17.78 53.34 17.12 53.21 16.68 53.17C15.10 53.00 13.44 52.74 12.53 52.50C11.96 52.35 10.81 52.16 9.53 52.00C8.21 51.84 7.12 51.66 6.52 51.50C5.94 51.34 4.89 51.16 3.81 51.04C1.76 50.79 1.48 50.72 1.21 50.40C0.84 49.96 0.80 49.61 0.95 48.04C1.02 47.26 1.10 46.32 1.13 45.96C1.20 45.00 1.39 43.62 1.62 42.38C1.73 41.78 1.86 40.75 1.92 40.08C2.08 37.94 2.26 36.48 2.46 35.58C2.70 34.52 2.86 33.30 3.04 31.21C3.12 30.34 3.31 28.89 3.47 28.00C3.74 26.50 3.91 25.13 4.04 23.46C4.13 22.29 4.34 20.82 4.55 19.82C4.66 19.28 4.81 18.40 4.87 17.85C5.00 16.75 5.11 16.45 5.53 16.13C6.08 15.71 7.24 15.25 8.26 15.04C8.81 14.93 9.70 14.67 10.23 14.46C10.77 14.25 11.31 14.03 11.44 13.99C11.76 13.86 12.06 13.48 12.17 13.06C12.47 11.97 13.23 9.72 13.46 9.25C13.61 8.95 13.83 8.46 13.95 8.17C14.07 7.87 14.35 7.35 14.57 7.00C14.79 6.66 15.27 5.89 15.63 5.31C16.46 3.96 18.00 2.40 19.17 1.71C20.10 1.16 21.82 0.58 22.67 0.52C23.63 0.46 25.25 0.97 26.17 1.64C26.44 1.83 26.73 1.95 27.06 2.01C27.32 2.06 27.73 2.13 27.96 2.18C28.44 2.27 29.82 3.00 30.39 3.46C30.96 3.94 31.62 4.78 31.96 5.49C32.69 6.99 32.85 7.10 34.27 7.07C35.56 7.05 35.46 6.99 37.25 8.69C39.62 10.93 39.42 10.83 41.55 10.83C44.08 10.83 43.99 10.75 44.54 13.75C44.87 15.52 44.95 16.15 45.08 17.79C45.13 18.42 45.25 19.21 45.37 19.68C45.66 20.79 45.89 22.16 46.00 23.52C46.05 24.16 46.19 25.21 46.30 25.86C46.41 26.51 46.59 27.57 46.71 28.21C46.82 28.85 46.95 29.79 47.00 30.29C47.15 31.72 47.48 33.81 47.66 34.53C47.76 34.89 47.87 35.63 47.92 36.16C47.97 36.69 48.04 37.51 48.09 37.98C48.13 38.45 48.24 39.13 48.33 39.48C48.42 39.84 48.55 40.50 48.63 40.96C48.70 41.42 48.80 41.95 48.84 42.15C48.88 42.35 48.96 42.96 49.00 43.51C49.05 44.07 49.18 45.07 49.29 45.74C49.78 48.67 49.94 49.86 49.98 51.06L50.02 52.33L49.74 52.61C49.51 52.84 49.33 52.92 48.79 53.04C48.42 53.12 47.66 53.33 47.08 53.51C46.51 53.69 45.63 53.91 45.12 53.99C44.62 54.08 43.72 54.31 43.12 54.50C42.53 54.68 41.54 54.93 40.92 55.04C40.30 55.15 39.42 55.35 38.96 55.50C37.39 55.99 35.54 56.22 34.21 56.11ZM16.35 12.60C16.78 12.42 17.31 12.23 17.54 12.17C18.67 11.87 18.83 11.67 19.20 10.11C19.38 9.36 20.10 7.73 20.60 6.96C22.02 4.74 22.22 4.46 22.83 3.90C23.70 3.10 23.85 2.77 23.50 2.42C23.02 1.93 21.03 2.58 19.50 3.71C18.46 4.49 17.99 5.03 16.78 6.83C16.29 7.57 14.97 10.21 14.83 10.75C14.78 10.95 14.65 11.29 14.54 11.50C14.29 12.01 14.23 12.33 14.36 12.58C14.62 13.09 15.16 13.10 16.35 12.60ZM23.06 10.55C23.51 10.35 24.18 10.12 24.54 10.04C26.52 9.61 26.86 8.89 26.29 6.38C25.80 4.18 25.33 4.04 23.81 5.61C22.63 6.84 21.16 9.37 21.14 10.24C21.11 11.02 21.78 11.13 23.06 10.55ZM29.92 8.40C31.05 7.91 31.08 7.35 30.04 5.78C29.30 4.67 28.66 4.24 28.20 4.54C27.94 4.71 27.93 5.15 28.17 6.50C28.26 7.03 28.33 7.57 28.33 7.70C28.33 8.55 28.94 8.83 29.92 8.40Z"/><path fill="#009932" d="M35.56 55.96C35.45 55.85 35.43 55.73 35.47 55.38C35.51 55.05 35.48 54.83 35.34 54.45L35.16 53.95L35.19 38.08C35.21 29.35 35.20 19.28 35.16 15.69C35.07 7.43 35.11 7.10 35.96 7.58C36.16 7.70 36.96 8.40 37.74 9.13C38.52 9.87 39.30 10.55 39.47 10.63C39.75 10.77 40.05 10.80 41.58 10.83C44.15 10.89 43.99 10.74 44.54 13.75C44.87 15.52 44.95 16.15 45.08 17.79C45.13 18.42 45.25 19.21 45.37 19.68C45.66 20.79 45.89 22.16 46.00 23.52C46.05 24.16 46.19 25.21 46.30 25.86C46.41 26.51 46.59 27.57 46.71 28.21C46.82 28.85 46.95 29.79 47.00 30.29C47.15 31.72 47.48 33.81 47.66 34.53C47.76 34.89 47.87 35.63 47.92 36.16C47.97 36.69 48.04 37.51 48.09 37.98C48.13 38.45 48.24 39.13 48.33 39.48C48.42 39.84 48.55 40.50 48.63 40.96C48.70 41.42 48.80 41.95 48.84 42.15C48.88 42.35 48.96 42.96 49.00 43.51C49.05 44.07 49.18 45.07 49.29 45.74C49.98 49.84 50.16 51.86 49.88 52.40C49.73 52.70 49.30 52.95 48.79 53.03C48.61 53.07 47.91 53.26 47.24 53.47C46.57 53.67 45.61 53.91 45.11 54.00C44.62 54.08 43.72 54.31 43.12 54.50C42.53 54.68 41.59 54.91 41.04 55.01C40.49 55.10 39.61 55.30 39.08 55.46C37.44 55.96 35.79 56.20 35.56 55.96Z"/><path fill="#fff" d="M15.96 46.37C15.73 46.31 15.00 46.16 14.33 46.04C13.00 45.81 12.78 45.72 11.52 44.89C10.51 44.22 10.23 43.87 10.18 43.16C10.14 42.53 10.27 41.82 10.63 40.89C11.13 39.54 11.31 39.50 13.04 40.33C14.28 40.92 14.72 41.05 15.69 41.13C17.11 41.25 17.76 40.90 18.40 39.70C19.01 38.54 18.45 37.01 17.02 35.95C16.66 35.69 16.14 35.26 15.85 35.01C15.56 34.75 15.00 34.28 14.60 33.96C13.41 32.99 12.34 31.60 12.15 30.77C12.00 30.10 12.00 26.25 12.16 25.48C12.28 24.88 12.79 23.91 13.86 22.27C14.82 20.81 16.37 19.69 18.33 19.04C18.72 18.91 19.27 18.70 19.55 18.58C20.79 18.02 24.12 17.85 25.51 18.26C26.25 18.49 26.50 19.16 26.21 20.13C26.14 20.36 26.01 20.99 25.91 21.54C25.54 23.72 25.04 24.32 23.77 24.08C23.17 23.97 21.03 24.02 20.29 24.17C19.75 24.27 18.80 24.74 18.37 25.12C17.68 25.71 17.44 26.84 17.82 27.71C18.09 28.30 19.42 29.59 20.34 30.12C20.72 30.35 21.30 30.76 21.62 31.04C21.95 31.32 22.48 31.76 22.82 32.03C23.93 32.92 25.25 35.01 25.64 36.52C26.11 38.34 25.11 42.19 23.71 43.95C23.42 44.31 22.23 45.33 21.80 45.59C21.64 45.68 21.01 45.91 20.40 46.10C19.30 46.44 19.28 46.45 17.83 46.47C16.74 46.49 16.27 46.47 15.96 46.37Z"/></symbol>
+      <symbol id="logo-kanal" viewBox="0 0 96 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.8489 19.5168L8.57724 21.7999C7.18839 23.1957 6.49477 23.8928 5.64432 23.9854C5.46971 24.0049 5.29509 24.0049 5.12047 23.9854C4.27164 23.8928 3.57641 23.1957 2.18918 21.7999C0.800328 20.404 0.10671 19.707 0.0145514 18.8539C-0.00485046 18.6784 -0.00485046 18.5029 0.0145514 18.3274C0.10671 17.4743 0.800328 16.7756 2.18918 15.3814L4.46081 13.0984C5.02993 12.5264 5.02993 11.5986 4.46081 11.0282L2.18918 8.74522C0.800328 7.34941 0.10671 6.65232 0.0145514 5.79923C-0.00485046 5.62374 -0.00485046 5.44825 0.0145514 5.27276C0.10671 4.41967 0.800328 3.72096 2.18918 2.32515C3.57803 0.929337 4.27164 0.232245 5.12047 0.139624C5.29509 0.120125 5.46971 0.120125 5.64432 0.139624C6.49315 0.232245 7.18839 0.929337 8.57724 2.32515L10.8489 4.60816C14.9459 8.72572 14.9459 15.4009 10.8489 19.5185V19.5168Z" fill="currentColor"/> <path fill-rule="evenodd" clip-rule="evenodd" d="M15.3337 19.3918L16.4695 21.6749C17.164 23.0707 17.5108 23.7678 17.936 23.8604C18.0233 23.8799 18.1106 23.8799 18.1979 23.8604C18.6223 23.7678 18.9699 23.0707 19.6636 21.6749C20.358 20.279 20.7048 19.582 20.7509 18.7289C20.7606 18.5534 20.7606 18.3779 20.7509 18.2024C20.7048 17.3493 20.358 16.6506 19.6636 15.2564L18.5278 12.9734C18.2432 12.4014 18.2432 11.4736 18.5278 10.9032L19.6636 8.62022C20.358 7.22441 20.7048 6.52732 20.7509 5.67423C20.7606 5.49874 20.7606 5.32325 20.7509 5.14776C20.7048 4.29467 20.358 3.59596 19.6636 2.20015C18.9691 0.804337 18.6223 0.107245 18.1979 0.0146243C18.1106 -0.00487477 18.0233 -0.00487477 17.936 0.0146243C17.5116 0.107245 17.164 0.804337 16.4695 2.20015L15.3337 4.48316C13.2852 8.60072 13.2852 15.2759 15.3337 19.3935V19.3918Z" fill="currentColor"/> <path d="M40.0654 21.9814L33.3463 13.3782V21.9814H29.4592V2.49188H33.3463V10.5383L39.3991 2.49188H44.4801L36.9558 11.6241L45.0354 21.9814H40.0654Z" fill="currentColor"/> <path d="M50.5804 22.3434C46.61 22.3434 43.4448 18.9745 43.4448 14.7981C43.4448 10.6218 46.61 7.19722 50.5804 7.19722C53.0793 7.19722 54.3842 8.22738 55.1616 9.78654V7.50348H58.8822V21.9814H55.2449V19.6148C54.4675 21.2575 53.1626 22.3434 50.5804 22.3434ZM47.1931 14.7703C47.1931 16.9698 48.8034 18.9466 51.1912 18.9466C53.6623 18.9466 55.2449 17.0534 55.2449 14.7981C55.2449 12.5429 53.6623 10.594 51.1912 10.594C48.8034 10.594 47.1931 12.5151 47.1931 14.7703Z" fill="currentColor"/> <path d="M60.5539 21.9814V7.50348H64.2467V9.61949C64.9963 8.00464 66.4401 7.16937 68.6613 7.16937C71.771 7.16937 74.1588 9.48028 74.1588 13.1276V21.9814H70.4105V14.0464C70.4105 11.5406 69.1611 10.4548 67.3008 10.4548C65.7182 10.4548 64.3022 11.5406 64.3022 14.0464V21.9814H60.5539Z" fill="currentColor"/> <path d="M82.2782 22.3434C78.3078 22.3434 75.1425 18.9745 75.1425 14.7981C75.1425 10.6218 78.3078 7.19722 82.2782 7.19722C84.777 7.19722 86.082 8.22738 86.8594 9.78654V7.50348H90.5799V21.9814H86.9427V19.6148C86.1653 21.2575 84.8603 22.3434 82.2782 22.3434ZM78.8908 14.7703C78.8908 16.9698 80.5012 18.9466 82.889 18.9466C85.3601 18.9466 86.9427 17.0534 86.9427 14.7981C86.9427 12.5429 85.3601 10.594 82.889 10.594C80.5012 10.594 78.8908 12.5151 78.8908 14.7703Z" fill="currentColor"/> <path d="M92.2517 21.9814V1.65661H96V21.9814H92.2517Z" fill="currentColor"/></symbol>
+      <symbol id="logo-meta" viewBox="0 0 32 32"><defs><linearGradient id="metaGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0064E1" /><stop offset=".5" stop-color="#0082FB" /><stop offset="1" stop-color="#0064E1" /></linearGradient></defs><path d="M5 19.2c0-5 2.6-9.2 5.6-9.2 3.4 0 5.2 4.6 7.9 9 1.7 2.8 3 3.8 4.4 3.8 1.9 0 3.1-1.7 3.1-4.4 0-4.9-2.6-8.4-5.5-8.4-3 0-4.8 3.6-7.4 8.2-1.8 3.2-3.2 4.6-4.9 4.6C6.4 22.8 5 21.4 5 19.2z" fill="none" stroke="url(#metaGrad)" stroke-width="3.4" stroke-linejoin="round" /></symbol>
+      <symbol id="logo-gads" viewBox="0 0 32 32"><path d="M16.4 6 7 22.4" stroke="#FBBC04" stroke-width="7.2" stroke-linecap="round" /><path d="M15.6 6 25 22.4" stroke="#4285F4" stroke-width="7.2" stroke-linecap="round" /><circle cx="7" cy="22.4" r="3.9" fill="#34A853" /></symbol>
+      <symbol id="logo-sms" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="#1F2937" /><path d="M16 8.5c-5 0-9 3.2-9 7.2 0 2.3 1.3 4.3 3.4 5.6l-.7 3.2 3.5-2c.9.2 1.8.3 2.8.3 5 0 9-3.2 9-7.1s-4-7.2-9-7.2z" fill="#fff" /><text x="16" y="17.9" text-anchor="middle" font-family="Geist, system-ui, sans-serif" font-size="5.6" font-weight="700" fill="#1F2937">SMS</text></symbol>
+      <symbol id="logo-kanal-mark" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="#111110" /><svg x="5.5" y="5" width="21" height="22" viewBox="-1.5 -1 24 26" color="#fff"><use href="#logo-kanal" width="96" height="24" /></svg></symbol>
+      <symbol id="ext" viewBox="0 0 10 10"><path d="M3 7 7 3M4 3h3v3" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" /></symbol>
+      <symbol id="chev" viewBox="0 0 12 12"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></symbol>
+    </defs>
+  </svg>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="../index.html" class="logo" aria-label="Kanal home"><svg class="logo__kanal" viewBox="0 0 96 24" role="img" aria-label="Kanal"><use href="#logo-kanal" /></svg></a>
+      <nav class="nav__links" aria-label="Main navigation">
+        <div class="nav__item has-menu has-mega">
+          <button class="nav__link" aria-expanded="false">Product <svg class="chev"><use href="#chev" /></svg></button>
+          <div class="mega">
+            <div class="mega__main">
+              <nav class="mega__big"><a href="../whatsapp-shopify.html">WhatsApp for Shopify</a><a href="../abandoned-cart-recovery.html">Cart recovery</a><a href="../whatsapp-campaigns.html">WhatsApp campaigns</a><a href="../whatsapp-ai-agent.html">AI agent</a><a href="../order-notifications.html">Order notifications</a><a href="../back-in-stock.html">Back in stock</a><a href="../post-purchase-upsell.html">Post-purchase upsell</a><a href="../review-collection.html">Review collection</a><a href="../automations.html">Automations</a></nav>
+              <div class="mega__groups"><div class="mega__group"><div class="mega__label">Connect</div><a href="../mcp.html">Kanal MCP</a><a href="../whatsapp-integration.html">Integrations</a><a href="https://developers.getkanal.com/">Developer API</a></div><div class="mega__group"><div class="mega__label">Channels</div><a href="https://getkanal.com/instagram">Instagram</a><a href="https://getkanal.com/sms">SMS</a><a href="../rcs.html">RCS</a></div></div>
+            </div>
+            <a class="mega__card mega__card--a" href="../case-studies.html">
+              <span class="mega__card-text"><strong>Case studies</strong><span>See how Shopify brands grow their sales with Kanal.</span></span>
+              <span class="mega__card-btn">Read stories</span>
+            </a>
+          </div>
+        </div>
+        <a class="nav__link" href="../case-studies.html">Case Studies</a>
+        <div class="nav__item has-menu has-mega">
+          <button class="nav__link" aria-expanded="false">Resources <svg class="chev"><use href="#chev" /></svg></button>
+          <div class="mega">
+            <div class="mega__main">
+              <nav class="mega__big"><a href="../blog.html">Blog</a><a href="https://getkanal.com/tools">Free tools</a><a href="https://getkanal.com/whatsapp-marketing-glossary">WhatsApp glossary</a><a href="https://getkanal.com/alternatives">Comparisons</a><a href="https://getkanal.com/best-shopify-apps">Best Shopify apps</a><a href="https://help.getkanal.com/">Help center</a></nav>
+              <div class="mega__groups"><div class="mega__group"><div class="mega__label">Learn</div><a href="https://developers.getkanal.com/">Developer API</a><span class="mega__soon">Playbooks <em>Soon</em></span></div><div class="mega__group"><div class="mega__label">Company</div><a href="../affiliate.html">Affiliate program</a><a href="https://getkanal.com/careers">Careers</a><a href="https://getkanal.com/contact">Contact</a><a href="../demo.html">Book a demo</a></div></div>
+            </div>
+            <a class="mega__card mega__card--b" href="../mcp.html">
+              <span class="mega__card-text"><strong>Kanal MCP</strong><span>Plug Kanal into Claude, Codex or Cursor.</span></span>
+              <span class="mega__card-btn">Discover MCP</span>
+            </a>
+          </div>
+        </div>
+        <a class="nav__link" href="../affiliate.html">Affiliate</a>
+        <a class="nav__link" href="../pricing.html">Pricing</a>
+      </nav>
+      <div class="nav__cta">
+        <a href="../demo.html" class="btn btn--light btn--nav hide-sm">Book a demo</a>
+        <div class="split">
+          <a href="https://apps.shopify.com/kanal-marketing-ai" class="split__main">Install Kanal</a>
+          <button class="split__more" aria-label="More options" aria-expanded="false"><svg><use href="#chev" /></svg></button>
+          <div class="menu menu--right">
+            <a href="https://apps.shopify.com/kanal-marketing-ai" class="menu__item"><span class="menu__ico"><svg aria-hidden="true"><use href="#logo-shopify" /></svg></span><span class="menu__txt"><strong>Install with Shopify</strong><small>Set up in 5 minutes from Shopify</small></span><svg class="menu__ext" aria-hidden="true"><use href="#ext" /></svg></a>
+            <a href="../demo.html" class="menu__item"><span class="menu__ico"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3.5" y="4.5" width="13" height="12" rx="3" /><path d="M3.5 8.5h13M7 2.8v3.4M13 2.8v3.4" /></svg></span><span class="menu__txt"><strong>Book a demo</strong><small>See Kanal on your own store</small></span></a>
+            <span class="menu__sep" aria-hidden="true"></span>
+            <a href="https://app.getkanal.com/login" class="menu__item"><span class="menu__ico"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="7.5" r="3" /><path d="M4.5 16.5c.8-2.6 3-4 5.5-4s4.7 1.4 5.5 4" /></svg></span><span class="menu__txt"><strong>Log in</strong><small>Access your Kanal account</small></span><svg class="menu__ext" aria-hidden="true"><use href="#ext" /></svg></a>
+          </div>
+        </div>
+        <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+      </div>
+    </div>
+    <div class="mobile-menu">
+      <a href="../whatsapp-shopify.html">Product</a><a href="../case-studies.html">Case Studies</a><a href="../blog.html">Resources</a><a href="../affiliate.html">Affiliate</a><a href="../pricing.html">Pricing</a><a href="https://app.getkanal.com/login">Log in</a>
+      <a href="https://apps.shopify.com/kanal-marketing-ai" class="btn btn--dark">Install Kanal</a>
+    </div>
+  </header>
+
+  <main class="post-page">
+    <article class="post">
+      <div class="wrap">
+        <header class="post__head">
+          <nav class="post__crumbs reveal" aria-label="Breadcrumb"><a href="../blog.html">Blog</a><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5" /></svg><a href="../blog.html#tag-whatsapp-marketing">WhatsApp marketing</a></nav>
+          <h1 class="post__title reveal" style="--d:1">WhatsApp Broadcast: Send Bulk Messages Past 256 Limit</h1>
+          <p class="post__lead reveal" style="--d:2">WhatsApp broadcast explained: create a list, the 256-contact limit and the monthly cap, broadcast message samples to copy, and when to use the Business API.</p>
+          <div class="bmeta post__meta reveal" style="--d:3"><img class="bmeta__av" src="../assets/blog/nicolas-provost.jpg" alt="" width="24" height="24" /><span><strong>Nicolas Provost</strong>Mar 25, 2026 · 13 min read</span></div>
+        </header>
+        <figure class="post__cover reveal reveal--up"><img src="https://getkanal.com/images/blog/broadcast-guide-hero.webp" alt="WhatsApp Broadcast: Send Bulk Messages Past 256 Limit" width="1200" height="675" fetchpriority="high" /></figure>
+        <div class="post__col">
+          <section class="post__takeaways reveal" aria-labelledby="key-takeaways">
+            <h2 id="key-takeaways">Key takeaways</h2>
+            <ul><li>A WhatsApp broadcast sends one message to many contacts as individual chats, and recipients do not see each other.</li><li>In the app, a list holds 256 contacts at most and only reaches people who saved your number.</li><li>Where WhatsApp applies its monthly limit, 35 broadcast messages per month are sent at no charge.</li><li>Through the WhatsApp Business API, Kanal sends approved template broadcasts to opted-in customers who have not saved your number, segmented with Shopify data.</li></ul>
+          </section>
+          <div class="prose">
+<p><a href="../whatsapp-broadcast.html">WhatsApp broadcast</a> lets you send one message to multiple contacts at once, without creating a group. For e-commerce brands, it's a direct way to reach customers with promotions, product launches, and personalized offers.</p>
+<p>This guide covers everything: how to create broadcasts, the 256-contact limit and how to get past it, broadcast message samples you can copy, and scaling strategies with the WhatsApp Business API.</p>
+<h2 id="what-is-a-whatsapp-broadcast">What Is a WhatsApp Broadcast?</h2>
+<p>A WhatsApp broadcast is a one-to-many messaging feature that sends your message individually to each recipient. Unlike groups, recipients don't see each other and can reply privately.</p>
+<p>Key characteristics:</p>
+<ul>
+<li><strong>Messages appear as individual chats</strong>, not a group conversation</li>
+<li><strong>Recipients must have your number saved</strong> in their contacts (on the free app)</li>
+<li><strong>Replies are private</strong>: only you see them</li>
+<li><strong>Maximum 256 contacts</strong> per broadcast list on WhatsApp Business app</li>
+<li><strong>No list-size cap</strong> via the WhatsApp Business API: the volume depends on your Meta messaging limit (250 unique recipients per 24 hours for a new business portfolio, then 2,000, 10,000, 100,000 and unlimited)</li>
+</ul>
+<h2 id="how-to-create-a-whatsapp-broadcast-list">How to Create a WhatsApp Broadcast List</h2>
+<h3 id="on-whatsapp-business-app-free">On WhatsApp Business App (Free)</h3>
+<ol>
+<li>Open <strong>WhatsApp Business</strong></li>
+<li>Tap the <strong>three-dot menu</strong> (Android) or <strong>Broadcasts</strong> (iPhone)</li>
+<li>Select <strong>New broadcast</strong> or <strong>New list</strong></li>
+<li>Select the contacts you want to add (up to 256)</li>
+<li>Tap the <strong>green checkmark</strong> to create the list</li>
+<li>Type your message and hit <strong>Send</strong></li>
+</ol>
+<p><strong>Important limitation:</strong> Recipients must have your number saved in their contacts. Otherwise, they won't receive the broadcast message.</p>
+<p>In the standard WhatsApp app, WhatsApp's <a href="https://faq.whatsapp.com/861663048350950" target="_blank" rel="noopener">Help Center</a> (read on October 7, 2026) gives this path: on Android, Chats, then the menu, then <strong>Broadcast lists</strong>; on iPhone, Settings, then <strong>Broadcast messages</strong>, then <strong>New List</strong>. Broadcast lists are created on the phone: they are not supported on WhatsApp Web or the desktop apps.</p>
+<h3 id="on-whatsapp-business-api-via-kanal">On WhatsApp Business API (via Kanal)</h3>
+<p>With the <a href="../whatsapp-campaigns.html">WhatsApp Business API through Kanal</a>, you can send broadcasts beyond the 256-contact cap, within your Meta messaging limit, without requiring contacts to save your number:</p>
+<ol>
+<li>Create a <strong>message template</strong> in your <a href="../demo.html">Kanal</a> dashboard</li>
+<li>Submit it for <strong>Meta approval</strong> (a review can take up to 24 hours, per Meta's <a href="https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates" target="_blank" rel="noopener">template documentation</a>)</li>
+<li><strong>Segment your audience</strong> based on Shopify data (purchase history, cart value, location)</li>
+<li><strong>Schedule or send</strong> the campaign</li>
+<li>Track <strong>open rates, clicks, and conversions</strong> in real-time</li>
+</ol>
+<figure><img src="https://getkanal.com/images/blog/whatsapp-broadcast-audience.webp" alt="A single WhatsApp broadcast message fanning out to an entire opted-in audience" loading="lazy" decoding="async" /></figure>
+<h2 id="whatsapp-broadcast-vs-group-key-differences">WhatsApp Broadcast vs Group: Key Differences</h2>
+<div class="post__table"><table><thead><tr><th>Feature</th><th>Broadcast</th><th>Group</th></tr></thead><tbody><tr><td>Privacy</td><td>Recipients don't see each other</td><td>All members see each other</td></tr><tr><td>Replies</td><td>Private to sender</td><td>Visible to all members</td></tr><tr><td>Contact limit (app)</td><td>256</td><td>1,024</td></tr><tr><td>Contact limit (API)</td><td>Your Meta messaging limit (250 per 24 hours at the start, up to unlimited)</td><td>N/A</td></tr><tr><td>Must save number</td><td>Yes (app) / No (API)</td><td>No</td></tr><tr><td>Admin control</td><td>Full</td><td>Shared</td></tr><tr><td>Use it for</td><td>Marketing campaigns</td><td>Community building</td></tr></tbody></table></div>
+<p>For marketing purposes, <strong>always use broadcasts over groups</strong>. Groups can feel spammy and violate privacy expectations. Broadcasts maintain the personal 1-to-1 feeling that drives engagement.</p>
+<h2 id="how-to-get-past-the-256-contact-limit">How to Get Past the 256-Contact Limit</h2>
+<p>The WhatsApp Business app limits broadcast lists to 256 contacts. Here's how to scale:</p>
+<h3 id="option-1-multiple-broadcast-lists-free-manual">Option 1: Multiple Broadcast Lists (Free, Manual)</h3>
+<p>Create multiple broadcast lists of 256 contacts each. Tedious but works for small businesses with &lt;1,000 contacts.</p>
+<p>One caveat: WhatsApp is introducing a monthly broadcast limit in some countries. Where it applies, the Help Center gives 35 broadcast messages per month at no charge, and you can check your count under Settings, then Broadcasts (<a href="https://faq.whatsapp.com/1176325363861991" target="_blank" rel="noopener">About broadcast limits</a>, read on October 7, 2026).</p>
+<h3 id="option-2-paid-broadcasts-in-the-whatsapp-business-app">Option 2: Paid broadcasts in the WhatsApp Business app</h3>
+<p>In some countries, the WhatsApp Business app offers paid marketing messages, which WhatsApp now calls business broadcasts: you compose a message with media and a button, pick the audience, and pay for the messages that are delivered (<a href="https://faq.whatsapp.com/652901706468344" target="_blank" rel="noopener">How to create and send a marketing message</a>). It remains a manual tool tied to one phone, without your store's data.</p>
+<h3 id="option-3-whatsapp-business-api-recommended">Option 3: WhatsApp Business API (Recommended)</h3>
+<figure><img src="https://getkanal.com/images/screenshots/meta-cloud-api-docs.webp" alt="Meta&#x27;s WhatsApp Cloud API documentation, the API that powers broadcasts at scale" loading="lazy" decoding="async" /></figure>
+<p>The <a href="../whatsapp-business-api.html">WhatsApp Business API</a> removes the 256-contact limit entirely. With platforms like <a href="../pricing.html">Kanal</a>:</p>
+<ul>
+<li>Send to <strong>as many opted-in contacts as your <a href="https://developers.facebook.com/documentation/business-messaging/whatsapp/messaging-limits" target="_blank" rel="noopener">Meta messaging limit</a> allows</strong></li>
+<li><strong>No need for contacts to save your number</strong></li>
+<li><strong>Templates approved by Meta</strong>, required to message outside the 24-hour window</li>
+<li><strong>Smart segmentation</strong> based on Shopify customer data</li>
+<li><strong>Analytics</strong> to track opens, clicks, and revenue</li>
+</ul>
+<p>For example, Arntreal, a fashion brand featured in our <a href="../case-studies.html">case studies</a>, used targeted WhatsApp broadcasts built with Kanal's campaign builder to drive 3x higher engagement than email and a 27% uplift in repeat purchases.</p>
+<h2 id="whatsapp-broadcast-best-practices">WhatsApp Broadcast Best Practices</h2>
+<h3 id="1-segment-your-audience">1. Segment Your Audience</h3>
+<p>Don't send the same message to everyone. With <a href="../whatsapp-integration/klaviyo.html">Klaviyo integration</a>, segment your WhatsApp lists by:</p>
+<ul>
+<li><strong>Purchase history</strong>: VIP customers get exclusive offers</li>
+<li><strong>Cart value</strong>: High-value cart abandoners get different messaging</li>
+<li><strong>Location</strong>: Country-specific promotions and shipping info</li>
+<li><strong>Engagement</strong>: Active openers vs dormant subscribers</li>
+</ul>
+<h3 id="2-personalize-every-message">2. Personalize Every Message</h3>
+<p>Use dynamic variables to personalize:</p>
+<ul>
+<li>Customer's first name</li>
+<li>Last purchased product</li>
+<li>Cart contents (for <a href="../abandoned-cart-recovery.html">abandoned cart recovery</a>)</li>
+<li>Recommended products based on browsing history</li>
+</ul>
+<h3 id="3-time-your-sends-strategically">3. Time Your Sends Strategically</h3>
+<p>Starting points to test for e-commerce WhatsApp broadcasts (then keep what works for your audience):</p>
+<ul>
+<li><strong>Weekdays</strong>: 10am-12pm and 6pm-8pm (local time)</li>
+<li><strong>Flash sales</strong>: Send 2-4 hours before the sale starts</li>
+<li><strong>Cart reminders</strong>: 1 hour, 24 hours, and 72 hours after abandonment</li>
+<li><strong><a href="../back-in-stock.html">Back-in-stock</a> alerts</strong>: Immediately when inventory is replenished</li>
+</ul>
+<h3 id="4-include-clear-ctas">4. Include Clear CTAs</h3>
+<p>Every broadcast should have a single, clear call-to-action:</p>
+<ul>
+<li><strong>"Shop Now"</strong> button linking to your product page</li>
+<li><strong>"Complete Your Order"</strong> for cart recovery</li>
+<li><strong>"Get 20% Off"</strong> for promotional campaigns</li>
+<li><strong>"Track Your Order"</strong> for <a href="../order-notifications.html">order notifications</a></li>
+</ul>
+<h3 id="5-respect-opt-inopt-out">5. Respect Opt-in/Opt-out</h3>
+<p>Always provide an easy way to unsubscribe. This isn't just good practice: it's required by <a href="https://www.whatsapp.com/legal/business-policy/" target="_blank" rel="noopener">Meta's WhatsApp Business Policy</a>. Non-compliance can get your number banned.</p>
+<h2 id="whatsapp-broadcast-message-samples-you-can-copy">WhatsApp broadcast message samples you can copy</h2>
+<p>The samples below are written for e-commerce. The first one is plain text, for a broadcast list in the app. The others use buttons, shown in square brackets, which require a template on the WhatsApp Business API.</p>
+<h3 id="plain-text-sample-for-a-broadcast-list">Plain-text sample for a broadcast list</h3>
+<pre><code>Hi {customer_name}, it's {your_name} from {store_name}.
+
+Our winter collection is live, and subscribers get early access until Friday: {link}
+
+Reply STOP if you'd rather not receive these messages.</code></pre>
+<h3 id="back-in-stock">Back in stock</h3>
+<pre><code>Good news {customer_name}: {product_name} is back in stock.
+
+It sold out fast last time, so we wanted you to know first.
+
+[Get Yours]</code></pre>
+<h3 id="flash-sale-template">Flash Sale Template</h3>
+<pre><code>Hi {customer_name}! 🔥
+
+Our biggest sale of the year starts NOW.
+
+Up to 50% off everything for the next 24 hours.
+
+[Shop the Sale] [Browse New Arrivals]</code></pre>
+<h3 id="cart-recovery-template">Cart Recovery Template</h3>
+<pre><code>Hey {customer_name},
+
+You left something amazing in your cart:
+{product_name} : {product_price}
+
+Complete your order now and get free shipping!
+
+[Complete My Order]</code></pre>
+<h3 id="new-product-launch">New Product Launch</h3>
+<pre><code>{customer_name}, you're first to know 👀
+
+We just launched {product_name}, and we think you'll love it based on your purchase of {last_product}.
+
+Limited stock available.
+
+[Discover Now] [Save for Later]</code></pre>
+<h3 id="vip-exclusive">VIP Exclusive</h3>
+<pre><code>{customer_name}, this is VIP-only 🖤
+
+As one of our top customers, here's your exclusive early access + an extra 15% off with code VIP15.
+
+Valid for 48 hours.
+
+[Shop VIP Access]</code></pre>
+<p>For more templates and automated flows, check our <a href="../whatsapp-campaigns.html">WhatsApp campaign builder</a> with drag-and-drop flow editor.</p>
+<h2 id="broadcast-analytics-what-to-track">Broadcast Analytics: What to Track</h2>
+<p>With <a href="../pricing.html">Kanal's analytics dashboard</a>, monitor these KPIs. Your first broadcasts give you the baseline; compare each new send against it:</p>
+<div class="post__table"><table><thead><tr><th>Metric</th><th>How to calculate</th><th>If it moves the wrong way</th></tr></thead><tbody><tr><td><strong>Delivery Rate</strong></td><td>Delivered / sent</td><td>Check contact quality, verify numbers with our <a href="https://getkanal.com/tools/check-whatsapp-number">number checker</a></td></tr><tr><td><strong>Open Rate</strong></td><td>Read / delivered</td><td>Improve first line (preview text)</td></tr><tr><td><strong>Click-Through Rate</strong></td><td>Clicks / delivered</td><td>Better CTA, stronger offer</td></tr><tr><td><strong>Conversion Rate</strong></td><td>Orders / clicks</td><td>Landing page optimization</td></tr><tr><td><strong>Opt-out Rate</strong></td><td>Opt-outs / delivered</td><td>Reduce frequency, improve relevance</td></tr><tr><td><strong>ROAS</strong></td><td>Attributed revenue / send cost</td><td>Better segmentation, higher-value offers</td></tr></tbody></table></div>
+<p>Calculate your expected return with our free <a href="https://getkanal.com/tools/roas-break-even-calculator">ROAS calculator</a>.</p>
+<h2 id="common-broadcast-mistakes">Common Broadcast Mistakes</h2>
+<p>Even with great copy, broadcasts can underperform when these mistakes creep in.</p>
+<h3 id="sending-to-contacts-who-never-saved-your-number">Sending to contacts who never saved your number</h3>
+<p>On the free app, broadcast messages only deliver to contacts who have saved your business number. If they haven't, your message silently fails. Always include a "save our number" CTA in your welcome flow before broadcasting.</p>
+<h3 id="treating-broadcasts-like-email-blasts">Treating broadcasts like email blasts</h3>
+<p>Broadcasts in WhatsApp feel personal because each recipient sees the message as a one-on-one chat. Generic "Hi everyone" copy underperforms badly. Use merge fields ({first_name}, {city}, {last_product_viewed}) to keep the conversational tone.</p>
+<h3 id="skipping-the-opt-in-confirmation">Skipping the opt-in confirmation</h3>
+<p>Broadcast list members must have explicitly opted in to your messages. Without a documented opt-in (date, source, IP), you risk being flagged for spam, which damages your quality rating and can ban your number.</p>
+<h3 id="sending-too-often">Sending too often</h3>
+<p>Daily broadcasts to the same list wear it out: opt-outs and blocks climb, and blocks hurt your quality rating. Once or twice a week is a sensible starting point for an e-commerce brand. Match your cadence to your purchase frequency.</p>
+<h3 id="using-only-text">Using only text</h3>
+<p>A text-only broadcast asks the customer to tap before they have seen the product. Include at least one product image or branded GIF (or a video or carousel), and check the difference in clicks on your own list.</p>
+<h3 id="no-clear-single-call-to-action">No clear single call-to-action</h3>
+<p>Multiple CTAs ("Shop now / See offer / Browse / Contact us") create decision paralysis. Pick one primary action per broadcast.</p>
+<h3 id="ignoring-the-24-hour-window">Ignoring the 24-hour window</h3>
+<p>Replies to a broadcast open a 24-hour customer service window where you can answer with free-form messages, no template needed. Without a follow-up, that window closes unused. Use a <a href="../whatsapp-campaigns.html">Kanal automation</a> to schedule a follow-up within the window.</p>
+<h2 id="how-to-search-and-manage-broadcast-lists">How to Search and Manage Broadcast Lists</h2>
+<h3 id="finding-a-broadcast-list">Finding a broadcast list</h3>
+<ol>
+<li>Open WhatsApp Business</li>
+<li>Go to <strong>Chats</strong> tab</li>
+<li>Tap <strong>Broadcast Lists</strong> at the top (iOS) or the three-dot menu &gt; <strong>New broadcast</strong> (Android)</li>
+<li>Your existing lists appear with member counts</li>
+</ol>
+<h3 id="editing-a-broadcast-list">Editing a broadcast list</h3>
+<ul>
+<li><strong>Add members</strong>: Open the list &gt; tap the list name &gt; <strong>Edit recipients</strong></li>
+<li><strong>Remove members</strong>: Same path, deselect contacts</li>
+<li><strong>Delete list</strong>: Long-press the list &gt; <strong>Delete</strong></li>
+</ul>
+<h3 id="broadcast-list-limitations">Broadcast list limitations</h3>
+<ul>
+<li>You can create <strong>unlimited broadcast lists</strong> on the free app</li>
+<li>Each list maxes at <strong>256 contacts</strong></li>
+<li><strong>No scheduling</strong>: messages send immediately</li>
+<li><strong>No analytics</strong>: you can't track opens or clicks</li>
+</ul>
+<p>For scheduling, segmentation, and analytics, <a href="../pricing.html">upgrade to Kanal's WhatsApp Business API</a>.</p>
+<h2 id="faq">FAQ</h2>
+<h3 id="how-many-contacts-can-i-add-to-a-whatsapp-broadcast">How many contacts can I add to a WhatsApp broadcast?</h3>
+<p>On the WhatsApp Business app, maximum 256 contacts per broadcast list. Via the WhatsApp Business API (through platforms like <a href="../pricing.html">Kanal</a>), there's no limit.</p>
+<h3 id="can-i-send-a-broadcast-if-the-contact-hasnt-saved-my-number">Can I send a broadcast if the contact hasn't saved my number?</h3>
+<p>On the free WhatsApp Business app, no, the recipient must have your number saved. Via the WhatsApp Business API, yes, you can send template messages to any opted-in contact regardless.</p>
+<h3 id="how-do-i-know-if-someone-read-my-broadcast">How do I know if someone read my broadcast?</h3>
+<p>On the free app, you can see delivery and read receipts for individual chats, and our <a href="../blog/whatsapp-read-receipts-blue-ticks-guide.html">guide to WhatsApp read receipts and blue ticks</a> explains what each tick state actually proves. With <a href="../pricing.html">Kanal's analytics</a>, you get aggregate open rates, click rates, and conversion tracking.</p>
+<h3 id="what-is-a-good-whatsapp-broadcast-message-sample">What is a good WhatsApp broadcast message sample?</h3>
+<p>A good broadcast message is short, names the customer, makes one offer and ends with one action. For example: "Hi Sarah, our winter collection is live. As a subscriber you get early access until Friday: [link]. Reply STOP to unsubscribe." On the free app you send it as plain text to a broadcast list. On the WhatsApp Business API it becomes a template with a button.</p>
+<h3 id="is-there-a-limit-on-how-many-broadcast-messages-i-can-send">Is there a limit on how many broadcast messages I can send?</h3>
+<p>On the WhatsApp app, a broadcast list holds up to 256 contacts and you can create as many lists as you like. WhatsApp is also rolling out a monthly limit in some countries: where it applies, its Help Center gives 35 broadcast messages per month at no charge (read on October 7, 2026). On the WhatsApp Business API there is no list size, and Meta charges each delivered marketing message.</p>
+<h3 id="is-whatsapp-broadcast-the-same-as-whatsapp-newsletter">Is WhatsApp broadcast the same as WhatsApp newsletter?</h3>
+<p>They're similar concepts. A "broadcast" is the technical feature. A "<a href="../whatsapp-newsletter.html">WhatsApp newsletter</a>" is a regular broadcast series sent on a schedule. With the <a href="../whatsapp-business-api.html">WhatsApp Business API</a>, you can schedule automated newsletter-style broadcasts.</p>
+<h3 id="can-i-send-broadcasts-to-international-numbers">Can I send broadcasts to international numbers?</h3>
+<p>Yes. WhatsApp works globally. With the API, you can target customers in any country. Keep in mind that Meta charges each delivered template message at a rate set by the recipient's country and the template category (promotional broadcasts are marketing templates), detailed in the <a href="https://developers.facebook.com/docs/whatsapp/pricing" target="_blank" rel="noopener">official pricing grid</a> and in our <a href="../blog/whatsapp-business-pricing-guide.html">WhatsApp Business pricing guide</a>.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>WhatsApp broadcast lets you reach your e-commerce customers with personalized, rich media messages in the app they already use to chat. While the free app works for small businesses, the <a href="../pricing.html">WhatsApp Business API through Kanal</a> unlocks larger sends, automation, and detailed analytics.</p>
+<figure><img src="https://getkanal.com/images/screenshots/kanal-shopify-app-listing.webp" alt="Kanal on the Shopify App Store, the WhatsApp marketing app for Shopify stores" loading="lazy" decoding="async" /></figure>
+<p><strong>Start broadcasting to your customers today.</strong> <a href="https://apps.shopify.com/kanal-marketing-ai" target="_blank" rel="noopener">Install Kanal on Shopify</a> to send your first campaign, or <a href="../demo.html">book a demo</a> to see the campaign builder in action on your store.</p>
+<p>Create your click-to-chat link with our <a href="https://getkanal.com/tools/whatsapp-link">WhatsApp Link Generator</a> to start growing your subscriber list.</p>
+<h2 id="further-reading">Further Reading</h2>
+<ul>
+<li><a href="../blog/whatsapp-newsletter-guide.html">WhatsApp Newsletter Guide</a>: turn your broadcasts into a recurring newsletter strategy</li>
+<li><a href="../blog/whatsapp-business-api-guide.html">WhatsApp Business API Guide</a>: understand the API that powers broadcasts at scale</li>
+<li><a href="../blog/whatsapp-marketing-ecommerce-guide.html">WhatsApp Marketing for E-commerce</a>: the complete guide to WhatsApp commerce</li>
+<li><a href="https://getkanal.com/best-shopify-apps/best-shopify-sms-apps">Best Shopify SMS Apps</a>: compare messaging apps for your Shopify store</li>
+</ul>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ============ FAQ ============ -->
+    <section class="sec post-faq" id="faq">
+      <div class="wrap wrap--narrow cols cols--top">
+        <h2 class="reveal">Frequently asked questions</h2>
+        <div class="faq reveal">
+          <details open>
+            <summary>How many contacts can I add to a WhatsApp broadcast?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>On the WhatsApp Business app, maximum 256 contacts per broadcast list. Via the WhatsApp Business API (through platforms like Kanal), there's no limit.</p></div>
+          </details>
+          <details>
+            <summary>Can I send a broadcast if the contact hasn't saved my number?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>On the free WhatsApp Business app, no, the recipient must have your number saved. Via the WhatsApp Business API, yes, you can send template messages to any opted-in contact regardless.</p></div>
+          </details>
+          <details>
+            <summary>Is WhatsApp broadcast the same as WhatsApp newsletter?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>They're similar concepts. A 'broadcast' is the technical feature. A 'newsletter' is a regular broadcast series sent on a schedule. With the WhatsApp Business API, you can schedule automated newsletter-style broadcasts.</p></div>
+          </details>
+          <details>
+            <summary>Can I send broadcasts to international numbers?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>Yes. WhatsApp works globally. With the API, you can target customers in any country. Keep in mind that Meta charges each delivered template message at a rate set by the recipient's country and the template category (promotional broadcasts are marketing templates).</p></div>
+          </details>
+          <details>
+            <summary>What is a good WhatsApp broadcast message sample?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>A good broadcast message is short, names the customer, makes one offer and ends with one action. For example: "Hi Sarah, our winter collection is live. As a subscriber you get early access until Friday: [link]. Reply STOP to unsubscribe." On the free app you send it as plain text to a broadcast list. On the WhatsApp Business API it becomes a template with a button.</p></div>
+          </details>
+          <details>
+            <summary>Is there a limit on how many broadcast messages I can send?<span class="faq__icon"></span></summary>
+            <div class="faq__body"><p>On the WhatsApp app, a broadcast list holds up to 256 contacts and you can create as many lists as you like. WhatsApp is also rolling out a monthly limit in some countries: where it applies, its Help Center gives 35 broadcast messages per month at no charge (read on October 7, 2026). On the WhatsApp Business API there is no list size, and Meta charges each delivered marketing message.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ARTICLES SUGGÉRÉS ============ -->
+    <section class="sec post-related">
+      <div class="wrap">
+        <div class="bhead reveal">
+          <h2>Suggested articles</h2>
+          <a class="btn btn--light btn--nav" href="../blog.html">All articles</a>
+        </div>
+        <div class="bgrid bgrid--related"><a class="bcard reveal reveal--up" style="--d:0" href="../blog/black-friday-whatsapp-playbook.html" data-tags="black-friday whatsapp-marketing e-commerce shopify campaigns"><div class="bcard__media"><img src="https://getkanal.com/images/blog/bf-whatsapp-playbook-hero.webp" alt="" width="1200" height="675" loading="lazy" decoding="async" /></div><div class="bcard__body"><span class="btag">WhatsApp marketing</span><h3 class="bcard__title">Black Friday WhatsApp Marketing: 6-Step Shopify Playbook</h3><p class="bcard__desc">The Black Friday WhatsApp marketing playbook for Shopify: pre-BF list building, broadcast timing, cart recovery, templates and KPIs for 2026.</p><span class="bcard__meta">May 12, 2026 · 13 min read</span></div></a><a class="bcard reveal reveal--up" style="--d:1" href="../blog/whatsapp-newsletter-guide.html" data-tags="whatsapp-newsletter whatsapp-marketing e-commerce campaigns"><div class="bcard__media"><img src="https://getkanal.com/images/blog/newsletter-guide-hero.webp" alt="" width="1200" height="675" loading="lazy" decoding="async" /></div><div class="bcard__body"><span class="btag">WhatsApp marketing</span><h3 class="bcard__title">WhatsApp newsletter: how to send one, cost and rules</h3><p class="bcard__desc">A WhatsApp newsletter is a regular message sent to subscribers who opted in. Three ways to send one, what each costs, the opt-in rules and templates.</p><span class="bcard__meta">Mar 25, 2026 · 23 min read</span></div></a><a class="bcard reveal reveal--up" style="--d:2" href="../blog/klaviyo-alternatives.html" data-tags="klaviyo-alternatives klaviyo email-marketing sms-marketing whatsapp-marketing shopify e-commerce"><div class="bcard__media"><img src="https://getkanal.com/images/blog/klaviyo-alternatives-hero.webp" alt="" width="1200" height="675" loading="lazy" decoding="async" /></div><div class="bcard__body"><span class="btag">WhatsApp marketing</span><h3 class="bcard__title">Klaviyo Alternatives: 11 Tools for E-commerce Brands (2026)</h3><p class="bcard__desc">Klaviyo alternatives compared: channels, pricing models and Shopify fit for Kanal, Omnisend, Brevo, Mailchimp, Shopify Messaging, Postscript and more.</p><span class="bcard__meta">Sep 11, 2026 · 15 min read</span></div></a></div>
+      </div>
+    </section>
+  </main>
+
+
+
+  <!-- ============ FOOTER (structure Gleap, contenu getkanal.com) ============ -->
+  <footer class="footer">
+    <div class="footer__wrap">
+      <div class="footer__card">
+        <div class="footer__brand">
+          <a href="../index.html" class="footer__logo" aria-label="Kanal home"><svg viewBox="0 0 96 24" role="img" aria-label="Kanal"><use href="#logo-kanal" /></svg></a>
+          <p>The easiest way to boost your Shopify sales with Kanal &amp; WhatsApp marketing.</p>
+          <div class="footer__badges"><div class="footer__badge"><span class="footer__badge-icon"><img src="../assets/certs/meta-mark.svg" alt="" width="24" height="15" /></span><span><small>Official</small>Meta Business Partner</span></div><div class="footer__badge"><span class="footer__badge-icon"><svg aria-hidden="true"><use href="#logo-shopify" /></svg></span><span><small>Official</small>Shopify Partner</span></div><div class="footer__badge"><span class="footer__badge-icon"><img class="fb-full" src="../assets/certs/trust-rgpd.svg" alt="" width="36" height="36" /></span><span><small>Compliant</small>GDPR</span></div><div class="footer__badge"><span class="footer__badge-icon"><img class="fb-full" src="../assets/certs/cert-eu.svg" alt="" width="36" height="36" /></span><span><small>Data hosting</small>European Union</span></div><div class="footer__badge"><span class="footer__badge-icon"><img class="fb-rcs" src="../assets/certs/cert-rcs.svg" alt="" width="21" height="20" /></span><span><small>Google</small>RCS Business Messaging</span></div></div>
+        </div>
+        <nav class="footer__cols" aria-label="Footer">
+          <div><h4>Product</h4><a href="../abandoned-cart-recovery.html">Cart Recovery</a><a href="../post-purchase-upsell.html">Post-Purchase Upsell</a><a href="../review-collection.html">Review Collection</a><a href="../whatsapp-campaigns.html">Campaigns</a><a href="https://getkanal.com/sms">SMS</a><a href="https://getkanal.com/sms-campaigns">SMS Campaigns</a><a href="https://getkanal.com/sms-automation">SMS Automation</a><a href="../rcs.html">RCS marketing</a><a href="../whatsapp-newsletter.html">WhatsApp Newsletter</a><a href="../whatsapp-broadcast.html">WhatsApp Broadcast</a><a href="../whatsapp-marketing.html">WhatsApp Marketing</a><a href="../whatsapp-crm.html">WhatsApp CRM</a><a href="../whatsapp-business-api.html">WhatsApp Business API</a><a href="../whatsapp-ai-agent.html">AI Agent</a><a href="../automations.html">Automations</a><a href="../mcp.html">Kanal MCP</a><a href="../pricing.html">Pricing</a></div>
+          <div><h4>Instagram</h4><a href="https://getkanal.com/instagram">Instagram for Shopify</a><a href="../instagram-auto-reply.html">Auto Reply</a><a href="../instagram-dm-automation.html">DM Automation</a><a href="../instagram-chatbot.html">AI Chatbot</a><a href="../instagram-automation.html">Automation Tool</a><a href="https://getkanal.com/alternatives/manychat">ManyChat Alternative</a></div>
+          <div><h4>Integrations</h4><a href="../whatsapp-integration.html">All Integrations</a><a href="../whatsapp-shopify.html">WhatsApp Shopify</a><a href="../whatsapp-integration/prestashop.html">PrestaShop</a><a href="../whatsapp-integration/klaviyo.html">Klaviyo</a><a href="../whatsapp-integration/gorgias.html">Gorgias</a><a href="../whatsapp-integration/loyoly.html">Loyoly</a><a href="../whatsapp-integration/splio.html">Splio</a><a href="../whatsapp-integration/zendesk.html">Zendesk</a><a href="../whatsapp-integration/crisp.html">Crisp</a><a href="../whatsapp-integration/recharge.html">Recharge</a></div>
+          <div><h4>Resources</h4><a href="../blog.html">Blog</a><a href="../case-studies.html">Case Studies</a><a href="https://getkanal.com/best-shopify-apps">Best Shopify Apps</a><a href="https://getkanal.com/alternatives">Alternatives</a><a href="https://getkanal.com/tools">Tools</a><a href="https://getkanal.com/whatsapp-marketing-glossary">Glossary</a><a href="https://help.getkanal.com/">Help Center</a><a href="https://developers.getkanal.com/">Developer API</a></div>
+          <div><h4>Company</h4><a href="../affiliate.html">Affiliate Program</a><a href="https://getkanal.com/contact">Contact</a><a href="../affiliate.html#partners">Partners</a><a href="https://getkanal.com/whatsapp-marketing-agency">WhatsApp Agency</a><a href="https://getkanal.com/premium-setup">Premium Offer</a><a href="https://getkanal.com/careers">Careers</a><h4 class="footer__sub">Legal</h4><a href="https://getkanal.com/legal/privacy">Privacy Policy</a><a href="https://getkanal.com/legal/terms">Terms of Service</a><a href="https://getkanal.com/legal/sub-processors">Sub-processors</a></div>
+        </nav>
+      </div>
+      <div class="footer__bar">
+        <small>© 2026 Kanal. All rights reserved.</small>
+        <div class="footer__pills">
+          <div class="footer__lang" role="group" aria-label="Language">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" /><path d="M2 8h12M8 2c1.8 1.7 2.6 3.7 2.6 6S9.8 12.3 8 14M8 2C6.2 3.7 5.4 5.7 5.4 8s.8 4.3 2.6 6" /></svg>
+            <a href="#" aria-current="true">English</a>
+            <a href="https://getkanal.com/fr" hreflang="fr" lang="fr">Français</a>
+          </div>
+          <a class="footer__pill" href="https://apps.shopify.com/kanal-marketing-ai/reviews" target="_blank" rel="noopener"><span class="footer__stars">★★★★★</span>5/5 on Shopify</a>
+          <a class="footer__pill" href="https://apps.apple.com/app/kanal-ecommerce-marketing/id6794675748" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.37 12.62c-.02-2.33 1.9-3.45 1.99-3.5-1.08-1.59-2.77-1.8-3.37-1.83-1.43-.15-2.8.85-3.53.85-.73 0-1.85-.83-3.04-.81-1.56.02-3 .91-3.81 2.31-1.63 2.82-.42 6.99 1.17 9.28.78 1.12 1.7 2.37 2.91 2.33 1.17-.05 1.61-.75 3.02-.75 1.41 0 1.81.75 3.04.73 1.26-.02 2.05-1.14 2.82-2.27.89-1.3 1.250-2.56 1.27-2.62-.03-.01-2.44-.94-2.47-3.72zM14.06 5.77c.64-.78 1.08-1.86.96-2.94-.93.04-2.05.62-2.72 1.39-.6.69-1.12 1.79-.98 2.85 1.04.08 2.1-.53 2.74-1.3z" /></svg>App Store</a>
+        </div>
+        <div class="footer__social">
+          <a href="https://www.facebook.com/kanalcom/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3a21 21 0 0 0-2.3-.1c-2.3 0-3.8 1.4-3.8 3.9v2.3H8v3h2.5V21z" fill="currentColor" stroke="none" /></svg></a><a href="https://www.instagram.com/getkanal/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5" /><circle cx="12" cy="12" r="4" /><path d="M17.2 6.8h.01" /></svg></a><a href="https://www.youtube.com/@getkanal" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="4" /><path d="m10 9.2 5 2.8-5 2.8z" fill="currentColor" /></svg></a><a href="https://www.linkedin.com/company/getkanal/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="3" /><path d="M8 10.5V16M8 7.8h.01M11.5 16v-5.5M11.5 13a2.5 2.5 0 0 1 5 0v3" /></svg></a>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="i-moon" viewBox="0 0 16 16"><path d="M13 9.5A5.5 5.5 0 0 1 6.5 3a5.5 5.5 0 1 0 6.5 6.5z" /></svg>
+            <svg class="i-sun" viewBox="0 0 16 16"><circle cx="8" cy="8" r="3" /><path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3 3l1 1M12 12l1 1M3 13l1-1M12 4l1-1" /></svg>
+          </button>
+        </div>
+      </div>
+      <p class="footer__fine">Kanal is the WhatsApp, Instagram, SMS and RCS marketing platform for Shopify brands: cart recovery, campaigns, automations and an AI agent. Hosted in the EU · GDPR compliant · Official Meta Business Partner.</p>
+    </div>
+  </footer>
+
+
+  <script src="../js/main.js?v=202610190940"></script>
+</body>
+</html>
