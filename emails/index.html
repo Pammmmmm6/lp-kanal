@@ -1,0 +1,21 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kanal email templates</title><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root { --bg:#fff; --fg:#0a0a0a; --muted:#7d8187; --card:#f9f8f6; --line:rgba(0,0,0,.1); }
+@media (prefers-color-scheme: dark) { :root { --bg:#0a0a0a; --fg:#f4f4f2; --muted:#8b8f95; --card:#141414; --line:rgba(255,255,255,.12); } }
+body { margin:0; background:var(--bg); color:var(--fg); font-family:Geist, system-ui, sans-serif; }
+main { max-width:1080px; margin:0 auto; padding:56px 24px; }
+h1 { margin:0; font-size:44px; line-height:50px; font-weight:500; letter-spacing:-1px; } h1 span { display:block; color:var(--muted); }
+.lead { margin:16px 0 40px; max-width:620px; font-size:17px; line-height:28px; color:var(--muted); }
+.it { display:grid; grid-template-columns:minmax(0,1fr) 640px; gap:32px; margin-bottom:16px; padding:8px 8px 8px 32px; border-radius:28px; background:var(--card); }
+.meta { padding:24px 0; } .k { display:inline-block; padding:4px 12px; border-radius:9999px; box-shadow:inset 0 0 0 1px var(--line); font-size:13px; }
+.meta h2 { margin:16px 0 12px; font-size:28px; line-height:34px; font-weight:500; letter-spacing:-.4px; }
+.meta p { margin:8px 0 0; font-size:14px; line-height:22px; color:var(--muted); } .meta b { color:var(--fg); font-weight:500; }
+.meta a { display:inline-block; margin-top:20px; padding:10px 18px; border-radius:9999px; background:var(--fg); color:var(--bg); font-size:14px; text-decoration:none; }
+iframe { width:100%; height:820px; border:0; border-radius:20px; background:#f4f3f0; }
+@media (max-width:1000px) { .it { grid-template-columns:minmax(0,1fr); padding:8px; } .meta { padding:20px 16px 8px; } h1 { font-size:34px; line-height:40px; } }
+</style></head><body><main>
+<h1>Kanal email templates.<span>Built on the site’s design system.</span></h1>
+<p class="lead">Table-based HTML with inline styles, light and dark, 600 px wide. Painted panels are images exported from the site’s components. Merge tags like {{first_name}} are listed in emails/README.md.</p>
+<article class="it"><div class="meta"><span class="k">Product launch</span><h2>Kanal MCP announcement</h2><p><b>Subject</b> Run Kanal from Claude, Codex or Cursor</p><p><b>Preheader</b> Your assistant prepares campaigns, segments and automations in Kanal. Nothing goes out without your confirmation.</p><a href="dist/mcp-launch.html" target="_blank">Open the email &rarr;</a></div><iframe src="dist/mcp-launch.html" title="Kanal MCP announcement" loading="lazy"></iframe></article><article class="it"><div class="meta"><span class="k">Product update</span><h2>Monthly what’s new</h2><p><b>Subject</b> What’s new in Kanal: RCS, SMS campaigns, Instagram and Klaviyo</p><p><b>Preheader</b> RCS rich messages, SMS campaigns in minutes, Instagram early access and WhatsApp in your Klaviyo flows.</p><a href="dist/product-update.html" target="_blank">Open the email &rarr;</a></div><iframe src="dist/product-update.html" title="Monthly what’s new" loading="lazy"></iframe></article><article class="it"><div class="meta"><span class="k">Newsletter</span><h2>Blog digest</h2><p><b>Subject</b> This month: Instagram for Shopify, ManyChat, cart emails and Black Friday</p><p><b>Preheader</b> Four guides for Shopify brands selling on WhatsApp and Instagram.</p><a href="dist/newsletter.html" target="_blank">Open the email &rarr;</a></div><iframe src="dist/newsletter.html" title="Blog digest" loading="lazy"></iframe></article>
+</main></body></html>
