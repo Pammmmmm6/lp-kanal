@@ -1,0 +1,2 @@
+def pages(site):
+    return []
