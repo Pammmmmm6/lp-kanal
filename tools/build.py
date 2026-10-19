@@ -24,7 +24,7 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'tools'))
 
-GENERATORS = ['gen_features']
+GENERATORS = sorted(f[:-3] for f in os.listdir(os.path.join(ROOT, 'tools')) if f.startswith('gen_') and f.endswith('.py'))
 
 
 def read(path):
