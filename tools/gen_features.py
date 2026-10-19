@@ -55,10 +55,14 @@ def flow(title, sub, icon, steps, foot, total):
         lis.append(f'<li class="{cls}" style="--i:{i}"><span class="flow__check" aria-hidden="true">{CHECK}</span>'
                    f'<span class="flow__label"><strong>{e(strong)}</strong><small>{e(small)}</small></span>'
                    f'<span class="{meta_cls}">{e(meta)}</span></li>')
-    return (f'<div class="flow" data-flow>\n<div class="flow__head"><span class="flow__icon"><svg aria-hidden="true"><use href="#{icon}" /></svg></span>'
+    # icon : symbole du sprite (#logo-…) ou image (assets/…) ; total : montant animé, ou texte fixe
+    ico = f'<img src="{icon}" alt="" width="18" height="18" />' if icon.startswith('assets/') else f'<svg aria-hidden="true"><use href="#{icon}" /></svg>'
+    tot = (f'<strong>{e(total)}</strong>' if isinstance(total, str)
+           else f'<strong data-flow-total="{total}">€{total:,.2f}</strong>')
+    return (f'<div class="flow" data-flow>\n<div class="flow__head"><span class="flow__icon">{ico}</span>'
             f'<span class="flow__title"><strong>{e(title)}</strong><small>{e(sub)}</small></span><span class="flow__live">Live</span></div>\n'
             f'<ol class="flow__steps">{"".join(lis)}</ol>\n'
-            f'<div class="flow__foot"><span>{e(foot)}</span><strong data-flow-total="{total}">€{total:,.2f}</strong></div>\n</div>')
+            f'<div class="flow__foot"><span>{e(foot)}</span>{tot}</div>\n</div>')
 
 
 def camp(title, text_html, chips, img='pack'):

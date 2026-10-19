@@ -152,8 +152,9 @@
   if (flow) {
     const steps = $$('.flow__step', flow);
     const totalEl = $('[data-flow-total]', flow);
-    let total = +totalEl.dataset.flowTotal;
+    let total = totalEl ? +totalEl.dataset.flowTotal : 0;
     const bump = (to) => {
+      if (!totalEl) return; // pied de carte statique (pas de montant cumulé)
       const from = total, t0 = performance.now();
       const step = (now) => {
         const p = Math.min(1, (now - t0) / 900), e = 1 - Math.pow(1 - p, 3);
