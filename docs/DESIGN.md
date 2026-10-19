@@ -6,8 +6,8 @@ page must look like it belongs next to them.
 ## Build
 
 - Never edit generated `*.html` at the repo root by hand. Pages are assembled by
-  `python3 tools/build.py` from `src/partials/` (head, nav, footer) plus either
-  `src/pages/*.html` (hand-written) or a generator `tools/gen_*.py` that returns
+  `python3 build/build.py` from `src/partials/` (head, nav, footer) plus either
+  `src/pages/*.html` (hand-written) or a generator `build/gen_*.py` that returns
   page dicts: `{'out', 'title', 'description', 'styles', 'scripts', 'current', 'extra', 'main'}`.
 - Content comes from the live site repo (`/home/user/getkanal.com`, English): `messages/en.json`,
   `content/**.md`, `src/lib/*.ts`. Keep the copy faithful; don't invent claims or numbers.

@@ -4,14 +4,14 @@
 Pages come from two places:
   * src/pages/*.html — hand-written pages: a `<!--page {json} -->` header
     (title, description, styles, scripts, current, extra) followed by <main>.
-  * tools/gen_*.py — generated pages, built from the content of the live
+  * build/gen_*.py — generated pages, built from the content of the live
     site repository (getkanal/getkanal.com), so the copy matches production.
 
 Every getkanal.com link that has a local page is rewritten to it, so the
 menus and footer follow automatically as pages are added. Pages in
 sub-folders get their relative URLs prefixed with ../.
 
-Usage: python3 tools/build.py [--site /path/to/getkanal.com]
+Usage: python3 build/build.py [--site /path/to/getkanal.com]
 """
 import argparse
 import datetime as dt
@@ -22,9 +22,9 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(ROOT, 'tools'))
+sys.path.insert(0, os.path.join(ROOT, 'build'))
 
-GENERATORS = sorted(f[:-3] for f in os.listdir(os.path.join(ROOT, 'tools')) if f.startswith('gen_') and f.endswith('.py'))
+GENERATORS = sorted(f[:-3] for f in os.listdir(os.path.join(ROOT, 'build')) if f.startswith('gen_') and f.endswith('.py'))
 
 
 def read(path):

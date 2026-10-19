@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 392" font-family="Inter, -apple-system, system-ui, sans-serif">
+  <rect x="1" y="1" width="998" height="390" rx="16" fill="#ffffff" stroke="#ececec" stroke-width="1"/>
+  <rect x="12" y="8" width="185" height="52" rx="12" fill="#f4f4f5"/><g transform="translate(28,22)"><text x="80" y="8" text-anchor="middle" font-size="14" fill="#6b7075">Revenue</text><g transform="translate(0,26)"><text x="0" y="16" font-size="17" font-weight="700" fill="#16181c">218 261 €</text><g transform="translate(93.5,4)"><polyline points="0,14 5,8 10,11 16,3" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g><text x="117.5" y="16" font-size="15" font-weight="600" fill="#16a34a">+184%</text></g></g>
+<g transform="translate(232,22)"><text x="80" y="8" text-anchor="middle" font-size="14" fill="#6b7075">ROAS</text><g transform="translate(0,26)"><text x="0" y="16" font-size="17" font-weight="700" fill="#16181c">x30.7</text><g transform="translate(55.5,4)"><path d="M0 12 Q8 2 16 12" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/></g><text x="79.5" y="16" font-size="15" font-weight="600" fill="#16a34a">+54%</text></g></g>
+<g transform="translate(430,22)"><text x="80" y="8" text-anchor="middle" font-size="14" fill="#6b7075">Conversion rate</text><g transform="translate(0,26)"><text x="0" y="16" font-size="17" font-weight="700" fill="#16181c">2.2%</text><g transform="translate(46.0,4)"><path d="M0 12 Q8 2 16 12" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/></g><text x="70.0" y="16" font-size="15" font-weight="600" fill="#16a34a">+49%</text></g></g>
+<g transform="translate(632,22)"><text x="80" y="8" text-anchor="middle" font-size="14" fill="#6b7075">Orders</text><g transform="translate(0,26)"><text x="0" y="16" font-size="17" font-weight="700" fill="#16181c">2 751</text><g transform="translate(55.5,4)"><path d="M0 12 Q8 2 16 12" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/></g><text x="79.5" y="16" font-size="15" font-weight="600" fill="#16a34a">+189%</text></g></g>
+<g transform="translate(812,22)"><text x="80" y="8" text-anchor="middle" font-size="14" fill="#6b7075">Messages</text><g transform="translate(0,26)"><text x="0" y="16" font-size="17" font-weight="700" fill="#16181c">122 522</text><g transform="translate(74.5,4)"><polyline points="0,14 5,8 10,11 16,3" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g><text x="98.5" y="16" font-size="15" font-weight="600" fill="#16a34a">+90%</text></g></g>
+  <text x="28" y="112" font-size="15" font-weight="700" fill="#16181c">Revenue over time</text>
+  <line x1="28" y1="120" x2="150" y2="120" stroke="#c7ccd1" stroke-width="1.5" stroke-dasharray="2 3"/>
+  <text x="972" y="112" text-anchor="end" font-size="14" fill="#6b7075">Last 30 days</text>
+  <text x="28" y="156" font-size="27" font-weight="700" fill="#16181c">218 261 €</text>
+  <text x="186" y="156" font-size="16" font-weight="600" fill="#16a34a">↗ 184%</text>
+  <line x1="78" y1="330.0" x2="968" y2="330.0" stroke="#eef0f2" stroke-width="1"/>
+<text x="64" y="334.0" text-anchor="end" font-size="13" fill="#9aa0a6">0</text>
+<line x1="78" y1="286.0" x2="968" y2="286.0" stroke="#eef0f2" stroke-width="1"/>
+<text x="64" y="290.0" text-anchor="end" font-size="13" fill="#9aa0a6">200 €</text>
+<line x1="78" y1="242.0" x2="968" y2="242.0" stroke="#eef0f2" stroke-width="1"/>
+<text x="64" y="246.0" text-anchor="end" font-size="13" fill="#9aa0a6">400 €</text>
+<line x1="78" y1="198.0" x2="968" y2="198.0" stroke="#eef0f2" stroke-width="1"/>
+<text x="64" y="202.0" text-anchor="end" font-size="13" fill="#9aa0a6">600 €</text>
+  <path d="M 78.0 242.0 C 82.6 241.8 96.5 239.4 105.8 240.9 C 115.1 242.4 124.4 248.6 133.6 250.8 C 142.9 253.0 152.2 253.7 161.4 254.1 C 170.7 254.5 180.0 249.5 189.2 253.0 C 198.5 256.5 207.8 271.1 217.1 275.0 C 226.3 278.9 235.6 276.5 244.9 276.1 C 254.1 275.7 263.4 276.7 272.7 272.8 C 282.0 268.9 291.2 260.7 300.5 253.0 C 309.8 245.3 319.0 230.6 328.3 226.6 C 337.6 222.6 346.9 226.2 356.1 228.8 C 365.4 231.4 374.7 238.0 383.9 242.0 C 393.2 246.0 402.5 247.9 411.8 253.0 C 421.0 258.1 430.3 269.1 439.6 272.8 C 448.8 276.5 458.1 276.5 467.4 275.0 C 476.6 273.5 485.9 268.0 495.2 264.0 C 504.5 260.0 513.7 255.6 523.0 250.8 C 532.3 246.0 541.5 239.4 550.8 235.4 C 560.1 231.4 569.4 223.7 578.6 226.6 C 587.9 229.5 597.2 246.8 606.4 253.0 C 615.7 259.2 625.0 260.3 634.2 264.0 C 643.5 267.7 652.8 273.5 662.1 275.0 C 671.3 276.5 680.6 277.6 689.9 272.8 C 699.1 268.0 708.4 253.7 717.7 246.4 C 727.0 239.1 736.2 232.1 745.5 228.8 C 754.8 225.5 764.0 225.9 773.3 226.6 C 782.6 227.3 791.9 228.8 801.1 233.2 C 810.4 237.6 819.7 246.4 828.9 253.0 C 838.2 259.6 847.5 269.1 856.8 272.8 C 866.0 276.5 875.3 276.5 884.6 275.0 C 893.8 273.5 903.1 268.8 912.4 264.0 C 921.6 259.2 930.9 250.1 940.2 246.4 C 949.5 242.7 963.4 242.7 968.0 242.0" fill="none" stroke="#bcd3f7" stroke-width="2.5" stroke-dasharray="3 4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 78.0 253.0 C 82.6 252.6 96.5 255.2 105.8 250.8 C 115.1 246.4 124.4 231.0 133.6 226.6 C 142.9 222.2 152.2 221.8 161.4 224.4 C 170.7 227.0 180.0 242.7 189.2 242.0 C 198.5 241.3 207.8 223.8 217.1 220.0 C 226.3 216.2 235.6 216.3 244.9 218.9 C 254.1 221.5 263.4 230.1 272.7 235.4 C 282.0 240.7 291.2 249.7 300.5 250.8 C 309.8 251.9 319.0 241.6 328.3 242.0 C 337.6 242.4 346.9 251.2 356.1 253.0 C 365.4 254.8 374.7 257.4 383.9 253.0 C 393.2 248.6 402.5 232.3 411.8 226.6 C 421.0 220.9 430.3 217.4 439.6 218.9 C 448.8 220.4 458.1 234.1 467.4 235.4 C 476.6 236.7 485.9 227.0 495.2 226.6 C 504.5 226.2 513.7 234.5 523.0 233.2 C 532.3 231.9 541.5 221.3 550.8 218.9 C 560.1 216.5 569.4 218.9 578.6 218.9 C 587.9 218.9 597.2 216.9 606.4 218.9 C 615.7 220.9 625.0 227.9 634.2 231.0 C 643.5 234.1 652.8 239.6 662.1 237.6 C 671.3 235.6 680.6 219.6 689.9 218.9 C 699.1 218.2 708.4 229.3 717.7 233.2 C 727.0 237.0 736.2 244.4 745.5 242.0 C 754.8 239.6 764.0 220.0 773.3 218.9 C 782.6 217.8 791.9 226.1 801.1 235.4 C 810.4 244.8 819.7 268.4 828.9 275.0 C 838.2 281.6 847.5 279.8 856.8 275.0 C 866.0 270.2 875.3 248.2 884.6 246.4 C 893.8 244.6 903.1 262.9 912.4 264.0 C 921.6 265.1 930.9 251.5 940.2 253.0 C 949.5 254.5 963.4 269.5 968.0 272.8" fill="none" stroke="#3b82f6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="78.0" y="358" text-anchor="start" font-size="13" fill="#9aa0a6">May 11</text>
+<text x="205.1" y="358" text-anchor="middle" font-size="13" fill="#9aa0a6">May 15</text>
+<text x="332.3" y="358" text-anchor="middle" font-size="13" fill="#9aa0a6">May 19</text>
+<text x="459.4" y="358" text-anchor="middle" font-size="13" fill="#9aa0a6">May 23</text>
+<text x="586.6" y="358" text-anchor="middle" font-size="13" fill="#9aa0a6">May 27</text>
+<text x="713.7" y="358" text-anchor="middle" font-size="13" fill="#9aa0a6">May 31</text>
+<text x="840.9" y="358" text-anchor="middle" font-size="13" fill="#9aa0a6">Jun 4</text>
+<text x="968.0" y="358" text-anchor="end" font-size="13" fill="#9aa0a6">Jun 8</text>
+  
+    <g font-size="14" fill="#5f6368">
+      <circle cx="350" cy="378" r="5" fill="#3b82f6"/>
+      <text x="362" y="382" text-anchor="start">May 11 – Jun 10, 2026</text>
+      <circle cx="570" cy="378" r="5" fill="#bcd3f7"/>
+      <text x="582" y="382" text-anchor="start">Apr 10 – May 10, 2026</text>
+    </g>
+</svg>
